@@ -12,7 +12,7 @@
         <div class="col-3">
             {{-- {{ Form::label('tipo_id_paciente') }} --}}
             {{ Form::label('') }}
-            {{ Form::text('tipo_id_paciente', $paciente->tipo_id_paciente, ['class' => 'form-control' . ($errors->has('tipo_id_paciente') ? ' is-invalid' : ''), 'placeholder' => 'Tipo Id Paciente']) }}
+            {{ Form::select('tipo_id_paciente',$tipos_id_pacientes, $paciente->tipo_id_paciente, ['class' => 'form-control' . ($errors->has('tipo_id_paciente') ? ' is-invalid' : ''), 'placeholder' => 'Tipo Id Paciente']) }}
             {!! $errors->first('tipo_id_paciente', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-3">

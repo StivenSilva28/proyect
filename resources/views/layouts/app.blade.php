@@ -37,6 +37,7 @@
                         <a class="nav-link" href="{{ route('libros.index') }}">{{ __('libros') }}</a>
                         <a class="nav-link" href="{{ route('categorias.index') }}">{{ __('categorias') }}</a>
                         <a class="nav-link" href="{{ route('pacientes.index') }}">{{ __('pacientes') }}</a>
+                        {{-- <a class="nav-link" href="{{ route('tiposEstrato.index') }}">{{ __('tiposEstrato') }}</a> --}}
                         @endif
                     </ul>
 

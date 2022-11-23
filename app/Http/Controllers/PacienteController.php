@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Paciente;
+use App\Models\TiposIdPaciente;
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +33,11 @@ class PacienteController extends Controller
     public function create()
     {
         $paciente = new Paciente();
-        return view('paciente.create', compact('paciente'));
+        $tipos_id_pacientes = TiposIdPaciente::pluck('abreviado','tipo_id_paciente');
+        // $categorias=Categoria::pluck('nombre','id');
+
+
+        return view('paciente.create', compact('paciente','tipos_id_pacientes'));
     }
 
     /**

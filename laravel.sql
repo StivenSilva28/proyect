@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2022 a las 01:57:51
+-- Tiempo de generación: 23-11-2022 a las 03:42:41
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -33,6 +33,14 @@ CREATE TABLE `aseguradoras` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `aseguradoras`
+--
+
+INSERT INTO `aseguradoras` (`aseguradoras_id`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'SIN AFILIACION', NULL, NULL),
+(2, 'SISBEN', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -223,6 +231,13 @@ CREATE TABLE `system_usuarios` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `system_usuarios`
+--
+
+INSERT INTO `system_usuarios` (`usuario_id`, `usuario`, `nombre`, `descripcion`, `passwd`, `sw_admin`, `activo`, `fecha_caducidad_contrasena`, `fecha_caducidad_cuenta`, `telefono`, `tel_celular`, `indicativo`, `extension`, `email`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `firma`, `created_at`, `updated_at`) VALUES
+(1, 'JBASTIDAS', 'JULIAN BASTIDAS', 'DESARROLLO E IMPLEMENTACION', '1234', '1', '1', '2022-11-23 03:30:24', '2022-11-23 03:30:24', '32323432', '423432', '4234324', '432432', '4342', 'JULIAN', '', 'BASTIDAS', '', '', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -236,6 +251,18 @@ CREATE TABLE `tipos_estratos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `tipos_estratos`
+--
+
+INSERT INTO `tipos_estratos` (`tipo_estrato_id`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'ESTRATO 1', NULL, NULL),
+(2, 'ESTRATO 2', NULL, NULL),
+(3, 'ESTRATO 3', NULL, NULL),
+(4, 'ESTRATO 4', NULL, NULL),
+(5, 'ESTRATO 5', NULL, NULL),
+(6, 'ESTRATO 6', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -244,11 +271,22 @@ CREATE TABLE `tipos_estratos` (
 
 CREATE TABLE `tipos_id_pacientes` (
   `tipo_id_paciente` bigint(20) UNSIGNED NOT NULL,
+  `abreviado` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
   `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `codigo_alterno` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tipos_id_pacientes`
+--
+
+INSERT INTO `tipos_id_pacientes` (`tipo_id_paciente`, `abreviado`, `descripcion`, `codigo_alterno`, `created_at`, `updated_at`) VALUES
+(1, 'RC', 'REGISTRO CIVIL', '1', NULL, NULL),
+(2, 'CC', 'CEDULA CIUDADANIA ', '1', NULL, NULL),
+(3, 'TI', 'TARJETA DE IDENTIDAD', '1', NULL, NULL),
+(4, 'CE', 'CEDULA EXTRANJERIA', '1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -264,6 +302,16 @@ CREATE TABLE `tipos_regimen_salud` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `tipos_regimen_salud`
+--
+
+INSERT INTO `tipos_regimen_salud` (`tipo_regimen_id`, `descripcion`, `sw_activo`, `created_at`, `updated_at`) VALUES
+(1, 'SIN AFILIACION', '1', NULL, NULL),
+(2, 'ESPECIAL', '1', NULL, NULL),
+(3, 'SUBSIDIADO', '1', NULL, NULL),
+(4, 'CONTRIBUTIVO', '1', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -272,10 +320,19 @@ CREATE TABLE `tipos_regimen_salud` (
 
 CREATE TABLE `tipo_departamento` (
   `departamento_id` bigint(20) UNSIGNED NOT NULL,
+  `Codigo_depa` int(11) NOT NULL,
   `departamento` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_departamento`
+--
+
+INSERT INTO `tipo_departamento` (`departamento_id`, `Codigo_depa`, `departamento`, `created_at`, `updated_at`) VALUES
+(1, 5, 'VALLE DEL CAUCA', NULL, NULL),
+(2, 6, 'ANTIOQUIA', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -298,10 +355,19 @@ CREATE TABLE `tipo_estado_civil` (
 
 CREATE TABLE `tipo_municipio` (
   `municipio_id` bigint(20) UNSIGNED NOT NULL,
+  `cod_municipio` int(4) NOT NULL,
   `municipio` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_municipio`
+--
+
+INSERT INTO `tipo_municipio` (`municipio_id`, `cod_municipio`, `municipio`, `created_at`, `updated_at`) VALUES
+(1, 1, 'CALI', NULL, NULL),
+(2, 2, 'CANDELARIA', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -311,10 +377,18 @@ CREATE TABLE `tipo_municipio` (
 
 CREATE TABLE `tipo_pais` (
   `pais_id` bigint(20) UNSIGNED NOT NULL,
+  `cod_pais` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pais` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_pais`
+--
+
+INSERT INTO `tipo_pais` (`pais_id`, `cod_pais`, `pais`, `created_at`, `updated_at`) VALUES
+(1, 'CO', 'COLOMBIA', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -324,11 +398,20 @@ CREATE TABLE `tipo_pais` (
 
 CREATE TABLE `tipo_sexo` (
   `sexo_id` bigint(20) UNSIGNED NOT NULL,
+  `sexo_tipo` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
   `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sw_mostrar` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_sexo`
+--
+
+INSERT INTO `tipo_sexo` (`sexo_id`, `sexo_tipo`, `descripcion`, `sw_mostrar`, `created_at`, `updated_at`) VALUES
+(1, 'M', 'MASCULINO', '1', NULL, NULL),
+(2, 'F', 'FEMENINO', '1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -352,7 +435,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'StivenS', 'ztivn@misena.edu.co', NULL, '$2y$10$OtAm48gGjCD3ObamDONH4elDXymM6iKHPLfW29hiFHbevb88tTn2O', NULL, '2022-11-21 06:53:43', '2022-11-21 06:53:43');
+(1, 'StivenS', 'ztivn@misena.edu.co', NULL, '$2y$10$OtAm48gGjCD3ObamDONH4elDXymM6iKHPLfW29hiFHbevb88tTn2O', 'sJ1nZxnjUK03I4s31AEIioeJqQ51fqnOxze1GE51zUOTleFLDW5YQZRMfKOK', '2022-11-21 06:53:43', '2022-11-21 06:53:43');
 
 -- --------------------------------------------------------
 
@@ -362,10 +445,19 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 
 CREATE TABLE `zona_residencia` (
   `zona_residencia_id` bigint(20) UNSIGNED NOT NULL,
+  `zona_id` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
   `descripcion` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `zona_residencia`
+--
+
+INSERT INTO `zona_residencia` (`zona_residencia_id`, `zona_id`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'U', 'urbano', NULL, NULL),
+(2, 'R', 'Rural', NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -508,7 +600,7 @@ ALTER TABLE `zona_residencia`
 -- AUTO_INCREMENT de la tabla `aseguradoras`
 --
 ALTER TABLE `aseguradoras`
-  MODIFY `aseguradoras_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `aseguradoras_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -550,31 +642,31 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `system_usuarios`
 --
 ALTER TABLE `system_usuarios`
-  MODIFY `usuario_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `usuario_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos_estratos`
 --
 ALTER TABLE `tipos_estratos`
-  MODIFY `tipo_estrato_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `tipo_estrato_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos_id_pacientes`
 --
 ALTER TABLE `tipos_id_pacientes`
-  MODIFY `tipo_id_paciente` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `tipo_id_paciente` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos_regimen_salud`
 --
 ALTER TABLE `tipos_regimen_salud`
-  MODIFY `tipo_regimen_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `tipo_regimen_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_departamento`
 --
 ALTER TABLE `tipo_departamento`
-  MODIFY `departamento_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `departamento_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_estado_civil`
@@ -586,19 +678,19 @@ ALTER TABLE `tipo_estado_civil`
 -- AUTO_INCREMENT de la tabla `tipo_municipio`
 --
 ALTER TABLE `tipo_municipio`
-  MODIFY `municipio_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `municipio_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_pais`
 --
 ALTER TABLE `tipo_pais`
-  MODIFY `pais_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `pais_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_sexo`
 --
 ALTER TABLE `tipo_sexo`
-  MODIFY `sexo_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `sexo_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -610,7 +702,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `zona_residencia`
 --
 ALTER TABLE `zona_residencia`
-  MODIFY `zona_residencia_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `zona_residencia_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
