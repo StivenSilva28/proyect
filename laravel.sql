@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2022 a las 03:42:41
+-- Tiempo de generación: 23-11-2022 a las 20:23:52
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -60,7 +60,8 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
-(1, 'aaa', '2022-11-21 18:43:01', '2022-11-21 18:43:01');
+(1, 'aaa', '2022-11-21 18:43:01', '2022-11-21 18:43:01'),
+(2, 'll', '2022-11-24 00:17:30', '2022-11-24 00:17:30');
 
 -- --------------------------------------------------------
 
@@ -88,10 +89,16 @@ CREATE TABLE `libros` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `categoria_id` bigint(20) UNSIGNED NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `editorial` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `libros`
+--
+
+INSERT INTO `libros` (`id`, `categoria_id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 2, 'jkji', '2022-11-24 00:22:30', '2022-11-24 00:22:30');
 
 -- --------------------------------------------------------
 
@@ -606,7 +613,7 @@ ALTER TABLE `aseguradoras`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -618,7 +625,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
