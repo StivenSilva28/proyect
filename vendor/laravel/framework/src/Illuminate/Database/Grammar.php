@@ -4,10 +4,6 @@ namespace Illuminate\Database;
 
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Traits\Macroable;
-<<<<<<< HEAD
-=======
-use RuntimeException;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 abstract class Grammar
 {
@@ -66,16 +62,6 @@ abstract class Grammar
             return $this->wrapAliasedValue($value, $prefixAlias);
         }
 
-<<<<<<< HEAD
-=======
-        // If the given value is a JSON selector we will wrap it differently than a
-        // traditional value. We will need to split this path and wrap each part
-        // wrapped, etc. Otherwise, we will simply wrap the value as a string.
-        if ($this->isJsonSelector($value)) {
-            return $this->wrapJsonSelector($value);
-        }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return $this->wrapSegments(explode('.', $value));
     }
 
@@ -131,33 +117,6 @@ abstract class Grammar
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Wrap the given JSON selector.
-     *
-     * @param  string  $value
-     * @return string
-     *
-     * @throws \RuntimeException
-     */
-    protected function wrapJsonSelector($value)
-    {
-        throw new RuntimeException('This database engine does not support JSON operations.');
-    }
-
-    /**
-     * Determine if the given string is a JSON selector.
-     *
-     * @param  string  $value
-     * @return bool
-     */
-    protected function isJsonSelector($value)
-    {
-        return str_contains($value, '->');
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Convert an array of column names into a delimited string.
      *
      * @param  array  $columns

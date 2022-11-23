@@ -34,18 +34,12 @@ class JsonResponse extends Response
     protected $encodingOptions = self::DEFAULT_ENCODING_OPTIONS;
 
     /**
-<<<<<<< HEAD
      * @param mixed $data    The response data
      * @param int   $status  The response status code
      * @param array $headers An array of response headers
      * @param bool  $json    If the data is already a JSON string
      */
     public function __construct($data = null, int $status = 200, array $headers = [], bool $json = false)
-=======
-     * @param bool $json If the data is already a JSON string
-     */
-    public function __construct(mixed $data = null, int $status = 200, array $headers = [], bool $json = false)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         parent::__construct('', $status, $headers);
 
@@ -65,7 +59,6 @@ class JsonResponse extends Response
      *
      * Example:
      *
-<<<<<<< HEAD
      *     return JsonResponse::create(['key' => 'value'])
      *         ->setSharedMaxAge(300);
      *
@@ -89,23 +82,16 @@ class JsonResponse extends Response
      *
      * Example:
      *
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *     return JsonResponse::fromJsonString('{"key": "value"}')
      *         ->setSharedMaxAge(300);
      *
      * @param string $data    The JSON response string
      * @param int    $status  The response status code
      * @param array  $headers An array of response headers
-<<<<<<< HEAD
      *
      * @return static
      */
     public static function fromJsonString(string $data, int $status = 200, array $headers = [])
-=======
-     */
-    public static function fromJsonString(string $data, int $status = 200, array $headers = []): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new static($data, $status, $headers, true);
     }
@@ -119,11 +105,7 @@ class JsonResponse extends Response
      *
      * @throws \InvalidArgumentException When the callback name is not valid
      */
-<<<<<<< HEAD
     public function setCallback(string $callback = null)
-=======
-    public function setCallback(string $callback = null): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $callback) {
             // partially taken from https://geekality.net/2011/08/03/valid-javascript-identifier/
@@ -154,11 +136,7 @@ class JsonResponse extends Response
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function setJson(string $json)
-=======
-    public function setJson(string $json): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->data = $json;
 
@@ -168,20 +146,13 @@ class JsonResponse extends Response
     /**
      * Sets the data to be sent as JSON.
      *
-<<<<<<< HEAD
      * @param mixed $data
      *
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      *
      * @throws \InvalidArgumentException
      */
-<<<<<<< HEAD
     public function setData($data = [])
-=======
-    public function setData(mixed $data = []): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         try {
             $data = json_encode($data, $this->encodingOptions);
@@ -192,11 +163,7 @@ class JsonResponse extends Response
             throw $e;
         }
 
-<<<<<<< HEAD
         if (\PHP_VERSION_ID >= 70300 && (\JSON_THROW_ON_ERROR & $this->encodingOptions)) {
-=======
-        if (\JSON_THROW_ON_ERROR & $this->encodingOptions) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $this->setJson($data);
         }
 
@@ -209,15 +176,10 @@ class JsonResponse extends Response
 
     /**
      * Returns options used while encoding data to JSON.
-<<<<<<< HEAD
      *
      * @return int
      */
     public function getEncodingOptions()
-=======
-     */
-    public function getEncodingOptions(): int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->encodingOptions;
     }
@@ -227,11 +189,7 @@ class JsonResponse extends Response
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function setEncodingOptions(int $encodingOptions)
-=======
-    public function setEncodingOptions(int $encodingOptions): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->encodingOptions = $encodingOptions;
 
@@ -243,11 +201,7 @@ class JsonResponse extends Response
      *
      * @return $this
      */
-<<<<<<< HEAD
     protected function update()
-=======
-    protected function update(): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $this->callback) {
             // Not using application/javascript for compatibility reasons with older browsers.

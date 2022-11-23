@@ -65,11 +65,7 @@ class Repository implements ArrayAccess, CacheContract
      * @param  string  $key
      * @return bool
      */
-<<<<<<< HEAD
     public function has($key)
-=======
-    public function has($key): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return ! is_null($this->get($key));
     }
@@ -88,19 +84,11 @@ class Repository implements ArrayAccess, CacheContract
     /**
      * Retrieve an item from the cache by key.
      *
-<<<<<<< HEAD
      * @param  string  $key
      * @param  mixed  $default
      * @return mixed
      */
     public function get($key, $default = null)
-=======
-     * @param  array|string  $key
-     * @param  mixed  $default
-     * @return mixed
-     */
-    public function get($key, $default = null): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (is_array($key)) {
             return $this->many($key);
@@ -146,11 +134,7 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return iterable
      */
-<<<<<<< HEAD
     public function getMultiple($keys, $default = null)
-=======
-    public function getMultiple($keys, $default = null): iterable
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $defaults = [];
 
@@ -205,11 +189,7 @@ class Repository implements ArrayAccess, CacheContract
     /**
      * Store an item in the cache.
      *
-<<<<<<< HEAD
      * @param  string  $key
-=======
-     * @param  array|string  $key
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  mixed  $value
      * @param  \DateTimeInterface|\DateInterval|int|null  $ttl
      * @return bool
@@ -244,11 +224,7 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return bool
      */
-<<<<<<< HEAD
     public function set($key, $value, $ttl = null)
-=======
-    public function set($key, $value, $ttl = null): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->put($key, $value, $ttl);
     }
@@ -307,11 +283,7 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return bool
      */
-<<<<<<< HEAD
     public function setMultiple($values, $ttl = null)
-=======
-    public function setMultiple($values, $ttl = null): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->putMany(is_array($values) ? $values : iterator_to_array($values), $ttl);
     }
@@ -476,11 +448,7 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return bool
      */
-<<<<<<< HEAD
     public function delete($key)
-=======
-    public function delete($key): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->forget($key);
     }
@@ -490,11 +458,7 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return bool
      */
-<<<<<<< HEAD
     public function deleteMultiple($keys)
-=======
-    public function deleteMultiple($keys): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $result = true;
 
@@ -512,11 +476,7 @@ class Repository implements ArrayAccess, CacheContract
      *
      * @return bool
      */
-<<<<<<< HEAD
     public function clear()
-=======
-    public function clear(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->store->flush();
     }
@@ -623,13 +583,9 @@ class Repository implements ArrayAccess, CacheContract
      */
     protected function event($event)
     {
-<<<<<<< HEAD
         if (isset($this->events)) {
             $this->events->dispatch($event);
         }
-=======
-        $this->events?->dispatch($event);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -659,12 +615,8 @@ class Repository implements ArrayAccess, CacheContract
      * @param  string  $key
      * @return bool
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetExists($key)
-=======
-    public function offsetExists($key): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->has($key);
     }
@@ -675,12 +627,8 @@ class Repository implements ArrayAccess, CacheContract
      * @param  string  $key
      * @return mixed
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetGet($key)
-=======
-    public function offsetGet($key): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->get($key);
     }
@@ -692,12 +640,8 @@ class Repository implements ArrayAccess, CacheContract
      * @param  mixed  $value
      * @return void
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
-=======
-    public function offsetSet($key, $value): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->put($key, $value, $this->default);
     }
@@ -708,12 +652,8 @@ class Repository implements ArrayAccess, CacheContract
      * @param  string  $key
      * @return void
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetUnset($key)
-=======
-    public function offsetUnset($key): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->forget($key);
     }

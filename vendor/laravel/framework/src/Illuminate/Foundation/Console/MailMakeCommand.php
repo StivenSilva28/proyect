@@ -5,15 +5,8 @@ namespace Illuminate\Foundation\Console;
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
-<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputOption;
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Input\InputOption;
-
-#[AsCommand(name: 'make:mail')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class MailMakeCommand extends GeneratorCommand
 {
     use CreatesMatchingTest;
@@ -26,20 +19,6 @@ class MailMakeCommand extends GeneratorCommand
     protected $name = 'make:mail';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'make:mail';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -95,15 +74,7 @@ class MailMakeCommand extends GeneratorCommand
      */
     protected function buildClass($name)
     {
-<<<<<<< HEAD
         $class = parent::buildClass($name);
-=======
-        $class = str_replace(
-            '{{ subject }}',
-            Str::headline(str_replace($this->getNamespace($name).'\\', '', $name)),
-            parent::buildClass($name)
-        );
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if ($this->option('markdown') !== false) {
             $class = str_replace(['DummyView', '{{ view }}'], $this->getView(), $class);
@@ -122,15 +93,7 @@ class MailMakeCommand extends GeneratorCommand
         $view = $this->option('markdown');
 
         if (! $view) {
-<<<<<<< HEAD
             $view = 'mail.'.Str::kebab(class_basename($this->argument('name')));
-=======
-            $name = str_replace('\\', '/', $this->argument('name'));
-
-            $view = 'mail.'.collect(explode('/', $name))
-                ->map(fn ($part) => Str::kebab($part))
-                ->implode('.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $view;
@@ -182,10 +145,7 @@ class MailMakeCommand extends GeneratorCommand
     {
         return [
             ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the mailable already exists'],
-<<<<<<< HEAD
 
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ['markdown', 'm', InputOption::VALUE_OPTIONAL, 'Create a new Markdown template for the mailable', false],
         ];
     }

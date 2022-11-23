@@ -4,17 +4,9 @@ namespace Illuminate\Routing;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Reflector;
-<<<<<<< HEAD
 use ReflectionFunctionAbstract;
 use ReflectionMethod;
 use ReflectionParameter;
-=======
-use ReflectionClass;
-use ReflectionFunctionAbstract;
-use ReflectionMethod;
-use ReflectionParameter;
-use stdClass;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 trait RouteDependencyResolverTrait
 {
@@ -50,11 +42,7 @@ trait RouteDependencyResolverTrait
 
         $values = array_values($parameters);
 
-<<<<<<< HEAD
         $skippableValue = new \stdClass;
-=======
-        $skippableValue = new stdClass;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         foreach ($reflector->getParameters() as $key => $parameter) {
             $instance = $this->transformDependency($parameter, $parameters, $skippableValue);
@@ -88,15 +76,7 @@ trait RouteDependencyResolverTrait
         // the list of parameters. If it is we will just skip it as it is probably a model
         // binding and we do not want to mess with those; otherwise, we resolve it here.
         if ($className && ! $this->alreadyInParameters($className, $parameters)) {
-<<<<<<< HEAD
             return $parameter->isDefaultValueAvailable() ? null : $this->container->make($className);
-=======
-            $isEnum = method_exists(ReflectionClass::class, 'isEnum') && (new ReflectionClass($className))->isEnum();
-
-            return $parameter->isDefaultValueAvailable()
-                ? ($isEnum ? $parameter->getDefaultValue() : null)
-                : $this->container->make($className);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $skippableValue;
@@ -111,13 +91,9 @@ trait RouteDependencyResolverTrait
      */
     protected function alreadyInParameters($class, array $parameters)
     {
-<<<<<<< HEAD
         return ! is_null(Arr::first($parameters, function ($value) use ($class) {
             return $value instanceof $class;
         }));
-=======
-        return ! is_null(Arr::first($parameters, fn ($value) => $value instanceof $class));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

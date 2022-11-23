@@ -2,13 +2,7 @@
 
 namespace Illuminate\Foundation\Testing\Concerns;
 
-<<<<<<< HEAD
 use Illuminate\Contracts\Debug\ExceptionHandler;
-=======
-use Closure;
-use Illuminate\Contracts\Debug\ExceptionHandler;
-use Illuminate\Testing\Assert;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\Console\Application as ConsoleApplication;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -131,11 +125,7 @@ trait InteractsWithExceptionHandling
 
                 if ($e instanceof NotFoundHttpException) {
                     throw new NotFoundHttpException(
-<<<<<<< HEAD
                         "{$request->method()} {$request->url()}", $e, $e->getCode()
-=======
-                        "{$request->method()} {$request->url()}", $e, is_int($e->getCode()) ? $e->getCode() : 0
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     );
                 }
 
@@ -157,49 +147,4 @@ trait InteractsWithExceptionHandling
 
         return $this;
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Assert that the given callback throws an exception with the given message when invoked.
-     *
-     * @param  \Closure  $test
-     * @param  class-string<\Throwable>  $expectedClass
-     * @param  string|null  $expectedMessage
-     * @return $this
-     */
-    protected function assertThrows(Closure $test, string $expectedClass = Throwable::class, ?string $expectedMessage = null)
-    {
-        try {
-            $test();
-
-            $thrown = false;
-        } catch (Throwable $exception) {
-            $thrown = $exception instanceof $expectedClass;
-
-            $actualMessage = $exception->getMessage();
-        }
-
-        Assert::assertTrue(
-            $thrown,
-            sprintf('Failed asserting that exception of type "%s" was thrown.', $expectedClass)
-        );
-
-        if (isset($expectedMessage)) {
-            if (! isset($actualMessage)) {
-                Assert::fail(
-                    sprintf(
-                        'Failed asserting that exception of type "%s" with message "%s" was thrown.',
-                        $expectedClass,
-                        $expectedMessage
-                    )
-                );
-            } else {
-                Assert::assertStringContainsString($expectedMessage, $actualMessage);
-            }
-        }
-
-        return $this;
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

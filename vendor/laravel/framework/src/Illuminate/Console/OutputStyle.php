@@ -2,19 +2,11 @@
 
 namespace Illuminate\Console;
 
-<<<<<<< HEAD
-=======
-use Illuminate\Console\Contracts\NewLineAware;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-<<<<<<< HEAD
 class OutputStyle extends SymfonyStyle
-=======
-class OutputStyle extends SymfonyStyle implements NewLineAware
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 {
     /**
      * The output instance.
@@ -24,16 +16,6 @@ class OutputStyle extends SymfonyStyle implements NewLineAware
     private $output;
 
     /**
-<<<<<<< HEAD
-=======
-     * If the last output written wrote a new line.
-     *
-     * @var bool
-     */
-    protected $newLineWritten = false;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new Console OutputStyle instance.
      *
      * @param  \Symfony\Component\Console\Input\InputInterface  $input
@@ -48,60 +30,11 @@ class OutputStyle extends SymfonyStyle implements NewLineAware
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * {@inheritdoc}
-     */
-    public function write(string|iterable $messages, bool $newline = false, int $options = 0)
-    {
-        $this->newLineWritten = $newline;
-
-        parent::write($messages, $newline, $options);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function writeln(string|iterable $messages, int $type = self::OUTPUT_NORMAL)
-    {
-        $this->newLineWritten = true;
-
-        parent::writeln($messages, $type);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function newLine(int $count = 1)
-    {
-        $this->newLineWritten = $count > 0;
-
-        parent::newLine($count);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function newLineWritten()
-    {
-        if ($this->output instanceof static && $this->output->newLineWritten()) {
-            return true;
-        }
-
-        return $this->newLineWritten;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Returns whether verbosity is quiet (-q).
      *
      * @return bool
      */
-<<<<<<< HEAD
     public function isQuiet()
-=======
-    public function isQuiet(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output->isQuiet();
     }
@@ -111,11 +44,7 @@ class OutputStyle extends SymfonyStyle implements NewLineAware
      *
      * @return bool
      */
-<<<<<<< HEAD
     public function isVerbose()
-=======
-    public function isVerbose(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output->isVerbose();
     }
@@ -125,11 +54,7 @@ class OutputStyle extends SymfonyStyle implements NewLineAware
      *
      * @return bool
      */
-<<<<<<< HEAD
     public function isVeryVerbose()
-=======
-    public function isVeryVerbose(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output->isVeryVerbose();
     }
@@ -139,11 +64,7 @@ class OutputStyle extends SymfonyStyle implements NewLineAware
      *
      * @return bool
      */
-<<<<<<< HEAD
     public function isDebug()
-=======
-    public function isDebug(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output->isDebug();
     }

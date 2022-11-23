@@ -155,35 +155,6 @@ class PendingCommand
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Specify that the given string should be contained in the command output.
-     *
-     * @param  string  $string
-     * @return $this
-     */
-    public function expectsOutputToContain($string)
-    {
-        $this->test->expectedOutputSubstrings[] = $string;
-
-        return $this;
-    }
-
-    /**
-     * Specify that the given string shouldn't be contained in the command output.
-     *
-     * @param  string  $string
-     * @return $this
-     */
-    public function doesntExpectOutputToContain($string)
-    {
-        $this->test->unexpectedOutputSubstrings[$string] = false;
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Specify a table that should be printed when the command runs.
      *
      * @param  array  $headers
@@ -253,19 +224,6 @@ class PendingCommand
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Assert that the command has the success exit code.
-     *
-     * @return $this
-     */
-    public function assertOk()
-    {
-        return $this->assertSuccessful();
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Assert that the command does not have the success exit code.
      *
      * @return $this
@@ -353,23 +311,9 @@ class PendingCommand
             $this->test->fail('Output "'.Arr::first($this->test->expectedOutput).'" was not printed.');
         }
 
-<<<<<<< HEAD
         if ($output = array_search(true, $this->test->unexpectedOutput)) {
             $this->test->fail('Output "'.$output.'" was printed.');
         }
-=======
-        if (count($this->test->expectedOutputSubstrings)) {
-            $this->test->fail('Output does not contain "'.Arr::first($this->test->expectedOutputSubstrings).'".');
-        }
-
-        if ($output = array_search(true, $this->test->unexpectedOutput)) {
-            $this->test->fail('Output "'.$output.'" was printed.');
-        }
-
-        if ($output = array_search(true, $this->test->unexpectedOutputSubstrings)) {
-            $this->test->fail('Output "'.$output.'" was printed.');
-        }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -429,25 +373,8 @@ class PendingCommand
                 });
         }
 
-<<<<<<< HEAD
         foreach ($this->test->unexpectedOutput as $output => $displayed) {
             $mock->shouldReceive('doWrite')
-=======
-        foreach ($this->test->expectedOutputSubstrings as $i => $text) {
-            $mock->shouldReceive('doWrite')
-                ->atLeast()
-                ->times(0)
-                ->withArgs(fn ($output) => str_contains($output, $text))
-                ->andReturnUsing(function () use ($i) {
-                    unset($this->test->expectedOutputSubstrings[$i]);
-                });
-        }
-
-        foreach ($this->test->unexpectedOutput as $output => $displayed) {
-            $mock->shouldReceive('doWrite')
-                ->atLeast()
-                ->times(0)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 ->ordered()
                 ->with($output, Mockery::any())
                 ->andReturnUsing(function () use ($output) {
@@ -455,19 +382,6 @@ class PendingCommand
                 });
         }
 
-<<<<<<< HEAD
-=======
-        foreach ($this->test->unexpectedOutputSubstrings as $text => $displayed) {
-            $mock->shouldReceive('doWrite')
-                 ->atLeast()
-                 ->times(0)
-                 ->withArgs(fn ($output) => str_contains($output, $text))
-                 ->andReturnUsing(function () use ($text) {
-                     $this->test->unexpectedOutputSubstrings[$text] = true;
-                 });
-        }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return $mock;
     }
 
@@ -479,13 +393,7 @@ class PendingCommand
     protected function flushExpectations()
     {
         $this->test->expectedOutput = [];
-<<<<<<< HEAD
         $this->test->unexpectedOutput = [];
-=======
-        $this->test->expectedOutputSubstrings = [];
-        $this->test->unexpectedOutput = [];
-        $this->test->unexpectedOutputSubstrings = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->test->expectedTables = [];
         $this->test->expectedQuestions = [];
         $this->test->expectedChoices = [];

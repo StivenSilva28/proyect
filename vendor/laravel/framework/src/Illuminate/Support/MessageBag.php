@@ -139,11 +139,7 @@ class MessageBag implements Jsonable, JsonSerializable, MessageBagContract, Mess
     /**
      * Determine if messages exist for any of the given keys.
      *
-<<<<<<< HEAD
      * @param  array|string  $keys
-=======
-     * @param  array|string|null  $keys
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return bool
      */
     public function hasAny($keys = [])
@@ -197,11 +193,7 @@ class MessageBag implements Jsonable, JsonSerializable, MessageBagContract, Mess
             );
         }
 
-<<<<<<< HEAD
         if (Str::contains($key, '*')) {
-=======
-        if (str_contains($key, '*')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $this->getMessagesForWildcardKey($key, $format);
         }
 
@@ -268,13 +260,6 @@ class MessageBag implements Jsonable, JsonSerializable, MessageBagContract, Mess
      */
     protected function transform($messages, $format, $messageKey)
     {
-<<<<<<< HEAD
-=======
-        if ($format == ':message') {
-            return (array) $messages;
-        }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return collect((array) $messages)
             ->map(function ($message) use ($format, $messageKey) {
                 // We will simply spin through the given messages and transform each one
@@ -383,12 +368,8 @@ class MessageBag implements Jsonable, JsonSerializable, MessageBagContract, Mess
      *
      * @return int
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function count()
-=======
-    public function count(): int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return count($this->messages, COUNT_RECURSIVE) - count($this->messages);
     }
@@ -408,12 +389,8 @@ class MessageBag implements Jsonable, JsonSerializable, MessageBagContract, Mess
      *
      * @return array
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
-=======
-    public function jsonSerialize(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->toArray();
     }

@@ -10,11 +10,7 @@ class BelongsToManyRelationship
     /**
      * The related factory instance.
      *
-<<<<<<< HEAD
      * @var \Illuminate\Database\Eloquent\Factories\Factory|\Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model
-=======
-     * @var \Illuminate\Database\Eloquent\Factories\Factory|\Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model|array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected $factory;
 
@@ -35,11 +31,7 @@ class BelongsToManyRelationship
     /**
      * Create a new attached relationship definition.
      *
-<<<<<<< HEAD
      * @param  \Illuminate\Database\Eloquent\Factories\Factory|\Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model  $factory
-=======
-     * @param  \Illuminate\Database\Eloquent\Factories\Factory|\Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model|array  $factory
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  callable|array  $pivot
      * @param  string  $relationship
      * @return void
@@ -66,22 +58,4 @@ class BelongsToManyRelationship
             );
         });
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Specify the model instances to always use when creating relationships.
-     *
-     * @param  \Illuminate\Support\Collection  $recycle
-     * @return $this
-     */
-    public function recycle($recycle)
-    {
-        if ($this->factory instanceof Factory) {
-            $this->factory = $this->factory->recycle($recycle);
-        }
-
-        return $this;
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

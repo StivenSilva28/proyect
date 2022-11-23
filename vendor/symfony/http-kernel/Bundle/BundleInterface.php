@@ -41,7 +41,6 @@ interface BundleInterface extends ContainerAwareInterface
 
     /**
      * Returns the container extension that should be implicitly loaded.
-<<<<<<< HEAD
      *
      * @return ExtensionInterface|null
      */
@@ -60,32 +59,13 @@ interface BundleInterface extends ContainerAwareInterface
      * @return string
      */
     public function getNamespace();
-=======
-     */
-    public function getContainerExtension(): ?ExtensionInterface;
-
-    /**
-     * Returns the bundle name (the class short name).
-     */
-    public function getName(): string;
-
-    /**
-     * Gets the Bundle namespace.
-     */
-    public function getNamespace(): string;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Gets the Bundle directory path.
      *
      * The path should always be returned as a Unix path (with /).
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getPath();
-=======
-     */
-    public function getPath(): string;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

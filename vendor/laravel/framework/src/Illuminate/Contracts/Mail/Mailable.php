@@ -10,11 +10,7 @@ interface Mailable
      * Send the message using the given mailer.
      *
      * @param  \Illuminate\Contracts\Mail\Factory|\Illuminate\Contracts\Mail\Mailer  $mailer
-<<<<<<< HEAD
      * @return void
-=======
-     * @return \Illuminate\Mail\SentMessage|null
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function send($mailer);
 
@@ -27,11 +23,7 @@ interface Mailable
     public function queue(Queue $queue);
 
     /**
-<<<<<<< HEAD
      * Deliver the queued message after the given delay.
-=======
-     * Deliver the queued message after (n) seconds.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  \Illuminate\Contracts\Queue\Factory  $queue

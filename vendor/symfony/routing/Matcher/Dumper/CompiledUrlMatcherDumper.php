@@ -26,31 +26,18 @@ use Symfony\Component\Routing\RouteCollection;
  */
 class CompiledUrlMatcherDumper extends MatcherDumper
 {
-<<<<<<< HEAD
     private $expressionLanguage;
     private $signalingException;
-=======
-    private ExpressionLanguage $expressionLanguage;
-    private ?\Exception $signalingException = null;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var ExpressionFunctionProviderInterface[]
      */
-<<<<<<< HEAD
     private $expressionLanguageProviders = [];
-=======
-    private array $expressionLanguageProviders = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function dump(array $options = [])
-=======
-    public function dump(array $options = []): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return <<<EOF
 <?php
@@ -128,11 +115,7 @@ EOF;
             }
 
             $checkConditionCode = <<<EOF
-<<<<<<< HEAD
     static function (\$condition, \$context, \$request) { // \$checkCondition
-=======
-    static function (\$condition, \$context, \$request, \$params) { // \$checkCondition
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         switch (\$condition) {
 {$this->indent(implode("\n", $conditions), 3)}
         }
@@ -349,11 +332,7 @@ EOF;
                     if ($hasTrailingSlash = '/' !== $regex && '/' === $regex[-1]) {
                         $regex = substr($regex, 0, -1);
                     }
-<<<<<<< HEAD
                     $hasTrailingVar = (bool) preg_match('#\{\w+\}/?$#', $route->getPath());
-=======
-                    $hasTrailingVar = (bool) preg_match('#\{[\w\x80-\xFF]+\}/?$#', $route->getPath());
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                     $tree->addRoute($regex, [$name, $regex, $state->vars, $route, $hasTrailingSlash, $hasTrailingVar]);
                 }
@@ -437,11 +416,7 @@ EOF;
     /**
      * Compiles a single Route to PHP code used to match it against the path info.
      */
-<<<<<<< HEAD
     private function compileRoute(Route $route, string $name, $vars, bool $hasTrailingSlash, bool $hasTrailingVar, array &$conditions): array
-=======
-    private function compileRoute(Route $route, string $name, string|array|null $vars, bool $hasTrailingSlash, bool $hasTrailingVar, array &$conditions): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $defaults = $route->getDefaults();
 
@@ -451,13 +426,8 @@ EOF;
         }
 
         if ($condition = $route->getCondition()) {
-<<<<<<< HEAD
             $condition = $this->getExpressionLanguage()->compile($condition, ['context', 'request']);
             $condition = $conditions[$condition] ?? $conditions[$condition] = (str_contains($condition, '$request') ? 1 : -1) * \count($conditions);
-=======
-            $condition = $this->getExpressionLanguage()->compile($condition, ['context', 'request', 'params']);
-            $condition = $conditions[$condition] ??= (str_contains($condition, '$request') ? 1 : -1) * \count($conditions);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         } else {
             $condition = null;
         }
@@ -475,11 +445,7 @@ EOF;
 
     private function getExpressionLanguage(): ExpressionLanguage
     {
-<<<<<<< HEAD
         if (null === $this->expressionLanguage) {
-=======
-        if (!isset($this->expressionLanguage)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             if (!class_exists(ExpressionLanguage::class)) {
                 throw new \LogicException('Unable to use expressions as the Symfony ExpressionLanguage component is not installed.');
             }
@@ -497,11 +463,7 @@ EOF;
     /**
      * @internal
      */
-<<<<<<< HEAD
     public static function export($value): string
-=======
-    public static function export(mixed $value): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $value) {
             return 'null';

@@ -42,7 +42,6 @@ use Symfony\Component\Routing\RequestContextAwareInterface;
  */
 class RouterListener implements EventSubscriberInterface
 {
-<<<<<<< HEAD
     private $matcher;
     private $context;
     private $logger;
@@ -62,22 +61,6 @@ class RouterListener implements EventSubscriberInterface
             throw new \InvalidArgumentException('Matcher must either implement UrlMatcherInterface or RequestMatcherInterface.');
         }
 
-=======
-    private RequestMatcherInterface|UrlMatcherInterface $matcher;
-    private RequestContext $context;
-    private ?LoggerInterface $logger;
-    private RequestStack $requestStack;
-    private ?string $projectDir;
-    private bool $debug;
-
-    /**
-     * @param RequestContext|null $context The RequestContext (can be null when $matcher implements RequestContextAwareInterface)
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function __construct(UrlMatcherInterface|RequestMatcherInterface $matcher, RequestStack $requestStack, RequestContext $context = null, LoggerInterface $logger = null, string $projectDir = null, bool $debug = true)
-    {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if (null === $context && !$matcher instanceof RequestContextAwareInterface) {
             throw new \InvalidArgumentException('You must either pass a RequestContext or the matcher must implement RequestContextAwareInterface.');
         }
@@ -130,7 +113,6 @@ class RouterListener implements EventSubscriberInterface
                 $parameters = $this->matcher->match($request->getPathInfo());
             }
 
-<<<<<<< HEAD
             if (null !== $this->logger) {
                 $this->logger->info('Matched route "{route}".', [
                     'route' => $parameters['_route'] ?? 'n/a',
@@ -139,14 +121,6 @@ class RouterListener implements EventSubscriberInterface
                     'method' => $request->getMethod(),
                 ]);
             }
-=======
-            $this->logger?->info('Matched route "{route}".', [
-                'route' => $parameters['_route'] ?? 'n/a',
-                'route_parameters' => $parameters,
-                'request_uri' => $request->getUri(),
-                'method' => $request->getMethod(),
-            ]);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             $request->attributes->add($parameters);
             unset($parameters['_route'], $parameters['_controller']);

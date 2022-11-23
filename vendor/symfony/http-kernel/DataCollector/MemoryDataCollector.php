@@ -58,14 +58,10 @@ class MemoryDataCollector extends DataCollector implements LateDataCollectorInte
         return $this->data['memory'];
     }
 
-<<<<<<< HEAD
     /**
      * @return int|float
      */
     public function getMemoryLimit()
-=======
-    public function getMemoryLimit(): int|float
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->data['memory_limit'];
     }
@@ -83,14 +79,10 @@ class MemoryDataCollector extends DataCollector implements LateDataCollectorInte
         return 'memory';
     }
 
-<<<<<<< HEAD
     /**
      * @return int|float
      */
     private function convertToBytes(string $memoryLimit)
-=======
-    private function convertToBytes(string $memoryLimit): int|float
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ('-1' === $memoryLimit) {
             return -1;
@@ -108,19 +100,11 @@ class MemoryDataCollector extends DataCollector implements LateDataCollectorInte
 
         switch (substr($memoryLimit, -1)) {
             case 't': $max *= 1024;
-<<<<<<< HEAD
             // no break
             case 'g': $max *= 1024;
             // no break
             case 'm': $max *= 1024;
             // no break
-=======
-                // no break
-            case 'g': $max *= 1024;
-                // no break
-            case 'm': $max *= 1024;
-                // no break
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             case 'k': $max *= 1024;
         }
 

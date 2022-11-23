@@ -9,10 +9,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\InteractsWithTime;
-<<<<<<< HEAD
 use Illuminate\Support\Str;
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -85,11 +82,7 @@ class ThrottleRequests
      */
     protected function handleRequestUsingNamedLimiter($request, Closure $next, $limiterName, Closure $limiter)
     {
-<<<<<<< HEAD
         $limiterResponse = call_user_func($limiter, $request);
-=======
-        $limiterResponse = $limiter($request);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if ($limiterResponse instanceof Response) {
             return $limiterResponse;
@@ -153,11 +146,7 @@ class ThrottleRequests
      */
     protected function resolveMaxAttempts($request, $maxAttempts)
     {
-<<<<<<< HEAD
         if (Str::contains($maxAttempts, '|')) {
-=======
-        if (str_contains($maxAttempts, '|')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $maxAttempts = explode('|', $maxAttempts, 2)[$request->user() ? 1 : 0];
         }
 

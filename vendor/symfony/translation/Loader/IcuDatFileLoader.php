@@ -26,11 +26,7 @@ class IcuDatFileLoader extends IcuResFileLoader
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function load($resource, string $locale, string $domain = 'messages')
-=======
-    public function load(mixed $resource, string $locale, string $domain = 'messages'): MessageCatalogue
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!stream_is_local($resource.'.dat')) {
             throw new InvalidResourceException(sprintf('This is not a local file "%s".', $resource));
@@ -42,11 +38,7 @@ class IcuDatFileLoader extends IcuResFileLoader
 
         try {
             $rb = new \ResourceBundle($locale, $resource);
-<<<<<<< HEAD
         } catch (\Exception $e) {
-=======
-        } catch (\Exception) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $rb = null;
         }
 

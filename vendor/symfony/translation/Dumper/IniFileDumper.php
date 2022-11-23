@@ -23,11 +23,7 @@ class IniFileDumper extends FileDumper
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = [])
-=======
-    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $output = '';
 
@@ -42,11 +38,7 @@ class IniFileDumper extends FileDumper
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     protected function getExtension()
-=======
-    protected function getExtension(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return 'ini';
     }

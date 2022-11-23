@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Ramsey\Uuid\Nonstandard;
 
-<<<<<<< HEAD
 use DateTimeImmutable;
 use DateTimeInterface;
 use Ramsey\Uuid\Codec\CodecInterface;
@@ -38,43 +37,16 @@ use const STR_PAD_LEFT;
 /**
  * Ordered-time, or version 6, UUIDs include timestamp, clock sequence, and node
  * values that are combined into a 128-bit unsigned integer
-=======
-use Ramsey\Uuid\Codec\CodecInterface;
-use Ramsey\Uuid\Converter\NumberConverterInterface;
-use Ramsey\Uuid\Converter\TimeConverterInterface;
-use Ramsey\Uuid\Exception\InvalidArgumentException;
-use Ramsey\Uuid\Lazy\LazyUuidFromString;
-use Ramsey\Uuid\Rfc4122\FieldsInterface as Rfc4122FieldsInterface;
-use Ramsey\Uuid\Rfc4122\TimeTrait;
-use Ramsey\Uuid\Rfc4122\UuidInterface;
-use Ramsey\Uuid\Rfc4122\UuidV1;
-use Ramsey\Uuid\Uuid;
-
-/**
- * Reordered time, or version 6, UUIDs include timestamp, clock sequence, and
- * node values that are combined into a 128-bit unsigned integer
- *
- * @deprecated Use {@see \Ramsey\Uuid\Rfc4122\UuidV6} instead.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  *
  * @link https://github.com/uuid6/uuid6-ietf-draft UUID version 6 IETF draft
  * @link http://gh.peabody.io/uuidv6/ "Version 6" UUIDs
  *
  * @psalm-immutable
  */
-<<<<<<< HEAD
 final class UuidV6 extends Uuid implements UuidInterface
 {
     /**
      * Creates a version 6 (time-based) UUID
-=======
-class UuidV6 extends Uuid implements UuidInterface
-{
-    use TimeTrait;
-
-    /**
-     * Creates a version 6 (reordered time) UUID
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param Rfc4122FieldsInterface $fields The fields from which to construct a UUID
      * @param NumberConverterInterface $numberConverter The number converter to use
@@ -90,17 +62,10 @@ class UuidV6 extends Uuid implements UuidInterface
         CodecInterface $codec,
         TimeConverterInterface $timeConverter
     ) {
-<<<<<<< HEAD
         if ($fields->getVersion() !== Uuid::UUID_TYPE_PEABODY) {
             throw new InvalidArgumentException(
                 'Fields used to create a UuidV6 must represent a '
                 . 'version 6 (ordered-time) UUID'
-=======
-        if ($fields->getVersion() !== Uuid::UUID_TYPE_REORDERED_TIME) {
-            throw new InvalidArgumentException(
-                'Fields used to create a UuidV6 must represent a '
-                . 'version 6 (reordered time) UUID'
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             );
         }
 
@@ -108,7 +73,6 @@ class UuidV6 extends Uuid implements UuidInterface
     }
 
     /**
-<<<<<<< HEAD
      * Returns a DateTimeInterface object representing the timestamp associated
      * with the UUID
      *
@@ -132,8 +96,6 @@ class UuidV6 extends Uuid implements UuidInterface
     }
 
     /**
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Converts this UUID into an instance of a version 1 UUID
      */
     public function toUuidV1(): UuidV1
@@ -154,11 +116,7 @@ class UuidV6 extends Uuid implements UuidInterface
     /**
      * Converts a version 1 UUID into an instance of a version 6 UUID
      */
-<<<<<<< HEAD
     public static function fromUuidV1(UuidV1 $uuidV1): UuidV6
-=======
-    public static function fromUuidV1(UuidV1 $uuidV1): \Ramsey\Uuid\Rfc4122\UuidV6
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $hex = $uuidV1->getHex()->toString();
         $hex = substr($hex, 13, 3)

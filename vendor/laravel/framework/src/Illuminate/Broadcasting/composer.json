@@ -14,7 +14,6 @@
         }
     ],
     "require": {
-<<<<<<< HEAD
         "php": "^7.3|^8.0",
         "ext-json": "*",
         "psr/log": "^1.0|^2.0",
@@ -23,17 +22,6 @@
         "illuminate/contracts": "^8.0",
         "illuminate/queue": "^8.0",
         "illuminate/support": "^8.0"
-=======
-        "php": "^8.0.2",
-        "ext-json": "*",
-        "psr/log": "^1.0|^2.0|^3.0",
-        "illuminate/bus": "^9.0",
-        "illuminate/collections": "^9.0",
-        "illuminate/container": "^9.0",
-        "illuminate/contracts": "^9.0",
-        "illuminate/queue": "^9.0",
-        "illuminate/support": "^9.0"
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     },
     "autoload": {
         "psr-4": {
@@ -42,20 +30,12 @@
     },
     "extra": {
         "branch-alias": {
-<<<<<<< HEAD
             "dev-master": "8.x-dev"
-=======
-            "dev-master": "9.x-dev"
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     },
     "suggest": {
         "ably/ably-php": "Required to use the Ably broadcast driver (^1.0).",
-<<<<<<< HEAD
         "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^4.0|^5.0|^6.0|^7.0)."
-=======
-        "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^6.0|^7.0)."
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     },
     "config": {
         "sort-packages": true

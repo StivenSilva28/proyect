@@ -6,10 +6,6 @@ use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Reflector;
 use InvalidArgumentException;
 use LogicException;
-<<<<<<< HEAD
-=======
-use RuntimeException;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Throwable;
 
 class CallbackEvent extends Event
@@ -29,31 +25,10 @@ class CallbackEvent extends Event
     protected $parameters;
 
     /**
-<<<<<<< HEAD
      * Create a new event instance.
      *
      * @param  \Illuminate\Console\Scheduling\EventMutex  $mutex
      * @param  string  $callback
-=======
-     * The result of the callback's execution.
-     *
-     * @var mixed
-     */
-    protected $result;
-
-    /**
-     * The exception that was thrown when calling the callback, if any.
-     *
-     * @var \Throwable|null
-     */
-    protected $exception;
-
-    /**
-     * Create a new event instance.
-     *
-     * @param  \Illuminate\Console\Scheduling\EventMutex  $mutex
-     * @param  string|callable  $callback
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  array  $parameters
      * @param  \DateTimeZone|string|null  $timezone
      * @return void
@@ -75,16 +50,11 @@ class CallbackEvent extends Event
     }
 
     /**
-<<<<<<< HEAD
      * Run the given event.
-=======
-     * Run the callback event.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  \Illuminate\Contracts\Container\Container  $container
      * @return mixed
      *
-<<<<<<< HEAD
      * @throws \Exception
      */
     public function run(Container $container)
@@ -132,61 +102,6 @@ class CallbackEvent extends Event
     {
         if ($this->description && $this->withoutOverlapping) {
             $this->mutex->forget($this);
-=======
-     * @throws \Throwable
-     */
-    public function run(Container $container)
-    {
-        parent::run($container);
-
-        if ($this->exception) {
-            throw $this->exception;
-        }
-
-        return $this->result;
-    }
-
-    /**
-     * Determine if the event should skip because another process is overlapping.
-     *
-     * @return bool
-     */
-    public function shouldSkipDueToOverlapping()
-    {
-        return $this->description && parent::shouldSkipDueToOverlapping();
-    }
-
-    /**
-     * Indicate that the callback should run in the background.
-     *
-     * @return void
-     *
-     * @throws \RuntimeException
-     */
-    public function runInBackground()
-    {
-        throw new RuntimeException('Scheduled closures can not be run in the background.');
-    }
-
-    /**
-     * Run the callback.
-     *
-     * @param  \Illuminate\Contracts\Container\Container  $container
-     * @return int
-     */
-    protected function execute($container)
-    {
-        try {
-            $this->result = is_object($this->callback)
-                ? $container->call([$this->callback, '__invoke'], $this->parameters)
-                : $container->call($this->callback, $this->parameters);
-
-            return $this->result === false ? 1 : 0;
-        } catch (Throwable $e) {
-            $this->exception = $e;
-
-            return 1;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 
@@ -206,7 +121,6 @@ class CallbackEvent extends Event
             );
         }
 
-<<<<<<< HEAD
         $this->withoutOverlapping = true;
 
         $this->expiresAt = $expiresAt;
@@ -214,9 +128,6 @@ class CallbackEvent extends Event
         return $this->skip(function () {
             return $this->mutex->exists($this);
         });
-=======
-        return parent::withoutOverlapping($expiresAt);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -234,7 +145,6 @@ class CallbackEvent extends Event
             );
         }
 
-<<<<<<< HEAD
         $this->onOneServer = true;
 
         return $this;
@@ -248,9 +158,6 @@ class CallbackEvent extends Event
     public function mutexName()
     {
         return 'framework/schedule-'.sha1($this->description);
-=======
-        return parent::onOneServer();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -266,29 +173,4 @@ class CallbackEvent extends Event
 
         return is_string($this->callback) ? $this->callback : 'Callback';
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Get the mutex name for the scheduled command.
-     *
-     * @return string
-     */
-    public function mutexName()
-    {
-        return 'framework/schedule-'.sha1($this->description);
-    }
-
-    /**
-     * Clear the mutex for the event.
-     *
-     * @return void
-     */
-    protected function removeMutex()
-    {
-        if ($this->description) {
-            parent::removeMutex();
-        }
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

@@ -80,11 +80,7 @@ abstract class AbstractOperation implements OperationInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getDomains()
-=======
-    public function getDomains(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $this->domains) {
             $domains = [];
@@ -107,11 +103,7 @@ abstract class AbstractOperation implements OperationInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getMessages(string $domain)
-=======
-    public function getMessages(string $domain): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!\in_array($domain, $this->getDomains())) {
             throw new InvalidArgumentException(sprintf('Invalid domain: "%s".', $domain));
@@ -127,11 +119,7 @@ abstract class AbstractOperation implements OperationInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getNewMessages(string $domain)
-=======
-    public function getNewMessages(string $domain): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!\in_array($domain, $this->getDomains())) {
             throw new InvalidArgumentException(sprintf('Invalid domain: "%s".', $domain));
@@ -147,11 +135,7 @@ abstract class AbstractOperation implements OperationInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getObsoleteMessages(string $domain)
-=======
-    public function getObsoleteMessages(string $domain): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!\in_array($domain, $this->getDomains())) {
             throw new InvalidArgumentException(sprintf('Invalid domain: "%s".', $domain));
@@ -167,11 +151,7 @@ abstract class AbstractOperation implements OperationInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getResult()
-=======
-    public function getResult(): MessageCatalogueInterface
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         foreach ($this->getDomains() as $domain) {
             if (!isset($this->messages[$domain])) {
@@ -194,21 +174,12 @@ abstract class AbstractOperation implements OperationInterface
 
         foreach ($this->getDomains() as $domain) {
             $intlDomain = $domain.MessageCatalogueInterface::INTL_DOMAIN_SUFFIX;
-<<<<<<< HEAD
             switch ($batch) {
                 case self::OBSOLETE_BATCH: $messages = $this->getObsoleteMessages($domain); break;
                 case self::NEW_BATCH: $messages = $this->getNewMessages($domain); break;
                 case self::ALL_BATCH: $messages = $this->getMessages($domain); break;
                 default: throw new \InvalidArgumentException(sprintf('$batch argument must be one of ["%s", "%s", "%s"].', self::ALL_BATCH, self::NEW_BATCH, self::OBSOLETE_BATCH));
             }
-=======
-            $messages = match ($batch) {
-                self::OBSOLETE_BATCH => $this->getObsoleteMessages($domain),
-                self::NEW_BATCH => $this->getNewMessages($domain),
-                self::ALL_BATCH => $this->getMessages($domain),
-                default => throw new \InvalidArgumentException(sprintf('$batch argument must be one of ["%s", "%s", "%s"].', self::ALL_BATCH, self::NEW_BATCH, self::OBSOLETE_BATCH)),
-            };
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             if (!$messages || (!$this->source->all($intlDomain) && $this->source->all($domain))) {
                 continue;

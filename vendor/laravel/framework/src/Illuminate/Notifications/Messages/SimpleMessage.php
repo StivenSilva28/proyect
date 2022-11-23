@@ -158,25 +158,6 @@ class SimpleMessage
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Add a line of text to the notification if the given condition is true.
-     *
-     * @param  bool  $boolean
-     * @param  mixed  $line
-     * @return $this
-     */
-    public function lineIf($boolean, $line)
-    {
-        if ($boolean) {
-            return $this->line($line);
-        }
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Add lines of text to the notification.
      *
      * @param  iterable  $lines
@@ -192,25 +173,6 @@ class SimpleMessage
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Add lines of text to the notification if the given condition is true.
-     *
-     * @param  bool  $boolean
-     * @param  iterable  $lines
-     * @return $this
-     */
-    public function linesIf($boolean, $lines)
-    {
-        if ($boolean) {
-            return $this->lines($lines);
-        }
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Add a line of text to the notification.
      *
      * @param  mixed  $line

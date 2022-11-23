@@ -10,10 +10,6 @@ use Illuminate\Support\Testing\Fakes\EventFake;
  * @method static \Closure makeListener(\Closure|string $listener, bool $wildcard = false)
  * @method static \Illuminate\Events\Dispatcher setQueueResolver(callable $resolver)
  * @method static array getListeners(string $eventName)
-<<<<<<< HEAD
-=======
- * @method static array getRawListeners()
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static array|null dispatch(string|object $event, mixed $payload = [], bool $halt = false)
  * @method static array|null until(string|object $event, mixed $payload = [])
  * @method static bool hasListeners(string $eventName)
@@ -21,20 +17,12 @@ use Illuminate\Support\Testing\Fakes\EventFake;
  * @method static void assertDispatchedTimes(string $event, int $times = 1)
  * @method static void assertNotDispatched(string|\Closure $event, callable|int $callback = null)
  * @method static void assertNothingDispatched()
-<<<<<<< HEAD
  * @method static void assertListening(string $expectedEvent, string $expectedListener)
-=======
- * @method static void assertListening(string $expectedEvent, string|array $expectedListener)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static void flush(string $event)
  * @method static void forget(string $event)
  * @method static void forgetPushed()
  * @method static void listen(\Closure|string|array $events, \Closure|string|array $listener = null)
-<<<<<<< HEAD
  * @method static void push(string $event, array $payload = [])
-=======
- * @method static void push(string $event, object|array $payload = [])
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static void subscribe(object|string $subscriber)
  *
  * @see \Illuminate\Events\Dispatcher

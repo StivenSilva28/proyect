@@ -54,13 +54,8 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
         'zh' => 'Han-Latin',
     ];
 
-<<<<<<< HEAD
     private $defaultLocale;
     private $symbolsMap = [
-=======
-    private ?string $defaultLocale;
-    private \Closure|array $symbolsMap = [
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         'en' => ['@' => 'at', '&' => 'and'],
     ];
 
@@ -69,7 +64,6 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
      *
      * @var \Transliterator[]
      */
-<<<<<<< HEAD
     private $transliterators = [];
 
     /**
@@ -81,12 +75,6 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
             throw new \TypeError(sprintf('Argument 2 passed to "%s()" must be array, Closure or null, "%s" given.', __METHOD__, \gettype($symbolsMap)));
         }
 
-=======
-    private array $transliterators = [];
-
-    public function __construct(string $defaultLocale = null, array|\Closure $symbolsMap = null)
-    {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->defaultLocale = $defaultLocale;
         $this->symbolsMap = $symbolsMap ?? $this->symbolsMap;
     }
@@ -94,11 +82,7 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function setLocale($locale)
-=======
-    public function setLocale(string $locale)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->defaultLocale = $locale;
     }
@@ -106,11 +90,7 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getLocale()
-=======
-    public function getLocale(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->defaultLocale;
     }
@@ -120,17 +100,10 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
      */
     public function slug(string $string, string $separator = '-', string $locale = null): AbstractUnicodeString
     {
-<<<<<<< HEAD
         $locale = $locale ?? $this->defaultLocale;
 
         $transliterator = [];
         if ($locale && ('de' === $locale || 0 === strpos($locale, 'de_'))) {
-=======
-        $locale ??= $this->defaultLocale;
-
-        $transliterator = [];
-        if ($locale && ('de' === $locale || str_starts_with($locale, 'de_'))) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             // Use the shortcut for German in UnicodeString::ascii() if possible (faster and no requirement on intl)
             $transliterator = ['de-ASCII'];
         } elseif (\function_exists('transliterator_transliterate') && $locale) {

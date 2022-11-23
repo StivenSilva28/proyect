@@ -30,11 +30,7 @@ class Listener
     protected $sleep = 3;
 
     /**
-<<<<<<< HEAD
      * The amount of times to try a job before logging it failed.
-=======
-     * The number of times to try a job before logging it failed.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @var int
      */
@@ -161,10 +157,6 @@ class Listener
             "--memory={$options->memory}",
             "--sleep={$options->sleep}",
             "--tries={$options->maxTries}",
-<<<<<<< HEAD
-=======
-            $options->force ? '--force' : null,
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ], function ($value) {
             return ! is_null($value);
         });
@@ -180,13 +172,7 @@ class Listener
     public function runProcess(Process $process, $memory)
     {
         $process->run(function ($type, $line) {
-<<<<<<< HEAD
             $this->handleWorkerOutput($type, $line);
-=======
-            if (! str($line)->contains('Processing jobs from the')) {
-                $this->handleWorkerOutput($type, $line);
-            }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
 
         // Once we have run the job we'll go check if the memory limit has been exceeded

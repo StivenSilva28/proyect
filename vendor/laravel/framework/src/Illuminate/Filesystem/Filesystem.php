@@ -6,10 +6,6 @@ use ErrorException;
 use FilesystemIterator;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\LazyCollection;
-<<<<<<< HEAD
-=======
-use Illuminate\Support\Traits\Conditionable;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Support\Traits\Macroable;
 use RuntimeException;
 use SplFileObject;
@@ -19,10 +15,6 @@ use Symfony\Component\Mime\MimeTypes;
 
 class Filesystem
 {
-<<<<<<< HEAD
-=======
-    use Conditionable;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     use Macroable;
 
     /**
@@ -172,7 +164,6 @@ class Filesystem
     }
 
     /**
-<<<<<<< HEAD
      * Get the MD5 hash of the file at the given path.
      *
      * @param  string  $path
@@ -181,17 +172,6 @@ class Filesystem
     public function hash($path)
     {
         return md5_file($path);
-=======
-     * Get the hash of the file at the given path.
-     *
-     * @param  string  $path
-     * @param  string  $algorithm
-     * @return string
-     */
-    public function hash($path, $algorithm = 'md5')
-    {
-        return hash_file($algorithm, $path);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -376,11 +356,7 @@ class Filesystem
 
         $relativeTarget = (new SymfonyFilesystem)->makePathRelative($target, dirname($link));
 
-<<<<<<< HEAD
         $this->link($relativeTarget, $link);
-=======
-        $this->link($this->isFile($target) ? rtrim($relativeTarget, '/') : $relativeTarget, $link);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -502,21 +478,6 @@ class Filesystem
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Determine if the given path is a directory that does not contain any other files or directories.
-     *
-     * @param  string  $directory
-     * @param  bool  $ignoreDotFiles
-     * @return bool
-     */
-    public function isEmptyDirectory($directory, $ignoreDotFiles = false)
-    {
-        return ! Finder::create()->ignoreDotFiles($ignoreDotFiles)->in($directory)->depth(0)->hasResults();
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Determine if the given path is readable.
      *
      * @param  string  $path
@@ -539,23 +500,6 @@ class Filesystem
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Determine if two files are the same by comparing their hashes.
-     *
-     * @param  string  $firstFile
-     * @param  string  $secondFile
-     * @return bool
-     */
-    public function hasSameHash($firstFile, $secondFile)
-    {
-        $hash = @md5_file($firstFile);
-
-        return $hash && $hash === @md5_file($secondFile);
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Determine if the given path is a file.
      *
      * @param  string  $file
@@ -715,15 +659,10 @@ class Filesystem
             // If the current items is just a regular file, we will just copy this to the new
             // location and keep looping. If for some reason the copy fails we'll bail out
             // and return false, so the developer is aware that the copy process failed.
-<<<<<<< HEAD
             else {
                 if (! $this->copy($item->getPathname(), $target)) {
                     return false;
                 }
-=======
-            elseif (! $this->copy($item->getPathname(), $target)) {
-                return false;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
 

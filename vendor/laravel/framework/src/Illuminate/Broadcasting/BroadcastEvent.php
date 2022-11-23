@@ -36,16 +36,6 @@ class BroadcastEvent implements ShouldQueue
     public $timeout;
 
     /**
-<<<<<<< HEAD
-=======
-     * The number of seconds to wait before retrying the job when encountering an uncaught exception.
-     *
-     * @var int
-     */
-    public $backoff;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new job handler instance.
      *
      * @param  mixed  $event
@@ -56,10 +46,6 @@ class BroadcastEvent implements ShouldQueue
         $this->event = $event;
         $this->tries = property_exists($event, 'tries') ? $event->tries : null;
         $this->timeout = property_exists($event, 'timeout') ? $event->timeout : null;
-<<<<<<< HEAD
-=======
-        $this->backoff = property_exists($event, 'backoff') ? $event->backoff : null;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->afterCommit = property_exists($event, 'afterCommit') ? $event->afterCommit : null;
     }
 

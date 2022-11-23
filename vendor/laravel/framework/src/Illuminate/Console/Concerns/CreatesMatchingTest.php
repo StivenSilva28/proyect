@@ -28,16 +28,11 @@ trait CreatesMatchingTest
      * Create the matching test case if requested.
      *
      * @param  string  $path
-<<<<<<< HEAD
      * @return void
-=======
-     * @return bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected function handleTestCreation($path)
     {
         if (! $this->option('test') && ! $this->option('pest')) {
-<<<<<<< HEAD
             return;
         }
 
@@ -45,14 +40,5 @@ trait CreatesMatchingTest
             'name' => Str::of($path)->after($this->laravel['path'])->beforeLast('.php')->append('Test')->replace('\\', '/'),
             '--pest' => $this->option('pest'),
         ]);
-=======
-            return false;
-        }
-
-        return $this->callSilent('make:test', [
-            'name' => Str::of($path)->after($this->laravel['path'])->beforeLast('.php')->append('Test')->replace('\\', '/'),
-            '--pest' => $this->option('pest'),
-        ]) == 0;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

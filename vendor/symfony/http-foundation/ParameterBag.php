@@ -36,7 +36,6 @@ class ParameterBag implements \IteratorAggregate, \Countable
      * Returns the parameters.
      *
      * @param string|null $key The name of the parameter to return or null to get them all
-<<<<<<< HEAD
      *
      * @return array
      */
@@ -44,11 +43,6 @@ class ParameterBag implements \IteratorAggregate, \Countable
     {
         $key = \func_num_args() > 0 ? func_get_arg(0) : null;
 
-=======
-     */
-    public function all(string $key = null): array
-    {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if (null === $key) {
             return $this->parameters;
         }
@@ -62,15 +56,10 @@ class ParameterBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the parameter keys.
-<<<<<<< HEAD
      *
      * @return array
      */
     public function keys()
-=======
-     */
-    public function keys(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return array_keys($this->parameters);
     }
@@ -91,7 +80,6 @@ class ParameterBag implements \IteratorAggregate, \Countable
         $this->parameters = array_replace($this->parameters, $parameters);
     }
 
-<<<<<<< HEAD
     /**
      * Returns a parameter by name.
      *
@@ -100,38 +88,26 @@ class ParameterBag implements \IteratorAggregate, \Countable
      * @return mixed
      */
     public function get(string $key, $default = null)
-=======
-    public function get(string $key, mixed $default = null): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \array_key_exists($key, $this->parameters) ? $this->parameters[$key] : $default;
     }
 
-<<<<<<< HEAD
     /**
      * Sets a parameter by name.
      *
      * @param mixed $value The value
      */
     public function set(string $key, $value)
-=======
-    public function set(string $key, mixed $value)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->parameters[$key] = $value;
     }
 
     /**
      * Returns true if the parameter is defined.
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function has(string $key)
-=======
-     */
-    public function has(string $key): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \array_key_exists($key, $this->parameters);
     }
@@ -146,45 +122,30 @@ class ParameterBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the alphabetic characters of the parameter value.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getAlpha(string $key, string $default = '')
-=======
-     */
-    public function getAlpha(string $key, string $default = ''): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return preg_replace('/[^[:alpha:]]/', '', $this->get($key, $default));
     }
 
     /**
      * Returns the alphabetic characters and digits of the parameter value.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getAlnum(string $key, string $default = '')
-=======
-     */
-    public function getAlnum(string $key, string $default = ''): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return preg_replace('/[^[:alnum:]]/', '', $this->get($key, $default));
     }
 
     /**
      * Returns the digits of the parameter value.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getDigits(string $key, string $default = '')
-=======
-     */
-    public function getDigits(string $key, string $default = ''): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // we need to remove - and + because they're allowed in the filter
         return str_replace(['-', '+'], '', $this->filter($key, $default, \FILTER_SANITIZE_NUMBER_INT));
@@ -192,30 +153,20 @@ class ParameterBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the parameter value converted to integer.
-<<<<<<< HEAD
      *
      * @return int
      */
     public function getInt(string $key, int $default = 0)
-=======
-     */
-    public function getInt(string $key, int $default = 0): int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return (int) $this->get($key, $default);
     }
 
     /**
      * Returns the parameter value converted to boolean.
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function getBoolean(string $key, bool $default = false)
-=======
-     */
-    public function getBoolean(string $key, bool $default = false): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->filter($key, $default, \FILTER_VALIDATE_BOOLEAN);
     }
@@ -223,7 +174,6 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Filter key.
      *
-<<<<<<< HEAD
      * @param mixed $default Default = null
      * @param int   $filter  FILTER_* constant
      * @param mixed $options Filter options
@@ -233,13 +183,6 @@ class ParameterBag implements \IteratorAggregate, \Countable
      * @return mixed
      */
     public function filter(string $key, $default = null, int $filter = \FILTER_DEFAULT, $options = [])
-=======
-     * @param int $filter FILTER_* constant
-     *
-     * @see https://php.net/filter-var
-     */
-    public function filter(string $key, mixed $default = null, int $filter = \FILTER_DEFAULT, mixed $options = []): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $value = $this->get($key, $default);
 
@@ -254,12 +197,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
         }
 
         if ((\FILTER_CALLBACK & $filter) && !(($options['options'] ?? null) instanceof \Closure)) {
-<<<<<<< HEAD
             trigger_deprecation('symfony/http-foundation', '5.2', 'Not passing a Closure together with FILTER_CALLBACK to "%s()" is deprecated. Wrap your filter in a closure instead.', __METHOD__);
             // throw new \InvalidArgumentException(sprintf('A Closure must be passed to "%s()" when FILTER_CALLBACK is used, "%s" given.', __METHOD__, get_debug_type($options['options'] ?? null)));
-=======
-            throw new \InvalidArgumentException(sprintf('A Closure must be passed to "%s()" when FILTER_CALLBACK is used, "%s" given.', __METHOD__, get_debug_type($options['options'] ?? null)));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return filter_var($value, $filter, $options);
@@ -270,28 +209,19 @@ class ParameterBag implements \IteratorAggregate, \Countable
      *
      * @return \ArrayIterator<string, mixed>
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function getIterator()
-=======
-    public function getIterator(): \ArrayIterator
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new \ArrayIterator($this->parameters);
     }
 
     /**
      * Returns the number of parameters.
-<<<<<<< HEAD
      *
      * @return int
      */
     #[\ReturnTypeWillChange]
     public function count()
-=======
-     */
-    public function count(): int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \count($this->parameters);
     }

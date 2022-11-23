@@ -6,13 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Kernel as ConsoleKernelContract;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Routing\RouteCollection;
-<<<<<<< HEAD
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-
-#[AsCommand(name: 'route:cache')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class RouteCacheCommand extends Command
 {
     /**
@@ -23,20 +17,6 @@ class RouteCacheCommand extends Command
     protected $name = 'route:cache';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'route:cache';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -70,20 +50,12 @@ class RouteCacheCommand extends Command
      */
     public function handle()
     {
-<<<<<<< HEAD
         $this->call('route:clear');
-=======
-        $this->callSilent('route:clear');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $routes = $this->getFreshApplicationRoutes();
 
         if (count($routes) === 0) {
-<<<<<<< HEAD
             return $this->error("Your application doesn't have any routes.");
-=======
-            return $this->components->error("Your application doesn't have any routes.");
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         foreach ($routes as $route) {
@@ -94,11 +66,7 @@ class RouteCacheCommand extends Command
             $this->laravel->getCachedRoutesPath(), $this->buildRouteCacheFile($routes)
         );
 
-<<<<<<< HEAD
         $this->info('Routes cached successfully!');
-=======
-        $this->components->info('Routes cached successfully.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

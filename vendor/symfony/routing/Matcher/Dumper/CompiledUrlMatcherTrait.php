@@ -26,17 +26,10 @@ use Symfony\Component\Routing\RequestContext;
  */
 trait CompiledUrlMatcherTrait
 {
-<<<<<<< HEAD
     private $matchHost = false;
     private $staticRoutes = [];
     private $regexpList = [];
     private $dynamicRoutes = [];
-=======
-    private bool $matchHost = false;
-    private array $staticRoutes = [];
-    private array $regexpList = [];
-    private array $dynamicRoutes = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var callable|null
@@ -99,13 +92,10 @@ trait CompiledUrlMatcherTrait
         $supportsRedirections = 'GET' === $canonicalMethod && $this instanceof RedirectableUrlMatcherInterface;
 
         foreach ($this->staticRoutes[$trimmedPathinfo] ?? [] as [$ret, $requiredHost, $requiredMethods, $requiredSchemes, $hasTrailingSlash, , $condition]) {
-<<<<<<< HEAD
             if ($condition && !($this->checkCondition)($condition, $context, 0 < $condition ? $request ?? $request = $this->request ?: $this->createRequest($pathinfo) : null)) {
                 continue;
             }
 
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             if ($requiredHost) {
                 if ('{' !== $requiredHost[0] ? $requiredHost !== $host : !preg_match($requiredHost, $host, $hostMatches)) {
                     continue;
@@ -116,13 +106,6 @@ trait CompiledUrlMatcherTrait
                 }
             }
 
-<<<<<<< HEAD
-=======
-            if ($condition && !($this->checkCondition)($condition, $context, 0 < $condition ? $request ??= $this->request ?: $this->createRequest($pathinfo) : null, $ret)) {
-                continue;
-            }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             if ('/' !== $pathinfo && $hasTrailingSlash === ($trimmedPathinfo === $pathinfo)) {
                 if ($supportsRedirections && (!$requiredMethods || isset($requiredMethods['GET']))) {
                     return $allow = $allowSchemes = [];
@@ -149,7 +132,6 @@ trait CompiledUrlMatcherTrait
         foreach ($this->regexpList as $offset => $regex) {
             while (preg_match($regex, $matchedPathinfo, $matches)) {
                 foreach ($this->dynamicRoutes[$m = (int) $matches['MARK']] as [$ret, $vars, $requiredMethods, $requiredSchemes, $hasTrailingSlash, $hasTrailingVar, $condition]) {
-<<<<<<< HEAD
                     if (null !== $condition) {
                         if (0 === $condition) { // marks the last route in the regexp
                             continue 3;
@@ -157,10 +139,6 @@ trait CompiledUrlMatcherTrait
                         if (!($this->checkCondition)($condition, $context, 0 < $condition ? $request ?? $request = $this->request ?: $this->createRequest($pathinfo) : null)) {
                             continue;
                         }
-=======
-                    if (0 === $condition) { // marks the last route in the regexp
-                        continue 3;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     }
 
                     $hasTrailingVar = $trimmedPathinfo !== $pathinfo && $hasTrailingVar;
@@ -173,19 +151,6 @@ trait CompiledUrlMatcherTrait
                         }
                     }
 
-<<<<<<< HEAD
-=======
-                    foreach ($vars as $i => $v) {
-                        if (isset($matches[1 + $i])) {
-                            $ret[$v] = $matches[1 + $i];
-                        }
-                    }
-
-                    if ($condition && !($this->checkCondition)($condition, $context, 0 < $condition ? $request ??= $this->request ?: $this->createRequest($pathinfo) : null, $ret)) {
-                        continue;
-                    }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     if ('/' !== $pathinfo && !$hasTrailingVar && $hasTrailingSlash === ($trimmedPathinfo === $pathinfo)) {
                         if ($supportsRedirections && (!$requiredMethods || isset($requiredMethods['GET']))) {
                             return $allow = $allowSchemes = [];
@@ -193,15 +158,12 @@ trait CompiledUrlMatcherTrait
                         continue;
                     }
 
-<<<<<<< HEAD
                     foreach ($vars as $i => $v) {
                         if (isset($matches[1 + $i])) {
                             $ret[$v] = $matches[1 + $i];
                         }
                     }
 
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     if ($requiredSchemes && !isset($requiredSchemes[$context->getScheme()])) {
                         $allowSchemes += $requiredSchemes;
                         continue;

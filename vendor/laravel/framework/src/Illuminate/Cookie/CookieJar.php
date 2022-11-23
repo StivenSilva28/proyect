@@ -71,11 +71,7 @@ class CookieJar implements JarContract
     }
 
     /**
-<<<<<<< HEAD
      * Create a cookie that lasts "forever" (five years).
-=======
-     * Create a cookie that lasts "forever" (400 days).
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  string  $name
      * @param  string  $value
@@ -89,11 +85,7 @@ class CookieJar implements JarContract
      */
     public function forever($name, $value, $path = null, $domain = null, $secure = null, $httpOnly = true, $raw = false, $sameSite = null)
     {
-<<<<<<< HEAD
         return $this->make($name, $value, 2628000, $path, $domain, $secure, $httpOnly, $raw, $sameSite);
-=======
-        return $this->make($name, $value, 576000, $path, $domain, $secure, $httpOnly, $raw, $sameSite);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

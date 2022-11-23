@@ -101,22 +101,6 @@ class MySqlGrammar extends Grammar
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Compile a "JSON contains key" statement into SQL.
-     *
-     * @param  string  $column
-     * @return string
-     */
-    protected function compileJsonContainsKey($column)
-    {
-        [$field, $path] = $this->wrapJsonFieldAndPath($column);
-
-        return 'ifnull(json_contains_path('.$field.', \'one\''.$path.'), 0)';
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Compile a "JSON length" statement into SQL.
      *
      * @param  string  $column
@@ -132,20 +116,6 @@ class MySqlGrammar extends Grammar
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Compile a "JSON value cast" statement into SQL.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function compileJsonValueCast($value)
-    {
-        return 'cast('.$value.' as json)';
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Compile the random statement into SQL.
      *
      * @param  string  $seed
@@ -217,33 +187,12 @@ class MySqlGrammar extends Grammar
      */
     public function compileUpsert(Builder $query, array $values, array $uniqueBy, array $update)
     {
-<<<<<<< HEAD
         $sql = $this->compileInsert($query, $values).' on duplicate key update ';
 
         $columns = collect($update)->map(function ($value, $key) {
             return is_numeric($key)
                 ? $this->wrap($value).' = values('.$this->wrap($value).')'
                 : $this->wrap($key).' = '.$this->parameter($value);
-=======
-        $useUpsertAlias = $query->connection->getConfig('use_upsert_alias');
-
-        $sql = $this->compileInsert($query, $values);
-
-        if ($useUpsertAlias) {
-            $sql .= ' as laravel_upsert_alias';
-        }
-
-        $sql .= ' on duplicate key update ';
-
-        $columns = collect($update)->map(function ($value, $key) use ($useUpsertAlias) {
-            if (! is_numeric($key)) {
-                return $this->wrap($key).' = '.$this->parameter($value);
-            }
-
-            return $useUpsertAlias
-                ? $this->wrap($value).' = '.$this->wrap('laravel_upsert_alias').'.'.$this->wrap($value)
-                : $this->wrap($value).' = values('.$this->wrap($value).')';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         })->implode(', ');
 
         return $sql.$columns;

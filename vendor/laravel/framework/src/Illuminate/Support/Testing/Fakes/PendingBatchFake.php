@@ -36,17 +36,4 @@ class PendingBatchFake extends PendingBatch
     {
         return $this->bus->recordPendingBatch($this);
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Dispatch the batch after the response is sent to the browser.
-     *
-     * @return \Illuminate\Bus\Batch
-     */
-    public function dispatchAfterResponse()
-    {
-        return $this->bus->recordPendingBatch($this);
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

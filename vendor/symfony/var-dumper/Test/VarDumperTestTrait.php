@@ -22,11 +22,7 @@ trait VarDumperTestTrait
     /**
      * @internal
      */
-<<<<<<< HEAD
     private $varDumperConfig = [
-=======
-    private array $varDumperConfig = [
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         'casters' => [],
         'flags' => null,
     ];
@@ -46,29 +42,17 @@ trait VarDumperTestTrait
         $this->varDumperConfig['flags'] = null;
     }
 
-<<<<<<< HEAD
     public function assertDumpEquals($expected, $data, int $filter = 0, string $message = '')
-=======
-    public function assertDumpEquals(mixed $expected, mixed $data, int $filter = 0, string $message = '')
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->assertSame($this->prepareExpectation($expected, $filter), $this->getDump($data, null, $filter), $message);
     }
 
-<<<<<<< HEAD
     public function assertDumpMatchesFormat($expected, $data, int $filter = 0, string $message = '')
-=======
-    public function assertDumpMatchesFormat(mixed $expected, mixed $data, int $filter = 0, string $message = '')
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->assertStringMatchesFormat($this->prepareExpectation($expected, $filter), $this->getDump($data, null, $filter), $message);
     }
 
-<<<<<<< HEAD
     protected function getDump($data, $key = null, int $filter = 0): ?string
-=======
-    protected function getDump(mixed $data, string|int $key = null, int $filter = 0): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $flags = $this->varDumperConfig['flags']) {
             $flags = getenv('DUMP_LIGHT_ARRAY') ? CliDumper::DUMP_LIGHT_ARRAY : 0;
@@ -89,11 +73,7 @@ trait VarDumperTestTrait
         return rtrim($dumper->dump($data, true));
     }
 
-<<<<<<< HEAD
     private function prepareExpectation($expected, int $filter): string
-=======
-    private function prepareExpectation(mixed $expected, int $filter): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!\is_string($expected)) {
             $expected = $this->getDump($expected, null, $filter);

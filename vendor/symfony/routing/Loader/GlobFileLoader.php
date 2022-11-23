@@ -24,11 +24,7 @@ class GlobFileLoader extends FileLoader
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function load($resource, string $type = null)
-=======
-    public function load(mixed $resource, string $type = null): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $collection = new RouteCollection();
 
@@ -44,11 +40,7 @@ class GlobFileLoader extends FileLoader
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function supports($resource, string $type = null)
-=======
-    public function supports(mixed $resource, string $type = null): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return 'glob' === $type;
     }

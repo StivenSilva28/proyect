@@ -562,19 +562,11 @@ class Dispatcher implements DispatcherContract
         [$listener, $job] = $this->createListenerAndJob($class, $method, $arguments);
 
         $connection = $this->resolveQueue()->connection(method_exists($listener, 'viaConnection')
-<<<<<<< HEAD
                     ? $listener->viaConnection()
                     : $listener->connection ?? null);
 
         $queue = method_exists($listener, 'viaQueue')
                     ? $listener->viaQueue()
-=======
-                    ? (isset($arguments[0]) ? $listener->viaConnection($arguments[0]) : $listener->viaConnection())
-                    : $listener->connection ?? null);
-
-        $queue = method_exists($listener, 'viaQueue')
-                    ? (isset($arguments[0]) ? $listener->viaQueue($arguments[0]) : $listener->viaQueue())
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     : $listener->queue ?? null;
 
         isset($listener->delay)
@@ -603,39 +595,22 @@ class Dispatcher implements DispatcherContract
      * Propagate listener options to the job.
      *
      * @param  mixed  $listener
-<<<<<<< HEAD
      * @param  mixed  $job
-=======
-     * @param  \Illuminate\Events\CallQueuedListener  $job
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return mixed
      */
     protected function propagateListenerOptions($listener, $job)
     {
         return tap($job, function ($job) use ($listener) {
-<<<<<<< HEAD
             $job->afterCommit = property_exists($listener, 'afterCommit') ? $listener->afterCommit : null;
             $job->backoff = method_exists($listener, 'backoff') ? $listener->backoff() : ($listener->backoff ?? null);
             $job->maxExceptions = $listener->maxExceptions ?? null;
             $job->retryUntil = method_exists($listener, 'retryUntil') ? $listener->retryUntil() : null;
-=======
-            $data = array_values($job->data);
-
-            $job->afterCommit = property_exists($listener, 'afterCommit') ? $listener->afterCommit : null;
-            $job->backoff = method_exists($listener, 'backoff') ? $listener->backoff(...$data) : ($listener->backoff ?? null);
-            $job->maxExceptions = $listener->maxExceptions ?? null;
-            $job->retryUntil = method_exists($listener, 'retryUntil') ? $listener->retryUntil(...$data) : null;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $job->shouldBeEncrypted = $listener instanceof ShouldBeEncrypted;
             $job->timeout = $listener->timeout ?? null;
             $job->tries = $listener->tries ?? null;
 
             $job->through(array_merge(
-<<<<<<< HEAD
                 method_exists($listener, 'middleware') ? $listener->middleware() : [],
-=======
-                method_exists($listener, 'middleware') ? $listener->middleware(...$data) : [],
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $listener->middleware ?? []
             ));
         });
@@ -649,11 +624,7 @@ class Dispatcher implements DispatcherContract
      */
     public function forget($event)
     {
-<<<<<<< HEAD
         if (Str::contains($event, '*')) {
-=======
-        if (str_contains($event, '*')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             unset($this->wildcards[$event]);
         } else {
             unset($this->listeners[$event]);
@@ -674,11 +645,7 @@ class Dispatcher implements DispatcherContract
     public function forgetPushed()
     {
         foreach ($this->listeners as $key => $value) {
-<<<<<<< HEAD
             if (Str::endsWith($key, '_pushed')) {
-=======
-            if (str_ends_with($key, '_pushed')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $this->forget($key);
             }
         }
@@ -706,17 +673,4 @@ class Dispatcher implements DispatcherContract
 
         return $this;
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Gets the raw, unprepared listeners.
-     *
-     * @return array
-     */
-    public function getRawListeners()
-    {
-        return $this->listeners;
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

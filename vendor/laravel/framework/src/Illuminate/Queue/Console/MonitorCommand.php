@@ -7,13 +7,7 @@ use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Queue\Factory;
 use Illuminate\Queue\Events\QueueBusy;
 use Illuminate\Support\Collection;
-<<<<<<< HEAD
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-
-#[AsCommand(name: 'queue:monitor')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class MonitorCommand extends Command
 {
     /**
@@ -26,20 +20,6 @@ class MonitorCommand extends Command
                        {--max=1000 : The maximum number of jobs that can be on the queue before an event is dispatched}';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'queue:monitor';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -68,11 +48,7 @@ class MonitorCommand extends Command
     protected $headers = ['Connection', 'Queue', 'Size', 'Status'];
 
     /**
-<<<<<<< HEAD
      * Create a new queue listen command.
-=======
-     * Create a new queue monitor command.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  \Illuminate\Contracts\Queue\Factory  $manager
      * @param  \Illuminate\Contracts\Events\Dispatcher  $events
@@ -120,42 +96,20 @@ class MonitorCommand extends Command
                 'connection' => $connection,
                 'queue' => $queue,
                 'size' => $size = $this->manager->connection($connection)->size($queue),
-<<<<<<< HEAD
                 'status' => $size >= $this->option('max') ? '<fg=red>ALERT</>' : 'OK',
-=======
-                'status' => $size >= $this->option('max') ? '<fg=yellow;options=bold>ALERT</>' : '<fg=green;options=bold>OK</>',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ];
         });
     }
 
     /**
-<<<<<<< HEAD
      * Display the failed jobs in the console.
-=======
-     * Display the queue sizes in the console.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  \Illuminate\Support\Collection  $queues
      * @return void
      */
     protected function displaySizes(Collection $queues)
     {
-<<<<<<< HEAD
         $this->table($this->headers, $queues);
-=======
-        $this->newLine();
-
-        $this->components->twoColumnDetail('<fg=gray>Queue name</>', '<fg=gray>Size / Status</>');
-
-        $queues->each(function ($queue) {
-            $status = '['.$queue['size'].'] '.$queue['status'];
-
-            $this->components->twoColumnDetail($queue['queue'], $status);
-        });
-
-        $this->newLine();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -167,11 +121,7 @@ class MonitorCommand extends Command
     protected function dispatchEvents(Collection $queues)
     {
         foreach ($queues as $queue) {
-<<<<<<< HEAD
             if ($queue['status'] == 'OK') {
-=======
-            if ($queue['status'] == '<fg=green;options=bold>OK</>') {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 continue;
             }
 

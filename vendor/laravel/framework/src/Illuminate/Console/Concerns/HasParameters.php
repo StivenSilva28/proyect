@@ -21,11 +21,7 @@ trait HasParameters
             if ($arguments instanceof InputArgument) {
                 $this->getDefinition()->addArgument($arguments);
             } else {
-<<<<<<< HEAD
                 $this->addArgument(...array_values($arguments));
-=======
-                $this->addArgument(...$arguments);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
 
@@ -33,11 +29,7 @@ trait HasParameters
             if ($options instanceof InputOption) {
                 $this->getDefinition()->addOption($options);
             } else {
-<<<<<<< HEAD
                 $this->addOption(...array_values($options));
-=======
-                $this->addOption(...$options);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
     }

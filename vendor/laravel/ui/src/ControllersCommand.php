@@ -44,10 +44,6 @@ class ControllersCommand extends Command
                 );
             });
 
-<<<<<<< HEAD
         $this->info('Authentication scaffolding generated successfully.');
-=======
-        $this->components->info('Authentication scaffolding generated successfully.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

@@ -41,11 +41,7 @@ class UnicodeString extends AbstractUnicodeString
         }
     }
 
-<<<<<<< HEAD
     public function append(string ...$suffix): AbstractString
-=======
-    public function append(string ...$suffix): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $str = clone $this;
         $str->string = $this->string.(1 >= \count($suffix) ? ($suffix[0] ?? '') : implode('', $suffix));
@@ -86,7 +82,6 @@ class UnicodeString extends AbstractUnicodeString
         return $chunks;
     }
 
-<<<<<<< HEAD
     public function endsWith($suffix): bool
     {
         if ($suffix instanceof AbstractString) {
@@ -95,14 +90,6 @@ class UnicodeString extends AbstractUnicodeString
             return parent::endsWith($suffix);
         } else {
             $suffix = (string) $suffix;
-=======
-    public function endsWith(string|iterable|AbstractString $suffix): bool
-    {
-        if ($suffix instanceof AbstractString) {
-            $suffix = $suffix->string;
-        } elseif (!\is_string($suffix)) {
-            return parent::endsWith($suffix);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $form = null === $this->ignoreCase ? \Normalizer::NFD : \Normalizer::NFC;
@@ -119,7 +106,6 @@ class UnicodeString extends AbstractUnicodeString
         return $suffix === grapheme_extract($this->string, \strlen($suffix), \GRAPHEME_EXTR_MAXBYTES, \strlen($this->string) - \strlen($suffix));
     }
 
-<<<<<<< HEAD
     public function equalsTo($string): bool
     {
         if ($string instanceof AbstractString) {
@@ -128,14 +114,6 @@ class UnicodeString extends AbstractUnicodeString
             return parent::equalsTo($string);
         } else {
             $string = (string) $string;
-=======
-    public function equalsTo(string|iterable|AbstractString $string): bool
-    {
-        if ($string instanceof AbstractString) {
-            $string = $string->string;
-        } elseif (!\is_string($string)) {
-            return parent::equalsTo($string);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $form = null === $this->ignoreCase ? \Normalizer::NFD : \Normalizer::NFC;
@@ -148,7 +126,6 @@ class UnicodeString extends AbstractUnicodeString
         return $string === $this->string;
     }
 
-<<<<<<< HEAD
     public function indexOf($needle, int $offset = 0): ?int
     {
         if ($needle instanceof AbstractString) {
@@ -157,14 +134,6 @@ class UnicodeString extends AbstractUnicodeString
             return parent::indexOf($needle, $offset);
         } else {
             $needle = (string) $needle;
-=======
-    public function indexOf(string|iterable|AbstractString $needle, int $offset = 0): ?int
-    {
-        if ($needle instanceof AbstractString) {
-            $needle = $needle->string;
-        } elseif (!\is_string($needle)) {
-            return parent::indexOf($needle, $offset);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $form = null === $this->ignoreCase ? \Normalizer::NFD : \Normalizer::NFC;
@@ -176,18 +145,13 @@ class UnicodeString extends AbstractUnicodeString
 
         try {
             $i = $this->ignoreCase ? grapheme_stripos($this->string, $needle, $offset) : grapheme_strpos($this->string, $needle, $offset);
-<<<<<<< HEAD
         } catch (\ValueError $e) {
-=======
-        } catch (\ValueError) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return null;
         }
 
         return false === $i ? null : $i;
     }
 
-<<<<<<< HEAD
     public function indexOfLast($needle, int $offset = 0): ?int
     {
         if ($needle instanceof AbstractString) {
@@ -196,14 +160,6 @@ class UnicodeString extends AbstractUnicodeString
             return parent::indexOfLast($needle, $offset);
         } else {
             $needle = (string) $needle;
-=======
-    public function indexOfLast(string|iterable|AbstractString $needle, int $offset = 0): ?int
-    {
-        if ($needle instanceof AbstractString) {
-            $needle = $needle->string;
-        } elseif (!\is_string($needle)) {
-            return parent::indexOfLast($needle, $offset);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $form = null === $this->ignoreCase ? \Normalizer::NFD : \Normalizer::NFC;
@@ -228,11 +184,7 @@ class UnicodeString extends AbstractUnicodeString
         return false === $i ? null : $i;
     }
 
-<<<<<<< HEAD
     public function join(array $strings, string $lastGlue = null): AbstractString
-=======
-    public function join(array $strings, string $lastGlue = null): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $str = parent::join($strings, $lastGlue);
         normalizer_is_normalized($str->string) ?: $str->string = normalizer_normalize($str->string);
@@ -245,14 +197,10 @@ class UnicodeString extends AbstractUnicodeString
         return grapheme_strlen($this->string);
     }
 
-<<<<<<< HEAD
     /**
      * @return static
      */
     public function normalize(int $form = self::NFC): parent
-=======
-    public function normalize(int $form = self::NFC): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $str = clone $this;
 
@@ -268,11 +216,7 @@ class UnicodeString extends AbstractUnicodeString
         return $str;
     }
 
-<<<<<<< HEAD
     public function prepend(string ...$prefix): AbstractString
-=======
-    public function prepend(string ...$prefix): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $str = clone $this;
         $str->string = (1 >= \count($prefix) ? ($prefix[0] ?? '') : implode('', $prefix)).$this->string;
@@ -285,11 +229,7 @@ class UnicodeString extends AbstractUnicodeString
         return $str;
     }
 
-<<<<<<< HEAD
     public function replace(string $from, string $to): AbstractString
-=======
-    public function replace(string $from, string $to): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $str = clone $this;
         normalizer_is_normalized($from) ?: $from = normalizer_normalize($from);
@@ -316,11 +256,7 @@ class UnicodeString extends AbstractUnicodeString
         return $str;
     }
 
-<<<<<<< HEAD
     public function replaceMatches(string $fromRegexp, $to): AbstractString
-=======
-    public function replaceMatches(string $fromRegexp, string|callable $to): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $str = parent::replaceMatches($fromRegexp, $to);
         normalizer_is_normalized($str->string) ?: $str->string = normalizer_normalize($str->string);
@@ -328,7 +264,6 @@ class UnicodeString extends AbstractUnicodeString
         return $str;
     }
 
-<<<<<<< HEAD
     public function slice(int $start = 0, int $length = null): AbstractString
     {
         $str = clone $this;
@@ -336,18 +271,11 @@ class UnicodeString extends AbstractUnicodeString
         if (\PHP_VERSION_ID < 80000 && 0 > $start && grapheme_strlen($this->string) < -$start) {
             $start = 0;
         }
-=======
-    public function slice(int $start = 0, int $length = null): static
-    {
-        $str = clone $this;
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $str->string = (string) grapheme_substr($this->string, $start, $length ?? 2147483647);
 
         return $str;
     }
 
-<<<<<<< HEAD
     public function splice(string $replacement, int $start = 0, int $length = null): AbstractString
     {
         $str = clone $this;
@@ -355,12 +283,6 @@ class UnicodeString extends AbstractUnicodeString
         if (\PHP_VERSION_ID < 80000 && 0 > $start && grapheme_strlen($this->string) < -$start) {
             $start = 0;
         }
-=======
-    public function splice(string $replacement, int $start = 0, int $length = null): static
-    {
-        $str = clone $this;
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $start = $start ? \strlen(grapheme_substr($this->string, 0, $start)) : 0;
         $length = $length ? \strlen(grapheme_substr($this->string, $start, $length ?? 2147483647)) : $length;
         $str->string = substr_replace($this->string, $replacement, $start, $length ?? 2147483647);
@@ -375,11 +297,7 @@ class UnicodeString extends AbstractUnicodeString
 
     public function split(string $delimiter, int $limit = null, int $flags = null): array
     {
-<<<<<<< HEAD
         if (1 > $limit = $limit ?? 2147483647) {
-=======
-        if (1 > $limit ??= 2147483647) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             throw new InvalidArgumentException('Split limit must be a positive integer.');
         }
 
@@ -415,7 +333,6 @@ class UnicodeString extends AbstractUnicodeString
         return $chunks;
     }
 
-<<<<<<< HEAD
     public function startsWith($prefix): bool
     {
         if ($prefix instanceof AbstractString) {
@@ -424,14 +341,6 @@ class UnicodeString extends AbstractUnicodeString
             return parent::startsWith($prefix);
         } else {
             $prefix = (string) $prefix;
-=======
-    public function startsWith(string|iterable|AbstractString $prefix): bool
-    {
-        if ($prefix instanceof AbstractString) {
-            $prefix = $prefix->string;
-        } elseif (!\is_string($prefix)) {
-            return parent::startsWith($prefix);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $form = null === $this->ignoreCase ? \Normalizer::NFD : \Normalizer::NFC;

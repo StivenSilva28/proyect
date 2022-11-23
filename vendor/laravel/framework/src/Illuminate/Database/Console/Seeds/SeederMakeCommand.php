@@ -3,14 +3,7 @@
 namespace Illuminate\Database\Console\Seeds;
 
 use Illuminate\Console\GeneratorCommand;
-<<<<<<< HEAD
 
-=======
-use Illuminate\Support\Str;
-use Symfony\Component\Console\Attribute\AsCommand;
-
-#[AsCommand(name: 'make:seeder')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class SeederMakeCommand extends GeneratorCommand
 {
     /**
@@ -21,20 +14,6 @@ class SeederMakeCommand extends GeneratorCommand
     protected $name = 'make:seeder';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'make:seeder';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -89,7 +68,6 @@ class SeederMakeCommand extends GeneratorCommand
      */
     protected function getPath($name)
     {
-<<<<<<< HEAD
         if (is_dir($this->laravel->databasePath().'/seeds')) {
             return $this->laravel->databasePath().'/seeds/'.$name.'.php';
         } else {
@@ -106,24 +84,5 @@ class SeederMakeCommand extends GeneratorCommand
     protected function qualifyClass($name)
     {
         return $name;
-=======
-        $name = str_replace('\\', '/', Str::replaceFirst($this->rootNamespace(), '', $name));
-
-        if (is_dir($this->laravel->databasePath().'/seeds')) {
-            return $this->laravel->databasePath().'/seeds/'.$name.'.php';
-        }
-
-        return $this->laravel->databasePath().'/seeders/'.$name.'.php';
-    }
-
-    /**
-     * Get the root namespace for the class.
-     *
-     * @return string
-     */
-    protected function rootNamespace()
-    {
-        return 'Database\Seeders\\';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

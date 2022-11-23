@@ -84,11 +84,7 @@ class DataPart extends TextPart
     /**
      * @return $this
      */
-<<<<<<< HEAD
     public function asInline()
-=======
-    public function asInline(): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->setDisposition('inline');
     }
@@ -133,19 +129,6 @@ class DataPart extends TextPart
         return $str;
     }
 
-<<<<<<< HEAD
-=======
-    public function getFilename(): ?string
-    {
-        return $this->filename;
-    }
-
-    public function getContentType(): string
-    {
-        return implode('/', [$this->getMediaType(), $this->getMediaSubtype()]);
-    }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     private function generateContentId(): string
     {
         return bin2hex(random_bytes(16)).'@symfony';
@@ -158,14 +141,10 @@ class DataPart extends TextPart
         }
     }
 
-<<<<<<< HEAD
     /**
      * @return array
      */
     public function __sleep()
-=======
-    public function __sleep(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // converts the body to a string
         parent::__sleep();
@@ -173,10 +152,7 @@ class DataPart extends TextPart
         $this->_parent = [];
         foreach (['body', 'charset', 'subtype', 'disposition', 'name', 'encoding'] as $name) {
             $r = new \ReflectionProperty(TextPart::class, $name);
-<<<<<<< HEAD
             $r->setAccessible(true);
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->_parent[$name] = $r->getValue($this);
         }
         $this->_headers = $this->getHeaders();
@@ -187,10 +163,7 @@ class DataPart extends TextPart
     public function __wakeup()
     {
         $r = new \ReflectionProperty(AbstractPart::class, 'headers');
-<<<<<<< HEAD
         $r->setAccessible(true);
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $r->setValue($this, $this->_headers);
         unset($this->_headers);
 
@@ -202,10 +175,7 @@ class DataPart extends TextPart
                 throw new \BadMethodCallException('Cannot unserialize '.__CLASS__);
             }
             $r = new \ReflectionProperty(TextPart::class, $name);
-<<<<<<< HEAD
             $r->setAccessible(true);
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $r->setValue($this, $this->_parent[$name]);
         }
         unset($this->_parent);

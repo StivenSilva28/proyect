@@ -208,7 +208,6 @@ class DOMCaster
         return $a;
     }
 
-<<<<<<< HEAD
     public static function castTypeinfo(\DOMTypeinfo $dom, array $a, Stub $stub, bool $isNested)
     {
         $a += [
@@ -246,8 +245,6 @@ class DOMCaster
         return $a;
     }
 
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     public static function castDocumentType(\DOMDocumentType $dom, array $a, Stub $stub, bool $isNested)
     {
         $a += [

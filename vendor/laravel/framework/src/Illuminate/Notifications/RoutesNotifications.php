@@ -43,19 +43,11 @@ trait RoutesNotifications
             return $this->{$method}($notification);
         }
 
-<<<<<<< HEAD
         switch ($driver) {
             case 'database':
                 return $this->notifications();
             case 'mail':
                 return $this->email;
         }
-=======
-        return match ($driver) {
-            'database' => $this->notifications(),
-            'mail' => $this->email,
-            default => null,
-        };
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

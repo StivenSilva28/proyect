@@ -3,15 +3,8 @@
 namespace Illuminate\Notifications\Messages;
 
 use Illuminate\Container\Container;
-<<<<<<< HEAD
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Renderable;
-=======
-use Illuminate\Contracts\Mail\Attachable;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Mail\Attachment;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\Traits\Conditionable;
 
@@ -90,23 +83,6 @@ class MailMessage extends SimpleMessage implements Renderable
     public $rawAttachments = [];
 
     /**
-<<<<<<< HEAD
-=======
-     * The tags for the message.
-     *
-     * @var array
-     */
-    public $tags = [];
-
-    /**
-     * The metadata for the message.
-     *
-     * @var array
-     */
-    public $metadata = [];
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Priority level of the message.
      *
      * @var int
@@ -251,27 +227,12 @@ class MailMessage extends SimpleMessage implements Renderable
     /**
      * Attach a file to the message.
      *
-<<<<<<< HEAD
      * @param  string  $file
-=======
-     * @param  string|\Illuminate\Contracts\Mail\Attachable|\Illuminate\Mail\Attachment  $file
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  array  $options
      * @return $this
      */
     public function attach($file, array $options = [])
     {
-<<<<<<< HEAD
-=======
-        if ($file instanceof Attachable) {
-            $file = $file->toMailAttachment();
-        }
-
-        if ($file instanceof Attachment) {
-            return $file->attachTo($this);
-        }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->attachments[] = compact('file', 'options');
 
         return $this;
@@ -293,36 +254,6 @@ class MailMessage extends SimpleMessage implements Renderable
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Add a tag header to the message when supported by the underlying transport.
-     *
-     * @param  string  $value
-     * @return $this
-     */
-    public function tag($value)
-    {
-        array_push($this->tags, $value);
-
-        return $this;
-    }
-
-    /**
-     * Add a metadata header to the message when supported by the underlying transport.
-     *
-     * @param  string  $key
-     * @param  string  $value
-     * @return $this
-     */
-    public function metadata($key, $value)
-    {
-        $this->metadata[$key] = $value;
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Set the priority of this message.
      *
      * The value is an integer where 1 is the highest priority and 5 is the lowest.
@@ -374,11 +305,7 @@ class MailMessage extends SimpleMessage implements Renderable
     /**
      * Render the mail notification message into an HTML string.
      *
-<<<<<<< HEAD
      * @return string
-=======
-     * @return \Illuminate\Support\HtmlString
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function render()
     {
@@ -395,20 +322,12 @@ class MailMessage extends SimpleMessage implements Renderable
     }
 
     /**
-<<<<<<< HEAD
      * Register a callback to be called with the Swift message instance.
-=======
-     * Register a callback to be called with the Symfony message instance.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  callable  $callback
      * @return $this
      */
-<<<<<<< HEAD
     public function withSwiftMessage($callback)
-=======
-    public function withSymfonyMessage($callback)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->callbacks[] = $callback;
 

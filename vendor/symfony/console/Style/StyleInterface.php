@@ -35,7 +35,6 @@ interface StyleInterface
 
     /**
      * Formats informational text.
-<<<<<<< HEAD
      *
      * @param string|array $message
      */
@@ -75,35 +74,6 @@ interface StyleInterface
      * @param string|array $message
      */
     public function caution($message);
-=======
-     */
-    public function text(string|array $message);
-
-    /**
-     * Formats a success result bar.
-     */
-    public function success(string|array $message);
-
-    /**
-     * Formats an error result bar.
-     */
-    public function error(string|array $message);
-
-    /**
-     * Formats an warning result bar.
-     */
-    public function warning(string|array $message);
-
-    /**
-     * Formats a note admonition.
-     */
-    public function note(string|array $message);
-
-    /**
-     * Formats a caution admonition.
-     */
-    public function caution(string|array $message);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Formats a table.
@@ -112,7 +82,6 @@ interface StyleInterface
 
     /**
      * Asks a question.
-<<<<<<< HEAD
      *
      * @return mixed
      */
@@ -140,25 +109,6 @@ interface StyleInterface
      * @return mixed
      */
     public function choice(string $question, array $choices, $default = null);
-=======
-     */
-    public function ask(string $question, string $default = null, callable $validator = null): mixed;
-
-    /**
-     * Asks a question with the user input hidden.
-     */
-    public function askHidden(string $question, callable $validator = null): mixed;
-
-    /**
-     * Asks for confirmation.
-     */
-    public function confirm(string $question, bool $default = true): bool;
-
-    /**
-     * Asks a choice question.
-     */
-    public function choice(string $question, array $choices, mixed $default = null): mixed;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Add newline(s).

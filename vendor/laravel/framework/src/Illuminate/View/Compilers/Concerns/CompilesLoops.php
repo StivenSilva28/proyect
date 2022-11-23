@@ -2,11 +2,6 @@
 
 namespace Illuminate\View\Compilers\Concerns;
 
-<<<<<<< HEAD
-=======
-use Illuminate\Contracts\View\ViewCompilationException;
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 trait CompilesLoops
 {
     /**
@@ -21,25 +16,12 @@ trait CompilesLoops
      *
      * @param  string  $expression
      * @return string
-<<<<<<< HEAD
-=======
-     *
-     * @throws \Illuminate\Contracts\View\ViewCompilationException
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected function compileForelse($expression)
     {
         $empty = '$__empty_'.++$this->forElseCounter;
 
-<<<<<<< HEAD
         preg_match('/\( *(.*) +as *(.*)\)$/is', $expression, $matches);
-=======
-        preg_match('/\( *(.+) +as +(.+)\)$/is', $expression ?? '', $matches);
-
-        if (count($matches) === 0) {
-            throw new ViewCompilationException('Malformed @forelse statement.');
-        }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $iteratee = trim($matches[1]);
 
@@ -105,23 +87,10 @@ trait CompilesLoops
      *
      * @param  string  $expression
      * @return string
-<<<<<<< HEAD
      */
     protected function compileForeach($expression)
     {
         preg_match('/\( *(.*) +as *(.*)\)$/is', $expression, $matches);
-=======
-     *
-     * @throws \Illuminate\Contracts\View\ViewCompilationException
-     */
-    protected function compileForeach($expression)
-    {
-        preg_match('/\( *(.+) +as +(.*)\)$/is', $expression ?? '', $matches);
-
-        if (count($matches) === 0) {
-            throw new ViewCompilationException('Malformed @foreach statement.');
-        }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $iteratee = trim($matches[1]);
 

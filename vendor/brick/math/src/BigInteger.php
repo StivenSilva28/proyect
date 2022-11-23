@@ -26,15 +26,10 @@ final class BigInteger extends BigNumber
      *
      * No leading zeros must be present.
      * No leading minus sign must be present if the number is zero.
-<<<<<<< HEAD
      *
      * @var string
      */
     private $value;
-=======
-     */
-    private string $value;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Protected constructor. Use a factory method to obtain an instance.
@@ -366,24 +361,6 @@ final class BigInteger extends BigNumber
         return $ten;
     }
 
-<<<<<<< HEAD
-=======
-    public static function gcdMultiple(BigInteger $a, BigInteger ...$n): BigInteger
-    {
-        $result = $a;
-
-        foreach ($n as $next) {
-            $result = $result->gcd($next);
-
-            if ($result->isEqualTo(1)) {
-                return $result;
-            }
-        }
-
-        return $result;
-    }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * Returns the sum of this number and the given one.
      *

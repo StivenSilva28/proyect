@@ -27,10 +27,7 @@ class ControllerDoesNotReturnResponseException extends \LogicException
         $this->file = $controllerDefinition['file'];
         $this->line = $controllerDefinition['line'];
         $r = new \ReflectionProperty(\Exception::class, 'trace');
-<<<<<<< HEAD
         $r->setAccessible(true);
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $r->setValue($this, array_merge([
             [
                 'line' => $line,
@@ -53,11 +50,7 @@ class ControllerDoesNotReturnResponseException extends \LogicException
                     'file' => $r->getFileName(),
                     'line' => $r->getEndLine(),
                 ];
-<<<<<<< HEAD
             } catch (\ReflectionException $e) {
-=======
-            } catch (\ReflectionException) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return null;
             }
         }
@@ -76,11 +69,7 @@ class ControllerDoesNotReturnResponseException extends \LogicException
 
             try {
                 $line = $r->getMethod('__invoke')->getEndLine();
-<<<<<<< HEAD
             } catch (\ReflectionException $e) {
-=======
-            } catch (\ReflectionException) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $line = $r->getEndLine();
             }
 

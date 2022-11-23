@@ -16,11 +16,7 @@ namespace Symfony\Component\Console\Formatter;
  */
 final class NullOutputFormatter implements OutputFormatterInterface
 {
-<<<<<<< HEAD
     private $style;
-=======
-    private NullOutputFormatterStyle $style;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * {@inheritdoc}
@@ -36,11 +32,7 @@ final class NullOutputFormatter implements OutputFormatterInterface
     public function getStyle(string $name): OutputFormatterStyleInterface
     {
         // to comply with the interface we must return a OutputFormatterStyleInterface
-<<<<<<< HEAD
         return $this->style ?? $this->style = new NullOutputFormatterStyle();
-=======
-        return $this->style ??= new NullOutputFormatterStyle();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

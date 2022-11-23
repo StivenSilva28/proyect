@@ -21,7 +21,6 @@ namespace Symfony\Component\HttpFoundation\Session\Storage\Handler;
  */
 class MemcachedSessionHandler extends AbstractSessionHandler
 {
-<<<<<<< HEAD
     private $memcached;
 
     /**
@@ -33,19 +32,6 @@ class MemcachedSessionHandler extends AbstractSessionHandler
      * @var string Key prefix for shared environments
      */
     private $prefix;
-=======
-    private \Memcached $memcached;
-
-    /**
-     * Time to live in seconds.
-     */
-    private int|\Closure|null $ttl;
-
-    /**
-     * Key prefix for shared environments.
-     */
-    private string $prefix;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Constructor.
@@ -68,15 +54,11 @@ class MemcachedSessionHandler extends AbstractSessionHandler
         $this->prefix = $options['prefix'] ?? 'sf2s';
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function close()
-=======
-    public function close(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->memcached->quit();
     }
@@ -84,16 +66,11 @@ class MemcachedSessionHandler extends AbstractSessionHandler
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     protected function doRead(string $sessionId)
-=======
-    protected function doRead(string $sessionId): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->memcached->get($this->prefix.$sessionId) ?: '';
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
@@ -101,12 +78,6 @@ class MemcachedSessionHandler extends AbstractSessionHandler
     public function updateTimestamp($sessionId, $data)
     {
         $this->memcached->touch($this->prefix.$sessionId, time() + (int) ($this->ttl ?? \ini_get('session.gc_maxlifetime')));
-=======
-    public function updateTimestamp(string $sessionId, string $data): bool
-    {
-        $ttl = ($this->ttl instanceof \Closure ? ($this->ttl)() : $this->ttl) ?? \ini_get('session.gc_maxlifetime');
-        $this->memcached->touch($this->prefix.$sessionId, time() + (int) $ttl);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return true;
     }
@@ -114,42 +85,26 @@ class MemcachedSessionHandler extends AbstractSessionHandler
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     protected function doWrite(string $sessionId, string $data)
     {
         return $this->memcached->set($this->prefix.$sessionId, $data, time() + (int) ($this->ttl ?? \ini_get('session.gc_maxlifetime')));
-=======
-    protected function doWrite(string $sessionId, string $data): bool
-    {
-        $ttl = ($this->ttl instanceof \Closure ? ($this->ttl)() : $this->ttl) ?? \ini_get('session.gc_maxlifetime');
-
-        return $this->memcached->set($this->prefix.$sessionId, $data, time() + (int) $ttl);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     protected function doDestroy(string $sessionId)
-=======
-    protected function doDestroy(string $sessionId): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $result = $this->memcached->delete($this->prefix.$sessionId);
 
         return $result || \Memcached::RES_NOTFOUND == $this->memcached->getResultCode();
     }
 
-<<<<<<< HEAD
     /**
      * @return int|false
      */
     #[\ReturnTypeWillChange]
     public function gc($maxlifetime)
-=======
-    public function gc(int $maxlifetime): int|false
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // not required here because memcached will auto expire the records anyhow.
         return 0;
@@ -157,15 +112,10 @@ class MemcachedSessionHandler extends AbstractSessionHandler
 
     /**
      * Return a Memcached instance.
-<<<<<<< HEAD
      *
      * @return \Memcached
      */
     protected function getMemcached()
-=======
-     */
-    protected function getMemcached(): \Memcached
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->memcached;
     }

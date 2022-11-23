@@ -19,11 +19,7 @@ class {{ class }} extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-<<<<<<< HEAD
      * @return array
-=======
-     * @return array<string, mixed>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function rules()
     {

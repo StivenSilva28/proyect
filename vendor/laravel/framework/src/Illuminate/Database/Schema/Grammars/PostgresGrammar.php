@@ -72,11 +72,7 @@ class PostgresGrammar extends Grammar
      */
     public function compileTableExists()
     {
-<<<<<<< HEAD
         return "select * from information_schema.tables where table_schema = ? and table_name = ? and table_type = 'BASE TABLE'";
-=======
-        return "select * from information_schema.tables where table_catalog = ? and table_schema = ? and table_name = ? and table_type = 'BASE TABLE'";
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -86,11 +82,7 @@ class PostgresGrammar extends Grammar
      */
     public function compileColumnListing()
     {
-<<<<<<< HEAD
         return 'select column_name from information_schema.columns where table_schema = ? and table_name = ?';
-=======
-        return 'select column_name from information_schema.columns where table_catalog = ? and table_schema = ? and table_name = ?';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -160,28 +152,11 @@ class PostgresGrammar extends Grammar
      */
     public function compileUnique(Blueprint $blueprint, Fluent $command)
     {
-<<<<<<< HEAD
         return sprintf('alter table %s add constraint %s unique (%s)',
-=======
-        $sql = sprintf('alter table %s add constraint %s unique (%s)',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->wrapTable($blueprint),
             $this->wrap($command->index),
             $this->columnize($command->columns)
         );
-<<<<<<< HEAD
-=======
-
-        if (! is_null($command->deferrable)) {
-            $sql .= $command->deferrable ? ' deferrable' : ' not deferrable';
-        }
-
-        if ($command->deferrable && ! is_null($command->initiallyImmediate)) {
-            $sql .= $command->initiallyImmediate ? ' initially immediate' : ' initially deferred';
-        }
-
-        return $sql;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -297,11 +272,7 @@ class PostgresGrammar extends Grammar
      */
     public function compileDropAllTables($tables)
     {
-<<<<<<< HEAD
         return 'drop table "'.implode('","', $tables).'" cascade';
-=======
-        return 'drop table '.implode(',', $this->escapeNames($tables)).' cascade';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -312,11 +283,7 @@ class PostgresGrammar extends Grammar
      */
     public function compileDropAllViews($views)
     {
-<<<<<<< HEAD
         return 'drop view "'.implode('","', $views).'" cascade';
-=======
-        return 'drop view '.implode(',', $this->escapeNames($views)).' cascade';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -327,51 +294,29 @@ class PostgresGrammar extends Grammar
      */
     public function compileDropAllTypes($types)
     {
-<<<<<<< HEAD
         return 'drop type "'.implode('","', $types).'" cascade';
-=======
-        return 'drop type '.implode(',', $this->escapeNames($types)).' cascade';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
      * Compile the SQL needed to retrieve all table names.
      *
-<<<<<<< HEAD
      * @param  string|array  $schema
      * @return string
      */
     public function compileGetAllTables($schema)
     {
         return "select tablename from pg_catalog.pg_tables where schemaname in ('".implode("','", (array) $schema)."')";
-=======
-     * @param  string|array  $searchPath
-     * @return string
-     */
-    public function compileGetAllTables($searchPath)
-    {
-        return "select tablename, concat('\"', schemaname, '\".\"', tablename, '\"') as qualifiedname from pg_catalog.pg_tables where schemaname in ('".implode("','", (array) $searchPath)."')";
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
      * Compile the SQL needed to retrieve all view names.
      *
-<<<<<<< HEAD
      * @param  string|array  $schema
      * @return string
      */
     public function compileGetAllViews($schema)
     {
         return "select viewname from pg_catalog.pg_views where schemaname in ('".implode("','", (array) $schema)."')";
-=======
-     * @param  string|array  $searchPath
-     * @return string
-     */
-    public function compileGetAllViews($searchPath)
-    {
-        return "select viewname, concat('\"', schemaname, '\".\"', viewname, '\"') as qualifiedname from pg_catalog.pg_views where schemaname in ('".implode("','", (array) $searchPath)."')";
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -542,39 +487,6 @@ class PostgresGrammar extends Grammar
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Compile a table comment command.
-     *
-     * @param  \Illuminate\Database\Schema\Blueprint  $blueprint
-     * @param  \Illuminate\Support\Fluent  $command
-     * @return string
-     */
-    public function compileTableComment(Blueprint $blueprint, Fluent $command)
-    {
-        return sprintf('comment on table %s is %s',
-            $this->wrapTable($blueprint),
-            "'".str_replace("'", "''", $command->comment)."'"
-        );
-    }
-
-    /**
-     * Quote-escape the given tables, views, or types.
-     *
-     * @param  array  $names
-     * @return array
-     */
-    public function escapeNames($names)
-    {
-        return array_map(static function ($name) {
-            return '"'.collect(explode('.', $name))
-                ->map(fn ($segment) => trim($segment, '\'"'))
-                ->implode('"."').'"';
-        }, $names);
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create the column definition for a char type.
      *
      * @param  \Illuminate\Support\Fluent  $column
@@ -582,15 +494,7 @@ class PostgresGrammar extends Grammar
      */
     protected function typeChar(Fluent $column)
     {
-<<<<<<< HEAD
         return "char({$column->length})";
-=======
-        if ($column->length) {
-            return "char({$column->length})";
-        }
-
-        return 'char';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -601,15 +505,7 @@ class PostgresGrammar extends Grammar
      */
     protected function typeString(Fluent $column)
     {
-<<<<<<< HEAD
         return "varchar({$column->length})";
-=======
-        if ($column->length) {
-            return "varchar({$column->length})";
-        }
-
-        return 'varchar';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

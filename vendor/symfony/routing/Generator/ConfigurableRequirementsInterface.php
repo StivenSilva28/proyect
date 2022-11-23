@@ -46,13 +46,8 @@ interface ConfigurableRequirementsInterface
     /**
      * Returns whether to throw an exception on incorrect parameters.
      * Null means the requirements check is deactivated completely.
-<<<<<<< HEAD
      *
      * @return bool|null
      */
     public function isStrictRequirements();
-=======
-     */
-    public function isStrictRequirements(): ?bool;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

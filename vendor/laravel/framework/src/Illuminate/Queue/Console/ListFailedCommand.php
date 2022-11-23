@@ -4,13 +4,7 @@ namespace Illuminate\Queue\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
-<<<<<<< HEAD
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-
-#[AsCommand(name: 'queue:failed')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ListFailedCommand extends Command
 {
     /**
@@ -21,20 +15,6 @@ class ListFailedCommand extends Command
     protected $name = 'queue:failed';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'queue:failed';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -56,19 +36,10 @@ class ListFailedCommand extends Command
     public function handle()
     {
         if (count($jobs = $this->getFailedJobs()) === 0) {
-<<<<<<< HEAD
             return $this->info('No failed jobs!');
         }
 
         $this->displayFailedJobs($jobs);
-=======
-            return $this->components->info('No failed jobs found.');
-        }
-
-        $this->newLine();
-        $this->displayFailedJobs($jobs);
-        $this->newLine();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -138,15 +109,6 @@ class ListFailedCommand extends Command
      */
     protected function displayFailedJobs(array $jobs)
     {
-<<<<<<< HEAD
         $this->table($this->headers, $jobs);
-=======
-        collect($jobs)->each(
-            fn ($job) => $this->components->twoColumnDetail(
-                sprintf('<fg=gray>%s</> %s</>', $job[4], $job[0]),
-                sprintf('<fg=gray>%s@%s</> %s', $job[1], $job[2], $job[3])
-            ),
-        );
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

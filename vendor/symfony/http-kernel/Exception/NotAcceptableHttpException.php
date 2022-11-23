@@ -16,7 +16,6 @@ namespace Symfony\Component\HttpKernel\Exception;
  */
 class NotAcceptableHttpException extends HttpException
 {
-<<<<<<< HEAD
     /**
      * @param string|null     $message  The internal exception message
      * @param \Throwable|null $previous The previous exception
@@ -30,10 +29,6 @@ class NotAcceptableHttpException extends HttpException
             $message = '';
         }
 
-=======
-    public function __construct(string $message = '', \Throwable $previous = null, int $code = 0, array $headers = [])
-    {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         parent::__construct(406, $message, $previous, $headers, $code);
     }
 }

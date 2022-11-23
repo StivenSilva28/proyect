@@ -27,11 +27,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class Esi extends AbstractSurrogate
 {
-<<<<<<< HEAD
     public function getName()
-=======
-    public function getName(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return 'esi';
     }
@@ -49,11 +45,7 @@ class Esi extends AbstractSurrogate
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function renderIncludeTag(string $uri, string $alt = null, bool $ignoreErrors = true, string $comment = '')
-=======
-    public function renderIncludeTag(string $uri, string $alt = null, bool $ignoreErrors = true, string $comment = ''): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $html = sprintf('<esi:include src="%s"%s%s />',
             $uri,
@@ -71,11 +63,7 @@ class Esi extends AbstractSurrogate
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function process(Request $request, Response $response)
-=======
-    public function process(Request $request, Response $response): Response
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $type = $response->headers->get('Content-Type');
         if (empty($type)) {

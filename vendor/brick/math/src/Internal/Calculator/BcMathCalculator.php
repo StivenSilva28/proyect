@@ -94,12 +94,9 @@ class BcMathCalculator extends Calculator
 
     /**
      * {@inheritdoc}
-<<<<<<< HEAD
      *
      * @psalm-suppress InvalidNullableReturnType
      * @psalm-suppress NullableReturnStatement
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function modPow(string $base, string $exp, string $mod) : string
     {
@@ -108,12 +105,9 @@ class BcMathCalculator extends Calculator
 
     /**
      * {@inheritDoc}
-<<<<<<< HEAD
      *
      * @psalm-suppress NullableReturnStatement
      * @psalm-suppress InvalidNullableReturnType
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function sqrt(string $n) : string
     {

@@ -43,11 +43,7 @@ class FileBag extends ParameterBag
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function set(string $key, $value)
-=======
-    public function set(string $key, mixed $value)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!\is_array($value) && !$value instanceof UploadedFile) {
             throw new \InvalidArgumentException('An uploaded file must be an array or an instance of UploadedFile.');
@@ -69,17 +65,11 @@ class FileBag extends ParameterBag
     /**
      * Converts uploaded files to UploadedFile instances.
      *
-<<<<<<< HEAD
      * @param array|UploadedFile $file A (multi-dimensional) array of uploaded file information
      *
      * @return UploadedFile[]|UploadedFile|null
      */
     protected function convertFileInformation($file)
-=======
-     * @return UploadedFile[]|UploadedFile|null
-     */
-    protected function convertFileInformation(array|UploadedFile $file): array|UploadedFile|null
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($file instanceof UploadedFile) {
             return $file;
@@ -116,15 +106,10 @@ class FileBag extends ParameterBag
      *
      * It's safe to pass an already converted array, in which case this method
      * just returns the original array unmodified.
-<<<<<<< HEAD
      *
      * @return array
      */
     protected function fixPhpFilesArray(array $data)
-=======
-     */
-    protected function fixPhpFilesArray(array $data): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // Remove extra key added by PHP 8.1.
         unset($data['full_path']);

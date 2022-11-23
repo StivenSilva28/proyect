@@ -61,11 +61,7 @@ class RouterDataCollector extends DataCollector
         ];
     }
 
-<<<<<<< HEAD
     protected function guessRoute(Request $request, $controller)
-=======
-    protected function guessRoute(Request $request, string|object|array $controller)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return 'n/a';
     }
@@ -81,35 +77,23 @@ class RouterDataCollector extends DataCollector
     /**
      * @return bool Whether this request will result in a redirect
      */
-<<<<<<< HEAD
     public function getRedirect()
-=======
-    public function getRedirect(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->data['redirect'];
     }
 
-<<<<<<< HEAD
     /**
      * @return string|null
      */
     public function getTargetUrl()
-=======
-    public function getTargetUrl(): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->data['url'];
     }
 
-<<<<<<< HEAD
     /**
      * @return string|null
      */
     public function getTargetRoute()
-=======
-    public function getTargetRoute(): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->data['route'];
     }
@@ -117,11 +101,7 @@ class RouterDataCollector extends DataCollector
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getName()
-=======
-    public function getName(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return 'router';
     }

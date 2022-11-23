@@ -28,14 +28,8 @@ class SortableIterator implements \IteratorAggregate
     public const SORT_BY_MODIFIED_TIME = 5;
     public const SORT_BY_NAME_NATURAL = 6;
 
-<<<<<<< HEAD
     private $iterator;
     private $sort;
-=======
-    /** @var \Traversable<string, \SplFileInfo> */
-    private \Traversable $iterator;
-    private \Closure|int $sort;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param \Traversable<string, \SplFileInfo> $iterator
@@ -43,11 +37,7 @@ class SortableIterator implements \IteratorAggregate
      *
      * @throws \InvalidArgumentException
      */
-<<<<<<< HEAD
     public function __construct(\Traversable $iterator, $sort, bool $reverseOrder = false)
-=======
-    public function __construct(\Traversable $iterator, int|callable $sort, bool $reverseOrder = false)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->iterator = $iterator;
         $order = $reverseOrder ? -1 : 1;
@@ -85,25 +75,17 @@ class SortableIterator implements \IteratorAggregate
         } elseif (self::SORT_BY_NONE === $sort) {
             $this->sort = $order;
         } elseif (\is_callable($sort)) {
-<<<<<<< HEAD
             $this->sort = $reverseOrder ? static function (\SplFileInfo $a, \SplFileInfo $b) use ($sort) { return -$sort($a, $b); } : $sort;
-=======
-            $this->sort = $reverseOrder ? static function (\SplFileInfo $a, \SplFileInfo $b) use ($sort) { return -$sort($a, $b); } : $sort(...);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         } else {
             throw new \InvalidArgumentException('The SortableIterator takes a PHP callable or a valid built-in sort algorithm as an argument.');
         }
     }
 
-<<<<<<< HEAD
     /**
      * @return \Traversable<string, \SplFileInfo>
      */
     #[\ReturnTypeWillChange]
     public function getIterator()
-=======
-    public function getIterator(): \Traversable
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (1 === $this->sort) {
             return $this->iterator;

@@ -65,11 +65,7 @@ class DiscoverEvents
             }
 
             foreach ($listener->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
-<<<<<<< HEAD
                 if (! Str::is('handle*', $method->name) ||
-=======
-                if ((! Str::is('handle*', $method->name) && ! Str::is('__invoke', $method->name)) ||
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     ! isset($method->getParameters()[0])) {
                     continue;
                 }

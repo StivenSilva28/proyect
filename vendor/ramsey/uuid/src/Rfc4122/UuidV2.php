@@ -14,54 +14,28 @@ declare(strict_types=1);
 
 namespace Ramsey\Uuid\Rfc4122;
 
-<<<<<<< HEAD
 use DateTimeImmutable;
 use DateTimeInterface;
 use Ramsey\Uuid\Codec\CodecInterface;
 use Ramsey\Uuid\Converter\NumberConverterInterface;
 use Ramsey\Uuid\Converter\TimeConverterInterface;
 use Ramsey\Uuid\Exception\DateTimeException;
-=======
-use Ramsey\Uuid\Codec\CodecInterface;
-use Ramsey\Uuid\Converter\NumberConverterInterface;
-use Ramsey\Uuid\Converter\TimeConverterInterface;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Ramsey\Uuid\Exception\InvalidArgumentException;
 use Ramsey\Uuid\Rfc4122\FieldsInterface as Rfc4122FieldsInterface;
 use Ramsey\Uuid\Type\Integer as IntegerObject;
 use Ramsey\Uuid\Uuid;
-<<<<<<< HEAD
 use Throwable;
 
 use function hexdec;
 use function str_pad;
 
 use const STR_PAD_LEFT;
-=======
-
-use function hexdec;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 /**
  * DCE Security version, or version 2, UUIDs include local domain identifier,
  * local ID for the specified domain, and node values that are combined into a
  * 128-bit unsigned integer
  *
-<<<<<<< HEAD
-=======
- * It is important to note that a version 2 UUID suffers from some loss of
- * fidelity of the timestamp, due to replacing the time_low field with the
- * local identifier. When constructing the timestamp value for date
- * purposes, we replace the local identifier bits with zeros. As a result,
- * the timestamp can be off by a range of 0 to 429.4967295 seconds (or 7
- * minutes, 9 seconds, and 496730 microseconds).
- *
- * Astute observers might note this value directly corresponds to 2^32 - 1,
- * or 0xffffffff. The local identifier is 32-bits, and we have set each of
- * these bits to 0, so the maximum range of timestamp drift is 0x00000000
- * to 0xffffffff (counted in 100-nanosecond intervals).
- *
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @link https://publications.opengroup.org/c311 DCE 1.1: Authentication and Security Services
  * @link https://publications.opengroup.org/c706 DCE 1.1: Remote Procedure Call
  * @link https://pubs.opengroup.org/onlinepubs/9696989899/chap5.htm#tagcjh_08_02_01_01 DCE 1.1: Auth & Sec, §5.2.1.1
@@ -73,11 +47,6 @@ use function hexdec;
  */
 final class UuidV2 extends Uuid implements UuidInterface
 {
-<<<<<<< HEAD
-=======
-    use TimeTrait;
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * Creates a version 2 (DCE Security) UUID
      *
@@ -106,7 +75,6 @@ final class UuidV2 extends Uuid implements UuidInterface
     }
 
     /**
-<<<<<<< HEAD
      * Returns a DateTimeInterface object representing the timestamp associated
      * with the UUID
      *
@@ -142,8 +110,6 @@ final class UuidV2 extends Uuid implements UuidInterface
     }
 
     /**
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Returns the local domain used to create this version 2 UUID
      */
     public function getLocalDomain(): int

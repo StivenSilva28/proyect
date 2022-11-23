@@ -3,13 +3,8 @@
 namespace Illuminate\Validation\Rules;
 
 use Closure;
-<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-=======
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Eloquent\Model;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 trait DatabaseRule
 {
@@ -63,22 +58,14 @@ trait DatabaseRule
      */
     public function resolveTableName($table)
     {
-<<<<<<< HEAD
         if (! Str::contains($table, '\\') || ! class_exists($table)) {
-=======
-        if (! str_contains($table, '\\') || ! class_exists($table)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $table;
         }
 
         if (is_subclass_of($table, Model::class)) {
             $model = new $table;
 
-<<<<<<< HEAD
             if (Str::contains($model->getTable(), '.')) {
-=======
-            if (str_contains($model->getTable(), '.')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return $table;
             }
 
@@ -94,20 +81,12 @@ trait DatabaseRule
      * Set a "where" constraint on the query.
      *
      * @param  \Closure|string  $column
-<<<<<<< HEAD
      * @param  array|string|int|null  $value
-=======
-     * @param  \Illuminate\Contracts\Support\Arrayable|array|string|int|null  $value
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      */
     public function where($column, $value = null)
     {
-<<<<<<< HEAD
         if (is_array($value)) {
-=======
-        if ($value instanceof Arrayable || is_array($value)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $this->whereIn($column, $value);
         }
 
@@ -128,20 +107,12 @@ trait DatabaseRule
      * Set a "where not" constraint on the query.
      *
      * @param  string  $column
-<<<<<<< HEAD
      * @param  array|string  $value
-=======
-     * @param  \Illuminate\Contracts\Support\Arrayable|array|string  $value
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      */
     public function whereNot($column, $value)
     {
-<<<<<<< HEAD
         if (is_array($value)) {
-=======
-        if ($value instanceof Arrayable || is_array($value)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $this->whereNotIn($column, $value);
         }
 
@@ -174,17 +145,10 @@ trait DatabaseRule
      * Set a "where in" constraint on the query.
      *
      * @param  string  $column
-<<<<<<< HEAD
      * @param  array  $values
      * @return $this
      */
     public function whereIn($column, array $values)
-=======
-     * @param  \Illuminate\Contracts\Support\Arrayable|array  $values
-     * @return $this
-     */
-    public function whereIn($column, $values)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->where(function ($query) use ($column, $values) {
             $query->whereIn($column, $values);
@@ -195,17 +159,10 @@ trait DatabaseRule
      * Set a "where not in" constraint on the query.
      *
      * @param  string  $column
-<<<<<<< HEAD
      * @param  array  $values
      * @return $this
      */
     public function whereNotIn($column, array $values)
-=======
-     * @param  \Illuminate\Contracts\Support\Arrayable|array  $values
-     * @return $this
-     */
-    public function whereNotIn($column, $values)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->where(function ($query) use ($column, $values) {
             $query->whereNotIn($column, $values);
@@ -213,22 +170,6 @@ trait DatabaseRule
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Ignore soft deleted models during the existence check.
-     *
-     * @param  string  $deletedAtColumn
-     * @return $this
-     */
-    public function withoutTrashed($deletedAtColumn = 'deleted_at')
-    {
-        $this->whereNull($deletedAtColumn);
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Register a custom query callback.
      *
      * @param  \Closure  $callback

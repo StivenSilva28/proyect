@@ -20,19 +20,6 @@ use Symfony\Component\ErrorHandler\Exception\FlattenException;
  */
 interface ErrorRendererInterface
 {
-<<<<<<< HEAD
-=======
-    public const IDE_LINK_FORMATS = [
-        'textmate' => 'txmt://open?url=file://%f&line=%l',
-        'macvim' => 'mvim://open?url=file://%f&line=%l',
-        'emacs' => 'emacs://open?url=file://%f&line=%l',
-        'sublime' => 'subl://open?url=file://%f&line=%l',
-        'phpstorm' => 'phpstorm://open?file=%f&line=%l',
-        'atom' => 'atom://core/open/file?filename=%f&line=%l',
-        'vscode' => 'vscode://file/%f:%l',
-    ];
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * Renders a Throwable as a FlattenException.
      */

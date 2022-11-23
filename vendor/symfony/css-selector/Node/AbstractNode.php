@@ -23,7 +23,6 @@ namespace Symfony\Component\CssSelector\Node;
  */
 abstract class AbstractNode implements NodeInterface
 {
-<<<<<<< HEAD
     /**
      * @var string
      */
@@ -36,12 +35,5 @@ abstract class AbstractNode implements NodeInterface
         }
 
         return $this->nodeName;
-=======
-    private string $nodeName;
-
-    public function getNodeName(): string
-    {
-        return $this->nodeName ??= preg_replace('~.*\\\\([^\\\\]+)Node$~', '$1', static::class);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

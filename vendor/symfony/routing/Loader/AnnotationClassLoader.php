@@ -102,7 +102,6 @@ abstract class AnnotationClassLoader implements LoaderInterface
     /**
      * Loads from annotations from a class.
      *
-<<<<<<< HEAD
      * @param string $class A class name
      *
      * @return RouteCollection
@@ -110,11 +109,6 @@ abstract class AnnotationClassLoader implements LoaderInterface
      * @throws \InvalidArgumentException When route can't be parsed
      */
     public function load($class, string $type = null)
-=======
-     * @throws \InvalidArgumentException When route can't be parsed
-     */
-    public function load(mixed $class, string $type = null): RouteCollection
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!class_exists($class)) {
             throw new \InvalidArgumentException(sprintf('Class "%s" does not exist.', $class));
@@ -160,14 +154,10 @@ abstract class AnnotationClassLoader implements LoaderInterface
             return;
         }
 
-<<<<<<< HEAD
         $name = $annot->getName();
         if (null === $name) {
             $name = $this->getDefaultRouteName($class, $method);
         }
-=======
-        $name = $annot->getName() ?? $this->getDefaultRouteName($class, $method);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $name = $globals['name'].$name;
 
         $requirements = $annot->getRequirements();
@@ -184,15 +174,11 @@ abstract class AnnotationClassLoader implements LoaderInterface
         $schemes = array_merge($globals['schemes'], $annot->getSchemes());
         $methods = array_merge($globals['methods'], $annot->getMethods());
 
-<<<<<<< HEAD
         $host = $annot->getHost();
         if (null === $host) {
             $host = $globals['host'];
         }
 
-=======
-        $host = $annot->getHost() ?? $globals['host'];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $condition = $annot->getCondition() ?? $globals['condition'];
         $priority = $annot->getPriority() ?? $globals['priority'];
 
@@ -253,15 +239,9 @@ abstract class AnnotationClassLoader implements LoaderInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function supports($resource, string $type = null)
     {
         return \is_string($resource) && preg_match('/^(?:\\\\?[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)+$/', $resource) && (!$type || 'annotation' === $type);
-=======
-    public function supports(mixed $resource, string $type = null): bool
-    {
-        return \is_string($resource) && preg_match('/^(?:\\\\?[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)+$/', $resource) && (!$type || \in_array($type, ['annotation', 'attribute'], true));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -274,11 +254,7 @@ abstract class AnnotationClassLoader implements LoaderInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getResolver()
-=======
-    public function getResolver(): LoaderResolverInterface
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
     }
 
@@ -304,11 +280,7 @@ abstract class AnnotationClassLoader implements LoaderInterface
         $globals = $this->resetGlobals();
 
         $annot = null;
-<<<<<<< HEAD
         if (\PHP_VERSION_ID >= 80000 && ($attribute = $class->getAttributes($this->routeAnnotationClass, \ReflectionAttribute::IS_INSTANCEOF)[0] ?? null)) {
-=======
-        if ($attribute = $class->getAttributes($this->routeAnnotationClass, \ReflectionAttribute::IS_INSTANCEOF)[0] ?? null) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $annot = $attribute->newInstance();
         }
         if (!$annot && $this->reader) {
@@ -399,15 +371,10 @@ abstract class AnnotationClassLoader implements LoaderInterface
      */
     private function getAnnotations(object $reflection): iterable
     {
-<<<<<<< HEAD
         if (\PHP_VERSION_ID >= 80000) {
             foreach ($reflection->getAttributes($this->routeAnnotationClass, \ReflectionAttribute::IS_INSTANCEOF) as $attribute) {
                 yield $attribute->newInstance();
             }
-=======
-        foreach ($reflection->getAttributes($this->routeAnnotationClass, \ReflectionAttribute::IS_INSTANCEOF) as $attribute) {
-            yield $attribute->newInstance();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         if (!$this->reader) {

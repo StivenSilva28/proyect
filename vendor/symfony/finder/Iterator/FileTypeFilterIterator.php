@@ -23,19 +23,11 @@ class FileTypeFilterIterator extends \FilterIterator
     public const ONLY_FILES = 1;
     public const ONLY_DIRECTORIES = 2;
 
-<<<<<<< HEAD
     private $mode;
 
     /**
      * @param \Iterator $iterator The Iterator to filter
      * @param int       $mode     The mode (self::ONLY_FILES or self::ONLY_DIRECTORIES)
-=======
-    private int $mode;
-
-    /**
-     * @param \Iterator<string, \SplFileInfo> $iterator The Iterator to filter
-     * @param int                             $mode     The mode (self::ONLY_FILES or self::ONLY_DIRECTORIES)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function __construct(\Iterator $iterator, int $mode)
     {
@@ -46,16 +38,11 @@ class FileTypeFilterIterator extends \FilterIterator
 
     /**
      * Filters the iterator values.
-<<<<<<< HEAD
      *
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function accept()
-=======
-     */
-    public function accept(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $fileinfo = $this->current();
         if (self::ONLY_DIRECTORIES === (self::ONLY_DIRECTORIES & $this->mode) && $fileinfo->isFile()) {

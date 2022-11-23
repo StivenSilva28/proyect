@@ -13,11 +13,7 @@ class Pipeline implements PipelineContract
     /**
      * The container implementation.
      *
-<<<<<<< HEAD
      * @var \Illuminate\Contracts\Container\Container
-=======
-     * @var \Illuminate\Contracts\Container\Container|null
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected $container;
 
@@ -80,22 +76,6 @@ class Pipeline implements PipelineContract
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Push additional pipes onto the pipeline.
-     *
-     * @param  array|mixed  $pipes
-     * @return $this
-     */
-    public function pipe($pipes)
-    {
-        array_push($this->pipes, ...(is_array($pipes) ? $pipes : func_get_args()));
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Set the method to call on the pipes.
      *
      * @param  string  $method

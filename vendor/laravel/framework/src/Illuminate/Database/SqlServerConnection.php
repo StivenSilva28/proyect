@@ -3,11 +3,8 @@
 namespace Illuminate\Database;
 
 use Closure;
-<<<<<<< HEAD
 use Doctrine\DBAL\Driver\PDOSqlsrv\Driver as DoctrineDriver;
 use Doctrine\DBAL\Version;
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Database\PDO\SqlServerDriver;
 use Illuminate\Database\Query\Grammars\SqlServerGrammar as QueryGrammar;
 use Illuminate\Database\Query\Processors\SqlServerProcessor;
@@ -119,18 +116,10 @@ class SqlServerConnection extends Connection
     /**
      * Get the Doctrine DBAL driver.
      *
-<<<<<<< HEAD
      * @return \Doctrine\DBAL\Driver\PDOSqlsrv\Driver|\Illuminate\Database\PDO\SqlServerDriver
      */
     protected function getDoctrineDriver()
     {
         return class_exists(Version::class) ? new DoctrineDriver : new SqlServerDriver;
-=======
-     * @return \Illuminate\Database\PDO\SqlServerDriver
-     */
-    protected function getDoctrineDriver()
-    {
-        return new SqlServerDriver;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

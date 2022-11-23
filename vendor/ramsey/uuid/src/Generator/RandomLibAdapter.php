@@ -21,25 +21,14 @@ use RandomLib\Generator;
  * RandomLibAdapter generates strings of random binary data using the
  * paragonie/random-lib library
  *
-<<<<<<< HEAD
-=======
- * @deprecated This class will be removed in 5.0.0. Use the default
- *     RandomBytesGenerator or implement your own generator that implements
- *     RandomGeneratorInterface.
- *
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @link https://packagist.org/packages/paragonie/random-lib paragonie/random-lib
  */
 class RandomLibAdapter implements RandomGeneratorInterface
 {
-<<<<<<< HEAD
     /**
      * @var Generator
      */
     private $generator;
-=======
-    private Generator $generator;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Constructs a RandomLibAdapter

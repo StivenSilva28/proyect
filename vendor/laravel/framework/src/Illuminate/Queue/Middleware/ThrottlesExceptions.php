@@ -69,10 +69,7 @@ class ThrottlesExceptions
      *
      * @param  int  $maxAttempts
      * @param  int  $decayMinutes
-<<<<<<< HEAD
      * @param  string  $key
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return void
      */
     public function __construct($maxAttempts = 10, $decayMinutes = 10)

@@ -29,11 +29,7 @@ class DescriptorHelper extends Helper
     /**
      * @var DescriptorInterface[]
      */
-<<<<<<< HEAD
     private $descriptors = [];
-=======
-    private array $descriptors = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct()
     {
@@ -74,11 +70,7 @@ class DescriptorHelper extends Helper
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function register(string $format, DescriptorInterface $descriptor)
-=======
-    public function register(string $format, DescriptorInterface $descriptor): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->descriptors[$format] = $descriptor;
 
@@ -88,11 +80,7 @@ class DescriptorHelper extends Helper
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getName()
-=======
-    public function getName(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return 'descriptor';
     }

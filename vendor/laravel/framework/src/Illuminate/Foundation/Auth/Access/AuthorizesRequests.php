@@ -49,11 +49,7 @@ trait AuthorizesRequests
      */
     protected function parseAbilityAndArguments($ability, $arguments)
     {
-<<<<<<< HEAD
         if (is_string($ability) && strpos($ability, '\\') === false) {
-=======
-        if (is_string($ability) && ! str_contains($ability, '\\')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return [$ability, $arguments];
         }
 

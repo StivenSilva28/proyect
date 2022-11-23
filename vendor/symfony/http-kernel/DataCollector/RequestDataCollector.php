@@ -34,15 +34,9 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
     /**
      * @var \SplObjectStorage<Request, callable>
      */
-<<<<<<< HEAD
     private $controllers;
     private $sessionUsages = [];
     private $requestStack;
-=======
-    private \SplObjectStorage $controllers;
-    private array $sessionUsages = [];
-    private ?RequestStack $requestStack;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(RequestStack $requestStack = null)
     {
@@ -116,11 +110,7 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
             'session_metadata' => $sessionMetadata,
             'session_attributes' => $sessionAttributes,
             'session_usages' => array_values($this->sessionUsages),
-<<<<<<< HEAD
             'stateless_check' => $this->requestStack && ($mainRequest = $this->requestStack->getMainRequest()) && $mainRequest->attributes->get('_stateless', false),
-=======
-            'stateless_check' => $this->requestStack?->getMainRequest()?->attributes->get('_stateless') ?? false,
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             'flashes' => $flashes,
             'path_info' => $request->getPathInfo(),
             'controller' => 'n/a',
@@ -356,11 +346,7 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
      * @return array|string|Data The controller as a string or array of data
      *                           with keys 'class', 'method', 'file' and 'line'
      */
-<<<<<<< HEAD
     public function getController()
-=======
-    public function getController(): array|string|Data
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->data['controller'];
     }
@@ -371,11 +357,7 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
      * @return array|Data|false A legacy array of data from the previous redirection response
      *                          or false otherwise
      */
-<<<<<<< HEAD
     public function getRedirect()
-=======
-    public function getRedirect(): array|Data|false
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->data['redirect'] ?? false;
     }
@@ -449,17 +431,11 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
     }
 
     /**
-<<<<<<< HEAD
      * @param string|object|array|null $controller The controller to parse
      *
      * @return array|string An array of controller data or a simple string
      */
     private function parseController($controller)
-=======
-     * @return array|string An array of controller data or a simple string
-     */
-    private function parseController(array|object|string|null $controller): array|string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (\is_string($controller) && str_contains($controller, '::')) {
             $controller = explode('::', $controller);
@@ -475,11 +451,7 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
                     'file' => $r->getFileName(),
                     'line' => $r->getStartLine(),
                 ];
-<<<<<<< HEAD
             } catch (\ReflectionException $e) {
-=======
-            } catch (\ReflectionException) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 if (\is_callable($controller)) {
                     // using __call or  __callStatic
                     return [

@@ -14,7 +14,6 @@
         }
     ],
     "require": {
-<<<<<<< HEAD
         "php": "^7.3|^8.0",
         "ext-json": "*",
         "ext-mbstring": "*",
@@ -24,18 +23,6 @@
         "illuminate/macroable": "^8.0",
         "nesbot/carbon": "^2.53.1",
         "voku/portable-ascii": "^1.6.1"
-=======
-        "php": "^8.0.2",
-        "ext-json": "*",
-        "ext-mbstring": "*",
-        "doctrine/inflector": "^2.0",
-        "illuminate/collections": "^9.0",
-        "illuminate/conditionable": "^9.0",
-        "illuminate/contracts": "^9.0",
-        "illuminate/macroable": "^9.0",
-        "nesbot/carbon": "^2.62.1",
-        "voku/portable-ascii": "^2.0"
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     },
     "conflict": {
         "tightenco/collect": "<5.5.33"
@@ -50,7 +37,6 @@
     },
     "extra": {
         "branch-alias": {
-<<<<<<< HEAD
             "dev-master": "8.x-dev"
         }
     },
@@ -60,18 +46,6 @@
         "ramsey/uuid": "Required to use Str::uuid() (^4.2.2).",
         "symfony/process": "Required to use the composer class (^5.4).",
         "symfony/var-dumper": "Required to use the dd function (^5.4).",
-=======
-            "dev-master": "9.x-dev"
-        }
-    },
-    "suggest": {
-        "illuminate/filesystem": "Required to use the composer class (^9.0).",
-        "league/commonmark": "Required to use Str::markdown() and Stringable::markdown() (^2.0.2).",
-        "ramsey/uuid": "Required to use Str::uuid() (^4.2.2).",
-        "symfony/process": "Required to use the composer class (^6.0).",
-        "symfony/uid": "Required to use Str::ulid() (^6.0).",
-        "symfony/var-dumper": "Required to use the dd function (^6.0).",
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         "vlucas/phpdotenv": "Required to use the Env class and env helper (^5.4.1)."
     },
     "config": {

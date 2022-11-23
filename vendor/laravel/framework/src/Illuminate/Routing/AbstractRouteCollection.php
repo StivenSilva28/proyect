@@ -13,10 +13,6 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Matcher\Dumper\CompiledUrlMatcherDumper;
 use Symfony\Component\Routing\RouteCollection as SymfonyRouteCollection;
-<<<<<<< HEAD
-=======
-use Traversable;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 abstract class AbstractRouteCollection implements Countable, IteratorAggregate, RouteCollectionInterface
 {
@@ -82,15 +78,9 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
             return $route->isFallback;
         });
 
-<<<<<<< HEAD
         return $routes->merge($fallbacks)->first(function (Route $route) use ($request, $includingMethod) {
             return $route->matches($request, $includingMethod);
         });
-=======
-        return $routes->merge($fallbacks)->first(
-            fn (Route $route) => $route->matches($request, $includingMethod)
-        );
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -104,11 +94,7 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
      */
     protected function getRouteForMethods($request, array $methods)
     {
-<<<<<<< HEAD
         if ($request->method() === 'OPTIONS') {
-=======
-        if ($request->isMethod('OPTIONS')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return (new Route('OPTIONS', $request->path(), function () use ($methods) {
                 return new Response('', 200, ['Allow' => implode(',', $methods)]);
             }))->bind($request);
@@ -218,22 +204,14 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
 
         if (
             ! is_null($name)
-<<<<<<< HEAD
             && Str::endsWith($name, '.')
-=======
-            && str_ends_with($name, '.')
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             && ! is_null($symfonyRoutes->get($name))
         ) {
             $name = null;
         }
 
         if (! $name) {
-<<<<<<< HEAD
             $route->name($name = $this->generateRouteName());
-=======
-            $route->name($this->generateRouteName());
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             $this->add($route);
         } elseif (! is_null($symfonyRoutes->get($name))) {
@@ -260,12 +238,8 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
      *
      * @return \ArrayIterator
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function getIterator()
-=======
-    public function getIterator(): Traversable
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new ArrayIterator($this->getRoutes());
     }
@@ -275,12 +249,8 @@ abstract class AbstractRouteCollection implements Countable, IteratorAggregate, 
      *
      * @return int
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function count()
-=======
-    public function count(): int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return count($this->getRoutes());
     }

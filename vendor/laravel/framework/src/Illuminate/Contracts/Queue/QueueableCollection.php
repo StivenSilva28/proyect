@@ -14,22 +14,14 @@ interface QueueableCollection
     /**
      * Get the identifiers for all of the entities.
      *
-<<<<<<< HEAD
      * @return array
-=======
-     * @return array<int, mixed>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function getQueueableIds();
 
     /**
      * Get the relationships of the entities being queued.
      *
-<<<<<<< HEAD
      * @return array
-=======
-     * @return array<int, string>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function getQueueableRelations();
 

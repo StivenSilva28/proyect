@@ -5,15 +5,8 @@ namespace Illuminate\Foundation\Console;
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
-<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputOption;
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Input\InputOption;
-
-#[AsCommand(name: 'make:model')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ModelMakeCommand extends GeneratorCommand
 {
     use CreatesMatchingTest;
@@ -26,20 +19,6 @@ class ModelMakeCommand extends GeneratorCommand
     protected $name = 'make:model';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'make:model';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -183,21 +162,9 @@ class ModelMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-<<<<<<< HEAD
         return $this->option('pivot')
                     ? $this->resolveStubPath('/stubs/model.pivot.stub')
                     : $this->resolveStubPath('/stubs/model.stub');
-=======
-        if ($this->option('pivot')) {
-            return $this->resolveStubPath('/stubs/model.pivot.stub');
-        }
-
-        if ($this->option('morph-pivot')) {
-            return $this->resolveStubPath('/stubs/model.morph-pivot.stub');
-        }
-
-        return $this->resolveStubPath('/stubs/model.stub');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -232,28 +199,16 @@ class ModelMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-<<<<<<< HEAD
             ['all', 'a', InputOption::VALUE_NONE, 'Generate a migration, seeder, factory, policy, and resource controller for the model'],
-=======
-            ['all', 'a', InputOption::VALUE_NONE, 'Generate a migration, seeder, factory, policy, resource controller, and form request classes for the model'],
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ['controller', 'c', InputOption::VALUE_NONE, 'Create a new controller for the model'],
             ['factory', 'f', InputOption::VALUE_NONE, 'Create a new factory for the model'],
             ['force', null, InputOption::VALUE_NONE, 'Create the class even if the model already exists'],
             ['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the model'],
-<<<<<<< HEAD
-=======
-            ['morph-pivot', null, InputOption::VALUE_NONE, 'Indicates if the generated model should be a custom polymorphic intermediate table model'],
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ['policy', null, InputOption::VALUE_NONE, 'Create a new policy for the model'],
             ['seed', 's', InputOption::VALUE_NONE, 'Create a new seeder for the model'],
             ['pivot', 'p', InputOption::VALUE_NONE, 'Indicates if the generated model should be a custom intermediate table model'],
             ['resource', 'r', InputOption::VALUE_NONE, 'Indicates if the generated controller should be a resource controller'],
-<<<<<<< HEAD
             ['api', null, InputOption::VALUE_NONE, 'Indicates if the generated controller should be an API controller'],
-=======
-            ['api', null, InputOption::VALUE_NONE, 'Indicates if the generated controller should be an API resource controller'],
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ['requests', 'R', InputOption::VALUE_NONE, 'Create new form request classes and use them in the resource controller'],
         ];
     }

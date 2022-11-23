@@ -211,11 +211,7 @@ class DynamoDbStore implements LockProvider, Store
     }
 
     /**
-<<<<<<< HEAD
      * Store multiple items in the cache for a given number of $seconds.
-=======
-     * Store multiple items in the cache for a given number of seconds.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  array  $values
      * @param  int  $seconds
@@ -288,11 +284,7 @@ class DynamoDbStore implements LockProvider, Store
 
             return true;
         } catch (DynamoDbException $e) {
-<<<<<<< HEAD
             if (Str::contains($e->getMessage(), 'ConditionalCheckFailed')) {
-=======
-            if (str_contains($e->getMessage(), 'ConditionalCheckFailed')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return false;
             }
 
@@ -337,11 +329,7 @@ class DynamoDbStore implements LockProvider, Store
 
             return (int) $response['Attributes'][$this->valueAttribute]['N'];
         } catch (DynamoDbException $e) {
-<<<<<<< HEAD
             if (Str::contains($e->getMessage(), 'ConditionalCheckFailed')) {
-=======
-            if (str_contains($e->getMessage(), 'ConditionalCheckFailed')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return false;
             }
 
@@ -386,11 +374,7 @@ class DynamoDbStore implements LockProvider, Store
 
             return (int) $response['Attributes'][$this->valueAttribute]['N'];
         } catch (DynamoDbException $e) {
-<<<<<<< HEAD
             if (Str::contains($e->getMessage(), 'ConditionalCheckFailed')) {
-=======
-            if (str_contains($e->getMessage(), 'ConditionalCheckFailed')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return false;
             }
 
@@ -545,11 +529,7 @@ class DynamoDbStore implements LockProvider, Store
     /**
      * Get the DynamoDb Client instance.
      *
-<<<<<<< HEAD
      * @return DynamoDbClient
-=======
-     * @return \Aws\DynamoDb\DynamoDbClient
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function getClient()
     {

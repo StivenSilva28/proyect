@@ -25,11 +25,7 @@ use Symfony\Component\VarDumper\Cloner\Data;
  */
 class TranslationDataCollector extends DataCollector implements LateDataCollectorInterface
 {
-<<<<<<< HEAD
     private $translator;
-=======
-    private DataCollectorTranslator $translator;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(DataCollectorTranslator $translator)
     {
@@ -66,14 +62,10 @@ class TranslationDataCollector extends DataCollector implements LateDataCollecto
         $this->data = [];
     }
 
-<<<<<<< HEAD
     /**
      * @return array|Data
      */
     public function getMessages()
-=======
-    public function getMessages(): array|Data
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->data['messages'] ?? [];
     }

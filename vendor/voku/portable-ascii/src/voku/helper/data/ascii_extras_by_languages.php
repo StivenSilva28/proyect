@@ -199,13 +199,8 @@ return [
         '&' => ' i ',
         '+' => ' plus ',
     ],
-<<<<<<< HEAD
     // Russian - Passport (2013), ICAO
     'ru__passport_2013' => [
-=======
-    // Russian - GOST 7.79-2000(B)
-    'ru__gost_2000_b' => [
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         '=' => ' ravnyj ',
         '%' => ' procent ',
         '∑' => ' summa ',
@@ -215,13 +210,8 @@ return [
         '&' => ' i ',
         '+' => ' plus ',
     ],
-<<<<<<< HEAD
     // Russian - GOST 7.79-2000(B)
     'ru__gost_2000_b' => [
-=======
-    // Russian - Passport (2013), ICAO
-    'ru__passport_2013' => [
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         '=' => ' ravnyj ',
         '%' => ' procent ',
         '∑' => ' summa ',

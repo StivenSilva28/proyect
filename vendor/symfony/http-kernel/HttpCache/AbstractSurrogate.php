@@ -40,15 +40,10 @@ abstract class AbstractSurrogate implements SurrogateInterface
 
     /**
      * Returns a new cache strategy instance.
-<<<<<<< HEAD
      *
      * @return ResponseCacheStrategyInterface
      */
     public function createCacheStrategy()
-=======
-     */
-    public function createCacheStrategy(): ResponseCacheStrategyInterface
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new ResponseCacheStrategy();
     }
@@ -56,11 +51,7 @@ abstract class AbstractSurrogate implements SurrogateInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function hasSurrogateCapability(Request $request)
-=======
-    public function hasSurrogateCapability(Request $request): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $value = $request->headers->get('Surrogate-Capability')) {
             return false;
@@ -83,11 +74,7 @@ abstract class AbstractSurrogate implements SurrogateInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function needsParsing(Response $response)
-=======
-    public function needsParsing(Response $response): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$control = $response->headers->get('Surrogate-Control')) {
             return false;
@@ -101,11 +88,7 @@ abstract class AbstractSurrogate implements SurrogateInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function handle(HttpCache $cache, string $uri, string $alt, bool $ignoreErrors)
-=======
-    public function handle(HttpCache $cache, string $uri, string $alt, bool $ignoreErrors): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $subRequest = Request::create($uri, Request::METHOD_GET, [], $cache->getRequest()->cookies->all(), [], $cache->getRequest()->server->all());
 

@@ -16,7 +16,6 @@ namespace Symfony\Component\Console\Output;
  */
 class BufferedOutput extends Output
 {
-<<<<<<< HEAD
     private $buffer = '';
 
     /**
@@ -25,14 +24,6 @@ class BufferedOutput extends Output
      * @return string
      */
     public function fetch()
-=======
-    private string $buffer = '';
-
-    /**
-     * Empties buffer and returns its content.
-     */
-    public function fetch(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $content = $this->buffer;
         $this->buffer = '';

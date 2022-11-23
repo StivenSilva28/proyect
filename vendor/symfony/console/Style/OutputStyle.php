@@ -23,11 +23,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 abstract class OutputStyle implements OutputInterface, StyleInterface
 {
-<<<<<<< HEAD
     private $output;
-=======
-    private OutputInterface $output;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(OutputInterface $output)
     {
@@ -42,14 +38,10 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
         $this->output->write(str_repeat(\PHP_EOL, $count));
     }
 
-<<<<<<< HEAD
     /**
      * @return ProgressBar
      */
     public function createProgressBar(int $max = 0)
-=======
-    public function createProgressBar(int $max = 0): ProgressBar
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new ProgressBar($this->output, $max);
     }
@@ -57,11 +49,7 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function write($messages, bool $newline = false, int $type = self::OUTPUT_NORMAL)
-=======
-    public function write(string|iterable $messages, bool $newline = false, int $type = self::OUTPUT_NORMAL)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write($messages, $newline, $type);
     }
@@ -69,11 +57,7 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function writeln($messages, int $type = self::OUTPUT_NORMAL)
-=======
-    public function writeln(string|iterable $messages, int $type = self::OUTPUT_NORMAL)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->writeln($messages, $type);
     }
@@ -89,11 +73,7 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getVerbosity()
-=======
-    public function getVerbosity(): int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output->getVerbosity();
     }
@@ -109,11 +89,7 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isDecorated()
-=======
-    public function isDecorated(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output->isDecorated();
     }
@@ -129,11 +105,7 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getFormatter()
-=======
-    public function getFormatter(): OutputFormatterInterface
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output->getFormatter();
     }
@@ -141,11 +113,7 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isQuiet()
-=======
-    public function isQuiet(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output->isQuiet();
     }
@@ -153,11 +121,7 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isVerbose()
-=======
-    public function isVerbose(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output->isVerbose();
     }
@@ -165,11 +129,7 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isVeryVerbose()
-=======
-    public function isVeryVerbose(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output->isVeryVerbose();
     }
@@ -177,11 +137,7 @@ abstract class OutputStyle implements OutputInterface, StyleInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isDebug()
-=======
-    public function isDebug(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output->isDebug();
     }

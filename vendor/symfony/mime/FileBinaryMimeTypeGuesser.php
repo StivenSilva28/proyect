@@ -21,11 +21,7 @@ use Symfony\Component\Mime\Exception\LogicException;
  */
 class FileBinaryMimeTypeGuesser implements MimeTypeGuesserInterface
 {
-<<<<<<< HEAD
     private $cmd;
-=======
-    private string $cmd;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * The $cmd pattern must contain a "%s" string that will be replaced

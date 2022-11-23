@@ -27,66 +27,42 @@ class Factory implements FactoryContract
     /**
      * The IoC container instance.
      *
-<<<<<<< HEAD
      * @var \Illuminate\Contracts\Container\Container
-=======
-     * @var \Illuminate\Contracts\Container\Container|null
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected $container;
 
     /**
      * All of the custom validator extensions.
      *
-<<<<<<< HEAD
      * @var array
-=======
-     * @var array<string, \Closure|string>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected $extensions = [];
 
     /**
      * All of the custom implicit validator extensions.
      *
-<<<<<<< HEAD
      * @var array
-=======
-     * @var array<string, \Closure|string>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected $implicitExtensions = [];
 
     /**
      * All of the custom dependent validator extensions.
      *
-<<<<<<< HEAD
      * @var array
-=======
-     * @var array<string, \Closure|string>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected $dependentExtensions = [];
 
     /**
      * All of the custom validator message replacers.
      *
-<<<<<<< HEAD
      * @var array
-=======
-     * @var array<string, \Closure|string>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected $replacers = [];
 
     /**
      * All of the fallback messages for custom rules.
      *
-<<<<<<< HEAD
      * @var array
-=======
-     * @var array<string, string>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected $fallbackMessages = [];
 
@@ -95,11 +71,7 @@ class Factory implements FactoryContract
      *
      * @var bool
      */
-<<<<<<< HEAD
     protected $excludeUnvalidatedArrayKeys;
-=======
-    protected $excludeUnvalidatedArrayKeys = true;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * The Validator resolver instance.
@@ -202,13 +174,8 @@ class Factory implements FactoryContract
         $validator->addExtensions($this->extensions);
 
         // Next, we will add the implicit extensions, which are similar to the required
-<<<<<<< HEAD
         // and accepted rule in that they are run even if the attributes is not in a
         // array of data that is given to a validator instances via instantiation.
-=======
-        // and accepted rule in that they're run even if the attributes aren't in an
-        // array of data which is given to a validator instance via instantiation.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $validator->addImplicitExtensions($this->implicitExtensions);
 
         $validator->addDependentExtensions($this->dependentExtensions);
@@ -282,21 +249,7 @@ class Factory implements FactoryContract
     }
 
     /**
-<<<<<<< HEAD
      * Indicate that unvalidated array keys should be excluded, even if the parent array was validated.
-=======
-     * Indicate that unvalidated array keys should be included in validated data when the parent array is validated.
-     *
-     * @return void
-     */
-    public function includeUnvalidatedArrayKeys()
-    {
-        $this->excludeUnvalidatedArrayKeys = false;
-    }
-
-    /**
-     * Indicate that unvalidated array keys should be excluded from the validated data, even if the parent array was validated.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @return void
      */
@@ -350,11 +303,7 @@ class Factory implements FactoryContract
     /**
      * Get the container instance used by the validation factory.
      *
-<<<<<<< HEAD
      * @return \Illuminate\Contracts\Container\Container
-=======
-     * @return \Illuminate\Contracts\Container\Container|null
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function getContainer()
     {

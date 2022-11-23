@@ -14,7 +14,6 @@
         }
     ],
     "require": {
-<<<<<<< HEAD
         "php": "^7.3|^8.0",
         "ext-json": "*",
         "illuminate/collections": "^8.0",
@@ -26,19 +25,6 @@
         "psr/log": "^1.0|^2.0",
         "swiftmailer/swiftmailer": "^6.3",
         "tijsverkoyen/css-to-inline-styles": "^2.2.2"
-=======
-        "php": "^8.0.2",
-        "ext-json": "*",
-        "illuminate/collections": "^9.0",
-        "illuminate/container": "^9.0",
-        "illuminate/contracts": "^9.0",
-        "illuminate/macroable": "^9.0",
-        "illuminate/support": "^9.0",
-        "league/commonmark": "^2.2",
-        "psr/log": "^1.0|^2.0|^3.0",
-        "symfony/mailer": "^6.0",
-        "tijsverkoyen/css-to-inline-styles": "^2.2.5"
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     },
     "autoload": {
         "psr-4": {
@@ -47,7 +33,6 @@
     },
     "extra": {
         "branch-alias": {
-<<<<<<< HEAD
             "dev-master": "8.x-dev"
         }
     },
@@ -55,16 +40,6 @@
         "aws/aws-sdk-php": "Required to use the SES mail driver (^3.198.1).",
         "guzzlehttp/guzzle": "Required to use the Mailgun mail driver (^6.5.5|^7.0.1).",
         "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
-=======
-            "dev-master": "9.x-dev"
-        }
-    },
-    "suggest": {
-        "aws/aws-sdk-php": "Required to use the SES mail driver (^3.235.5).",
-        "symfony/http-client": "Required to use the Symfony API mail transports (^6.0).",
-        "symfony/mailgun-mailer": "Required to enable support for the Mailgun mail transport (^6.0).",
-        "symfony/postmark-mailer": "Required to enable support for the Postmark mail transport (^6.0)."
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     },
     "config": {
         "sort-packages": true

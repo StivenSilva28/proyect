@@ -25,15 +25,9 @@ use Symfony\Component\VarDumper\VarDumper;
  */
 class DumpListener implements EventSubscriberInterface
 {
-<<<<<<< HEAD
     private $cloner;
     private $dumper;
     private $connection;
-=======
-    private ClonerInterface $cloner;
-    private DataDumperInterface $dumper;
-    private ?Connection $connection;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(ClonerInterface $cloner, DataDumperInterface $dumper, Connection $connection = null)
     {
@@ -57,11 +51,7 @@ class DumpListener implements EventSubscriberInterface
         });
     }
 
-<<<<<<< HEAD
     public static function getSubscribedEvents()
-=======
-    public static function getSubscribedEvents(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!class_exists(ConsoleEvents::class)) {
             return [];

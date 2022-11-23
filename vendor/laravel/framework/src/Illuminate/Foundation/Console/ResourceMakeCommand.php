@@ -3,16 +3,9 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\GeneratorCommand;
-<<<<<<< HEAD
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Input\InputOption;
-
-#[AsCommand(name: 'make:resource')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ResourceMakeCommand extends GeneratorCommand
 {
     /**
@@ -23,20 +16,6 @@ class ResourceMakeCommand extends GeneratorCommand
     protected $name = 'make:resource';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'make:resource';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -84,11 +63,7 @@ class ResourceMakeCommand extends GeneratorCommand
     protected function collection()
     {
         return $this->option('collection') ||
-<<<<<<< HEAD
                Str::endsWith($this->argument('name'), 'Collection');
-=======
-               str_ends_with($this->argument('name'), 'Collection');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -123,10 +98,6 @@ class ResourceMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-<<<<<<< HEAD
-=======
-            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the resource already exists'],
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ['collection', 'c', InputOption::VALUE_NONE, 'Create a resource collection'],
         ];
     }

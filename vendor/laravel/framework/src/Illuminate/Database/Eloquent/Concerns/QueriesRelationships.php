@@ -5,10 +5,6 @@ namespace Illuminate\Database\Eloquent\Concerns;
 use BadMethodCallException;
 use Closure;
 use Illuminate\Database\Eloquent\Builder;
-<<<<<<< HEAD
-=======
-use Illuminate\Database\Eloquent\Collection;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Database\Eloquent\RelationNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -16,10 +12,6 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Str;
-<<<<<<< HEAD
-=======
-use InvalidArgumentException;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 trait QueriesRelationships
 {
@@ -38,11 +30,7 @@ trait QueriesRelationships
     public function has($relation, $operator = '>=', $count = 1, $boolean = 'and', Closure $callback = null)
     {
         if (is_string($relation)) {
-<<<<<<< HEAD
             if (strpos($relation, '.') !== false) {
-=======
-            if (str_contains($relation, '.')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return $this->hasNested($relation, $operator, $count, $boolean, $callback);
             }
 
@@ -163,26 +151,6 @@ trait QueriesRelationships
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Add a relationship count / exists condition to the query with where clauses.
-     *
-     * Also load the relationship with same condition.
-     *
-     * @param  string  $relation
-     * @param  \Closure|null  $callback
-     * @param  string  $operator
-     * @param  int  $count
-     * @return \Illuminate\Database\Eloquent\Builder|static
-     */
-    public function withWhereHas($relation, Closure $callback = null, $operator = '>=', $count = 1)
-    {
-        return $this->whereHas($relation, $callback, $operator, $count)
-            ->with($callback ? [$relation => fn ($query) => $callback($query)] : $relation);
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Add a relationship count / exists condition to the query with where clauses and an "or".
      *
      * @param  string  $relation
@@ -395,15 +363,7 @@ trait QueriesRelationships
     public function whereRelation($relation, $column, $operator = null, $value = null)
     {
         return $this->whereHas($relation, function ($query) use ($column, $operator, $value) {
-<<<<<<< HEAD
             $query->where($column, $operator, $value);
-=======
-            if ($column instanceof Closure) {
-                $column($query);
-            } else {
-                $query->where($column, $operator, $value);
-            }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 
@@ -419,15 +379,7 @@ trait QueriesRelationships
     public function orWhereRelation($relation, $column, $operator = null, $value = null)
     {
         return $this->orWhereHas($relation, function ($query) use ($column, $operator, $value) {
-<<<<<<< HEAD
             $query->where($column, $operator, $value);
-=======
-            if ($column instanceof Closure) {
-                $column($query);
-            } else {
-                $query->where($column, $operator, $value);
-            }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 
@@ -495,38 +447,6 @@ trait QueriesRelationships
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Add a not morph-to relationship condition to the query.
-     *
-     * @param  \Illuminate\Database\Eloquent\Relations\MorphTo|string  $relation
-     * @param  \Illuminate\Database\Eloquent\Model|string  $model
-     * @return \Illuminate\Database\Eloquent\Builder|static
-     */
-    public function whereNotMorphedTo($relation, $model, $boolean = 'and')
-    {
-        if (is_string($relation)) {
-            $relation = $this->getRelationWithoutConstraints($relation);
-        }
-
-        if (is_string($model)) {
-            $morphMap = Relation::morphMap();
-
-            if (! empty($morphMap) && in_array($model, $morphMap)) {
-                $model = array_search($model, $morphMap, true);
-            }
-
-            return $this->whereNot($relation->getMorphType(), '<=>', $model, $boolean);
-        }
-
-        return $this->whereNot(function ($query) use ($relation, $model) {
-            $query->where($relation->getMorphType(), '<=>', $model->getMorphClass())
-                ->where($relation->getForeignKeyName(), '<=>', $model->getKey());
-        }, null, null, $boolean);
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Add a morph-to relationship condition to the query with an "or where" clause.
      *
      * @param  \Illuminate\Database\Eloquent\Relations\MorphTo|string  $relation
@@ -539,7 +459,6 @@ trait QueriesRelationships
     }
 
     /**
-<<<<<<< HEAD
      * Add a "belongs to" relationship where clause to the query.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $related
@@ -551,43 +470,6 @@ trait QueriesRelationships
      */
     public function whereBelongsTo($related, $relationshipName = null, $boolean = 'and')
     {
-=======
-     * Add a not morph-to relationship condition to the query with an "or where" clause.
-     *
-     * @param  \Illuminate\Database\Eloquent\Relations\MorphTo|string  $relation
-     * @param  \Illuminate\Database\Eloquent\Model|string  $model
-     * @return \Illuminate\Database\Eloquent\Builder|static
-     */
-    public function orWhereNotMorphedTo($relation, $model)
-    {
-        return $this->whereNotMorphedTo($relation, $model, 'or');
-    }
-
-    /**
-     * Add a "belongs to" relationship where clause to the query.
-     *
-     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection<\Illuminate\Database\Eloquent\Model>  $related
-     * @param  string|null  $relationshipName
-     * @param  string  $boolean
-     * @return $this
-     *
-     * @throws \Illuminate\Database\Eloquent\RelationNotFoundException
-     */
-    public function whereBelongsTo($related, $relationshipName = null, $boolean = 'and')
-    {
-        if (! $related instanceof Collection) {
-            $relatedCollection = $related->newCollection([$related]);
-        } else {
-            $relatedCollection = $related;
-
-            $related = $relatedCollection->first();
-        }
-
-        if ($relatedCollection->isEmpty()) {
-            throw new InvalidArgumentException('Collection given to whereBelongsTo method may not be empty.');
-        }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if ($relationshipName === null) {
             $relationshipName = Str::camel(class_basename($related));
         }
@@ -602,16 +484,10 @@ trait QueriesRelationships
             throw RelationNotFoundException::make($this->model, $relationshipName, BelongsTo::class);
         }
 
-<<<<<<< HEAD
         $this->where(
             $relationship->getQualifiedForeignKeyName(),
             '=',
             $related->getAttributeValue($relationship->getOwnerKeyName()),
-=======
-        $this->whereIn(
-            $relationship->getQualifiedForeignKeyName(),
-            $relatedCollection->pluck($relationship->getOwnerKeyName())->toArray(),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $boolean,
         );
 
@@ -622,11 +498,7 @@ trait QueriesRelationships
      * Add an "BelongsTo" relationship with an "or where" clause to the query.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $related
-<<<<<<< HEAD
      * @param  string  $relationship
-=======
-     * @param  string|null  $relationshipName
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      *
      * @throws \RuntimeException
@@ -671,13 +543,9 @@ trait QueriesRelationships
             $relation = $this->getRelationWithoutConstraints($name);
 
             if ($function) {
-<<<<<<< HEAD
                 $hashedColumn = $this->getQuery()->from === $relation->getQuery()->getQuery()->from
                                             ? "{$relation->getRelationCountHash(false)}.$column"
                                             : $column;
-=======
-                $hashedColumn = $this->getRelationHashedColumn($column, $relation);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                 $wrappedColumn = $this->getQuery()->getGrammar()->wrap(
                     $column === '*' ? $column : $relation->getRelated()->qualifyColumn($hashedColumn)
@@ -713,11 +581,7 @@ trait QueriesRelationships
             // Finally, we will make the proper column alias to the query and run this sub-select on
             // the query builder. Then, we will return the builder instance back to the developer
             // for further constraint chaining that needs to take place on the query as needed.
-<<<<<<< HEAD
             $alias = $alias ?? Str::snake(
-=======
-            $alias ??= Str::snake(
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 preg_replace('/[^[:alnum:][:space:]_]/u', '', "$name $function $column")
             );
 
@@ -738,27 +602,6 @@ trait QueriesRelationships
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Get the relation hashed column name for the given column and relation.
-     *
-     * @param  string  $column
-     * @param  \Illuminate\Database\Eloquent\Relations\Relationship  $relation
-     * @return string
-     */
-    protected function getRelationHashedColumn($column, $relation)
-    {
-        if (str_contains($column, '.')) {
-            return $column;
-        }
-
-        return $this->getQuery()->from === $relation->getQuery()->getQuery()->from
-            ? "{$relation->getRelationCountHash(false)}.$column"
-            : $column;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Add subselect queries to count the relations.
      *
      * @param  mixed  $relations
@@ -857,53 +700,17 @@ trait QueriesRelationships
     {
         $whereBindings = $from->getQuery()->getRawBindings()['where'] ?? [];
 
-<<<<<<< HEAD
-=======
-        $wheres = $from->getQuery()->from !== $this->getQuery()->from
-            ? $this->requalifyWhereTables(
-                $from->getQuery()->wheres,
-                $from->getQuery()->from,
-                $this->getModel()->getTable()
-            ) : $from->getQuery()->wheres;
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         // Here we have some other query that we want to merge the where constraints from. We will
         // copy over any where constraints on the query as well as remove any global scopes the
         // query might have removed. Then we will return ourselves with the finished merging.
         return $this->withoutGlobalScopes(
             $from->removedScopes()
         )->mergeWheres(
-<<<<<<< HEAD
             $from->getQuery()->wheres, $whereBindings
-=======
-            $wheres, $whereBindings
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         );
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Updates the table name for any columns with a new qualified name.
-     *
-     * @param  array  $wheres
-     * @param  string  $from
-     * @param  string  $to
-     * @return array
-     */
-    protected function requalifyWhereTables(array $wheres, string $from, string $to): array
-    {
-        return collect($wheres)->map(function ($where) use ($from, $to) {
-            return collect($where)->map(function ($value) use ($from, $to) {
-                return is_string($value) && str_starts_with($value, $from.'.')
-                    ? $to.'.'.Str::afterLast($value, '.')
-                    : $value;
-            });
-        })->toArray();
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Add a sub-query count clause to this query.
      *
      * @param  \Illuminate\Database\Query\Builder  $query

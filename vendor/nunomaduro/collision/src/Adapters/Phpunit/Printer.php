@@ -54,11 +54,7 @@ final class Printer implements \PHPUnit\TextUI\ResultPrinter
     /**
      * Creates a new instance of the listener.
      *
-<<<<<<< HEAD
      * @param ConsoleOutput $output
-=======
-     * @param  ConsoleOutput  $output
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @throws \ReflectionException
      */
@@ -73,12 +69,7 @@ final class Printer implements \PHPUnit\TextUI\ResultPrinter
         ConfigureIO::of(new ArgvInput(), $output);
 
         $this->style = new Style($output);
-<<<<<<< HEAD
         $dummyTest   = new class() extends TestCase {
-=======
-        $dummyTest = new class() extends TestCase
-        {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         };
 
         $this->state = State::from($dummyTest);
@@ -118,11 +109,7 @@ final class Printer implements \PHPUnit\TextUI\ResultPrinter
         $reflector = new ReflectionObject($error);
 
         if ($reflector->hasProperty('message')) {
-<<<<<<< HEAD
             $message  = trim((string) preg_replace("/\r|\n/", "\n  ", $error->getMessage()));
-=======
-            $message = trim((string) preg_replace("/\r|\n/", "\n  ", $error->getMessage()));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $property = $reflector->getProperty('message');
             $property->setAccessible(true);
             $property->setValue($error, $message);
@@ -201,23 +188,14 @@ final class Printer implements \PHPUnit\TextUI\ResultPrinter
     {
         $testCase = $this->testCaseFromTest($testCase);
 
-<<<<<<< HEAD
         if (!$this->state->existsInTestCase($testCase)) {
-=======
-        if (! $this->state->existsInTestCase($testCase)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->state->add(TestResult::fromTestCase($testCase, TestResult::PASS));
         }
 
         if ($testCase instanceof TestCase
             && $testCase->getTestResultObject() instanceof \PHPUnit\Framework\TestResult
-<<<<<<< HEAD
             && !$testCase->getTestResultObject()->isStrictAboutOutputDuringTests()
             && !$testCase->hasExpectationOnOutput()) {
-=======
-            && ! $testCase->getTestResultObject()->isStrictAboutOutputDuringTests()
-            && ! $testCase->hasExpectationOnOutput()) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->style->write($testCase->getActualOutput());
         }
     }
@@ -239,11 +217,7 @@ final class Printer implements \PHPUnit\TextUI\ResultPrinter
      */
     private function testCaseFromTest(Test $test): TestCase
     {
-<<<<<<< HEAD
         if (!$test instanceof TestCase) {
-=======
-        if (! $test instanceof TestCase) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             throw new ShouldNotHappen();
         }
 

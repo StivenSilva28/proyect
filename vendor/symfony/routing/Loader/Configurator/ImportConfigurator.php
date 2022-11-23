@@ -22,11 +22,7 @@ class ImportConfigurator
     use Traits\PrefixTrait;
     use Traits\RouteTrait;
 
-<<<<<<< HEAD
     private $parent;
-=======
-    private RouteCollection $parent;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(RouteCollection $parent, RouteCollection $route)
     {
@@ -34,14 +30,10 @@ class ImportConfigurator
         $this->route = $route;
     }
 
-<<<<<<< HEAD
     /**
      * @return array
      */
     public function __sleep()
-=======
-    public function __sleep(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
@@ -63,11 +55,7 @@ class ImportConfigurator
      *
      * @return $this
      */
-<<<<<<< HEAD
     final public function prefix($prefix, bool $trailingSlashOnRoot = true): self
-=======
-    final public function prefix(string|array $prefix, bool $trailingSlashOnRoot = true): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->addPrefix($this->route, $prefix, $trailingSlashOnRoot);
 
@@ -79,11 +67,7 @@ class ImportConfigurator
      *
      * @return $this
      */
-<<<<<<< HEAD
     final public function namePrefix(string $namePrefix): self
-=======
-    final public function namePrefix(string $namePrefix): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->addNamePrefix($namePrefix);
 
@@ -97,11 +81,7 @@ class ImportConfigurator
      *
      * @return $this
      */
-<<<<<<< HEAD
     final public function host($host): self
-=======
-    final public function host(string|array $host): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->addHost($this->route, $host);
 

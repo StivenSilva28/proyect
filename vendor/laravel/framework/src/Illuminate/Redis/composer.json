@@ -14,19 +14,11 @@
         }
     ],
     "require": {
-<<<<<<< HEAD
         "php": "^7.3|^8.0",
         "illuminate/collections": "^8.0",
         "illuminate/contracts": "^8.0",
         "illuminate/macroable": "^8.0",
         "illuminate/support": "^8.0"
-=======
-        "php": "^8.0.2",
-        "illuminate/collections": "^9.0",
-        "illuminate/contracts": "^9.0",
-        "illuminate/macroable": "^9.0",
-        "illuminate/support": "^9.0"
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     },
     "autoload": {
         "psr-4": {
@@ -35,19 +27,11 @@
     },
     "suggest": {
         "ext-redis": "Required to use the phpredis connector (^4.0|^5.0).",
-<<<<<<< HEAD
         "predis/predis": "Required to use the predis connector (^1.1.9)."
     },
     "extra": {
         "branch-alias": {
             "dev-master": "8.x-dev"
-=======
-        "predis/predis": "Required to use the predis connector (^1.1.9|^2.0.2)."
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "9.x-dev"
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     },
     "config": {

@@ -11,11 +11,8 @@
 
 namespace Symfony\Component\Console\Command;
 
-<<<<<<< HEAD
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Completion\CompletionSuggestions;
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\Console\Descriptor\ApplicationDescription;
 use Symfony\Component\Console\Helper\DescriptorHelper;
 use Symfony\Component\Console\Input\InputArgument;
@@ -30,11 +27,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class HelpCommand extends Command
 {
-<<<<<<< HEAD
     private $command;
-=======
-    private Command $command;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * {@inheritdoc}
@@ -46,17 +39,8 @@ class HelpCommand extends Command
         $this
             ->setName('help')
             ->setDefinition([
-<<<<<<< HEAD
                 new InputArgument('command_name', InputArgument::OPTIONAL, 'The command name', 'help'),
                 new InputOption('format', null, InputOption::VALUE_REQUIRED, 'The output format (txt, xml, json, or md)', 'txt'),
-=======
-                new InputArgument('command_name', InputArgument::OPTIONAL, 'The command name', 'help', function () {
-                    return array_keys((new ApplicationDescription($this->getApplication()))->getCommands());
-                }),
-                new InputOption('format', null, InputOption::VALUE_REQUIRED, 'The output format (txt, xml, json, or md)', 'txt', function () {
-                    return (new DescriptorHelper())->getFormats();
-                }),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 new InputOption('raw', null, InputOption::VALUE_NONE, 'To output raw command help'),
             ])
             ->setDescription('Display help for a command')
@@ -83,17 +67,11 @@ EOF
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if (null === $this->command) {
             $this->command = $this->getApplication()->find($input->getArgument('command_name'));
         }
-=======
-    protected function execute(InputInterface $input, OutputInterface $output): int
-    {
-        $this->command ??= $this->getApplication()->find($input->getArgument('command_name'));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $helper = new DescriptorHelper();
         $helper->describe($output, $this->command, [
@@ -101,7 +79,6 @@ EOF
             'raw_text' => $input->getOption('raw'),
         ]);
 
-<<<<<<< HEAD
         $this->command = null;
 
         return 0;
@@ -121,10 +98,4 @@ EOF
             $suggestions->suggestValues($helper->getFormats());
         }
     }
-=======
-        unset($this->command);
-
-        return 0;
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

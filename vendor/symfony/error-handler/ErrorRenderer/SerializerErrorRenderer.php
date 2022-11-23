@@ -24,24 +24,16 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class SerializerErrorRenderer implements ErrorRendererInterface
 {
-<<<<<<< HEAD
     private $serializer;
     private $format;
     private $fallbackErrorRenderer;
     private $debug;
-=======
-    private SerializerInterface $serializer;
-    private string|\Closure $format;
-    private ErrorRendererInterface $fallbackErrorRenderer;
-    private bool|\Closure $debug;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param string|callable(FlattenException) $format The format as a string or a callable that should return it
      *                                                  formats not supported by Request::getMimeTypes() should be given as mime types
      * @param bool|callable                     $debug  The debugging mode as a boolean or a callable that should return it
      */
-<<<<<<< HEAD
     public function __construct(SerializerInterface $serializer, $format, ErrorRendererInterface $fallbackErrorRenderer = null, $debug = false)
     {
         if (!\is_string($format) && !\is_callable($format)) {
@@ -56,14 +48,6 @@ class SerializerErrorRenderer implements ErrorRendererInterface
         $this->format = $format;
         $this->fallbackErrorRenderer = $fallbackErrorRenderer ?? new HtmlErrorRenderer();
         $this->debug = $debug;
-=======
-    public function __construct(SerializerInterface $serializer, string|callable $format, ErrorRendererInterface $fallbackErrorRenderer = null, bool|callable $debug = false)
-    {
-        $this->serializer = $serializer;
-        $this->format = \is_string($format) ? $format : $format(...);
-        $this->fallbackErrorRenderer = $fallbackErrorRenderer ?? new HtmlErrorRenderer();
-        $this->debug = \is_bool($debug) ? $debug : $debug(...);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -92,11 +76,7 @@ class SerializerErrorRenderer implements ErrorRendererInterface
                 'debug' => $debug,
             ]))
             ->setHeaders($flattenException->getHeaders() + $headers);
-<<<<<<< HEAD
         } catch (NotEncodableValueException $e) {
-=======
-        } catch (NotEncodableValueException) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $this->fallbackErrorRenderer->render($exception);
         }
     }

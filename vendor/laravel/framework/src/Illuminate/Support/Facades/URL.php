@@ -13,10 +13,6 @@ namespace Illuminate\Support\Facades;
  * @method static void macro(string $name, object|callable $macro)
  * @method static void mixin(object $mixin, bool $replace = true)
  * @method static string previous($fallback = false)
-<<<<<<< HEAD
-=======
- * @method static string previousPath($fallback = false)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static string route(string $name, $parameters = [], bool $absolute = true)
  * @method static string secure(string $path, array $parameters = [])
  * @method static string signedRoute(string $name, array $parameters = [], \DateTimeInterface|\DateInterval|int $expiration = null, bool $absolute = true)
@@ -24,10 +20,6 @@ namespace Illuminate\Support\Facades;
  * @method static string to(string $path, $extra = [], bool $secure = null)
  * @method static void defaults(array $defaults)
  * @method static void forceScheme(string $scheme)
-<<<<<<< HEAD
-=======
- * @method static void forceRootUrl(string $root)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static bool isValidUrl(string $path)
  *
  * @see \Illuminate\Routing\UrlGenerator

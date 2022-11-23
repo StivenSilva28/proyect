@@ -3,14 +3,7 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\GeneratorCommand;
-<<<<<<< HEAD
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Input\InputOption;
-
-#[AsCommand(name: 'make:request')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class RequestMakeCommand extends GeneratorCommand
 {
     /**
@@ -21,20 +14,6 @@ class RequestMakeCommand extends GeneratorCommand
     protected $name = 'make:request';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'make:request';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -81,19 +60,4 @@ class RequestMakeCommand extends GeneratorCommand
     {
         return $rootNamespace.'\Http\Requests';
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the request already exists'],
-        ];
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

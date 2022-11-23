@@ -49,19 +49,11 @@ class TrimStrings extends TransformsRequest
      */
     protected function transform($key, $value)
     {
-<<<<<<< HEAD
         if (in_array($key, $this->except, true)) {
             return $value;
         }
 
         return is_string($value) ? trim($value) : $value;
-=======
-        if (in_array($key, $this->except, true) || ! is_string($value)) {
-            return $value;
-        }
-
-        return preg_replace('~^[\s﻿​]+|[\s﻿​]+$~u', '', $value) ?? trim($value);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

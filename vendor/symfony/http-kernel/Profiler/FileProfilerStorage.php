@@ -20,15 +20,10 @@ class FileProfilerStorage implements ProfilerStorageInterface
 {
     /**
      * Folder where profiler data are stored.
-<<<<<<< HEAD
      *
      * @var string
      */
     private $folder;
-=======
-     */
-    private string $folder;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Constructs the file storage using a "dsn-like" path.
@@ -195,15 +190,10 @@ class FileProfilerStorage implements ProfilerStorageInterface
 
     /**
      * Gets filename to store data, associated to the token.
-<<<<<<< HEAD
      *
      * @return string
      */
     protected function getFilename(string $token)
-=======
-     */
-    protected function getFilename(string $token): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // Uses 4 last characters, because first are mostly the same.
         $folderA = substr($token, -2, 2);
@@ -214,15 +204,10 @@ class FileProfilerStorage implements ProfilerStorageInterface
 
     /**
      * Gets the index filename.
-<<<<<<< HEAD
      *
      * @return string
      */
     protected function getIndexFilename()
-=======
-     */
-    protected function getIndexFilename(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->folder.'/index.csv';
     }
@@ -233,15 +218,10 @@ class FileProfilerStorage implements ProfilerStorageInterface
      * This function automatically skips the empty lines and do not include the line return in result value.
      *
      * @param resource $file The file resource, with the pointer placed at the end of the line to read
-<<<<<<< HEAD
      *
      * @return mixed
      */
     protected function readLineFromFile($file)
-=======
-     */
-    protected function readLineFromFile($file): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $line = '';
         $position = ftell($file);

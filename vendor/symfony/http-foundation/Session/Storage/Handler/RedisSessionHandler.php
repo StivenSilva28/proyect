@@ -23,7 +23,6 @@ use Symfony\Component\Cache\Traits\RedisProxy;
  */
 class RedisSessionHandler extends AbstractSessionHandler
 {
-<<<<<<< HEAD
     private $redis;
 
     /**
@@ -35,26 +34,12 @@ class RedisSessionHandler extends AbstractSessionHandler
      * @var int Time to live in seconds
      */
     private $ttl;
-=======
-    private \Redis|\RedisArray|\RedisCluster|\Predis\ClientInterface|RedisProxy|RedisClusterProxy $redis;
-
-    /**
-     * Key prefix for shared environments.
-     */
-    private string $prefix;
-
-    /**
-     * Time to live in seconds.
-     */
-    private int|\Closure|null $ttl;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * List of available options:
      *  * prefix: The prefix to use for the keys in order to avoid collision on the Redis server
      *  * ttl: The time to live in seconds.
      *
-<<<<<<< HEAD
      * @param \Redis|\RedisArray|\RedisCluster|\Predis\ClientInterface|RedisProxy|RedisClusterProxy $redis
      *
      * @throws \InvalidArgumentException When unsupported client or options are passed
@@ -72,12 +57,6 @@ class RedisSessionHandler extends AbstractSessionHandler
             throw new \InvalidArgumentException(sprintf('"%s()" expects parameter 1 to be Redis, RedisArray, RedisCluster or Predis\ClientInterface, "%s" given.', __METHOD__, get_debug_type($redis)));
         }
 
-=======
-     * @throws \InvalidArgumentException When unsupported client or options are passed
-     */
-    public function __construct(\Redis|\RedisArray|\RedisCluster|\Predis\ClientInterface|RedisProxy|RedisClusterProxy $redis, array $options = [])
-    {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if ($diff = array_diff(array_keys($options), ['prefix', 'ttl'])) {
             throw new \InvalidArgumentException(sprintf('The following options are not supported "%s".', implode(', ', $diff)));
         }
@@ -100,12 +79,7 @@ class RedisSessionHandler extends AbstractSessionHandler
      */
     protected function doWrite(string $sessionId, string $data): bool
     {
-<<<<<<< HEAD
         $result = $this->redis->setEx($this->prefix.$sessionId, (int) ($this->ttl ?? \ini_get('session.gc_maxlifetime')), $data);
-=======
-        $ttl = ($this->ttl instanceof \Closure ? ($this->ttl)() : $this->ttl) ?? \ini_get('session.gc_maxlifetime');
-        $result = $this->redis->setEx($this->prefix.$sessionId, (int) $ttl, $data);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $result && !$result instanceof ErrorInterface;
     }
@@ -120,11 +94,7 @@ class RedisSessionHandler extends AbstractSessionHandler
         if ($unlink) {
             try {
                 $unlink = false !== $this->redis->unlink($this->prefix.$sessionId);
-<<<<<<< HEAD
             } catch (\Throwable $e) {
-=======
-            } catch (\Throwable) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $unlink = false;
             }
         }
@@ -145,7 +115,6 @@ class RedisSessionHandler extends AbstractSessionHandler
         return true;
     }
 
-<<<<<<< HEAD
     /**
      * {@inheritdoc}
      *
@@ -153,14 +122,10 @@ class RedisSessionHandler extends AbstractSessionHandler
      */
     #[\ReturnTypeWillChange]
     public function gc($maxlifetime)
-=======
-    public function gc(int $maxlifetime): int|false
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return 0;
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
@@ -168,12 +133,5 @@ class RedisSessionHandler extends AbstractSessionHandler
     public function updateTimestamp($sessionId, $data)
     {
         return (bool) $this->redis->expire($this->prefix.$sessionId, (int) ($this->ttl ?? \ini_get('session.gc_maxlifetime')));
-=======
-    public function updateTimestamp(string $sessionId, string $data): bool
-    {
-        $ttl = ($this->ttl instanceof \Closure ? ($this->ttl)() : $this->ttl) ?? \ini_get('session.gc_maxlifetime');
-
-        return $this->redis->expire($this->prefix.$sessionId, (int) $ttl);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

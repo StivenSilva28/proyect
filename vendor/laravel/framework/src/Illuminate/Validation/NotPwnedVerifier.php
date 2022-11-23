@@ -98,11 +98,7 @@ class NotPwnedVerifier implements UncompromisedVerifier
             : '';
 
         return Str::of($body)->trim()->explode("\n")->filter(function ($line) {
-<<<<<<< HEAD
             return Str::contains($line, ':');
-=======
-            return str_contains($line, ':');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 }

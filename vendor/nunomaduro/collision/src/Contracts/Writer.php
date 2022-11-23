@@ -25,12 +25,8 @@ interface Writer
      * Ignores traces where the file string matches one
      * of the provided regex expressions.
      *
-<<<<<<< HEAD
      * @param string[] $ignore the regex expressions
      *
-=======
-     * @param  string[]  $ignore the regex expressions
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return \NunoMaduro\Collision\Contracts\Writer
      */
     public function ignoreFilesIn(array $ignore): Writer;

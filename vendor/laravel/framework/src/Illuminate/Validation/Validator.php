@@ -210,10 +210,6 @@ class Validator implements ValidatorContract
         'Present',
         'Required',
         'RequiredIf',
-<<<<<<< HEAD
-=======
-        'RequiredIfAccepted',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         'RequiredUnless',
         'RequiredWith',
         'RequiredWithAll',
@@ -235,10 +231,6 @@ class Validator implements ValidatorContract
         'Different',
         'ExcludeIf',
         'ExcludeUnless',
-<<<<<<< HEAD
-=======
-        'ExcludeWith',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         'ExcludeWithout',
         'Gt',
         'Gte',
@@ -247,10 +239,6 @@ class Validator implements ValidatorContract
         'AcceptedIf',
         'DeclinedIf',
         'RequiredIf',
-<<<<<<< HEAD
-=======
-        'RequiredIfAccepted',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         'RequiredUnless',
         'RequiredWith',
         'RequiredWithAll',
@@ -269,11 +257,7 @@ class Validator implements ValidatorContract
      *
      * @var string[]
      */
-<<<<<<< HEAD
     protected $excludeRules = ['Exclude', 'ExcludeIf', 'ExcludeUnless', 'ExcludeWithout'];
-=======
-    protected $excludeRules = ['Exclude', 'ExcludeIf', 'ExcludeUnless', 'ExcludeWith', 'ExcludeWithout'];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * The size related validation rules.
@@ -396,13 +380,9 @@ class Validator implements ValidatorContract
      */
     public function after($callback)
     {
-<<<<<<< HEAD
         $this->after[] = function () use ($callback) {
             return $callback($this);
         };
-=======
-        $this->after[] = fn () => $callback($this);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this;
     }
@@ -687,10 +667,7 @@ class Validator implements ValidatorContract
      * Replace each field parameter which has an escaped dot with the dot placeholder.
      *
      * @param  array  $parameters
-<<<<<<< HEAD
      * @param  array  $keys
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return array
      */
     protected function replaceDotInParameters(array $parameters)
@@ -835,7 +812,6 @@ class Validator implements ValidatorContract
         }
 
         if (! $rule->passes($attribute, $value)) {
-<<<<<<< HEAD
             $this->failedRules[$attribute][get_class($rule)] = [];
 
             $messages = $rule->message();
@@ -845,23 +821,6 @@ class Validator implements ValidatorContract
             foreach ($messages as $message) {
                 $this->messages->add($attribute, $this->makeReplacements(
                     $message, $attribute, get_class($rule), []
-=======
-            $ruleClass = $rule instanceof InvokableValidationRule ?
-                get_class($rule->invokable()) :
-                get_class($rule);
-
-            $this->failedRules[$attribute][$ruleClass] = [];
-
-            $messages = $this->getFromLocalArray($attribute, $ruleClass) ?? $rule->message();
-
-            $messages = $messages ? (array) $messages : [$ruleClass];
-
-            foreach ($messages as $key => $message) {
-                $key = is_string($key) ? $key : $attribute;
-
-                $this->messages->add($key, $this->makeReplacements(
-                    $message, $key, $ruleClass, []
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 ));
             }
         }
@@ -910,15 +869,11 @@ class Validator implements ValidatorContract
 
         $attributeWithPlaceholders = $attribute;
 
-<<<<<<< HEAD
         $attribute = str_replace(
             [$this->dotPlaceholder, '__asterisk__'],
             ['.', '*'],
             $attribute
         );
-=======
-        $attribute = $this->replacePlaceholderInString($attribute);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if (in_array($rule, $this->excludeRules)) {
             return $this->excludeAttribute($attribute);
@@ -1196,11 +1151,7 @@ class Validator implements ValidatorContract
             $this->implicitAttributes = array_merge($response->implicitAttributes, $this->implicitAttributes);
 
             foreach ($response->rules as $ruleKey => $ruleValue) {
-<<<<<<< HEAD
                 if ($callback($payload, $this->dataForSometimesIteration($ruleKey, ! Str::endsWith($key, '.*')))) {
-=======
-                if ($callback($payload, $this->dataForSometimesIteration($ruleKey, ! str_ends_with($key, '.*')))) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     $this->addRules([$ruleKey => $ruleValue]);
                 }
             }

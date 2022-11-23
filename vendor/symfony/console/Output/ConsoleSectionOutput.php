@@ -21,17 +21,10 @@ use Symfony\Component\Console\Terminal;
  */
 class ConsoleSectionOutput extends StreamOutput
 {
-<<<<<<< HEAD
     private $content = [];
     private $lines = 0;
     private $sections;
     private $terminal;
-=======
-    private array $content = [];
-    private int $lines = 0;
-    private array $sections;
-    private Terminal $terminal;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param resource               $stream
@@ -70,15 +63,10 @@ class ConsoleSectionOutput extends StreamOutput
 
     /**
      * Overwrites the previous output with a new message.
-<<<<<<< HEAD
      *
      * @param array|string $message
      */
     public function overwrite($message)
-=======
-     */
-    public function overwrite(string|iterable $message)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->clear();
         $this->writeln($message);

@@ -37,11 +37,7 @@ class JsonResponse extends BaseJsonResponse
      *
      * @return static
      */
-<<<<<<< HEAD
     public static function fromJsonString(?string $data = null, int $status = 200, array $headers = [])
-=======
-    public static function fromJsonString(?string $data = null, int $status = 200, array $headers = []): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new static($data, $status, $headers, 0, true);
     }
@@ -74,11 +70,7 @@ class JsonResponse extends BaseJsonResponse
      *
      * @return static
      */
-<<<<<<< HEAD
     public function setData($data = [])
-=======
-    public function setData($data = []): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->original = $data;
 
@@ -127,11 +119,7 @@ class JsonResponse extends BaseJsonResponse
      *
      * @return static
      */
-<<<<<<< HEAD
     public function setEncodingOptions($options)
-=======
-    public function setEncodingOptions($options): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->encodingOptions = (int) $options;
 

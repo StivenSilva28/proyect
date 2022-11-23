@@ -82,11 +82,7 @@ class TextPart extends AbstractPart
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function setDisposition(string $disposition)
-=======
-    public function setDisposition(string $disposition): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->disposition = $disposition;
 
@@ -98,28 +94,13 @@ class TextPart extends AbstractPart
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function setName(string $name)
-=======
-    public function setName(string $name): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->name = $name;
 
         return $this;
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Gets the name of the file (used by FormDataPart).
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     public function getBody(): string
     {
         if (null === $this->seekable) {
@@ -208,14 +189,10 @@ class TextPart extends AbstractPart
         return 'quoted-printable';
     }
 
-<<<<<<< HEAD
     /**
      * @return array
      */
     public function __sleep()
-=======
-    public function __sleep(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // convert resources to strings for serialization
         if (null !== $this->seekable) {
@@ -231,10 +208,7 @@ class TextPart extends AbstractPart
     public function __wakeup()
     {
         $r = new \ReflectionProperty(AbstractPart::class, 'headers');
-<<<<<<< HEAD
         $r->setAccessible(true);
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $r->setValue($this, $this->_headers);
         unset($this->_headers);
     }

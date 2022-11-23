@@ -21,19 +21,11 @@ class Mix
     {
         static $manifests = [];
 
-<<<<<<< HEAD
         if (! Str::startsWith($path, '/')) {
             $path = "/{$path}";
         }
 
         if ($manifestDirectory && ! Str::startsWith($manifestDirectory, '/')) {
-=======
-        if (! str_starts_with($path, '/')) {
-            $path = "/{$path}";
-        }
-
-        if ($manifestDirectory && ! str_starts_with($manifestDirectory, '/')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $manifestDirectory = "/{$manifestDirectory}";
         }
 
@@ -57,11 +49,7 @@ class Mix
 
         if (! isset($manifests[$manifestPath])) {
             if (! is_file($manifestPath)) {
-<<<<<<< HEAD
                 throw new Exception('The Mix manifest does not exist.');
-=======
-                throw new Exception("Mix manifest not found at: {$manifestPath}");
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
 
             $manifests[$manifestPath] = json_decode(file_get_contents($manifestPath), true);

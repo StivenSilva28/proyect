@@ -5,10 +5,7 @@ namespace Illuminate\Foundation\Testing\Concerns;
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Cookie\CookieValuePrefix;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use Illuminate\Support\Str;
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Testing\LoggedExceptionCollection;
 use Illuminate\Testing\TestResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
@@ -68,16 +65,6 @@ trait MakesHttpRequests
     protected $withCredentials = false;
 
     /**
-<<<<<<< HEAD
-=======
-     * The latest test response (if any).
-     *
-     * @var \Illuminate\Testing\TestResponse|null
-     */
-    public static $latestResponse;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Define additional headers to be sent with the request.
      *
      * @param  array  $headers
@@ -117,21 +104,6 @@ trait MakesHttpRequests
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Remove the authorization token from the request.
-     *
-     * @return $this
-     */
-    public function withoutToken()
-    {
-        unset($this->defaultHeaders['Authorization']);
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Flush all the configured headers.
      *
      * @return $this
@@ -461,10 +433,6 @@ trait MakesHttpRequests
     public function options($uri, array $data = [], array $headers = [])
     {
         $server = $this->transformHeadersToServerVars($headers);
-<<<<<<< HEAD
-=======
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $cookies = $this->prepareCookiesForRequest();
 
         return $this->call('OPTIONS', $uri, $data, $cookies, [], $server);
@@ -484,25 +452,6 @@ trait MakesHttpRequests
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Visit the given URI with a HEAD request.
-     *
-     * @param  string  $uri
-     * @param  array  $headers
-     * @return \Illuminate\Testing\TestResponse
-     */
-    public function head($uri, array $headers = [])
-    {
-        $server = $this->transformHeadersToServerVars($headers);
-
-        $cookies = $this->prepareCookiesForRequest();
-
-        return $this->call('HEAD', $uri, [], $cookies, [], $server);
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Call the given URI with a JSON request.
      *
      * @param  string  $method
@@ -567,11 +516,7 @@ trait MakesHttpRequests
             $response = $this->followRedirects($response);
         }
 
-<<<<<<< HEAD
         return $this->createTestResponse($response);
-=======
-        return static::$latestResponse = $this->createTestResponse($response);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -582,11 +527,7 @@ trait MakesHttpRequests
      */
     protected function prepareUrlForRequest($uri)
     {
-<<<<<<< HEAD
         if (Str::startsWith($uri, '/')) {
-=======
-        if (str_starts_with($uri, '/')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $uri = substr($uri, 1);
         }
 
@@ -616,11 +557,7 @@ trait MakesHttpRequests
      */
     protected function formatServerHeaderKey($name)
     {
-<<<<<<< HEAD
         if (! Str::startsWith($name, 'HTTP_') && $name !== 'CONTENT_TYPE' && $name !== 'REMOTE_ADDR') {
-=======
-        if (! str_starts_with($name, 'HTTP_') && $name !== 'CONTENT_TYPE' && $name !== 'REMOTE_ADDR') {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return 'HTTP_'.$name;
         }
 

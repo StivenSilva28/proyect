@@ -26,11 +26,7 @@ class IcuResFileLoader implements LoaderInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function load($resource, string $locale, string $domain = 'messages')
-=======
-    public function load(mixed $resource, string $locale, string $domain = 'messages'): MessageCatalogue
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!stream_is_local($resource)) {
             throw new InvalidResourceException(sprintf('This is not a local file "%s".', $resource));
@@ -42,11 +38,7 @@ class IcuResFileLoader implements LoaderInterface
 
         try {
             $rb = new \ResourceBundle($locale, $resource);
-<<<<<<< HEAD
         } catch (\Exception $e) {
-=======
-        } catch (\Exception) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $rb = null;
         }
 
@@ -80,15 +72,10 @@ class IcuResFileLoader implements LoaderInterface
      * @param \ResourceBundle $rb       The ResourceBundle that will be flattened
      * @param array           $messages Used internally for recursive calls
      * @param string          $path     Current path being parsed, used internally for recursive calls
-<<<<<<< HEAD
      *
      * @return array
      */
     protected function flatten(\ResourceBundle $rb, array &$messages = [], string $path = null)
-=======
-     */
-    protected function flatten(\ResourceBundle $rb, array &$messages = [], string $path = null): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         foreach ($rb as $key => $value) {
             $nodePath = $path ? $path.'.'.$key : $key;

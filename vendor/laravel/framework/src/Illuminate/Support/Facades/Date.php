@@ -16,7 +16,6 @@ use Illuminate\Support\DateFactory;
  * @method static \Illuminate\Support\Carbon createFromTimestampMs($timestamp, $tz = null)
  * @method static \Illuminate\Support\Carbon createFromTimestampUTC($timestamp)
  * @method static \Illuminate\Support\Carbon createMidnightDate($year = null, $month = null, $day = null, $tz = null)
-<<<<<<< HEAD
  * @method static \Illuminate\Support\Carbon disableHumanDiffOption($humanDiffOption)
  * @method static \Illuminate\Support\Carbon enableHumanDiffOption($humanDiffOption)
  * @method static \Illuminate\Support\Carbon fromSerialized($value)
@@ -24,34 +23,16 @@ use Illuminate\Support\DateFactory;
  * @method static \Illuminate\Support\Carbon getTestNow()
  * @method static \Illuminate\Support\Carbon instance($date)
  * @method static \Illuminate\Support\Carbon isMutable()
-=======
- * @method static void disableHumanDiffOption($humanDiffOption)
- * @method static void enableHumanDiffOption($humanDiffOption)
- * @method static \Illuminate\Support\Carbon fromSerialized($value)
- * @method static array getLastErrors()
- * @method static \Illuminate\Support\Carbon|null getTestNow()
- * @method static \Illuminate\Support\Carbon instance($date)
- * @method static bool isMutable()
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static \Illuminate\Support\Carbon maxValue()
  * @method static \Illuminate\Support\Carbon minValue()
  * @method static \Illuminate\Support\Carbon now($tz = null)
  * @method static \Illuminate\Support\Carbon parse($time = null, $tz = null)
-<<<<<<< HEAD
  * @method static \Illuminate\Support\Carbon setHumanDiffOptions($humanDiffOptions)
  * @method static void setTestNow($testNow = null)
  * @method static \Illuminate\Support\Carbon setUtf8($utf8)
  * @method static \Illuminate\Support\Carbon today($tz = null)
  * @method static \Illuminate\Support\Carbon tomorrow($tz = null)
  * @method static \Illuminate\Support\Carbon useStrictMode($strictModeEnabled = true)
-=======
- * @method static void setHumanDiffOptions($humanDiffOptions)
- * @method static void setTestNow($testNow = null)
- * @method static void setUtf8($utf8)
- * @method static \Illuminate\Support\Carbon today($tz = null)
- * @method static \Illuminate\Support\Carbon tomorrow($tz = null)
- * @method static void useStrictMode($strictModeEnabled = true)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static \Illuminate\Support\Carbon yesterday($tz = null)
  * @method static \Illuminate\Support\Carbon|false createFromFormat($format, $time, $tz = null)
  * @method static \Illuminate\Support\Carbon|false createSafe($year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null, $tz = null)

@@ -28,11 +28,6 @@ interface Broadcaster
      * @param  string  $event
      * @param  array  $payload
      * @return void
-<<<<<<< HEAD
-=======
-     *
-     * @throws \Illuminate\Broadcasting\BroadcastException
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function broadcast(array $channels, $event, array $payload = []);
 }

@@ -23,11 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ControllerResolver implements ControllerResolverInterface
 {
-<<<<<<< HEAD
     private $logger;
-=======
-    private ?LoggerInterface $logger;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(LoggerInterface $logger = null)
     {
@@ -37,19 +33,12 @@ class ControllerResolver implements ControllerResolverInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getController(Request $request)
     {
         if (!$controller = $request->attributes->get('_controller')) {
             if (null !== $this->logger) {
                 $this->logger->warning('Unable to look for the controller as the "_controller" parameter is missing.');
             }
-=======
-    public function getController(Request $request): callable|false
-    {
-        if (!$controller = $request->attributes->get('_controller')) {
-            $this->logger?->warning('Unable to look for the controller as the "_controller" parameter is missing.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             return false;
         }
@@ -59,7 +48,6 @@ class ControllerResolver implements ControllerResolverInterface
                 try {
                     $controller[0] = $this->instantiateController($controller[0]);
                 } catch (\Error|\LogicException $e) {
-<<<<<<< HEAD
                     try {
                         // We cannot just check is_callable but have to use reflection because a non-static method
                         // can still be called statically in PHP but we don't want that. This is deprecated in PHP 7, so we
@@ -69,10 +57,6 @@ class ControllerResolver implements ControllerResolverInterface
                         }
                     } catch (\ReflectionException $reflectionException) {
                         throw $e;
-=======
-                    if (\is_callable($controller)) {
-                        return $controller;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     }
 
                     throw $e;
@@ -114,17 +98,11 @@ class ControllerResolver implements ControllerResolverInterface
     /**
      * Returns a callable for the given controller.
      *
-<<<<<<< HEAD
      * @return callable
      *
      * @throws \InvalidArgumentException When the controller cannot be created
      */
     protected function createController(string $controller)
-=======
-     * @throws \InvalidArgumentException When the controller cannot be created
-     */
-    protected function createController(string $controller): callable
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!str_contains($controller, '::')) {
             $controller = $this->instantiateController($controller);
@@ -145,11 +123,7 @@ class ControllerResolver implements ControllerResolverInterface
                 if ((new \ReflectionMethod($class, $method))->isStatic()) {
                     return $class.'::'.$method;
                 }
-<<<<<<< HEAD
             } catch (\ReflectionException $reflectionException) {
-=======
-            } catch (\ReflectionException) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 throw $e;
             }
 
@@ -165,24 +139,15 @@ class ControllerResolver implements ControllerResolverInterface
 
     /**
      * Returns an instantiated controller.
-<<<<<<< HEAD
      *
      * @return object
      */
     protected function instantiateController(string $class)
-=======
-     */
-    protected function instantiateController(string $class): object
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new $class();
     }
 
-<<<<<<< HEAD
     private function getControllerError($callable): string
-=======
-    private function getControllerError(mixed $callable): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (\is_string($callable)) {
             if (str_contains($callable, '::')) {

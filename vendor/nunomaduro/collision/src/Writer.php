@@ -95,15 +95,9 @@ final class Writer implements WriterContract
         HighlighterContract $highlighter = null
     ) {
         $this->solutionsRepository = $solutionsRepository ?: new NullSolutionsRepository();
-<<<<<<< HEAD
         $this->output              = $output ?: new ConsoleOutput();
         $this->argumentFormatter   = $argumentFormatter ?: new ArgumentFormatter();
         $this->highlighter         = $highlighter ?: new Highlighter();
-=======
-        $this->output = $output ?: new ConsoleOutput();
-        $this->argumentFormatter = $argumentFormatter ?: new ArgumentFormatter();
-        $this->highlighter = $highlighter ?: new Highlighter();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -121,26 +115,16 @@ final class Writer implements WriterContract
 
         if ($this->showEditor
             && $editorFrame !== null
-<<<<<<< HEAD
             && !$exception instanceof RenderlessEditor
-=======
-            && ! $exception instanceof RenderlessEditor
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ) {
             $this->renderEditor($editorFrame);
         }
 
         $this->renderSolution($inspector);
 
-<<<<<<< HEAD
         if ($this->showTrace && !empty($frames) && !$exception instanceof RenderlessTrace) {
             $this->renderTrace($frames);
         } elseif (!$exception instanceof RenderlessEditor) {
-=======
-        if ($this->showTrace && ! empty($frames) && ! $exception instanceof RenderlessTrace) {
-            $this->renderTrace($frames);
-        } elseif (! $exception instanceof RenderlessEditor) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->output->writeln('');
         }
     }
@@ -238,13 +222,8 @@ final class Writer implements WriterContract
     protected function renderTitleAndDescription(Inspector $inspector): WriterContract
     {
         $exception = $inspector->getException();
-<<<<<<< HEAD
         $message   = rtrim($exception->getMessage());
         $class     = $inspector->getExceptionName();
-=======
-        $message = rtrim($exception->getMessage());
-        $class = $inspector->getExceptionName();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if ($this->showTitle) {
             $this->render("<bg=red;options=bold> $class </>");
@@ -265,34 +244,19 @@ final class Writer implements WriterContract
         $solutions = $this->solutionsRepository->getFromThrowable($throwable);
 
         foreach ($solutions as $solution) {
-<<<<<<< HEAD
             /** @var \Facade\IgnitionContracts\Solution $solution */
             $title       = $solution->getSolutionTitle();
             $description = $solution->getSolutionDescription();
             $links       = $solution->getDocumentationLinks();
-=======
-            /** @var \Spatie\Ignition\Contracts\Solution $solution */
-            $title = $solution->getSolutionTitle();
-            $description = $solution->getSolutionDescription();
-            $links = $solution->getDocumentationLinks();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             $description = trim((string) preg_replace("/\n/", "\n    ", $description));
 
             $this->render(sprintf(
-<<<<<<< HEAD
                 '<fg=blue;options=bold>• </><fg=default;options=bold>%s</>: %s %s',
                 rtrim($title, '.'),
                 $description,
                 implode(', ', array_map(function (string $link) {
                     return sprintf("\n    <fg=blue>%s</>", $link);
-=======
-                '<fg=cyan;options=bold>i</>   <fg=default;options=bold>%s</>: %s %s',
-                rtrim($title, '.'),
-                $description,
-                implode(', ', array_map(function (string $link) {
-                    return sprintf("\n      <fg=gray>%s</>", $link);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 }, $links))
             ));
         }
@@ -311,11 +275,7 @@ final class Writer implements WriterContract
 
             // getLine() might return null so cast to int to get 0 instead
             $line = (int) $frame->getLine();
-<<<<<<< HEAD
             $this->render('at <fg=green>' . $file . '</>' . ':<fg=green>' . $line . '</>');
-=======
-            $this->render('at <fg=green>'.$file.'</>'.':<fg=green>'.$line.'</>');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             $content = $this->highlighter->highlight((string) $frame->getFileContents(), (int) $frame->getLine());
 
@@ -331,18 +291,10 @@ final class Writer implements WriterContract
     protected function renderTrace(array $frames): WriterContract
     {
         $vendorFrames = 0;
-<<<<<<< HEAD
         $userFrames   = 0;
         foreach ($frames as $i => $frame) {
             if ($this->output->getVerbosity() < OutputInterface::VERBOSITY_VERBOSE && strpos($frame->getFile(), '/vendor/') !== false) {
                 $vendorFrames++;
-=======
-        $userFrames = 0;
-        foreach ($frames as $i => $frame) {
-            if ($this->output->getVerbosity() < OutputInterface::VERBOSITY_VERBOSE && strpos($frame->getFile(), '/vendor/') !== false) {
-                $vendorFrames++;
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 continue;
             }
 
@@ -352,21 +304,12 @@ final class Writer implements WriterContract
 
             $userFrames++;
 
-<<<<<<< HEAD
             $file     = $this->getFileRelativePath($frame->getFile());
             $line     = $frame->getLine();
             $class    = empty($frame->getClass()) ? '' : $frame->getClass() . '::';
             $function = $frame->getFunction();
             $args     = $this->argumentFormatter->format($frame->getArgs());
             $pos      = str_pad((string) ((int) $i + 1), 4, ' ');
-=======
-            $file = $this->getFileRelativePath($frame->getFile());
-            $line = $frame->getLine();
-            $class = empty($frame->getClass()) ? '' : $frame->getClass().'::';
-            $function = $frame->getFunction();
-            $args = $this->argumentFormatter->format($frame->getArgs());
-            $pos = str_pad((string) ((int) $i + 1), 4, ' ');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             if ($vendorFrames > 0) {
                 $this->output->write(
@@ -376,11 +319,7 @@ final class Writer implements WriterContract
             }
 
             $this->render("<fg=yellow>$pos</><fg=default;options=bold>$file</>:<fg=default;options=bold>$line</>");
-<<<<<<< HEAD
             $this->render("<fg=white>    $class$function($args)</>", false);
-=======
-            $this->render("<fg=gray>    $class$function($args)</>", false);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $this;
@@ -409,11 +348,7 @@ final class Writer implements WriterContract
     {
         $cwd = (string) getcwd();
 
-<<<<<<< HEAD
         if (!empty($cwd)) {
-=======
-        if (! empty($cwd)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return str_replace("$cwd/", '', $filePath);
         }
 

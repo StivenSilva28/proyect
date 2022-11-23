@@ -4,10 +4,6 @@ namespace Illuminate\Foundation;
 
 use Exception;
 use Illuminate\Filesystem\Filesystem;
-<<<<<<< HEAD
-=======
-use Illuminate\Support\Env;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class PackageManifest
 {
@@ -59,11 +55,7 @@ class PackageManifest
         $this->files = $files;
         $this->basePath = $basePath;
         $this->manifestPath = $manifestPath;
-<<<<<<< HEAD
         $this->vendorPath = $basePath.'/vendor';
-=======
-        $this->vendorPath = Env::get('COMPOSER_VENDOR_DIR') ?: $basePath.'/vendor';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

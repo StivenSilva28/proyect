@@ -52,11 +52,7 @@ class TraceableEventDispatcher extends BaseTraceableEventDispatcher
                 // which must be caught.
                 try {
                     $this->stopwatch->openSection($sectionId);
-<<<<<<< HEAD
                 } catch (\LogicException $e) {
-=======
-                } catch (\LogicException) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 }
                 break;
         }
@@ -87,11 +83,7 @@ class TraceableEventDispatcher extends BaseTraceableEventDispatcher
                 }
                 try {
                     $this->stopwatch->stopSection($sectionId);
-<<<<<<< HEAD
                 } catch (\LogicException $e) {
-=======
-                } catch (\LogicException) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 }
                 break;
         }

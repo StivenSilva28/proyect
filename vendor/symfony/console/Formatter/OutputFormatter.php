@@ -21,15 +21,9 @@ use Symfony\Component\Console\Exception\InvalidArgumentException;
  */
 class OutputFormatter implements WrappableOutputFormatterInterface
 {
-<<<<<<< HEAD
     private $decorated;
     private $styles = [];
     private $styleStack;
-=======
-    private bool $decorated;
-    private array $styles = [];
-    private OutputFormatterStyleStack $styleStack;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __clone()
     {
@@ -41,15 +35,10 @@ class OutputFormatter implements WrappableOutputFormatterInterface
 
     /**
      * Escapes "<" and ">" special chars in given text.
-<<<<<<< HEAD
      *
      * @return string
      */
     public static function escape(string $text)
-=======
-     */
-    public static function escape(string $text): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $text = preg_replace('/([^\\\\]|^)([<>])/', '$1\\\\$2', $text);
 
@@ -105,11 +94,7 @@ class OutputFormatter implements WrappableOutputFormatterInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isDecorated()
-=======
-    public function isDecorated(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->decorated;
     }
@@ -125,11 +110,7 @@ class OutputFormatter implements WrappableOutputFormatterInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function hasStyle(string $name)
-=======
-    public function hasStyle(string $name): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return isset($this->styles[strtolower($name)]);
     }
@@ -137,11 +118,7 @@ class OutputFormatter implements WrappableOutputFormatterInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getStyle(string $name)
-=======
-    public function getStyle(string $name): OutputFormatterStyleInterface
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->hasStyle($name)) {
             throw new InvalidArgumentException(sprintf('Undefined style: "%s".', $name));
@@ -153,11 +130,7 @@ class OutputFormatter implements WrappableOutputFormatterInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function format(?string $message)
-=======
-    public function format(?string $message): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->formatAndWrap($message, 0);
     }
@@ -213,14 +186,10 @@ class OutputFormatter implements WrappableOutputFormatterInterface
         return strtr($output, ["\0" => '\\', '\\<' => '<', '\\>' => '>']);
     }
 
-<<<<<<< HEAD
     /**
      * @return OutputFormatterStyleStack
      */
     public function getStyleStack()
-=======
-    public function getStyleStack(): OutputFormatterStyleStack
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->styleStack;
     }
@@ -292,11 +261,7 @@ class OutputFormatter implements WrappableOutputFormatterInterface
         $text = $prefix.preg_replace('~([^\\n]{'.$width.'})\\ *~', "\$1\n", $text);
         $text = rtrim($text, "\n").($matches[1] ?? '');
 
-<<<<<<< HEAD
         if (!$currentLineLength && '' !== $current && "\n" !== substr($current, -1)) {
-=======
-        if (!$currentLineLength && '' !== $current && !str_ends_with($current, "\n")) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $text = "\n".$text;
         }
 

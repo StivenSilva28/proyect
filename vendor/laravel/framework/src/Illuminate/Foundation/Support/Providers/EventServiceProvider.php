@@ -16,27 +16,13 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [];
 
     /**
-<<<<<<< HEAD
      * The subscriber classes to register.
-=======
-     * The subscribers to register.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @var array
      */
     protected $subscribe = [];
 
     /**
-<<<<<<< HEAD
-=======
-     * The model observers to register.
-     *
-     * @var array
-     */
-    protected $observers = [];
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Register the application's event listeners.
      *
      * @return void
@@ -47,11 +33,7 @@ class EventServiceProvider extends ServiceProvider
             $events = $this->getEvents();
 
             foreach ($events as $event => $listeners) {
-<<<<<<< HEAD
                 foreach (array_unique($listeners) as $listener) {
-=======
-                foreach (array_unique($listeners, SORT_REGULAR) as $listener) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     Event::listen($event, $listener);
                 }
             }
@@ -59,13 +41,6 @@ class EventServiceProvider extends ServiceProvider
             foreach ($this->subscribe as $subscriber) {
                 Event::subscribe($subscriber);
             }
-<<<<<<< HEAD
-=======
-
-            foreach ($this->observers as $model => $observers) {
-                $model::observe($observers);
-            }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 

@@ -20,7 +20,6 @@ final class BigRational extends BigNumber
 {
     /**
      * The numerator.
-<<<<<<< HEAD
      *
      * @var BigInteger
      */
@@ -32,15 +31,6 @@ final class BigRational extends BigNumber
      * @var BigInteger
      */
     private $denominator;
-=======
-     */
-    private BigInteger $numerator;
-
-    /**
-     * The denominator. Always strictly positive.
-     */
-    private BigInteger $denominator;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Protected constructor. Use a factory method to obtain an instance.
@@ -443,12 +433,7 @@ final class BigRational extends BigNumber
      */
     public function toFloat() : float
     {
-<<<<<<< HEAD
         return $this->numerator->toFloat() / $this->denominator->toFloat();
-=======
-        $simplified = $this->simplified();
-        return $simplified->numerator->toFloat() / $simplified->denominator->toFloat();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

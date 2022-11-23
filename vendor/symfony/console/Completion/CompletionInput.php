@@ -84,11 +84,7 @@ final class CompletionInput extends ArgvInput
                 return;
             }
 
-<<<<<<< HEAD
             if (null !== $option && $option->acceptValue()) {
-=======
-            if ($option?->acceptValue()) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $this->completionType = self::TYPE_OPTION_VALUE;
                 $this->completionName = $option->getName();
                 $this->completionValue = $optionValue ?: (!str_starts_with($optionToken, '--') ? substr($optionToken, 2) : '');
@@ -101,11 +97,7 @@ final class CompletionInput extends ArgvInput
         if ('-' === $previousToken[0] && '' !== trim($previousToken, '-')) {
             // check if previous option accepted a value
             $previousOption = $this->getOptionFromToken($previousToken);
-<<<<<<< HEAD
             if (null !== $previousOption && $previousOption->acceptValue()) {
-=======
-            if ($previousOption?->acceptValue()) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $this->completionType = self::TYPE_OPTION_VALUE;
                 $this->completionName = $previousOption->getName();
                 $this->completionValue = $relevantToken;
@@ -191,11 +183,7 @@ final class CompletionInput extends ArgvInput
     {
         try {
             return parent::parseToken($token, $parseOptions);
-<<<<<<< HEAD
         } catch (RuntimeException $e) {
-=======
-        } catch (RuntimeException) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             // suppress errors, completed input is almost never valid
         }
 

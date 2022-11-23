@@ -14,11 +14,7 @@ class WorkerOptions
     /**
      * The number of seconds to wait before retrying a job that encountered an uncaught exception.
      *
-<<<<<<< HEAD
      * @var int
-=======
-     * @var int|int[]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public $backoff;
 
@@ -51,11 +47,7 @@ class WorkerOptions
     public $rest;
 
     /**
-<<<<<<< HEAD
      * The maximum amount of times a job may be attempted.
-=======
-     * The maximum number of times a job may be attempted.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @var int
      */
@@ -93,11 +85,7 @@ class WorkerOptions
      * Create a new worker options instance.
      *
      * @param  string  $name
-<<<<<<< HEAD
      * @param  int  $backoff
-=======
-     * @param  int|int[]  $backoff
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  int  $memory
      * @param  int  $timeout
      * @param  int  $sleep

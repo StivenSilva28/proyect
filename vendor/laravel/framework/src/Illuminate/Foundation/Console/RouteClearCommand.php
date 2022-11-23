@@ -4,13 +4,7 @@ namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-<<<<<<< HEAD
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-
-#[AsCommand(name: 'route:clear')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class RouteClearCommand extends Command
 {
     /**
@@ -21,20 +15,6 @@ class RouteClearCommand extends Command
     protected $name = 'route:clear';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'route:clear';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -70,10 +50,6 @@ class RouteClearCommand extends Command
     {
         $this->files->delete($this->laravel->getCachedRoutesPath());
 
-<<<<<<< HEAD
         $this->info('Route cache cleared!');
-=======
-        $this->components->info('Route cache cleared successfully.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

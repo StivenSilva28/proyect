@@ -25,20 +25,12 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
     /**
      * @var \SessionHandlerInterface&\SessionUpdateTimestampHandlerInterface
      */
-<<<<<<< HEAD
     private $currentHandler;
-=======
-    private \SessionHandlerInterface $currentHandler;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var \SessionHandlerInterface&\SessionUpdateTimestampHandlerInterface
      */
-<<<<<<< HEAD
     private $writeOnlyHandler;
-=======
-    private \SessionHandlerInterface $writeOnlyHandler;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(\SessionHandlerInterface $currentHandler, \SessionHandlerInterface $writeOnlyHandler)
     {
@@ -53,15 +45,11 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         $this->writeOnlyHandler = $writeOnlyHandler;
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function close()
-=======
-    public function close(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $result = $this->currentHandler->close();
         $this->writeOnlyHandler->close();
@@ -69,15 +57,11 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         return $result;
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function destroy($sessionId)
-=======
-    public function destroy(string $sessionId): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $result = $this->currentHandler->destroy($sessionId);
         $this->writeOnlyHandler->destroy($sessionId);
@@ -85,15 +69,11 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         return $result;
     }
 
-<<<<<<< HEAD
     /**
      * @return int|false
      */
     #[\ReturnTypeWillChange]
     public function gc($maxlifetime)
-=======
-    public function gc(int $maxlifetime): int|false
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $result = $this->currentHandler->gc($maxlifetime);
         $this->writeOnlyHandler->gc($maxlifetime);
@@ -101,15 +81,11 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         return $result;
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function open($savePath, $sessionName)
-=======
-    public function open(string $savePath, string $sessionName): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $result = $this->currentHandler->open($savePath, $sessionName);
         $this->writeOnlyHandler->open($savePath, $sessionName);
@@ -117,29 +93,21 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         return $result;
     }
 
-<<<<<<< HEAD
     /**
      * @return string
      */
     #[\ReturnTypeWillChange]
     public function read($sessionId)
-=======
-    public function read(string $sessionId): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // No reading from new handler until switch-over
         return $this->currentHandler->read($sessionId);
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function write($sessionId, $sessionData)
-=======
-    public function write(string $sessionId, string $sessionData): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $result = $this->currentHandler->write($sessionId, $sessionData);
         $this->writeOnlyHandler->write($sessionId, $sessionData);
@@ -147,29 +115,21 @@ class MigratingSessionHandler implements \SessionHandlerInterface, \SessionUpdat
         return $result;
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function validateId($sessionId)
-=======
-    public function validateId(string $sessionId): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // No reading from new handler until switch-over
         return $this->currentHandler->validateId($sessionId);
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function updateTimestamp($sessionId, $sessionData)
-=======
-    public function updateTimestamp(string $sessionId, string $sessionData): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $result = $this->currentHandler->updateTimestamp($sessionId, $sessionData);
         $this->writeOnlyHandler->updateTimestamp($sessionId, $sessionData);

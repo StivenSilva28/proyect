@@ -28,11 +28,7 @@ class ViewException extends ErrorException
      * Render the exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-<<<<<<< HEAD
      * @return \Illuminate\Http\Response
-=======
-     * @return \Illuminate\Http\Response|null
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function render($request)
     {

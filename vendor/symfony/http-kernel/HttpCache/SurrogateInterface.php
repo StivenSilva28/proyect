@@ -18,7 +18,6 @@ interface SurrogateInterface
 {
     /**
      * Returns surrogate name.
-<<<<<<< HEAD
      *
      * @return string
      */
@@ -37,20 +36,6 @@ interface SurrogateInterface
      * @return bool
      */
     public function hasSurrogateCapability(Request $request);
-=======
-     */
-    public function getName(): string;
-
-    /**
-     * Returns a new cache strategy instance.
-     */
-    public function createCacheStrategy(): ResponseCacheStrategyInterface;
-
-    /**
-     * Checks that at least one surrogate has Surrogate capability.
-     */
-    public function hasSurrogateCapability(Request $request): bool;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Adds Surrogate-capability to the given Request.
@@ -66,22 +51,16 @@ interface SurrogateInterface
 
     /**
      * Checks that the Response needs to be parsed for Surrogate tags.
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function needsParsing(Response $response);
-=======
-     */
-    public function needsParsing(Response $response): bool;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Renders a Surrogate tag.
      *
      * @param string $alt     An alternate URI
      * @param string $comment A comment to add as an esi:include tag
-<<<<<<< HEAD
      *
      * @return string
      */
@@ -93,32 +72,16 @@ interface SurrogateInterface
      * @return Response
      */
     public function process(Request $request, Response $response);
-=======
-     */
-    public function renderIncludeTag(string $uri, string $alt = null, bool $ignoreErrors = true, string $comment = ''): string;
-
-    /**
-     * Replaces a Response Surrogate tags with the included resource content.
-     */
-    public function process(Request $request, Response $response): Response;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Handles a Surrogate from the cache.
      *
      * @param string $alt An alternative URI
      *
-<<<<<<< HEAD
      * @return string
      *
      * @throws \RuntimeException
      * @throws \Exception
      */
     public function handle(HttpCache $cache, string $uri, string $alt, bool $ignoreErrors);
-=======
-     * @throws \RuntimeException
-     * @throws \Exception
-     */
-    public function handle(HttpCache $cache, string $uri, string $alt, bool $ignoreErrors): string;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

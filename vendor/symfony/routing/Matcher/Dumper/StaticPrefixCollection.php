@@ -23,38 +23,22 @@ use Symfony\Component\Routing\RouteCollection;
  */
 class StaticPrefixCollection
 {
-<<<<<<< HEAD
     private $prefix;
-=======
-    private string $prefix;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var string[]
      */
-<<<<<<< HEAD
     private $staticPrefixes = [];
-=======
-    private array $staticPrefixes = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var string[]
      */
-<<<<<<< HEAD
     private $prefixes = [];
-=======
-    private array $prefixes = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var array[]|self[]
      */
-<<<<<<< HEAD
     private $items = [];
-=======
-    private array $items = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(string $prefix = '/')
     {
@@ -76,15 +60,10 @@ class StaticPrefixCollection
 
     /**
      * Adds a route to a group.
-<<<<<<< HEAD
      *
      * @param array|self $route
      */
     public function addRoute(string $prefix, $route)
-=======
-     */
-    public function addRoute(string $prefix, array|StaticPrefixCollection $route)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         [$prefix, $staticPrefix] = $this->getCommonPrefix($prefix, $prefix);
 
@@ -175,11 +154,7 @@ class StaticPrefixCollection
         try {
             for ($i = $baseLength; $i < $end && $prefix[$i] === $anotherPrefix[$i]; ++$i) {
                 if ('(' === $prefix[$i]) {
-<<<<<<< HEAD
                     $staticLength = $staticLength ?? $i;
-=======
-                    $staticLength ??= $i;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     for ($j = 1 + $i, $n = 1; $j < $end && 0 < $n; ++$j) {
                         if ($prefix[$j] !== $anotherPrefix[$j]) {
                             break 2;

@@ -31,7 +31,6 @@ class ProgressIndicator
         'very_verbose_no_ansi' => ' %message% (%elapsed:6s%, %memory:6s%)',
     ];
 
-<<<<<<< HEAD
     private $output;
     private $startTime;
     private $format;
@@ -41,26 +40,11 @@ class ProgressIndicator
     private $indicatorChangeInterval;
     private $indicatorUpdateTime;
     private $started = false;
-=======
-    private OutputInterface $output;
-    private int $startTime;
-    private ?string $format = null;
-    private ?string $message = null;
-    private array $indicatorValues;
-    private int $indicatorCurrent;
-    private int $indicatorChangeInterval;
-    private float $indicatorUpdateTime;
-    private bool $started = false;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var array<string, callable>
      */
-<<<<<<< HEAD
     private static $formatters;
-=======
-    private static array $formatters;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param int        $indicatorChangeInterval Change interval in milliseconds
@@ -162,15 +146,10 @@ class ProgressIndicator
 
     /**
      * Gets the format for a given name.
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public static function getFormatDefinition(string $name)
-=======
-     */
-    public static function getFormatDefinition(string $name): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return self::FORMATS[$name] ?? null;
     }
@@ -182,20 +161,15 @@ class ProgressIndicator
      */
     public static function setPlaceholderFormatterDefinition(string $name, callable $callable)
     {
-<<<<<<< HEAD
         if (!self::$formatters) {
             self::$formatters = self::initPlaceholderFormatters();
         }
-=======
-        self::$formatters ??= self::initPlaceholderFormatters();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         self::$formatters[$name] = $callable;
     }
 
     /**
      * Gets the placeholder formatter for a given name (including the delimiter char like %).
-<<<<<<< HEAD
      *
      * @return callable|null
      */
@@ -204,12 +178,6 @@ class ProgressIndicator
         if (!self::$formatters) {
             self::$formatters = self::initPlaceholderFormatters();
         }
-=======
-     */
-    public static function getPlaceholderFormatterDefinition(string $name): ?callable
-    {
-        self::$formatters ??= self::initPlaceholderFormatters();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return self::$formatters[$name] ?? null;
     }
@@ -231,7 +199,6 @@ class ProgressIndicator
 
     private function determineBestFormat(): string
     {
-<<<<<<< HEAD
         switch ($this->output->getVerbosity()) {
             // OutputInterface::VERBOSITY_QUIET: display is disabled anyway
             case OutputInterface::VERBOSITY_VERBOSE:
@@ -242,15 +209,6 @@ class ProgressIndicator
             default:
                 return $this->output->isDecorated() ? 'normal' : 'normal_no_ansi';
         }
-=======
-        return match ($this->output->getVerbosity()) {
-            // OutputInterface::VERBOSITY_QUIET: display is disabled anyway
-            OutputInterface::VERBOSITY_VERBOSE => $this->output->isDecorated() ? 'verbose' : 'verbose_no_ansi',
-            OutputInterface::VERBOSITY_VERY_VERBOSE,
-            OutputInterface::VERBOSITY_DEBUG => $this->output->isDecorated() ? 'very_verbose' : 'very_verbose_no_ansi',
-            default => $this->output->isDecorated() ? 'normal' : 'normal_no_ansi',
-        };
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -271,12 +229,6 @@ class ProgressIndicator
         return round(microtime(true) * 1000);
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * @return array<string, \Closure>
-     */
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     private static function initPlaceholderFormatters(): array
     {
         return [

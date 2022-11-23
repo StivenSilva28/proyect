@@ -27,7 +27,6 @@ use Symfony\Component\HttpKernel\KernelEvents;
  *
  * @final
  *
-<<<<<<< HEAD
  * @internal since Symfony 5.3
  */
 class DebugHandlersListener implements EventSubscriberInterface
@@ -42,22 +41,6 @@ class DebugHandlersListener implements EventSubscriberInterface
     private $scope;
     private $firstCall = true;
     private $hasTerminatedWithException;
-=======
- * @internal
- */
-class DebugHandlersListener implements EventSubscriberInterface
-{
-    private string|object|null $earlyHandler;
-    private ?\Closure $exceptionHandler;
-    private ?LoggerInterface $logger;
-    private ?LoggerInterface $deprecationLogger;
-    private array|int|null $levels;
-    private ?int $throwAt;
-    private bool $scream;
-    private bool $scope;
-    private bool $firstCall = true;
-    private bool $hasTerminatedWithException = false;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param callable|null  $exceptionHandler A handler that must support \Throwable instances that will be called on Exception
@@ -66,7 +49,6 @@ class DebugHandlersListener implements EventSubscriberInterface
      * @param bool           $scream           Enables/disables screaming mode, where even silenced errors are logged
      * @param bool           $scope            Enables/disables scoping mode
      */
-<<<<<<< HEAD
     public function __construct(callable $exceptionHandler = null, LoggerInterface $logger = null, $levels = \E_ALL, ?int $throwAt = \E_ALL, bool $scream = true, $scope = true, $deprecationLogger = null, $fileLinkFormat = null)
     {
         if (!\is_bool($scope)) {
@@ -75,19 +57,11 @@ class DebugHandlersListener implements EventSubscriberInterface
             $deprecationLogger = $fileLinkFormat;
         }
 
-=======
-    public function __construct(callable $exceptionHandler = null, LoggerInterface $logger = null, array|int|null $levels = \E_ALL, ?int $throwAt = \E_ALL, bool $scream = true, bool $scope = true, LoggerInterface $deprecationLogger = null)
-    {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $handler = set_exception_handler('is_int');
         $this->earlyHandler = \is_array($handler) ? $handler[0] : null;
         restore_exception_handler();
 
-<<<<<<< HEAD
         $this->exceptionHandler = $exceptionHandler;
-=======
-        $this->exceptionHandler = null === $exceptionHandler ? null : $exceptionHandler(...);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->logger = $logger;
         $this->levels = $levels ?? \E_ALL;
         $this->throwAt = \is_int($throwAt) ? $throwAt : (null === $throwAt ? null : ($throwAt ? \E_ALL : null));

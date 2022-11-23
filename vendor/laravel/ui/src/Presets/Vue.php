@@ -16,11 +16,7 @@ class Vue extends Preset
     {
         static::ensureComponentDirectoryExists();
         static::updatePackages();
-<<<<<<< HEAD
         static::updateWebpackConfiguration();
-=======
-        static::updateViteConfiguration();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         static::updateBootstrapping();
         static::updateComponent();
         static::removeNodeModules();
@@ -35,7 +31,6 @@ class Vue extends Preset
     protected static function updatePackageArray(array $packages)
     {
         return [
-<<<<<<< HEAD
             'resolve-url-loader' => '^3.1.2',
             'sass' => '^1.32.11',
             'sass-loader' => '^11.0.1',
@@ -43,19 +38,12 @@ class Vue extends Preset
             'vue-template-compiler' => '^2.6.12',
         ] + Arr::except($packages, [
             '@babel/preset-react',
-=======
-            '@vitejs/plugin-vue' => '^3.0.1',
-            'vue' => '^3.2.37',
-        ] + Arr::except($packages, [
-            '@vitejs/plugin-react',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             'react',
             'react-dom',
         ]);
     }
 
     /**
-<<<<<<< HEAD
      * Update the Webpack configuration.
      *
      * @return void
@@ -63,15 +51,6 @@ class Vue extends Preset
     protected static function updateWebpackConfiguration()
     {
         copy(__DIR__.'/vue-stubs/webpack.mix.js', base_path('webpack.mix.js'));
-=======
-     * Update the Vite configuration.
-     *
-     * @return void
-     */
-    protected static function updateViteConfiguration()
-    {
-        copy(__DIR__.'/vue-stubs/vite.config.js', base_path('vite.config.js'));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

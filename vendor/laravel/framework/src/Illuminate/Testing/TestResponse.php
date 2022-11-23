@@ -4,15 +4,8 @@ namespace Illuminate\Testing;
 
 use ArrayAccess;
 use Closure;
-<<<<<<< HEAD
 use Illuminate\Contracts\View\View;
 use Illuminate\Cookie\CookieValuePrefix;
-=======
-use Illuminate\Contracts\Support\MessageBag;
-use Illuminate\Contracts\View\View;
-use Illuminate\Cookie\CookieValuePrefix;
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -22,20 +15,10 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Traits\Tappable;
-<<<<<<< HEAD
-=======
-use Illuminate\Support\ViewErrorBag;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Testing\Assert as PHPUnit;
 use Illuminate\Testing\Constraints\SeeInOrder;
 use Illuminate\Testing\Fluent\AssertableJson;
 use LogicException;
-<<<<<<< HEAD
-=======
-use PHPUnit\Framework\ExpectationFailedException;
-use ReflectionProperty;
-use Symfony\Component\HttpFoundation\Cookie;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
@@ -59,11 +42,7 @@ class TestResponse implements ArrayAccess
      *
      * @var \Illuminate\Support\Collection
      */
-<<<<<<< HEAD
     protected $exceptions;
-=======
-    public $exceptions;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * The streamed content of the response.
@@ -186,24 +165,6 @@ class TestResponse implements ArrayAccess
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Assert that the response is a server error.
-     *
-     * @return $this
-     */
-    public function assertServerError()
-    {
-        PHPUnit::assertTrue(
-            $this->isServerError(),
-            $this->statusMessageWithDetails('>=500, < 600', $this->getStatusCode())
-        );
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Assert that the response has the given status code.
      *
      * @param  int  $status
@@ -227,7 +188,6 @@ class TestResponse implements ArrayAccess
      */
     protected function statusMessageWithDetails($expected, $actual)
     {
-<<<<<<< HEAD
         $lastException = $this->exceptions->last();
 
         if ($lastException) {
@@ -250,13 +210,10 @@ class TestResponse implements ArrayAccess
             }
         }
 
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return "Expected response status code [{$expected}] but received {$actual}.";
     }
 
     /**
-<<<<<<< HEAD
      * Get an assertion message for a status assertion that has an unexpected exception.
      *
      * @param  string|int  $expected
@@ -302,8 +259,6 @@ EOF;
     }
 
     /**
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Assert whether the response is redirecting to a given URI.
      *
      * @param  string|null  $uri
@@ -344,36 +299,6 @@ EOF;
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Assert whether the response is redirecting to a given route.
-     *
-     * @param  string|null  $name
-     * @param  mixed  $parameters
-     * @return $this
-     */
-    public function assertRedirectToRoute($name = null, $parameters = [])
-    {
-        if (! is_null($name)) {
-            $uri = route($name, $parameters);
-        }
-
-        PHPUnit::assertTrue(
-            $this->isRedirect(),
-            $this->statusMessageWithDetails('201, 301, 302, 303, 307, 308', $this->getStatusCode()),
-        );
-
-        $request = Request::create($this->headers->get('Location'));
-
-        PHPUnit::assertEquals(
-            app('url')->to($uri), $request->fullUrl()
-        );
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Assert whether the response is redirecting to a given signed route.
      *
      * @param  string|null  $name
@@ -540,11 +465,7 @@ EOF;
     public function assertCookie($cookieName, $value = null, $encrypted = true, $unserialize = false)
     {
         PHPUnit::assertNotNull(
-<<<<<<< HEAD
             $cookie = $this->getCookie($cookieName),
-=======
-            $cookie = $this->getCookie($cookieName, $encrypted && ! is_null($value), $unserialize),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             "Cookie [{$cookieName}] not present on response."
         );
 
@@ -554,7 +475,6 @@ EOF;
 
         $cookieValue = $cookie->getValue();
 
-<<<<<<< HEAD
         $actual = $encrypted
             ? CookieValuePrefix::remove(app('encrypter')->decrypt($cookieValue, $unserialize))
             : $cookieValue;
@@ -562,11 +482,6 @@ EOF;
         PHPUnit::assertEquals(
             $value, $actual,
             "Cookie [{$cookieName}] was found, but value [{$actual}] does not match [{$value}]."
-=======
-        PHPUnit::assertEquals(
-            $value, $cookieValue,
-            "Cookie [{$cookieName}] was found, but value [{$cookieValue}] does not match [{$value}]."
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         );
 
         return $this;
@@ -581,22 +496,14 @@ EOF;
     public function assertCookieExpired($cookieName)
     {
         PHPUnit::assertNotNull(
-<<<<<<< HEAD
             $cookie = $this->getCookie($cookieName),
-=======
-            $cookie = $this->getCookie($cookieName, false),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             "Cookie [{$cookieName}] not present on response."
         );
 
         $expiresAt = Carbon::createFromTimestamp($cookie->getExpiresTime());
 
         PHPUnit::assertTrue(
-<<<<<<< HEAD
             0 !== $cookie->getExpiresTime() && $expiresAt->lessThan(Carbon::now()),
-=======
-            $cookie->getExpiresTime() !== 0 && $expiresAt->lessThan(Carbon::now()),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             "Cookie [{$cookieName}] is not expired, it expires at [{$expiresAt}]."
         );
 
@@ -612,22 +519,14 @@ EOF;
     public function assertCookieNotExpired($cookieName)
     {
         PHPUnit::assertNotNull(
-<<<<<<< HEAD
             $cookie = $this->getCookie($cookieName),
-=======
-            $cookie = $this->getCookie($cookieName, false),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             "Cookie [{$cookieName}] not present on response."
         );
 
         $expiresAt = Carbon::createFromTimestamp($cookie->getExpiresTime());
 
         PHPUnit::assertTrue(
-<<<<<<< HEAD
             0 === $cookie->getExpiresTime() || $expiresAt->greaterThan(Carbon::now()),
-=======
-            $cookie->getExpiresTime() === 0 || $expiresAt->greaterThan(Carbon::now()),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             "Cookie [{$cookieName}] is expired, it expired at [{$expiresAt}]."
         );
 
@@ -643,11 +542,7 @@ EOF;
     public function assertCookieMissing($cookieName)
     {
         PHPUnit::assertNull(
-<<<<<<< HEAD
             $this->getCookie($cookieName),
-=======
-            $this->getCookie($cookieName, false),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             "Cookie [{$cookieName}] is present on response."
         );
 
@@ -658,7 +553,6 @@ EOF;
      * Get the given cookie from the response.
      *
      * @param  string  $cookieName
-<<<<<<< HEAD
      * @return \Symfony\Component\HttpFoundation\Cookie|null
      */
     public function getCookie($cookieName)
@@ -666,56 +560,11 @@ EOF;
         foreach ($this->headers->getCookies() as $cookie) {
             if ($cookie->getName() === $cookieName) {
                 return $cookie;
-=======
-     * @param  bool  $decrypt
-     * @param  bool  $unserialize
-     * @return \Symfony\Component\HttpFoundation\Cookie|null
-     */
-    public function getCookie($cookieName, $decrypt = true, $unserialize = false)
-    {
-        foreach ($this->headers->getCookies() as $cookie) {
-            if ($cookie->getName() === $cookieName) {
-                if (! $decrypt) {
-                    return $cookie;
-                }
-
-                $decryptedValue = CookieValuePrefix::remove(
-                    app('encrypter')->decrypt($cookie->getValue(), $unserialize)
-                );
-
-                return new Cookie(
-                    $cookie->getName(),
-                    $decryptedValue,
-                    $cookie->getExpiresTime(),
-                    $cookie->getPath(),
-                    $cookie->getDomain(),
-                    $cookie->isSecure(),
-                    $cookie->isHttpOnly(),
-                    $cookie->isRaw(),
-                    $cookie->getSameSite()
-                );
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Assert that the given string matches the response content.
-     *
-     * @param  string  $value
-     * @return $this
-     */
-    public function assertContent($value)
-    {
-        PHPUnit::assertSame($value, $this->content());
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Assert that the given string or array of strings are contained within the response.
      *
      * @param  string|array  $value
@@ -938,22 +787,6 @@ EOF;
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Assert that the response does not contain the given path.
-     *
-     * @param  string  $path
-     * @return $this
-     */
-    public function assertJsonMissingPath(string $path)
-    {
-        $this->decodeResponseJson()->assertMissingPath($path);
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Assert that the response has a given JSON structure.
      *
      * @param  array|null  $structure
@@ -1135,20 +968,6 @@ EOF;
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Get the JSON decoded body of the response as a collection.
-     *
-     * @param  string|null  $key
-     * @return \Illuminate\Support\Collection
-     */
-    public function collect($key = null)
-    {
-        return Collection::make($this->json($key));
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Assert that the response view equals the given value.
      *
      * @param  string  $value
@@ -1184,16 +1003,6 @@ EOF;
             PHPUnit::assertTrue($value(Arr::get($this->original->gatherData(), $key)));
         } elseif ($value instanceof Model) {
             PHPUnit::assertTrue($value->is(Arr::get($this->original->gatherData(), $key)));
-<<<<<<< HEAD
-=======
-        } elseif ($value instanceof EloquentCollection) {
-            $actual = Arr::get($this->original->gatherData(), $key);
-
-            PHPUnit::assertInstanceOf(EloquentCollection::class, $actual);
-            PHPUnit::assertSameSize($value, $actual);
-
-            $value->each(fn ($item, $index) => PHPUnit::assertTrue($actual->get($index)->is($item)));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         } else {
             PHPUnit::assertEquals($value, Arr::get($this->original->gatherData(), $key));
         }
@@ -1333,11 +1142,8 @@ EOF;
 
         $this->assertSessionHas('errors');
 
-<<<<<<< HEAD
         $keys = (array) $errors;
 
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $sessionErrors = $this->session()->get('errors')->getBag($errorBag)->getMessages();
 
         $errorMessage = $sessionErrors
@@ -1526,33 +1332,12 @@ EOF;
     {
         $hasErrors = $this->session()->has('errors');
 
-<<<<<<< HEAD
         $errors = $hasErrors ? $this->session()->get('errors')->all() : [];
 
         PHPUnit::assertFalse(
             $hasErrors,
             'Session has unexpected errors: '.PHP_EOL.PHP_EOL.
             json_encode($errors, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
-=======
-        PHPUnit::assertFalse(
-            $hasErrors,
-            'Session has unexpected errors: '.PHP_EOL.PHP_EOL.
-            json_encode((function () use ($hasErrors) {
-                $errors = [];
-
-                $sessionErrors = $this->session()->get('errors');
-
-                if ($hasErrors && is_a($sessionErrors, ViewErrorBag::class)) {
-                    foreach ($sessionErrors->getBags() as $bag => $messages) {
-                        if (is_a($messages, MessageBag::class)) {
-                            $errors[$bag] = $messages->all();
-                        }
-                    }
-                }
-
-                return $errors;
-            })(), JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         );
 
         return $this;
@@ -1600,17 +1385,7 @@ EOF;
      */
     protected function session()
     {
-<<<<<<< HEAD
         return app('session.store');
-=======
-        $session = app('session.store');
-
-        if (! $session->isStarted()) {
-            $session->start();
-        }
-
-        return $session;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -1653,16 +1428,9 @@ EOF;
     /**
      * Dump the content from the response.
      *
-<<<<<<< HEAD
      * @return $this
      */
     public function dump()
-=======
-     * @param  string|null  $key
-     * @return $this
-     */
-    public function dump($key = null)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $content = $this->getContent();
 
@@ -1672,15 +1440,7 @@ EOF;
             $content = $json;
         }
 
-<<<<<<< HEAD
         dump($content);
-=======
-        if (! is_null($key)) {
-            dump(data_get($content, $key));
-        } else {
-            dump($content);
-        }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this;
     }
@@ -1758,119 +1518,6 @@ EOF;
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * This method is called when test method did not execute successfully.
-     *
-     * @param  \Throwable  $exception
-     * @return \Throwable
-     */
-    public function transformNotSuccessfulException($exception)
-    {
-        if (! $exception instanceof ExpectationFailedException) {
-            return $exception;
-        }
-
-        if ($lastException = $this->exceptions->last()) {
-            return $this->appendExceptionToException($lastException, $exception);
-        }
-
-        if ($this->baseResponse instanceof RedirectResponse) {
-            $session = $this->baseResponse->getSession();
-
-            if (! is_null($session) && $session->has('errors')) {
-                return $this->appendErrorsToException($session->get('errors')->all(), $exception);
-            }
-        }
-
-        if ($this->baseResponse->headers->get('Content-Type') === 'application/json') {
-            $testJson = new AssertableJsonString($this->getContent());
-
-            if (isset($testJson['errors'])) {
-                return $this->appendErrorsToException($testJson->json(), $exception, true);
-            }
-        }
-
-        return $exception;
-    }
-
-    /**
-     * Append an exception to the message of another exception.
-     *
-     * @param  \Throwable  $exceptionToAppend
-     * @param  \Throwable  $exception
-     * @return \Throwable
-     */
-    protected function appendExceptionToException($exceptionToAppend, $exception)
-    {
-        $exceptionMessage = $exceptionToAppend->getMessage();
-
-        $exceptionToAppend = (string) $exceptionToAppend;
-
-        $message = <<<"EOF"
-            The following exception occurred during the last request:
-
-            $exceptionToAppend
-
-            ----------------------------------------------------------------------------------
-
-            $exceptionMessage
-            EOF;
-
-        return $this->appendMessageToException($message, $exception);
-    }
-
-    /**
-     * Append errors to an exception message.
-     *
-     * @param  array  $errors
-     * @param  \Throwable  $exception
-     * @param  bool  $json
-     * @return \Throwable
-     */
-    protected function appendErrorsToException($errors, $exception, $json = false)
-    {
-        $errors = $json
-            ? json_encode($errors, JSON_PRETTY_PRINT)
-            : implode(PHP_EOL, Arr::flatten($errors));
-
-        // JSON error messages may already contain the errors, so we shouldn't duplicate them...
-        if (str_contains($exception->getMessage(), $errors)) {
-            return $exception;
-        }
-
-        $message = <<<"EOF"
-            The following errors occurred during the last request:
-
-            $errors
-            EOF;
-
-        return $this->appendMessageToException($message, $exception);
-    }
-
-    /**
-     * Append a message to an exception.
-     *
-     * @param  string  $message
-     * @param  \Throwable  $exception
-     * @return \Throwable
-     */
-    protected function appendMessageToException($message, $exception)
-    {
-        $property = new ReflectionProperty($exception, 'message');
-
-        $property->setAccessible(true);
-
-        $property->setValue(
-            $exception,
-            $exception->getMessage().PHP_EOL.PHP_EOL.$message.PHP_EOL
-        );
-
-        return $exception;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Dynamically access base response parameters.
      *
      * @param  string  $key
@@ -1898,12 +1545,8 @@ EOF;
      * @param  string  $offset
      * @return bool
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetExists($offset)
-=======
-    public function offsetExists($offset): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->responseHasView()
                     ? isset($this->original->gatherData()[$offset])
@@ -1916,12 +1559,8 @@ EOF;
      * @param  string  $offset
      * @return mixed
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
-=======
-    public function offsetGet($offset): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->responseHasView()
                     ? $this->viewData($offset)
@@ -1937,12 +1576,8 @@ EOF;
      *
      * @throws \LogicException
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
-=======
-    public function offsetSet($offset, $value): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         throw new LogicException('Response data may not be mutated using array access.');
     }
@@ -1955,12 +1590,8 @@ EOF;
      *
      * @throws \LogicException
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
-=======
-    public function offsetUnset($offset): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         throw new LogicException('Response data may not be mutated using array access.');
     }

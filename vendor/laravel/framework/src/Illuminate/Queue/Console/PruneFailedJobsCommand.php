@@ -2,19 +2,10 @@
 
 namespace Illuminate\Queue\Console;
 
-<<<<<<< HEAD
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Queue\Failed\PrunableFailedJobProvider;
 
-=======
-use Illuminate\Console\Command;
-use Illuminate\Queue\Failed\PrunableFailedJobProvider;
-use Illuminate\Support\Carbon;
-use Symfony\Component\Console\Attribute\AsCommand;
-
-#[AsCommand(name: 'queue:prune-failed')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class PruneFailedJobsCommand extends Command
 {
     /**
@@ -26,20 +17,6 @@ class PruneFailedJobsCommand extends Command
                 {--hours=24 : The number of hours to retain failed jobs data}';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'queue:prune-failed';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -55,27 +32,16 @@ class PruneFailedJobsCommand extends Command
     {
         $failer = $this->laravel['queue.failer'];
 
-<<<<<<< HEAD
         $count = 0;
 
         if ($failer instanceof PrunableFailedJobProvider) {
             $count = $failer->prune(Carbon::now()->subHours($this->option('hours')));
         } else {
             $this->error('The ['.class_basename($failer).'] failed job storage driver does not support pruning.');
-=======
-        if ($failer instanceof PrunableFailedJobProvider) {
-            $count = $failer->prune(Carbon::now()->subHours($this->option('hours')));
-        } else {
-            $this->components->error('The ['.class_basename($failer).'] failed job storage driver does not support pruning.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             return 1;
         }
 
-<<<<<<< HEAD
         $this->info("{$count} entries deleted!");
-=======
-        $this->components->info("{$count} entries deleted.");
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

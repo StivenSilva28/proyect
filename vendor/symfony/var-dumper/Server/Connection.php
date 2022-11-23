@@ -21,13 +21,8 @@ use Symfony\Component\VarDumper\Dumper\ContextProvider\ContextProviderInterface;
  */
 class Connection
 {
-<<<<<<< HEAD
     private $host;
     private $contextProviders;
-=======
-    private string $host;
-    private array $contextProviders;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var resource|null

@@ -3,14 +3,7 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\GeneratorCommand;
-<<<<<<< HEAD
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Input\InputOption;
-
-#[AsCommand(name: 'make:provider')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ProviderMakeCommand extends GeneratorCommand
 {
     /**
@@ -21,20 +14,6 @@ class ProviderMakeCommand extends GeneratorCommand
     protected $name = 'make:provider';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'make:provider';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -81,19 +60,4 @@ class ProviderMakeCommand extends GeneratorCommand
     {
         return $rootNamespace.'\Providers';
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the provider already exists'],
-        ];
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

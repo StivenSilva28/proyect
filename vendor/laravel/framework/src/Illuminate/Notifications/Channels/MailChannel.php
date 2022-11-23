@@ -9,11 +9,6 @@ use Illuminate\Mail\Markdown;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-<<<<<<< HEAD
-=======
-use Symfony\Component\Mailer\Header\MetadataHeader;
-use Symfony\Component\Mailer\Header\TagHeader;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class MailChannel
 {
@@ -146,23 +141,7 @@ class MailChannel
         $this->addAttachments($mailMessage, $message);
 
         if (! is_null($message->priority)) {
-<<<<<<< HEAD
             $mailMessage->setPriority($message->priority);
-=======
-            $mailMessage->priority($message->priority);
-        }
-
-        if ($message->tags) {
-            foreach ($message->tags as $tag) {
-                $mailMessage->getHeaders()->add(new TagHeader($tag));
-            }
-        }
-
-        if ($message->metadata) {
-            foreach ($message->metadata as $key => $value) {
-                $mailMessage->getHeaders()->add(new MetadataHeader($key, $value));
-            }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $this->runCallbacks($mailMessage, $message);
@@ -265,11 +244,7 @@ class MailChannel
     protected function runCallbacks($mailMessage, $message)
     {
         foreach ($message->callbacks as $callback) {
-<<<<<<< HEAD
             $callback($mailMessage->getSwiftMessage());
-=======
-            $callback($mailMessage->getSymfonyMessage());
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $this;

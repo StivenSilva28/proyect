@@ -66,12 +66,9 @@ abstract class AbstractCloner implements ClonerInterface
         'DOMAttr' => ['Symfony\Component\VarDumper\Caster\DOMCaster', 'castAttr'],
         'DOMElement' => ['Symfony\Component\VarDumper\Caster\DOMCaster', 'castElement'],
         'DOMText' => ['Symfony\Component\VarDumper\Caster\DOMCaster', 'castText'],
-<<<<<<< HEAD
         'DOMTypeinfo' => ['Symfony\Component\VarDumper\Caster\DOMCaster', 'castTypeinfo'],
         'DOMDomError' => ['Symfony\Component\VarDumper\Caster\DOMCaster', 'castDomError'],
         'DOMLocator' => ['Symfony\Component\VarDumper\Caster\DOMCaster', 'castLocator'],
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         'DOMDocumentType' => ['Symfony\Component\VarDumper\Caster\DOMCaster', 'castDocumentType'],
         'DOMNotation' => ['Symfony\Component\VarDumper\Caster\DOMCaster', 'castNotation'],
         'DOMEntity' => ['Symfony\Component\VarDumper\Caster\DOMCaster', 'castEntity'],
@@ -159,10 +156,7 @@ abstract class AbstractCloner implements ClonerInterface
         'mysqli_driver' => ['Symfony\Component\VarDumper\Caster\MysqliCaster', 'castMysqliDriver'],
 
         'CurlHandle' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castCurl'],
-<<<<<<< HEAD
         ':curl' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castCurl'],
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         ':dba' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castDba'],
         ':dba persistent' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castDba'],
@@ -170,10 +164,7 @@ abstract class AbstractCloner implements ClonerInterface
         'GdImage' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castGd'],
         ':gd' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castGd'],
 
-<<<<<<< HEAD
         ':mysql link' => ['Symfony\Component\VarDumper\Caster\ResourceCaster', 'castMysqlLink'],
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ':pgsql large object' => ['Symfony\Component\VarDumper\Caster\PgSqlCaster', 'castLargeObject'],
         ':pgsql link' => ['Symfony\Component\VarDumper\Caster\PgSqlCaster', 'castLink'],
         ':pgsql link persistent' => ['Symfony\Component\VarDumper\Caster\PgSqlCaster', 'castLink'],
@@ -210,24 +201,15 @@ abstract class AbstractCloner implements ClonerInterface
     /**
      * @var array<string, list<callable>>
      */
-<<<<<<< HEAD
     private $casters = [];
-=======
-    private array $casters = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var callable|null
      */
     private $prevErrorHandler;
 
-<<<<<<< HEAD
     private $classInfo = [];
     private $filter = 0;
-=======
-    private array $classInfo = [];
-    private int $filter = 0;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param callable[]|null $casters A map of casters
@@ -287,18 +269,12 @@ abstract class AbstractCloner implements ClonerInterface
     /**
      * Clones a PHP variable.
      *
-<<<<<<< HEAD
      * @param mixed $var    Any PHP variable
      * @param int   $filter A bit field of Caster::EXCLUDE_* constants
      *
      * @return Data
      */
     public function cloneVar($var, int $filter = 0)
-=======
-     * @param int $filter A bit field of Caster::EXCLUDE_* constants
-     */
-    public function cloneVar(mixed $var, int $filter = 0): Data
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->prevErrorHandler = set_error_handler(function ($type, $msg, $file, $line, $context = []) {
             if (\E_RECOVERABLE_ERROR === $type || \E_USER_ERROR === $type) {
@@ -330,40 +306,26 @@ abstract class AbstractCloner implements ClonerInterface
 
     /**
      * Effectively clones the PHP variable.
-<<<<<<< HEAD
      *
      * @param mixed $var Any PHP variable
      *
      * @return array
      */
     abstract protected function doClone($var);
-=======
-     */
-    abstract protected function doClone(mixed $var): array;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Casts an object to an array representation.
      *
      * @param bool $isNested True if the object is nested in the dumped structure
-<<<<<<< HEAD
      *
      * @return array
      */
     protected function castObject(Stub $stub, bool $isNested)
-=======
-     */
-    protected function castObject(Stub $stub, bool $isNested): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $obj = $stub->value;
         $class = $stub->class;
 
-<<<<<<< HEAD
         if (\PHP_VERSION_ID < 80000 ? "\0" === ($class[15] ?? null) : str_contains($class, "@anonymous\0")) {
-=======
-        if (str_contains($class, "@anonymous\0")) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $stub->class = get_debug_type($obj);
         }
         if (isset($this->classInfo[$class])) {
@@ -414,15 +376,10 @@ abstract class AbstractCloner implements ClonerInterface
      * Casts a resource to an array representation.
      *
      * @param bool $isNested True if the object is nested in the dumped structure
-<<<<<<< HEAD
      *
      * @return array
      */
     protected function castResource(Stub $stub, bool $isNested)
-=======
-     */
-    protected function castResource(Stub $stub, bool $isNested): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $a = [];
         $res = $stub->value;

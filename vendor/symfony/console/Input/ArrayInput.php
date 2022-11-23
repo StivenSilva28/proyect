@@ -25,11 +25,7 @@ use Symfony\Component\Console\Exception\InvalidOptionException;
  */
 class ArrayInput extends Input
 {
-<<<<<<< HEAD
     private $parameters;
-=======
-    private array $parameters;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(array $parameters, InputDefinition $definition = null)
     {
@@ -41,11 +37,7 @@ class ArrayInput extends Input
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getFirstArgument()
-=======
-    public function getFirstArgument(): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         foreach ($this->parameters as $param => $value) {
             if ($param && \is_string($param) && '-' === $param[0]) {
@@ -61,11 +53,7 @@ class ArrayInput extends Input
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function hasParameterOption($values, bool $onlyParams = false)
-=======
-    public function hasParameterOption(string|array $values, bool $onlyParams = false): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $values = (array) $values;
 
@@ -89,11 +77,7 @@ class ArrayInput extends Input
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getParameterOption($values, $default = false, bool $onlyParams = false)
-=======
-    public function getParameterOption(string|array $values, string|bool|int|float|array|null $default = false, bool $onlyParams = false): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $values = (array) $values;
 
@@ -116,15 +100,10 @@ class ArrayInput extends Input
 
     /**
      * Returns a stringified representation of the args passed to the command.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function __toString()
-=======
-     */
-    public function __toString(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $params = [];
         foreach ($this->parameters as $param => $val) {
@@ -138,11 +117,7 @@ class ArrayInput extends Input
                     $params[] = $param.('' != $val ? $glue.$this->escapeToken($val) : '');
                 }
             } else {
-<<<<<<< HEAD
                 $params[] = \is_array($val) ? implode(' ', array_map([$this, 'escapeToken'], $val)) : $this->escapeToken($val);
-=======
-                $params[] = \is_array($val) ? implode(' ', array_map($this->escapeToken(...), $val)) : $this->escapeToken($val);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
 
@@ -173,11 +148,7 @@ class ArrayInput extends Input
      *
      * @throws InvalidOptionException When option given doesn't exist
      */
-<<<<<<< HEAD
     private function addShortOption(string $shortcut, $value)
-=======
-    private function addShortOption(string $shortcut, mixed $value)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->definition->hasShortcut($shortcut)) {
             throw new InvalidOptionException(sprintf('The "-%s" option does not exist.', $shortcut));
@@ -192,11 +163,7 @@ class ArrayInput extends Input
      * @throws InvalidOptionException When option given doesn't exist
      * @throws InvalidOptionException When a required value is missing
      */
-<<<<<<< HEAD
     private function addLongOption(string $name, $value)
-=======
-    private function addLongOption(string $name, mixed $value)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->definition->hasOption($name)) {
             if (!$this->definition->hasNegation($name)) {
@@ -227,18 +194,12 @@ class ArrayInput extends Input
     /**
      * Adds an argument value.
      *
-<<<<<<< HEAD
      * @param string|int $name  The argument name
      * @param mixed      $value The value for the argument
      *
      * @throws InvalidArgumentException When argument given doesn't exist
      */
     private function addArgument($name, $value)
-=======
-     * @throws InvalidArgumentException When argument given doesn't exist
-     */
-    private function addArgument(string|int $name, mixed $value)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->definition->hasArgument($name)) {
             throw new InvalidArgumentException(sprintf('The "%s" argument does not exist.', $name));

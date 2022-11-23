@@ -2,10 +2,6 @@
 
 namespace Illuminate\Console\Scheduling;
 
-<<<<<<< HEAD
-=======
-use Illuminate\Console\Application;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Console\Command;
 use Illuminate\Console\Events\ScheduledTaskFailed;
 use Illuminate\Console\Events\ScheduledTaskFinished;
@@ -13,18 +9,9 @@ use Illuminate\Console\Events\ScheduledTaskSkipped;
 use Illuminate\Console\Events\ScheduledTaskStarting;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Events\Dispatcher;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Date;
 use Throwable;
 
-=======
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Date;
-use Symfony\Component\Console\Attribute\AsCommand;
-use Throwable;
-
-#[AsCommand(name: 'schedule:run')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ScheduleRunCommand extends Command
 {
     /**
@@ -35,20 +22,6 @@ class ScheduleRunCommand extends Command
     protected $name = 'schedule:run';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'schedule:run';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -91,16 +64,6 @@ class ScheduleRunCommand extends Command
     protected $handler;
 
     /**
-<<<<<<< HEAD
-=======
-     * The PHP binary used by the command.
-     *
-     * @var string
-     */
-    protected $phpBinary;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new command instance.
      *
      * @return void
@@ -125,12 +88,6 @@ class ScheduleRunCommand extends Command
         $this->schedule = $schedule;
         $this->dispatcher = $dispatcher;
         $this->handler = $handler;
-<<<<<<< HEAD
-=======
-        $this->phpBinary = Application::phpBinary();
-
-        $this->newLine();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         foreach ($this->schedule->dueEvents($this->laravel) as $event) {
             if (! $event->filtersPass($this->laravel)) {
@@ -149,13 +106,7 @@ class ScheduleRunCommand extends Command
         }
 
         if (! $this->eventsRan) {
-<<<<<<< HEAD
             $this->info('No scheduled commands are ready to run.');
-=======
-            $this->components->info('No scheduled commands are ready to run.');
-        } else {
-            $this->newLine();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 
@@ -170,13 +121,7 @@ class ScheduleRunCommand extends Command
         if ($this->schedule->serverShouldRun($event, $this->startedAt)) {
             $this->runEvent($event);
         } else {
-<<<<<<< HEAD
             $this->line('<info>Skipping command (has already run on another server):</info> '.$event->getSummaryForDisplay());
-=======
-            $this->components->info(sprintf(
-                'Skipping [%s], as command already run on another server.', $event->getSummaryForDisplay()
-            ));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 
@@ -188,7 +133,6 @@ class ScheduleRunCommand extends Command
      */
     protected function runEvent($event)
     {
-<<<<<<< HEAD
         $this->line('<info>['.date('c').'] Running scheduled command:</info> '.$event->getSummaryForDisplay());
 
         $this->dispatcher->dispatch(new ScheduledTaskStarting($event));
@@ -208,48 +152,6 @@ class ScheduleRunCommand extends Command
             $this->dispatcher->dispatch(new ScheduledTaskFailed($event, $e));
 
             $this->handler->report($e);
-=======
-        $summary = $event->getSummaryForDisplay();
-
-        $command = $event instanceof CallbackEvent
-            ? $summary
-            : trim(str_replace($this->phpBinary, '', $event->command));
-
-        $description = sprintf(
-            '<fg=gray>%s</> Running [%s]%s',
-            Carbon::now()->format('Y-m-d H:i:s'),
-            $command,
-            $event->runInBackground ? ' in background' : '',
-        );
-
-        $this->components->task($description, function () use ($event) {
-            $this->dispatcher->dispatch(new ScheduledTaskStarting($event));
-
-            $start = microtime(true);
-
-            try {
-                $event->run($this->laravel);
-
-                $this->dispatcher->dispatch(new ScheduledTaskFinished(
-                    $event,
-                    round(microtime(true) - $start, 2)
-                ));
-
-                $this->eventsRan = true;
-            } catch (Throwable $e) {
-                $this->dispatcher->dispatch(new ScheduledTaskFailed($event, $e));
-
-                $this->handler->report($e);
-            }
-
-            return $event->exitCode == 0;
-        });
-
-        if (! $event instanceof CallbackEvent) {
-            $this->components->bulletList([
-                $event->getSummaryForDisplay(),
-            ]);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 }

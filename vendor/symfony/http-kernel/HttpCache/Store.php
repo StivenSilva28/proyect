@@ -26,15 +26,9 @@ class Store implements StoreInterface
 {
     protected $root;
     /** @var \SplObjectStorage<Request, string> */
-<<<<<<< HEAD
     private $keyCache;
     /** @var array<string, resource> */
     private $locks = [];
-=======
-    private \SplObjectStorage $keyCache;
-    /** @var array<string, resource> */
-    private array $locks = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @throws \RuntimeException
@@ -67,11 +61,7 @@ class Store implements StoreInterface
      *
      * @return bool|string true if the lock is acquired, the path to the current lock otherwise
      */
-<<<<<<< HEAD
     public function lock(Request $request)
-=======
-    public function lock(Request $request): bool|string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $key = $this->getCacheKey($request);
 
@@ -98,11 +88,7 @@ class Store implements StoreInterface
      *
      * @return bool False if the lock file does not exist or cannot be unlocked, true otherwise
      */
-<<<<<<< HEAD
     public function unlock(Request $request)
-=======
-    public function unlock(Request $request): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $key = $this->getCacheKey($request);
 
@@ -117,11 +103,7 @@ class Store implements StoreInterface
         return false;
     }
 
-<<<<<<< HEAD
     public function isLocked(Request $request)
-=======
-    public function isLocked(Request $request): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $key = $this->getCacheKey($request);
 
@@ -143,15 +125,10 @@ class Store implements StoreInterface
 
     /**
      * Locates a cached Response for the Request provided.
-<<<<<<< HEAD
      *
      * @return Response|null
      */
     public function lookup(Request $request)
-=======
-     */
-    public function lookup(Request $request): ?Response
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $key = $this->getCacheKey($request);
 
@@ -190,17 +167,11 @@ class Store implements StoreInterface
      * Existing entries are read and any that match the response are removed. This
      * method calls write with the new list of cache entries.
      *
-<<<<<<< HEAD
      * @return string
      *
      * @throws \RuntimeException
      */
     public function write(Request $request, Response $response)
-=======
-     * @throws \RuntimeException
-     */
-    public function write(Request $request, Response $response): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $key = $this->getCacheKey($request);
         $storedEnv = $this->persistRequest($request);
@@ -256,15 +227,10 @@ class Store implements StoreInterface
 
     /**
      * Returns content digest for $response.
-<<<<<<< HEAD
      *
      * @return string
      */
     protected function generateContentDigest(Response $response)
-=======
-     */
-    protected function generateContentDigest(Response $response): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return 'en'.hash('sha256', $response->getContent());
     }
@@ -343,11 +309,7 @@ class Store implements StoreInterface
      *
      * @return bool true if the URL exists with either HTTP or HTTPS scheme and has been purged, false otherwise
      */
-<<<<<<< HEAD
     public function purge(string $url)
-=======
-    public function purge(string $url): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $http = preg_replace('#^https:#', 'http:', $url);
         $https = preg_replace('#^http:#', 'https:', $url);
@@ -456,15 +418,10 @@ class Store implements StoreInterface
      * If the same URI can have more than one representation, based on some
      * headers, use a Vary header to indicate them, and each representation will
      * be stored independently under the same cache key.
-<<<<<<< HEAD
      *
      * @return string
      */
     protected function generateCacheKey(Request $request)
-=======
-     */
-    protected function generateCacheKey(Request $request): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return 'md'.hash('sha256', $request->getUri());
     }

@@ -39,16 +39,6 @@ class WithoutOverlapping
     public $prefix = 'laravel-queue-overlap:';
 
     /**
-<<<<<<< HEAD
-=======
-     * Share the key across different jobs.
-     *
-     * @var bool
-     */
-    public $shareKey = false;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new middleware instance.
      *
      * @param  string  $key
@@ -115,11 +105,7 @@ class WithoutOverlapping
     /**
      * Set the maximum number of seconds that can elapse before the lock is released.
      *
-<<<<<<< HEAD
      * @param  \DateTimeInterface|int  $expiresAfter
-=======
-     * @param  \DateTimeInterface|\DateInterval|int  $expiresAfter
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      */
     public function expireAfter($expiresAfter)
@@ -143,21 +129,6 @@ class WithoutOverlapping
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Indicate that the lock key should be shared across job classes.
-     *
-     * @return $this
-     */
-    public function shared()
-    {
-        $this->shareKey = true;
-
-        return $this;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Get the lock key for the given job.
      *
      * @param  mixed  $job
@@ -165,12 +136,6 @@ class WithoutOverlapping
      */
     public function getLockKey($job)
     {
-<<<<<<< HEAD
         return $this->prefix.get_class($job).':'.$this->key;
-=======
-        return $this->shareKey
-            ? $this->prefix.$this->key
-            : $this->prefix.get_class($job).':'.$this->key;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

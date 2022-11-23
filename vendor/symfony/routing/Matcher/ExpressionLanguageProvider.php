@@ -22,11 +22,7 @@ use Symfony\Contracts\Service\ServiceProviderInterface;
  */
 class ExpressionLanguageProvider implements ExpressionFunctionProviderInterface
 {
-<<<<<<< HEAD
     private $functions;
-=======
-    private ServiceProviderInterface $functions;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(ServiceProviderInterface $functions)
     {
@@ -36,11 +32,7 @@ class ExpressionLanguageProvider implements ExpressionFunctionProviderInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getFunctions()
-=======
-    public function getFunctions(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $functions = [];
 

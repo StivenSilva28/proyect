@@ -158,11 +158,7 @@ class RedisManager implements Factory
     /**
      * Get the connector instance for the current driver.
      *
-<<<<<<< HEAD
      * @return \Illuminate\Contracts\Redis\Connector
-=======
-     * @return \Illuminate\Contracts\Redis\Connector|null
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected function connector()
     {
@@ -172,20 +168,12 @@ class RedisManager implements Factory
             return $customCreator();
         }
 
-<<<<<<< HEAD
         switch ($this->driver) {
             case 'predis':
                 return new PredisConnector;
             case 'phpredis':
                 return new PhpRedisConnector;
         }
-=======
-        return match ($this->driver) {
-            'predis' => new PredisConnector,
-            'phpredis' => new PhpRedisConnector,
-            default => null,
-        };
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

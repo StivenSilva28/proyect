@@ -5,13 +5,7 @@ namespace Illuminate\Notifications\Events;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-<<<<<<< HEAD
 use Illuminate\Queue\SerializesModels;
-=======
-use Illuminate\Notifications\AnonymousNotifiable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Arr;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class BroadcastNotificationCreated implements ShouldBroadcast
 {
@@ -60,16 +54,7 @@ class BroadcastNotificationCreated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-<<<<<<< HEAD
         $channels = $this->notification->broadcastOn();
-=======
-        if ($this->notifiable instanceof AnonymousNotifiable &&
-            $this->notifiable->routeNotificationFor('broadcast')) {
-            $channels = Arr::wrap($this->notifiable->routeNotificationFor('broadcast'));
-        } else {
-            $channels = $this->notification->broadcastOn();
-        }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if (! empty($channels)) {
             return $channels;

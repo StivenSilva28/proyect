@@ -24,11 +24,7 @@ use Symfony\Component\Console\Formatter\OutputFormatterInterface;
  */
 class NullOutput implements OutputInterface
 {
-<<<<<<< HEAD
     private $formatter;
-=======
-    private NullOutputFormatter $formatter;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * {@inheritdoc}
@@ -41,7 +37,6 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getFormatter()
     {
         if ($this->formatter) {
@@ -49,12 +44,6 @@ class NullOutput implements OutputInterface
         }
         // to comply with the interface we must return a OutputFormatterInterface
         return $this->formatter = new NullOutputFormatter();
-=======
-    public function getFormatter(): OutputFormatterInterface
-    {
-        // to comply with the interface we must return a OutputFormatterInterface
-        return $this->formatter ??= new NullOutputFormatter();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -68,11 +57,7 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isDecorated()
-=======
-    public function isDecorated(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return false;
     }
@@ -88,11 +73,7 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getVerbosity()
-=======
-    public function getVerbosity(): int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return self::VERBOSITY_QUIET;
     }
@@ -100,11 +81,7 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isQuiet()
-=======
-    public function isQuiet(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return true;
     }
@@ -112,11 +89,7 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isVerbose()
-=======
-    public function isVerbose(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return false;
     }
@@ -124,11 +97,7 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isVeryVerbose()
-=======
-    public function isVeryVerbose(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return false;
     }
@@ -136,11 +105,7 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isDebug()
-=======
-    public function isDebug(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return false;
     }
@@ -148,11 +113,7 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function writeln($messages, int $options = self::OUTPUT_NORMAL)
-=======
-    public function writeln(string|iterable $messages, int $options = self::OUTPUT_NORMAL)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // do nothing
     }
@@ -160,11 +121,7 @@ class NullOutput implements OutputInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function write($messages, bool $newline = false, int $options = self::OUTPUT_NORMAL)
-=======
-    public function write(string|iterable $messages, bool $newline = false, int $options = self::OUTPUT_NORMAL)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // do nothing
     }

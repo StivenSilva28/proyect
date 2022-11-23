@@ -76,11 +76,7 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function start()
-=======
-    public function start(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->started) {
             return true;
@@ -98,11 +94,7 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function regenerate(bool $destroy = false, int $lifetime = null)
-=======
-    public function regenerate(bool $destroy = false, int $lifetime = null): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->started) {
             $this->start();
@@ -117,11 +109,7 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getId()
-=======
-    public function getId(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->id;
     }
@@ -141,11 +129,7 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getName()
-=======
-    public function getName(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->name;
     }
@@ -199,11 +183,7 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getBag(string $name)
-=======
-    public function getBag(string $name): SessionBagInterface
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!isset($this->bags[$name])) {
             throw new \InvalidArgumentException(sprintf('The SessionBagInterface "%s" is not registered.', $name));
@@ -219,11 +199,7 @@ class MockArraySessionStorage implements SessionStorageInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isStarted()
-=======
-    public function isStarted(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->started;
     }
@@ -239,15 +215,10 @@ class MockArraySessionStorage implements SessionStorageInterface
 
     /**
      * Gets the MetadataBag.
-<<<<<<< HEAD
      *
      * @return MetadataBag
      */
     public function getMetadataBag()
-=======
-     */
-    public function getMetadataBag(): MetadataBag
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->metadataBag;
     }
@@ -257,15 +228,10 @@ class MockArraySessionStorage implements SessionStorageInterface
      *
      * This doesn't need to be particularly cryptographically secure since this is just
      * a mock.
-<<<<<<< HEAD
      *
      * @return string
      */
     protected function generateId()
-=======
-     */
-    protected function generateId(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return hash('sha256', uniqid('ss_mock_', true));
     }

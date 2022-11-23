@@ -26,26 +26,19 @@ class SMimePart extends AbstractPart
     private $subtype;
     private $parameters;
 
-<<<<<<< HEAD
     /**
      * @param iterable|string $body
      */
     public function __construct($body, string $type, string $subtype, array $parameters)
-=======
-    public function __construct(iterable|string $body, string $type, string $subtype, array $parameters)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         unset($this->_headers);
 
         parent::__construct();
 
-<<<<<<< HEAD
         if (!\is_string($body) && !is_iterable($body)) {
             throw new \TypeError(sprintf('The body of "%s" must be a string or a iterable (got "%s").', self::class, get_debug_type($body)));
         }
 
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->body = $body;
         $this->type = $type;
         $this->subtype = $subtype;
@@ -121,10 +114,7 @@ class SMimePart extends AbstractPart
     public function __wakeup(): void
     {
         $r = new \ReflectionProperty(AbstractPart::class, 'headers');
-<<<<<<< HEAD
         $r->setAccessible(true);
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $r->setValue($this, $this->_headers);
         unset($this->_headers);
     }

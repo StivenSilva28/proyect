@@ -31,11 +31,7 @@ use Symfony\Component\HttpFoundation\Response;
 class HttpKernelBrowser extends AbstractBrowser
 {
     protected $kernel;
-<<<<<<< HEAD
     private $catchExceptions = true;
-=======
-    private bool $catchExceptions = true;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param array $server The server parameters (equivalent of $_SERVER)
@@ -91,11 +87,7 @@ class HttpKernelBrowser extends AbstractBrowser
 
         $requires = '';
         foreach (get_declared_classes() as $class) {
-<<<<<<< HEAD
             if (0 === strpos($class, 'ComposerAutoloaderInit')) {
-=======
-            if (str_starts_with($class, 'ComposerAutoloaderInit')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $r = new \ReflectionClass($class);
                 $file = \dirname($r->getFileName(), 2).'/autoload.php';
                 if (file_exists($file)) {
@@ -137,15 +129,10 @@ EOF;
 
     /**
      * {@inheritdoc}
-<<<<<<< HEAD
      *
      * @return Request
      */
     protected function filterRequest(DomRequest $request)
-=======
-     */
-    protected function filterRequest(DomRequest $request): Request
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $httpRequest = Request::create($request->getUri(), $request->getMethod(), $request->getParameters(), $request->getCookies(), $request->getFiles(), $server = $request->getServer(), $request->getContent());
         if (!isset($server['HTTP_ACCEPT'])) {
@@ -169,15 +156,10 @@ EOF;
      * an invalid UploadedFile is returned with an error set to UPLOAD_ERR_INI_SIZE.
      *
      * @see UploadedFile
-<<<<<<< HEAD
      *
      * @return array
      */
     protected function filterFiles(array $files)
-=======
-     */
-    protected function filterFiles(array $files): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $filtered = [];
         foreach ($files as $key => $value) {
@@ -211,15 +193,10 @@ EOF;
      * {@inheritdoc}
      *
      * @param Response $response
-<<<<<<< HEAD
      *
      * @return DomResponse
      */
     protected function filterResponse(object $response)
-=======
-     */
-    protected function filterResponse(object $response): DomResponse
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // this is needed to support StreamedResponse
         ob_start();

@@ -24,15 +24,9 @@ use Symfony\Component\HttpKernel\UriSigner;
  */
 abstract class AbstractSurrogateFragmentRenderer extends RoutableFragmentRenderer
 {
-<<<<<<< HEAD
     private $surrogate;
     private $inlineStrategy;
     private $signer;
-=======
-    private ?SurrogateInterface $surrogate;
-    private FragmentRendererInterface $inlineStrategy;
-    private ?UriSigner $signer;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * The "fallback" strategy when surrogate is not available should always be an
@@ -63,11 +57,7 @@ abstract class AbstractSurrogateFragmentRenderer extends RoutableFragmentRendere
      *
      * @see Symfony\Component\HttpKernel\HttpCache\SurrogateInterface
      */
-<<<<<<< HEAD
     public function render($uri, Request $request, array $options = [])
-=======
-    public function render(string|ControllerReference $uri, Request $request, array $options = []): Response
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->surrogate || !$this->surrogate->hasSurrogateCapability($request)) {
             if ($uri instanceof ControllerReference && $this->containsNonScalars($uri->attributes)) {

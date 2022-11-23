@@ -25,24 +25,15 @@ final class ConfigureIO
 {
     /**
      * Configures both given input and output with
-<<<<<<< HEAD
      * options from the enviroment.
-=======
-     * options from the environment.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @throws \ReflectionException
      */
     public static function of(InputInterface $input, Output $output): void
     {
         $application = new Application();
-<<<<<<< HEAD
         $reflector   = new ReflectionObject($application);
         $method      = $reflector->getMethod('configureIO');
-=======
-        $reflector = new ReflectionObject($application);
-        $method = $reflector->getMethod('configureIO');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $method->setAccessible(true);
         $method->invoke($application, $input, $output);
     }

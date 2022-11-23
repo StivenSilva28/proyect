@@ -3,15 +3,9 @@
 namespace Illuminate\Database\Eloquent;
 
 /**
-<<<<<<< HEAD
  * @method static static|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder withTrashed(bool $withTrashed = true)
  * @method static static|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder onlyTrashed()
  * @method static static|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder withoutTrashed()
-=======
- * @method static \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder withTrashed(bool $withTrashed = true)
- * @method static \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder withoutTrashed()
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  */
 trait SoftDeletes
 {
@@ -93,11 +87,7 @@ trait SoftDeletes
 
         $this->{$this->getDeletedAtColumn()} = $time;
 
-<<<<<<< HEAD
         if ($this->timestamps && ! is_null($this->getUpdatedAtColumn())) {
-=======
-        if ($this->usesTimestamps() && ! is_null($this->getUpdatedAtColumn())) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->{$this->getUpdatedAtColumn()} = $time;
 
             $columns[$this->getUpdatedAtColumn()] = $this->fromDateTime($time);
@@ -139,19 +129,6 @@ trait SoftDeletes
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Restore a soft-deleted model instance without raising any events.
-     *
-     * @return bool|null
-     */
-    public function restoreQuietly()
-    {
-        return static::withoutEvents(fn () => $this->restore());
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Determine if the model instance has been soft-deleted.
      *
      * @return bool
@@ -222,11 +199,7 @@ trait SoftDeletes
      */
     public function getDeletedAtColumn()
     {
-<<<<<<< HEAD
         return defined('static::DELETED_AT') ? static::DELETED_AT : 'deleted_at';
-=======
-        return defined(static::class.'::DELETED_AT') ? static::DELETED_AT : 'deleted_at';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

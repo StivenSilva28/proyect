@@ -155,11 +155,7 @@ class AssertableJson implements Arrayable
     }
 
     /**
-<<<<<<< HEAD
      * Create a new instance from a AssertableJsonString.
-=======
-     * Create a new instance from an AssertableJsonString.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  \Illuminate\Testing\AssertableJsonString  $json
      * @return static

@@ -2,36 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-<<<<<<< HEAD
-=======
-## [0.10.2](https://github.com/brick/math/releases/tag/0.10.2) - 2022-08-11
-
-👌 **Improvements**
-
-- `BigRational::toFloat()` now simplifies the fraction before performing division (#73) thanks to @olsavmic
-
-## [0.10.1](https://github.com/brick/math/releases/tag/0.10.1) - 2022-08-02
-
-✨ **New features**
-
-- `BigInteger::gcdMultiple()` returns the GCD of multiple `BigInteger` numbers
-
-## [0.10.0](https://github.com/brick/math/releases/tag/0.10.0) - 2022-06-18
-
-💥 **Breaking changes**
-
-- Minimum PHP version is now 7.4
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 ## [0.9.3](https://github.com/brick/math/releases/tag/0.9.3) - 2021-08-15
 
 🚀 **Compatibility with PHP 8.1**
 
-<<<<<<< HEAD
 - Support for custom object serialization; this removes a warning on PHP 8.1 due to the `Serializable` interface being deprecated (thanks @TRowbotham)
-=======
-- Support for custom object serialization; this removes a warning on PHP 8.1 due to the `Serializable` interface being deprecated (#60) thanks @TRowbotham
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 ## [0.9.2](https://github.com/brick/math/releases/tag/0.9.2) - 2021-01-20
 
@@ -41,11 +16,7 @@ All notable changes to this project will be documented in this file.
 
 ## [0.9.1](https://github.com/brick/math/releases/tag/0.9.1) - 2020-08-19
 
-<<<<<<< HEAD
 ✨ New features
-=======
-✨ **New features**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 - `BigInteger::not()` returns the bitwise `NOT` value
 

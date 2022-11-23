@@ -25,14 +25,4 @@ interface Encrypter
      * @throws \Illuminate\Contracts\Encryption\DecryptException
      */
     public function decrypt($payload, $unserialize = true);
-<<<<<<< HEAD
-=======
-
-    /**
-     * Get the encryption key that the encrypter is currently using.
-     *
-     * @return string
-     */
-    public function getKey();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

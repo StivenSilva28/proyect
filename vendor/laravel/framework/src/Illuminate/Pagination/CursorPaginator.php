@@ -37,11 +37,7 @@ class CursorPaginator extends AbstractCursorPaginator implements Arrayable, Arra
             $this->{$key} = $value;
         }
 
-<<<<<<< HEAD
         $this->perPage = $perPage;
-=======
-        $this->perPage = (int) $perPage;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->cursor = $cursor;
         $this->path = $this->path !== '/' ? rtrim($this->path, '/') : $this->path;
 
@@ -126,19 +122,6 @@ class CursorPaginator extends AbstractCursorPaginator implements Arrayable, Arra
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Determine if the paginator is on the last page.
-     *
-     * @return bool
-     */
-    public function onLastPage()
-    {
-        return ! $this->hasMorePages();
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Get the instance as an array.
      *
      * @return array
@@ -149,13 +132,7 @@ class CursorPaginator extends AbstractCursorPaginator implements Arrayable, Arra
             'data' => $this->items->toArray(),
             'path' => $this->path(),
             'per_page' => $this->perPage(),
-<<<<<<< HEAD
             'next_page_url' => $this->nextPageUrl(),
-=======
-            'next_cursor' => $this->nextCursor()?->encode(),
-            'next_page_url' => $this->nextPageUrl(),
-            'prev_cursor' => $this->previousCursor()?->encode(),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             'prev_page_url' => $this->previousPageUrl(),
         ];
     }
@@ -165,12 +142,8 @@ class CursorPaginator extends AbstractCursorPaginator implements Arrayable, Arra
      *
      * @return array
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
-=======
-    public function jsonSerialize(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->toArray();
     }

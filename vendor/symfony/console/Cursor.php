@@ -18,11 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class Cursor
 {
-<<<<<<< HEAD
     private $output;
-=======
-    private OutputInterface $output;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     private $input;
 
     /**
@@ -37,11 +33,7 @@ final class Cursor
     /**
      * @return $this
      */
-<<<<<<< HEAD
     public function moveUp(int $lines = 1): self
-=======
-    public function moveUp(int $lines = 1): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write(sprintf("\x1b[%dA", $lines));
 
@@ -51,11 +43,7 @@ final class Cursor
     /**
      * @return $this
      */
-<<<<<<< HEAD
     public function moveDown(int $lines = 1): self
-=======
-    public function moveDown(int $lines = 1): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write(sprintf("\x1b[%dB", $lines));
 
@@ -65,11 +53,7 @@ final class Cursor
     /**
      * @return $this
      */
-<<<<<<< HEAD
     public function moveRight(int $columns = 1): self
-=======
-    public function moveRight(int $columns = 1): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write(sprintf("\x1b[%dC", $columns));
 
@@ -79,11 +63,7 @@ final class Cursor
     /**
      * @return $this
      */
-<<<<<<< HEAD
     public function moveLeft(int $columns = 1): self
-=======
-    public function moveLeft(int $columns = 1): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write(sprintf("\x1b[%dD", $columns));
 
@@ -93,11 +73,7 @@ final class Cursor
     /**
      * @return $this
      */
-<<<<<<< HEAD
     public function moveToColumn(int $column): self
-=======
-    public function moveToColumn(int $column): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write(sprintf("\x1b[%dG", $column));
 
@@ -107,11 +83,7 @@ final class Cursor
     /**
      * @return $this
      */
-<<<<<<< HEAD
     public function moveToPosition(int $column, int $row): self
-=======
-    public function moveToPosition(int $column, int $row): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write(sprintf("\x1b[%d;%dH", $row + 1, $column));
 
@@ -121,11 +93,7 @@ final class Cursor
     /**
      * @return $this
      */
-<<<<<<< HEAD
     public function savePosition(): self
-=======
-    public function savePosition(): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write("\x1b7");
 
@@ -135,11 +103,7 @@ final class Cursor
     /**
      * @return $this
      */
-<<<<<<< HEAD
     public function restorePosition(): self
-=======
-    public function restorePosition(): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write("\x1b8");
 
@@ -149,11 +113,7 @@ final class Cursor
     /**
      * @return $this
      */
-<<<<<<< HEAD
     public function hide(): self
-=======
-    public function hide(): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write("\x1b[?25l");
 
@@ -163,11 +123,7 @@ final class Cursor
     /**
      * @return $this
      */
-<<<<<<< HEAD
     public function show(): self
-=======
-    public function show(): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write("\x1b[?25h\x1b[?0c");
 
@@ -179,11 +135,7 @@ final class Cursor
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function clearLine(): self
-=======
-    public function clearLine(): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write("\x1b[2K");
 
@@ -205,11 +157,7 @@ final class Cursor
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function clearOutput(): self
-=======
-    public function clearOutput(): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write("\x1b[0J");
 
@@ -221,11 +169,7 @@ final class Cursor
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function clearScreen(): self
-=======
-    public function clearScreen(): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->output->write("\x1b[2J");
 

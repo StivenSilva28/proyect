@@ -60,11 +60,7 @@ class PoFileLoader extends FileLoader
      *
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     protected function loadResource(string $resource)
-=======
-    protected function loadResource(string $resource): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $stream = fopen($resource, 'r');
 
@@ -87,25 +83,15 @@ class PoFileLoader extends FileLoader
                 }
                 $item = $defaults;
                 $flags = [];
-<<<<<<< HEAD
             } elseif ('#,' === substr($line, 0, 2)) {
                 $flags = array_map('trim', explode(',', substr($line, 2)));
             } elseif ('msgid "' === substr($line, 0, 7)) {
-=======
-            } elseif (str_starts_with($line, '#,')) {
-                $flags = array_map('trim', explode(',', substr($line, 2)));
-            } elseif (str_starts_with($line, 'msgid "')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 // We start a new msg so save previous
                 // TODO: this fails when comments or contexts are added
                 $this->addMessage($messages, $item);
                 $item = $defaults;
                 $item['ids']['singular'] = substr($line, 7, -1);
-<<<<<<< HEAD
             } elseif ('msgstr "' === substr($line, 0, 8)) {
-=======
-            } elseif (str_starts_with($line, 'msgstr "')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $item['translated'] = substr($line, 8, -1);
             } elseif ('"' === $line[0]) {
                 $continues = isset($item['translated']) ? 'translated' : 'ids';
@@ -116,15 +102,9 @@ class PoFileLoader extends FileLoader
                 } else {
                     $item[$continues] .= substr($line, 1, -1);
                 }
-<<<<<<< HEAD
             } elseif ('msgid_plural "' === substr($line, 0, 14)) {
                 $item['ids']['plural'] = substr($line, 14, -1);
             } elseif ('msgstr[' === substr($line, 0, 7)) {
-=======
-            } elseif (str_starts_with($line, 'msgid_plural "')) {
-                $item['ids']['plural'] = substr($line, 14, -1);
-            } elseif (str_starts_with($line, 'msgstr[')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $size = strpos($line, ']');
                 $item['translated'][(int) substr($line, 7, 1)] = substr($line, $size + 3, -1);
             }

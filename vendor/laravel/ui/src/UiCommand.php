@@ -41,19 +41,11 @@ class UiCommand extends Command
             throw new InvalidArgumentException('Invalid preset.');
         }
 
-<<<<<<< HEAD
         $this->{$this->argument('type')}();
 
         if ($this->option('auth')) {
             $this->call('ui:auth');
         }
-=======
-        if ($this->option('auth')) {
-            $this->call('ui:auth');
-        }
-
-        $this->{$this->argument('type')}();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -65,13 +57,8 @@ class UiCommand extends Command
     {
         Presets\Bootstrap::install();
 
-<<<<<<< HEAD
         $this->info('Bootstrap scaffolding installed successfully.');
         $this->comment('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
-=======
-        $this->components->info('Bootstrap scaffolding installed successfully.');
-        $this->components->warn('Please run [npm install && npm run dev] to compile your fresh scaffolding.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -84,13 +71,8 @@ class UiCommand extends Command
         Presets\Bootstrap::install();
         Presets\Vue::install();
 
-<<<<<<< HEAD
         $this->info('Vue scaffolding installed successfully.');
         $this->comment('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
-=======
-        $this->components->info('Vue scaffolding installed successfully.');
-        $this->components->warn('Please run [npm install && npm run dev] to compile your fresh scaffolding.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -103,12 +85,7 @@ class UiCommand extends Command
         Presets\Bootstrap::install();
         Presets\React::install();
 
-<<<<<<< HEAD
         $this->info('React scaffolding installed successfully.');
         $this->comment('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
-=======
-        $this->components->info('React scaffolding installed successfully.');
-        $this->components->warn('Please run [npm install && npm run dev] to compile your fresh scaffolding.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

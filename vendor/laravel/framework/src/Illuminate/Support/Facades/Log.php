@@ -8,11 +8,6 @@ namespace Illuminate\Support\Facades;
  * @method static \Psr\Log\LoggerInterface build(array $config)
  * @method static \Illuminate\Log\Logger withContext(array $context = [])
  * @method static \Illuminate\Log\Logger withoutContext()
-<<<<<<< HEAD
-=======
- * @method static \Illuminate\Log\LogManager shareContext(array $context)
- * @method static array sharedContext()
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static void alert(string $message, array $context = [])
  * @method static void critical(string $message, array $context = [])
  * @method static void debug(string $message, array $context = [])

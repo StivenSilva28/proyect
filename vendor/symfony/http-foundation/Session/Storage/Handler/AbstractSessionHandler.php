@@ -22,7 +22,6 @@ use Symfony\Component\HttpFoundation\Session\SessionUtils;
  */
 abstract class AbstractSessionHandler implements \SessionHandlerInterface, \SessionUpdateTimestampHandlerInterface
 {
-<<<<<<< HEAD
     private $sessionName;
     private $prefetchId;
     private $prefetchData;
@@ -34,15 +33,6 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
      */
     #[\ReturnTypeWillChange]
     public function open($savePath, $sessionName)
-=======
-    private string $sessionName;
-    private string $prefetchId;
-    private string $prefetchData;
-    private ?string $newSessionId = null;
-    private string $igbinaryEmptyData;
-
-    public function open(string $savePath, string $sessionName): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->sessionName = $sessionName;
         if (!headers_sent() && !\ini_get('session.cache_limiter') && '0' !== \ini_get('session.cache_limiter')) {
@@ -52,7 +42,6 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
         return true;
     }
 
-<<<<<<< HEAD
     /**
      * @return string
      */
@@ -73,20 +62,10 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
      */
     #[\ReturnTypeWillChange]
     public function validateId($sessionId)
-=======
-    abstract protected function doRead(string $sessionId): string;
-
-    abstract protected function doWrite(string $sessionId, string $data): bool;
-
-    abstract protected function doDestroy(string $sessionId): bool;
-
-    public function validateId(string $sessionId): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->prefetchData = $this->read($sessionId);
         $this->prefetchId = $sessionId;
 
-<<<<<<< HEAD
         if (\PHP_VERSION_ID < 70317 || (70400 <= \PHP_VERSION_ID && \PHP_VERSION_ID < 70405)) {
             // work around https://bugs.php.net/79413
             foreach (debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS) as $frame) {
@@ -109,17 +88,6 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
             $prefetchId = $this->prefetchId;
             $prefetchData = $this->prefetchData;
             $this->prefetchId = $this->prefetchData = null;
-=======
-        return '' !== $this->prefetchData;
-    }
-
-    public function read(string $sessionId): string
-    {
-        if (isset($this->prefetchId)) {
-            $prefetchId = $this->prefetchId;
-            $prefetchData = $this->prefetchData;
-            unset($this->prefetchId, $this->prefetchData);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             if ($prefetchId === $sessionId || '' === $prefetchData) {
                 $this->newSessionId = '' === $prefetchData ? $sessionId : null;
@@ -134,7 +102,6 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
         return $data;
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
@@ -145,12 +112,6 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
             // see https://github.com/igbinary/igbinary/issues/146
             $this->igbinaryEmptyData = \function_exists('igbinary_serialize') ? igbinary_serialize([]) : '';
         }
-=======
-    public function write(string $sessionId, string $data): bool
-    {
-        // see https://github.com/igbinary/igbinary/issues/146
-        $this->igbinaryEmptyData ??= \function_exists('igbinary_serialize') ? igbinary_serialize([]) : '';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if ('' === $data || $this->igbinaryEmptyData === $data) {
             return $this->destroy($sessionId);
         }
@@ -159,7 +120,6 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
         return $this->doWrite($sessionId, $data);
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
@@ -168,12 +128,6 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
     {
         if (!headers_sent() && filter_var(\ini_get('session.use_cookies'), \FILTER_VALIDATE_BOOLEAN)) {
             if (!$this->sessionName) {
-=======
-    public function destroy(string $sessionId): bool
-    {
-        if (!headers_sent() && filter_var(\ini_get('session.use_cookies'), \FILTER_VALIDATE_BOOLEAN)) {
-            if (!isset($this->sessionName)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 throw new \LogicException(sprintf('Session name cannot be empty, did you forget to call "parent::open()" in "%s"?.', static::class));
             }
             $cookie = SessionUtils::popSessionCookie($this->sessionName, $sessionId);
@@ -186,7 +140,6 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
              * started the session).
              */
             if (null === $cookie || isset($_COOKIE[$this->sessionName])) {
-<<<<<<< HEAD
                 if (\PHP_VERSION_ID < 70300) {
                     setcookie($this->sessionName, '', 0, \ini_get('session.cookie_path'), \ini_get('session.cookie_domain'), filter_var(\ini_get('session.cookie_secure'), \FILTER_VALIDATE_BOOLEAN), filter_var(\ini_get('session.cookie_httponly'), \FILTER_VALIDATE_BOOLEAN));
                 } else {
@@ -194,11 +147,6 @@ abstract class AbstractSessionHandler implements \SessionHandlerInterface, \Sess
                     unset($params['lifetime']);
                     setcookie($this->sessionName, '', $params);
                 }
-=======
-                $params = session_get_cookie_params();
-                unset($params['lifetime']);
-                setcookie($this->sessionName, '', $params);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
 

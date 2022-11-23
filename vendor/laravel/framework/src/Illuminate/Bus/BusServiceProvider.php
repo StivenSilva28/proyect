@@ -64,10 +64,6 @@ class BusServiceProvider extends ServiceProvider implements DeferrableProvider
             DispatcherContract::class,
             QueueingDispatcherContract::class,
             BatchRepository::class,
-<<<<<<< HEAD
-=======
-            DatabaseBatchRepository::class,
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ];
     }
 }

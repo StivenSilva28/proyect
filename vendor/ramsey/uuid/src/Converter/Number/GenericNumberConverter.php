@@ -26,7 +26,6 @@ use Ramsey\Uuid\Type\Integer as IntegerObject;
  */
 class GenericNumberConverter implements NumberConverterInterface
 {
-<<<<<<< HEAD
     /**
      * @var CalculatorInterface
      */
@@ -35,10 +34,6 @@ class GenericNumberConverter implements NumberConverterInterface
     public function __construct(CalculatorInterface $calculator)
     {
         $this->calculator = $calculator;
-=======
-    public function __construct(private CalculatorInterface $calculator)
-    {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

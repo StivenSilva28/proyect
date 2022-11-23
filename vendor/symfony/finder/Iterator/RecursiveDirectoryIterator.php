@@ -18,7 +18,6 @@ use Symfony\Component\Finder\SplFileInfo;
  * Extends the \RecursiveDirectoryIterator to support relative paths.
  *
  * @author Victor Berchet <victor@suumit.com>
-<<<<<<< HEAD
  */
 class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
 {
@@ -36,19 +35,6 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
     private $rootPath;
     private $subPath;
     private $directorySeparator = '/';
-=======
- * @extends \RecursiveDirectoryIterator<string, SplFileInfo>
- */
-class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
-{
-    private bool $ignoreUnreadableDirs;
-    private ?bool $rewindable = null;
-
-    // these 3 properties take part of the performance optimization to avoid redoing the same work in all iterations
-    private string $rootPath;
-    private string $subPath;
-    private string $directorySeparator = '/';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @throws \RuntimeException
@@ -69,7 +55,6 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
 
     /**
      * Return an instance of SplFileInfo with support for relative paths.
-<<<<<<< HEAD
      *
      * @return SplFileInfo
      */
@@ -81,17 +66,6 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
         if (null === $subPathname = $this->subPath) {
             $subPathname = $this->subPath = $this->getSubPath();
         }
-=======
-     */
-    public function current(): SplFileInfo
-    {
-        // the logic here avoids redoing the same work in all iterations
-
-        if (!isset($this->subPath)) {
-            $this->subPath = $this->getSubPath();
-        }
-        $subPathname = $this->subPath;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if ('' !== $subPathname) {
             $subPathname .= $this->directorySeparator;
         }
@@ -104,7 +78,6 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
         return new SplFileInfo($basePath.$subPathname, $this->subPath, $subPathname);
     }
 
-<<<<<<< HEAD
     /**
      * @param bool $allowLinks
      *
@@ -112,9 +85,6 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
      */
     #[\ReturnTypeWillChange]
     public function hasChildren($allowLinks = false)
-=======
-    public function hasChildren(bool $allowLinks = false): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $hasChildren = parent::hasChildren($allowLinks);
 
@@ -126,29 +96,19 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
             parent::getChildren();
 
             return true;
-<<<<<<< HEAD
         } catch (\UnexpectedValueException $e) {
-=======
-        } catch (\UnexpectedValueException) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             // If directory is unreadable and finder is set to ignore it, skip children
             return false;
         }
     }
 
     /**
-<<<<<<< HEAD
      * @return \RecursiveDirectoryIterator
      *
      * @throws AccessDeniedException
      */
     #[\ReturnTypeWillChange]
     public function getChildren()
-=======
-     * @throws AccessDeniedException
-     */
-    public function getChildren(): \RecursiveDirectoryIterator
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         try {
             $children = parent::getChildren();
@@ -170,16 +130,11 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
 
     /**
      * Do nothing for non rewindable stream.
-<<<<<<< HEAD
      *
      * @return void
      */
     #[\ReturnTypeWillChange]
     public function rewind()
-=======
-     */
-    public function rewind(): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (false === $this->isRewindable()) {
             return;
@@ -190,15 +145,10 @@ class RecursiveDirectoryIterator extends \RecursiveDirectoryIterator
 
     /**
      * Checks if the stream is rewindable.
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function isRewindable()
-=======
-     */
-    public function isRewindable(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $this->rewindable) {
             return $this->rewindable;

@@ -28,23 +28,6 @@ class Response implements ArrayAccess
     protected $decoded;
 
     /**
-<<<<<<< HEAD
-=======
-     * The request cookies.
-     *
-     * @var \GuzzleHttp\Cookie\CookieJar
-     */
-    public $cookies;
-
-    /**
-     * The transfer stats for the request.
-     *
-     * \GuzzleHttp\TransferStats|null
-     */
-    public $transferStats;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new response instance.
      *
      * @param  \Psr\Http\Message\MessageInterface  $response
@@ -88,11 +71,7 @@ class Response implements ArrayAccess
     /**
      * Get the JSON decoded body of the response as an object.
      *
-<<<<<<< HEAD
      * @return object
-=======
-     * @return object|array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function object()
     {
@@ -158,11 +137,7 @@ class Response implements ArrayAccess
      */
     public function effectiveUri()
     {
-<<<<<<< HEAD
         return optional($this->transferStats)->getEffectiveUri();
-=======
-        return $this->transferStats?->getEffectiveUri();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -277,11 +252,7 @@ class Response implements ArrayAccess
      */
     public function handlerStats()
     {
-<<<<<<< HEAD
         return optional($this->transferStats)->getHandlerStats() ?? [];
-=======
-        return $this->transferStats?->getHandlerStats() ?? [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -360,12 +331,8 @@ class Response implements ArrayAccess
      * @param  string  $offset
      * @return bool
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetExists($offset)
-=======
-    public function offsetExists($offset): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return isset($this->json()[$offset]);
     }
@@ -376,12 +343,8 @@ class Response implements ArrayAccess
      * @param  string  $offset
      * @return mixed
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
-=======
-    public function offsetGet($offset): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->json()[$offset];
     }
@@ -395,12 +358,8 @@ class Response implements ArrayAccess
      *
      * @throws \LogicException
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
-=======
-    public function offsetSet($offset, $value): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         throw new LogicException('Response data may not be mutated using array access.');
     }
@@ -413,12 +372,8 @@ class Response implements ArrayAccess
      *
      * @throws \LogicException
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
-=======
-    public function offsetUnset($offset): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         throw new LogicException('Response data may not be mutated using array access.');
     }

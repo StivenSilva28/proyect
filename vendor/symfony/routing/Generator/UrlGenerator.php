@@ -30,10 +30,6 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
     private const QUERY_FRAGMENT_DECODED = [
         // RFC 3986 explicitly allows those in the query/fragment to reference other URIs unencoded
         '%2F' => '/',
-<<<<<<< HEAD
-=======
-        '%252F' => '%2F',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         '%3F' => '?',
         // reserved chars that have no special meaning for HTTP URIs in a query or fragment
         // this excludes esp. "&", "=" and also "+" because PHP would treat it as a space (form-encoded)
@@ -55,11 +51,7 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
 
     protected $logger;
 
-<<<<<<< HEAD
     private $defaultLocale;
-=======
-    private ?string $defaultLocale;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * This array defines the characters (besides alphanumeric ones) that will not be percent-encoded in the path segment of the generated URL.
@@ -109,11 +101,7 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getContext()
-=======
-    public function getContext(): RequestContext
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->context;
     }
@@ -129,11 +117,7 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function isStrictRequirements()
-=======
-    public function isStrictRequirements(): ?bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->strictRequirements;
     }
@@ -141,19 +125,12 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function generate(string $name, array $parameters = [], int $referenceType = self::ABSOLUTE_PATH)
     {
         $route = null;
         $locale = $parameters['_locale']
             ?? $this->context->getParameter('_locale')
             ?: $this->defaultLocale;
-=======
-    public function generate(string $name, array $parameters = [], int $referenceType = self::ABSOLUTE_PATH): string
-    {
-        $route = null;
-        $locale = $parameters['_locale'] ?? $this->context->getParameter('_locale') ?: $this->defaultLocale;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if (null !== $locale) {
             do {
@@ -163,11 +140,7 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
             } while (false !== $locale = strstr($locale, '_', true));
         }
 
-<<<<<<< HEAD
         if (null === $route = $route ?? $this->routes->get($name)) {
-=======
-        if (null === $route ??= $this->routes->get($name)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             throw new RouteNotFoundException(sprintf('Unable to generate a URL for the named route "%s" as such route does not exist.', $name));
         }
 
@@ -192,26 +165,17 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
      * @throws MissingMandatoryParametersException When some parameters are missing that are mandatory for the route
      * @throws InvalidParameterException           When a parameter value for a placeholder is not correct because
      *                                             it does not match the requirement
-<<<<<<< HEAD
      *
      * @return string
      */
     protected function doGenerate(array $variables, array $defaults, array $requirements, array $tokens, array $parameters, string $name, int $referenceType, array $hostTokens, array $requiredSchemes = [])
-=======
-     */
-    protected function doGenerate(array $variables, array $defaults, array $requirements, array $tokens, array $parameters, string $name, int $referenceType, array $hostTokens, array $requiredSchemes = []): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $variables = array_flip($variables);
         $mergedParams = array_replace($defaults, $this->context->getParameters(), $parameters);
 
         // all params must be given
         if ($diff = array_diff_key($variables, $mergedParams)) {
-<<<<<<< HEAD
             throw new MissingMandatoryParametersException(sprintf('Some mandatory parameters are missing ("%s") to generate a URL for route "%s".', implode('", "', array_keys($diff)), $name));
-=======
-            throw new MissingMandatoryParametersException($name, array_keys($diff));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $url = '';
@@ -230,13 +194,9 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
                             throw new InvalidParameterException(strtr($message, ['{parameter}' => $varName, '{route}' => $name, '{expected}' => $token[2], '{given}' => $mergedParams[$varName]]));
                         }
 
-<<<<<<< HEAD
                         if ($this->logger) {
                             $this->logger->error($message, ['parameter' => $varName, 'route' => $name, 'expected' => $token[2], 'given' => $mergedParams[$varName]]);
                         }
-=======
-                        $this->logger?->error($message, ['parameter' => $varName, 'route' => $name, 'expected' => $token[2], 'given' => $mergedParams[$varName]]);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                         return '';
                     }
@@ -289,13 +249,9 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
                             throw new InvalidParameterException(strtr($message, ['{parameter}' => $token[3], '{route}' => $name, '{expected}' => $token[2], '{given}' => $mergedParams[$token[3]]]));
                         }
 
-<<<<<<< HEAD
                         if ($this->logger) {
                             $this->logger->error($message, ['parameter' => $token[3], 'route' => $name, 'expected' => $token[2], 'given' => $mergedParams[$token[3]]]);
                         }
-=======
-                        $this->logger?->error($message, ['parameter' => $token[3], 'route' => $name, 'expected' => $token[2], 'given' => $mergedParams[$token[3]]]);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                         return '';
                     }
@@ -386,15 +342,10 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
      *
      * @param string $basePath   The base path
      * @param string $targetPath The target path
-<<<<<<< HEAD
      *
      * @return string
      */
     public static function getRelativePath(string $basePath, string $targetPath)
-=======
-     */
-    public static function getRelativePath(string $basePath, string $targetPath): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($basePath === $targetPath) {
             return '';

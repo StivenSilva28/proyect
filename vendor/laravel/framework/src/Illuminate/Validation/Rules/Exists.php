@@ -9,7 +9,6 @@ class Exists
     use Conditionable, DatabaseRule;
 
     /**
-<<<<<<< HEAD
      * Ignore soft deleted models during the existence check.
      *
      * @param  string  $deletedAtColumn
@@ -23,8 +22,6 @@ class Exists
     }
 
     /**
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Convert the rule to a validation string.
      *
      * @return string

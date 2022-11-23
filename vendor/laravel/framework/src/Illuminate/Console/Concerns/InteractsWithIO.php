@@ -16,18 +16,6 @@ use Symfony\Component\Console\Question\Question;
 trait InteractsWithIO
 {
     /**
-<<<<<<< HEAD
-=======
-     * The console components factory.
-     *
-     * @var \Illuminate\Console\View\Components\Factory
-     *
-     * @internal This property is not meant to be used or overwritten outside the framework.
-     */
-    protected $components;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The input interface implementation.
      *
      * @var \Symfony\Component\Console\Input\InputInterface
@@ -76,11 +64,7 @@ trait InteractsWithIO
      * Get the value of a command argument.
      *
      * @param  string|null  $key
-<<<<<<< HEAD
      * @return string|array|null
-=======
-     * @return array|string|bool|null
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function argument($key = null)
     {
@@ -214,11 +198,7 @@ trait InteractsWithIO
      *
      * @param  string  $question
      * @param  array  $choices
-<<<<<<< HEAD
      * @param  string|null  $default
-=======
-     * @param  string|int|null  $default
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  mixed|null  $attempts
      * @param  bool  $multiple
      * @return string|array
@@ -237,11 +217,7 @@ trait InteractsWithIO
      *
      * @param  array  $headers
      * @param  \Illuminate\Contracts\Support\Arrayable|array  $rows
-<<<<<<< HEAD
      * @param  string  $tableStyle
-=======
-     * @param  \Symfony\Component\Console\Helper\TableStyle|string  $tableStyle
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  array  $columnStyles
      * @return void
      */
@@ -379,7 +355,6 @@ trait InteractsWithIO
      * Write a string in an alert box.
      *
      * @param  string  $string
-<<<<<<< HEAD
      * @return void
      */
     public function alert($string)
@@ -391,40 +366,17 @@ trait InteractsWithIO
         $this->comment(str_repeat('*', $length));
 
         $this->newLine();
-=======
-     * @param  int|string|null  $verbosity
-     * @return void
-     */
-    public function alert($string, $verbosity = null)
-    {
-        $length = Str::length(strip_tags($string)) + 12;
-
-        $this->comment(str_repeat('*', $length), $verbosity);
-        $this->comment('*     '.$string.'     *', $verbosity);
-        $this->comment(str_repeat('*', $length), $verbosity);
-
-        $this->comment('', $verbosity);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
      * Write a blank line.
      *
      * @param  int  $count
-<<<<<<< HEAD
      * @return void
-=======
-     * @return $this
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function newLine($count = 1)
     {
         $this->output->newLine($count);
-<<<<<<< HEAD
-=======
-
-        return $this;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

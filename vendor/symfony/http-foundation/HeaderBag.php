@@ -38,15 +38,10 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the headers as a string.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function __toString()
-=======
-     */
-    public function __toString(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$headers = $this->all()) {
             return '';
@@ -72,11 +67,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
      *
      * @return array<string, array<int, string|null>>|array<int, string|null>
      */
-<<<<<<< HEAD
     public function all(string $key = null)
-=======
-    public function all(string $key = null): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $key) {
             return $this->headers[strtr($key, self::UPPER, self::LOWER)] ?? [];
@@ -90,11 +81,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
      *
      * @return string[]
      */
-<<<<<<< HEAD
     public function keys()
-=======
-    public function keys(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return array_keys($this->all());
     }
@@ -120,15 +107,10 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the first header by name or the default one.
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public function get(string $key, string $default = null)
-=======
-     */
-    public function get(string $key, string $default = null): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $headers = $this->all($key);
 
@@ -149,11 +131,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
      * @param string|string[]|null $values  The value or an array of values
      * @param bool                 $replace Whether to replace the actual value or not (true by default)
      */
-<<<<<<< HEAD
     public function set(string $key, $values, bool $replace = true)
-=======
-    public function set(string $key, string|array|null $values, bool $replace = true)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $key = strtr($key, self::UPPER, self::LOWER);
 
@@ -180,30 +158,20 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns true if the HTTP header is defined.
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function has(string $key)
-=======
-     */
-    public function has(string $key): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \array_key_exists(strtr($key, self::UPPER, self::LOWER), $this->all());
     }
 
     /**
      * Returns true if the given HTTP header contains the given value.
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function contains(string $key, string $value)
-=======
-     */
-    public function contains(string $key, string $value): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \in_array($value, $this->all($key));
     }
@@ -225,17 +193,11 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Returns the HTTP header value converted to a date.
      *
-<<<<<<< HEAD
      * @return \DateTimeInterface|null
      *
      * @throws \RuntimeException When the HTTP header is not parseable
      */
     public function getDate(string $key, \DateTime $default = null)
-=======
-     * @throws \RuntimeException When the HTTP header is not parseable
-     */
-    public function getDate(string $key, \DateTime $default = null): ?\DateTimeInterface
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $value = $this->get($key)) {
             return $default;
@@ -250,15 +212,10 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Adds a custom Cache-Control directive.
-<<<<<<< HEAD
      *
      * @param bool|string $value The Cache-Control directive value
      */
     public function addCacheControlDirective(string $key, $value = true)
-=======
-     */
-    public function addCacheControlDirective(string $key, bool|string $value = true)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->cacheControl[$key] = $value;
 
@@ -267,30 +224,20 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns true if the Cache-Control directive is defined.
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function hasCacheControlDirective(string $key)
-=======
-     */
-    public function hasCacheControlDirective(string $key): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \array_key_exists($key, $this->cacheControl);
     }
 
     /**
      * Returns a Cache-Control directive value by name.
-<<<<<<< HEAD
      *
      * @return bool|string|null
      */
     public function getCacheControlDirective(string $key)
-=======
-     */
-    public function getCacheControlDirective(string $key): bool|string|null
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->cacheControl[$key] ?? null;
     }
@@ -310,28 +257,19 @@ class HeaderBag implements \IteratorAggregate, \Countable
      *
      * @return \ArrayIterator<string, list<string|null>>
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function getIterator()
-=======
-    public function getIterator(): \ArrayIterator
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new \ArrayIterator($this->headers);
     }
 
     /**
      * Returns the number of headers.
-<<<<<<< HEAD
      *
      * @return int
      */
     #[\ReturnTypeWillChange]
     public function count()
-=======
-     */
-    public function count(): int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \count($this->headers);
     }
@@ -345,15 +283,10 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Parses a Cache-Control HTTP header.
-<<<<<<< HEAD
      *
      * @return array
      */
     protected function parseCacheControl(string $header)
-=======
-     */
-    protected function parseCacheControl(string $header): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $parts = HeaderUtils::split($header, ',=');
 

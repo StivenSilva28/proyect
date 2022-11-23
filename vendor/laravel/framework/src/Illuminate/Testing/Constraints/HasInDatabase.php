@@ -64,11 +64,7 @@ class HasInDatabase extends Constraint
     {
         return sprintf(
             "a row in the table [%s] matches the attributes %s.\n\n%s",
-<<<<<<< HEAD
             $table, $this->toString(JSON_PRETTY_PRINT), $this->getAdditionalInfo($table)
-=======
-            $table, $this->toString(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), $this->getAdditionalInfo($table)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         );
     }
 
@@ -85,7 +81,6 @@ class HasInDatabase extends Constraint
         $similarResults = $query->where(
             array_key_first($this->data),
             $this->data[array_key_first($this->data)]
-<<<<<<< HEAD
         )->limit($this->show)->get();
 
         if ($similarResults->isNotEmpty()) {
@@ -100,22 +95,6 @@ class HasInDatabase extends Constraint
             }
 
             $description = 'Found: '.json_encode($results, JSON_PRETTY_PRINT);
-=======
-        )->select(array_keys($this->data))->limit($this->show)->get();
-
-        if ($similarResults->isNotEmpty()) {
-            $description = 'Found similar results: '.json_encode($similarResults, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        } else {
-            $query = $this->database->table($table);
-
-            $results = $query->select(array_keys($this->data))->limit($this->show)->get();
-
-            if ($results->isEmpty()) {
-                return 'The table is empty';
-            }
-
-            $description = 'Found: '.json_encode($results, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         if ($query->count() > $this->show) {

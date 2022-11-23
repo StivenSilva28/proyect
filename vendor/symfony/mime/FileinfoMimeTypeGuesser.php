@@ -21,11 +21,7 @@ use Symfony\Component\Mime\Exception\LogicException;
  */
 class FileinfoMimeTypeGuesser implements MimeTypeGuesserInterface
 {
-<<<<<<< HEAD
     private $magicFile;
-=======
-    private ?string $magicFile;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param string $magicFile A magic file to use with the finfo instance

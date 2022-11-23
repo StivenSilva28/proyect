@@ -16,7 +16,6 @@ namespace Symfony\Component\Finder\Comparator;
  */
 class Comparator
 {
-<<<<<<< HEAD
     private $target;
     private $operator = '==';
 
@@ -108,54 +107,11 @@ class Comparator
     }
 
     private function doSetOperator(string $operator): void
-=======
-    private string $target;
-    private string $operator;
-
-    public function __construct(string $target, string $operator = '==')
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!\in_array($operator, ['>', '<', '>=', '<=', '==', '!='])) {
             throw new \InvalidArgumentException(sprintf('Invalid operator "%s".', $operator));
         }
 
-<<<<<<< HEAD
         $this->operator = $operator;
     }
-=======
-        $this->target = $target;
-        $this->operator = $operator;
-    }
-
-    /**
-     * Gets the target value.
-     */
-    public function getTarget(): string
-    {
-        return $this->target;
-    }
-
-    /**
-     * Gets the comparison operator.
-     */
-    public function getOperator(): string
-    {
-        return $this->operator;
-    }
-
-    /**
-     * Tests against the target.
-     */
-    public function test(mixed $test): bool
-    {
-        return match ($this->operator) {
-            '>' => $test > $this->target,
-            '>=' => $test >= $this->target,
-            '<' => $test < $this->target,
-            '<=' => $test <= $this->target,
-            '!=' => $test != $this->target,
-            default => $test == $this->target,
-        };
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

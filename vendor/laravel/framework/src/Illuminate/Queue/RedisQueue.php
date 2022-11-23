@@ -46,18 +46,6 @@ class RedisQueue extends Queue implements QueueContract, ClearableQueue
     protected $blockFor = null;
 
     /**
-<<<<<<< HEAD
-=======
-     * The batch size to use when migrating delayed / expired jobs onto the primary queue.
-     *
-     * Negative values are infinite.
-     *
-     * @var int
-     */
-    protected $migrationBatchSize = -1;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new Redis queue instance.
      *
      * @param  \Illuminate\Contracts\Redis\Factory  $redis
@@ -66,10 +54,6 @@ class RedisQueue extends Queue implements QueueContract, ClearableQueue
      * @param  int  $retryAfter
      * @param  int|null  $blockFor
      * @param  bool  $dispatchAfterCommit
-<<<<<<< HEAD
-=======
-     * @param  int  $migrationBatchSize
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return void
      */
     public function __construct(Redis $redis,
@@ -77,12 +61,7 @@ class RedisQueue extends Queue implements QueueContract, ClearableQueue
                                 $connection = null,
                                 $retryAfter = 60,
                                 $blockFor = null,
-<<<<<<< HEAD
                                 $dispatchAfterCommit = false)
-=======
-                                $dispatchAfterCommit = false,
-                                $migrationBatchSize = -1)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->redis = $redis;
         $this->default = $default;
@@ -90,10 +69,6 @@ class RedisQueue extends Queue implements QueueContract, ClearableQueue
         $this->connection = $connection;
         $this->retryAfter = $retryAfter;
         $this->dispatchAfterCommit = $dispatchAfterCommit;
-<<<<<<< HEAD
-=======
-        $this->migrationBatchSize = $migrationBatchSize;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -124,15 +99,7 @@ class RedisQueue extends Queue implements QueueContract, ClearableQueue
         $this->getConnection()->pipeline(function () use ($jobs, $data, $queue) {
             $this->getConnection()->transaction(function () use ($jobs, $data, $queue) {
                 foreach ((array) $jobs as $job) {
-<<<<<<< HEAD
                     $this->push($job, $data, $queue);
-=======
-                    if (isset($job->delay)) {
-                        $this->later($job->delay, $job, $data, $queue);
-                    } else {
-                        $this->push($job, $data, $queue);
-                    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 }
             });
         });
@@ -200,11 +167,7 @@ class RedisQueue extends Queue implements QueueContract, ClearableQueue
     }
 
     /**
-<<<<<<< HEAD
      * Push a raw job onto the queue after a delay.
-=======
-     * Push a raw job onto the queue after (n) seconds.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  string  $payload
@@ -276,20 +239,12 @@ class RedisQueue extends Queue implements QueueContract, ClearableQueue
      *
      * @param  string  $from
      * @param  string  $to
-<<<<<<< HEAD
-=======
-     * @param  int  $limit
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return array
      */
     public function migrateExpiredJobs($from, $to)
     {
         return $this->getConnection()->eval(
-<<<<<<< HEAD
             LuaScripts::migrateExpiredJobs(), 3, $from, $to, $to.':notify', $this->currentTime()
-=======
-            LuaScripts::migrateExpiredJobs(), 3, $from, $to, $to.':notify', $this->currentTime(), $this->migrationBatchSize
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         );
     }
 

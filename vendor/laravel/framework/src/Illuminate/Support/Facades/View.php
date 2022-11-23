@@ -13,10 +13,6 @@ namespace Illuminate\Support\Facades;
  * @method static array creator(array|string $views, \Closure|string $callback)
  * @method static bool exists(string $view)
  * @method static mixed share(array|string $key, $value = null)
-<<<<<<< HEAD
-=======
- * @method static mixed shared(string $key, $default = null)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  *
  * @see \Illuminate\View\Factory
  */

@@ -117,19 +117,11 @@ class PendingMail
      * Send a new mailable message instance.
      *
      * @param  \Illuminate\Contracts\Mail\Mailable  $mailable
-<<<<<<< HEAD
      * @return void
      */
     public function send(MailableContract $mailable)
     {
         $this->mailer->send($this->fill($mailable));
-=======
-     * @return \Illuminate\Mail\SentMessage|null
-     */
-    public function send(MailableContract $mailable)
-    {
-        return $this->mailer->send($this->fill($mailable));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -144,11 +136,7 @@ class PendingMail
     }
 
     /**
-<<<<<<< HEAD
      * Deliver the queued message after the given delay.
-=======
-     * Deliver the queued message after (n) seconds.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  \Illuminate\Contracts\Mail\Mailable  $mailable

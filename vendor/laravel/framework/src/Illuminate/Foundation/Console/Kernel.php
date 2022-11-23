@@ -2,13 +2,7 @@
 
 namespace Illuminate\Foundation\Console;
 
-<<<<<<< HEAD
 use Closure;
-=======
-use Carbon\CarbonInterval;
-use Closure;
-use DateTimeInterface;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Console\Application as Artisan;
 use Illuminate\Console\Command;
 use Illuminate\Console\Scheduling\Schedule;
@@ -17,13 +11,7 @@ use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Arr;
-<<<<<<< HEAD
 use Illuminate\Support\Env;
-=======
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Env;
-use Illuminate\Support\InteractsWithTime;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Support\Str;
 use ReflectionClass;
 use Symfony\Component\Finder\Finder;
@@ -31,11 +19,6 @@ use Throwable;
 
 class Kernel implements KernelContract
 {
-<<<<<<< HEAD
-=======
-    use InteractsWithTime;
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * The application implementation.
      *
@@ -72,23 +55,6 @@ class Kernel implements KernelContract
     protected $commandsLoaded = false;
 
     /**
-<<<<<<< HEAD
-=======
-     * All of the registered command duration handlers.
-     *
-     * @var array
-     */
-    protected $commandLifecycleDurationHandlers = [];
-
-    /**
-     * When the currently handled command started.
-     *
-     * @var \Illuminate\Support\Carbon|null
-     */
-    protected $commandStartedAt;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The bootstrap classes for the application.
      *
      * @var string[]
@@ -157,17 +123,7 @@ class Kernel implements KernelContract
      */
     public function handle($input, $output = null)
     {
-<<<<<<< HEAD
         try {
-=======
-        $this->commandStartedAt = Carbon::now();
-
-        try {
-            if (in_array($input->getFirstArgument(), ['env:encrypt', 'env:decrypt'], true)) {
-                $this->bootstrapWithoutBootingProviders();
-            }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->bootstrap();
 
             return $this->getArtisan()->run($input, $output);
@@ -190,52 +146,6 @@ class Kernel implements KernelContract
     public function terminate($input, $status)
     {
         $this->app->terminate();
-<<<<<<< HEAD
-=======
-
-        foreach ($this->commandLifecycleDurationHandlers as ['threshold' => $threshold, 'handler' => $handler]) {
-            $end ??= Carbon::now();
-
-            if ($this->commandStartedAt->diffInMilliseconds($end) > $threshold) {
-                $handler($this->commandStartedAt, $input, $status);
-            }
-        }
-
-        $this->commandStartedAt = null;
-    }
-
-    /**
-     * Register a callback to be invoked when the command lifecyle duration exceeds a given amount of time.
-     *
-     * @param  \DateTimeInterface|\Carbon\CarbonInterval|float|int  $threshold
-     * @param  callable  $handler
-     * @return void
-     */
-    public function whenCommandLifecycleIsLongerThan($threshold, $handler)
-    {
-        $threshold = $threshold instanceof DateTimeInterface
-            ? $this->secondsUntil($threshold) * 1000
-            : $threshold;
-
-        $threshold = $threshold instanceof CarbonInterval
-            ? $threshold->totalMilliseconds
-            : $threshold;
-
-        $this->commandLifecycleDurationHandlers[] = [
-            'threshold' => $threshold,
-            'handler' => $handler,
-        ];
-    }
-
-    /**
-     * When the command being handled started.
-     *
-     * @return \Illuminate\Support\Carbon|null
-     */
-    public function commandStartedAt()
-    {
-        return $this->commandStartedAt;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -348,13 +258,6 @@ class Kernel implements KernelContract
      */
     public function call($command, array $parameters = [], $outputBuffer = null)
     {
-<<<<<<< HEAD
-=======
-        if (in_array($command, ['env:encrypt', 'env:decrypt'], true)) {
-            $this->bootstrapWithoutBootingProviders();
-        }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->bootstrap();
 
         return $this->getArtisan()->call($command, $parameters, $outputBuffer);
@@ -417,23 +320,6 @@ class Kernel implements KernelContract
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Bootstrap the application without booting service providers.
-     *
-     * @return void
-     */
-    public function bootstrapWithoutBootingProviders()
-    {
-        $this->app->bootstrapWith(
-            collect($this->bootstrappers())->reject(function ($bootstrapper) {
-                return $bootstrapper === \Illuminate\Foundation\Bootstrap\BootProviders::class;
-            })->all()
-        );
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Get the Artisan application instance.
      *
      * @return \Illuminate\Console\Application
@@ -441,14 +327,8 @@ class Kernel implements KernelContract
     protected function getArtisan()
     {
         if (is_null($this->artisan)) {
-<<<<<<< HEAD
             return $this->artisan = (new Artisan($this->app, $this->events, $this->app->version()))
                                 ->resolveCommands($this->commands);
-=======
-            $this->artisan = (new Artisan($this->app, $this->events, $this->app->version()))
-                                    ->resolveCommands($this->commands)
-                                    ->setContainerCommandLoader();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $this->artisan;

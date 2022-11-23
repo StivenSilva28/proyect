@@ -24,11 +24,7 @@ use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
  */
 final class ServiceValueResolver implements ArgumentValueResolverInterface
 {
-<<<<<<< HEAD
     private $container;
-=======
-    private ContainerInterface $container;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(ContainerInterface $container)
     {
@@ -88,10 +84,7 @@ final class ServiceValueResolver implements ArgumentValueResolverInterface
             }
 
             $r = new \ReflectionProperty($e, 'message');
-<<<<<<< HEAD
             $r->setAccessible(true);
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $r->setValue($e, $message);
 
             throw $e;

@@ -23,11 +23,7 @@ trait CompilesComponents
      */
     protected function compileComponent($expression)
     {
-<<<<<<< HEAD
         [$component, $alias, $data] = strpos($expression, ',') !== false
-=======
-        [$component, $alias, $data] = str_contains($expression, ',')
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     ? array_map('trim', explode(',', trim($expression, '()'), 3)) + ['', '', '']
                     : [trim($expression, '()'), '', ''];
 
@@ -68,11 +64,7 @@ trait CompilesComponents
     {
         return implode("\n", [
             '<?php if (isset($component)) { $__componentOriginal'.$hash.' = $component; } ?>',
-<<<<<<< HEAD
             '<?php $component = $__env->getContainer()->make('.Str::finish($component, '::class').', '.($data ?: '[]').'); ?>',
-=======
-            '<?php $component = '.$component.'::resolve('.($data ?: '[]').' + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             '<?php $component->withName('.$alias.'); ?>',
             '<?php if ($component->shouldRender()): ?>',
             '<?php $__env->startComponent($component->resolveView(), $component->data()); ?>',
@@ -157,15 +149,7 @@ trait CompilesComponents
      */
     protected function compileProps($expression)
     {
-<<<<<<< HEAD
         return "<?php \$attributes = \$attributes->exceptProps{$expression}; ?>
-=======
-        return "<?php \$attributes ??= new \\Illuminate\\View\\ComponentAttributeBag; ?>
-<?php foreach(\$attributes->onlyProps{$expression} as \$__key => \$__value) {
-    \$\$__key = \$\$__key ?? \$__value;
-} ?>
-<?php \$attributes = \$attributes->exceptProps{$expression}; ?>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 <?php foreach (array_filter({$expression}, 'is_string', ARRAY_FILTER_USE_KEY) as \$__key => \$__value) {
     \$\$__key = \$\$__key ?? \$__value;
 } ?>
@@ -198,11 +182,7 @@ trait CompilesComponents
      */
     public static function sanitizeComponentAttribute($value)
     {
-<<<<<<< HEAD
         if (is_object($value) && $value instanceof CanBeEscapedWhenCastToString) {
-=======
-        if ($value instanceof CanBeEscapedWhenCastToString) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $value->escapeWhenCastingToString();
         }
 

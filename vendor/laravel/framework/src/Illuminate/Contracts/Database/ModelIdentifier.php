@@ -35,16 +35,6 @@ class ModelIdentifier
     public $connection;
 
     /**
-<<<<<<< HEAD
-=======
-     * The class name of the model collection.
-     *
-     * @var string|null
-     */
-    public $collectionClass;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new model identifier.
      *
      * @param  string  $class
@@ -60,20 +50,4 @@ class ModelIdentifier
         $this->relations = $relations;
         $this->connection = $connection;
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Specify the collection class that should be used when serializing / restoring collections.
-     *
-     * @param  string|null  $collectionClass
-     * @return $this
-     */
-    public function useCollectionClass(?string $collectionClass)
-    {
-        $this->collectionClass = $collectionClass;
-
-        return $this;
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

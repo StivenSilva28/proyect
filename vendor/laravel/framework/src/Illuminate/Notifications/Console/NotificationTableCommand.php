@@ -5,13 +5,7 @@ namespace Illuminate\Notifications\Console;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
-<<<<<<< HEAD
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-
-#[AsCommand(name: 'notifications:table')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class NotificationTableCommand extends Command
 {
     /**
@@ -22,20 +16,6 @@ class NotificationTableCommand extends Command
     protected $name = 'notifications:table';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'notifications:table';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -80,11 +60,7 @@ class NotificationTableCommand extends Command
 
         $this->files->put($fullPath, $this->files->get(__DIR__.'/stubs/notifications.stub'));
 
-<<<<<<< HEAD
         $this->info('Migration created successfully!');
-=======
-        $this->components->info('Migration created successfully.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $this->composer->dumpAutoloads();
     }

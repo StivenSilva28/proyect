@@ -15,23 +15,12 @@ namespace Illuminate\Support\Facades;
  * @method static bool hasColumn(string $table, string $column)
  * @method static bool hasColumns(string $table, array $columns)
  * @method static bool dropColumns(string $table, array $columns)
-<<<<<<< HEAD
  * @method static bool hasTable(string $table)
  * @method static void defaultStringLength(int $length)
  * @method static void registerCustomDoctrineType(string $class, string $name, string $type)
  * @method static array getColumnListing(string $table)
  * @method static string getColumnType(string $table, string $column)
  * @method static void morphUsingUuids()
-=======
- * @method static void whenTableHasColumn(string $table, string $column, \Closure $callback)
- * @method static void whenTableDoesntHaveColumn(string $table, string $column, \Closure $callback)
- * @method static bool hasTable(string $table)
- * @method static void defaultStringLength(int $length)
- * @method static array getColumnListing(string $table)
- * @method static string getColumnType(string $table, string $column)
- * @method static void morphUsingUuids()
- * @method static void morphUsingUlids()
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static \Illuminate\Database\Connection getConnection()
  * @method static \Illuminate\Database\Schema\Builder setConnection(\Illuminate\Database\Connection $connection)
  *
@@ -40,16 +29,6 @@ namespace Illuminate\Support\Facades;
 class Schema extends Facade
 {
     /**
-<<<<<<< HEAD
-=======
-     * Indicates if the resolved facade should be cached.
-     *
-     * @var bool
-     */
-    protected static $cached = false;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Get a schema builder instance for a connection.
      *
      * @param  string|null  $name
@@ -61,7 +40,6 @@ class Schema extends Facade
     }
 
     /**
-<<<<<<< HEAD
      * Get a schema builder instance for the default connection.
      *
      * @return \Illuminate\Database\Schema\Builder
@@ -69,14 +47,5 @@ class Schema extends Facade
     protected static function getFacadeAccessor()
     {
         return static::$app['db']->connection()->getSchemaBuilder();
-=======
-     * Get the registered name of the component.
-     *
-     * @return string
-     */
-    protected static function getFacadeAccessor()
-    {
-        return 'db.schema';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

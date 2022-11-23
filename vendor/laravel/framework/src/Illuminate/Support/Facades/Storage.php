@@ -5,12 +5,7 @@ namespace Illuminate\Support\Facades;
 use Illuminate\Filesystem\Filesystem;
 
 /**
-<<<<<<< HEAD
  * @method static \Illuminate\Contracts\Filesystem\Filesystem assertExists(string|array $path)
-=======
- * @method static \Illuminate\Contracts\Filesystem\Filesystem assertExists(string|array $path, string|null $content = null)
- * @method static \Illuminate\Contracts\Filesystem\Filesystem assertDirectoryEmpty(string $path)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static \Illuminate\Contracts\Filesystem\Filesystem assertMissing(string|array $path)
  * @method static \Illuminate\Contracts\Filesystem\Filesystem cloud()
  * @method static \Illuminate\Contracts\Filesystem\Filesystem build(string|array $root)
@@ -75,13 +70,7 @@ class Storage extends Facade
             'root' => $root,
         ])));
 
-<<<<<<< HEAD
         return $fake;
-=======
-        return tap($fake)->buildTemporaryUrlsUsing(function ($path, $expiration) {
-            return URL::to($path.'?expiration='.$expiration->getTimestamp());
-        });
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

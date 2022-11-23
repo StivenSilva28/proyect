@@ -5,10 +5,6 @@ namespace Illuminate\Support;
 use ArrayIterator;
 use Illuminate\Contracts\Support\ValidatedData;
 use stdClass;
-<<<<<<< HEAD
-=======
-use Traversable;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class ValidatedInput implements ValidatedData
 {
@@ -31,45 +27,9 @@ class ValidatedInput implements ValidatedData
     }
 
     /**
-<<<<<<< HEAD
      * Get a subset containing the provided keys with values from the input data.
      *
      * @param  array|mixed  $keys
-=======
-     * Determine if the validated input has one or more keys.
-     *
-     * @param  mixed  $keys
-     * @return bool
-     */
-    public function has($keys)
-    {
-        $keys = is_array($keys) ? $keys : func_get_args();
-
-        foreach ($keys as $key) {
-            if (! Arr::has($this->input, $key)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Determine if the validated input is missing one or more keys.
-     *
-     * @param  mixed  $keys
-     * @return bool
-     */
-    public function missing($keys)
-    {
-        return ! $this->has($keys);
-    }
-
-    /**
-     * Get a subset containing the provided keys with values from the input data.
-     *
-     * @param  mixed  $keys
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return array
      */
     public function only($keys)
@@ -94,11 +54,7 @@ class ValidatedInput implements ValidatedData
     /**
      * Get all of the input except for a specified array of items.
      *
-<<<<<<< HEAD
      * @param  array|mixed  $keys
-=======
-     * @param  mixed  $keys
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return array
      */
     public function except($keys)
@@ -203,12 +159,8 @@ class ValidatedInput implements ValidatedData
      * @param  mixed  $key
      * @return bool
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetExists($key)
-=======
-    public function offsetExists($key): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return isset($this->input[$key]);
     }
@@ -219,12 +171,8 @@ class ValidatedInput implements ValidatedData
      * @param  mixed  $key
      * @return mixed
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetGet($key)
-=======
-    public function offsetGet($key): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->input[$key];
     }
@@ -236,12 +184,8 @@ class ValidatedInput implements ValidatedData
      * @param  mixed  $value
      * @return void
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
-=======
-    public function offsetSet($key, $value): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (is_null($key)) {
             $this->input[] = $value;
@@ -256,12 +200,8 @@ class ValidatedInput implements ValidatedData
      * @param  string  $key
      * @return void
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetUnset($key)
-=======
-    public function offsetUnset($key): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         unset($this->input[$key]);
     }
@@ -271,12 +211,8 @@ class ValidatedInput implements ValidatedData
      *
      * @return \ArrayIterator
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function getIterator()
-=======
-    public function getIterator(): Traversable
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new ArrayIterator($this->input);
     }

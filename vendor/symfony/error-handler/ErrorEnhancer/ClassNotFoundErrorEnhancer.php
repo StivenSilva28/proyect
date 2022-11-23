@@ -143,11 +143,7 @@ class ClassNotFoundErrorEnhancer implements ErrorEnhancerInterface
         ];
 
         if ($prefix) {
-<<<<<<< HEAD
             $candidates = array_filter($candidates, function ($candidate) use ($prefix) { return 0 === strpos($candidate, $prefix); });
-=======
-            $candidates = array_filter($candidates, function ($candidate) use ($prefix) { return str_starts_with($candidate, $prefix); });
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         // We cannot use the autoloader here as most of them use require; but if the class
@@ -161,11 +157,7 @@ class ClassNotFoundErrorEnhancer implements ErrorEnhancerInterface
 
         try {
             require_once $file;
-<<<<<<< HEAD
         } catch (\Throwable $e) {
-=======
-        } catch (\Throwable) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return null;
         }
 

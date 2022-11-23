@@ -25,11 +25,7 @@ class ChainExtractor implements ExtractorInterface
      *
      * @var ExtractorInterface[]
      */
-<<<<<<< HEAD
     private $extractors = [];
-=======
-    private array $extractors = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Adds a loader to the translation extractor.
@@ -52,11 +48,7 @@ class ChainExtractor implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function extract($directory, MessageCatalogue $catalogue)
-=======
-    public function extract(string|iterable $directory, MessageCatalogue $catalogue)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         foreach ($this->extractors as $extractor) {
             $extractor->extract($directory, $catalogue);

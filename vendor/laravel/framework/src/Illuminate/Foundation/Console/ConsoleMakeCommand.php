@@ -4,17 +4,9 @@ namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Console\GeneratorCommand;
-<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-
-#[AsCommand(name: 'make:command')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ConsoleMakeCommand extends GeneratorCommand
 {
     use CreatesMatchingTest;
@@ -27,20 +19,6 @@ class ConsoleMakeCommand extends GeneratorCommand
     protected $name = 'make:command';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'make:command';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -113,10 +91,6 @@ class ConsoleMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-<<<<<<< HEAD
-=======
-            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the console command already exists'],
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ['command', null, InputOption::VALUE_OPTIONAL, 'The terminal command that should be assigned', 'command:name'],
         ];
     }

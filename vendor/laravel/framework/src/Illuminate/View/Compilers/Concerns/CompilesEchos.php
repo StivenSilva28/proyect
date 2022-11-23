@@ -143,11 +143,7 @@ trait CompilesEchos
     {
         $value = Str::of($value)
             ->trim()
-<<<<<<< HEAD
             ->when(Str::endsWith($value, ';'), function ($str) {
-=======
-            ->when(str_ends_with($value, ';'), function ($str) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return $str->beforeLast(';');
             });
 

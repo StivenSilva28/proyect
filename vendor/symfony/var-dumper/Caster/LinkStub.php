@@ -20,13 +20,8 @@ class LinkStub extends ConstStub
 {
     public $inVendor = false;
 
-<<<<<<< HEAD
     private static $vendorRoots;
     private static $composerRoots;
-=======
-    private static array $vendorRoots;
-    private static array $composerRoots = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(string $label, int $line = 0, string $href = null)
     {
@@ -70,11 +65,7 @@ class LinkStub extends ConstStub
 
     private function getComposerRoot(string $file, bool &$inVendor)
     {
-<<<<<<< HEAD
         if (null === self::$vendorRoots) {
-=======
-        if (!isset(self::$vendorRoots)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             self::$vendorRoots = [];
 
             foreach (get_declared_classes() as $class) {

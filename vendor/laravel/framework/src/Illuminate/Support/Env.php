@@ -96,12 +96,8 @@ class Env
 
                 return $value;
             })
-<<<<<<< HEAD
             ->getOrCall(function () use ($default) {
                 return value($default);
             });
-=======
-            ->getOrCall(fn () => value($default));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

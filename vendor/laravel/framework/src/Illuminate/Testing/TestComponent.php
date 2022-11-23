@@ -4,10 +4,7 @@ namespace Illuminate\Testing;
 
 use Illuminate\Testing\Assert as PHPUnit;
 use Illuminate\Testing\Constraints\SeeInOrder;
-<<<<<<< HEAD
 use Illuminate\View\Component;
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class TestComponent
 {

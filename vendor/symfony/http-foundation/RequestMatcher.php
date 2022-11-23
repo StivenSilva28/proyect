@@ -18,7 +18,6 @@ namespace Symfony\Component\HttpFoundation;
  */
 class RequestMatcher implements RequestMatcherInterface
 {
-<<<<<<< HEAD
     /**
      * @var string|null
      */
@@ -33,59 +32,33 @@ class RequestMatcher implements RequestMatcherInterface
      * @var int|null
      */
     private $port;
-=======
-    private ?string $path = null;
-    private ?string $host = null;
-    private ?int $port = null;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var string[]
      */
-<<<<<<< HEAD
     private $methods = [];
-=======
-    private array $methods = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var string[]
      */
-<<<<<<< HEAD
     private $ips = [];
 
     /**
      * @var array
      */
     private $attributes = [];
-=======
-    private array $ips = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var string[]
      */
-<<<<<<< HEAD
     private $schemes = [];
-=======
-    private array $attributes = [];
-
-    /**
-     * @var string[]
-     */
-    private array $schemes = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param string|string[]|null $methods
      * @param string|string[]|null $ips
      * @param string|string[]|null $schemes
      */
-<<<<<<< HEAD
     public function __construct(string $path = null, string $host = null, $methods = null, $ips = null, array $attributes = [], $schemes = null, int $port = null)
-=======
-    public function __construct(string $path = null, string $host = null, string|array $methods = null, string|array $ips = null, array $attributes = [], string|array $schemes = null, int $port = null)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->matchPath($path);
         $this->matchHost($host);
@@ -104,11 +77,7 @@ class RequestMatcher implements RequestMatcherInterface
      *
      * @param string|string[]|null $scheme An HTTP scheme or an array of HTTP schemes
      */
-<<<<<<< HEAD
     public function matchScheme($scheme)
-=======
-    public function matchScheme(string|array|null $scheme)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->schemes = null !== $scheme ? array_map('strtolower', (array) $scheme) : [];
     }
@@ -154,11 +123,7 @@ class RequestMatcher implements RequestMatcherInterface
      *
      * @param string|string[]|null $ips A specific IP address or a range specified using IP/netmask like 192.168.1.0/24
      */
-<<<<<<< HEAD
     public function matchIps($ips)
-=======
-    public function matchIps(string|array|null $ips)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $ips = null !== $ips ? (array) $ips : [];
 
@@ -172,11 +137,7 @@ class RequestMatcher implements RequestMatcherInterface
      *
      * @param string|string[]|null $method An HTTP method or an array of HTTP methods
      */
-<<<<<<< HEAD
     public function matchMethod($method)
-=======
-    public function matchMethod(string|array|null $method)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->methods = null !== $method ? array_map('strtoupper', (array) $method) : [];
     }
@@ -192,11 +153,7 @@ class RequestMatcher implements RequestMatcherInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function matches(Request $request)
-=======
-    public function matches(Request $request): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->schemes && !\in_array($request->getScheme(), $this->schemes, true)) {
             return false;

@@ -91,11 +91,7 @@ class CompiledUrlGeneratorDumper extends GeneratorDumper
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function dump(array $options = [])
-=======
-    public function dump(array $options = []): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return <<<EOF
 <?php

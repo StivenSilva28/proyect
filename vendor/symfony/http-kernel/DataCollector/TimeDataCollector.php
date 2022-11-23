@@ -24,13 +24,8 @@ use Symfony\Component\Stopwatch\StopwatchEvent;
  */
 class TimeDataCollector extends DataCollector implements LateDataCollectorInterface
 {
-<<<<<<< HEAD
     private $kernel;
     private $stopwatch;
-=======
-    private ?KernelInterface $kernel;
-    private ?Stopwatch $stopwatch;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(KernelInterface $kernel = null, Stopwatch $stopwatch = null)
     {
@@ -64,13 +59,9 @@ class TimeDataCollector extends DataCollector implements LateDataCollectorInterf
     {
         $this->data = [];
 
-<<<<<<< HEAD
         if (null !== $this->stopwatch) {
             $this->stopwatch->reset();
         }
-=======
-        $this->stopwatch?->reset();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

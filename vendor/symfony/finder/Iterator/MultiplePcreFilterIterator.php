@@ -27,15 +27,9 @@ abstract class MultiplePcreFilterIterator extends \FilterIterator
     protected $noMatchRegexps = [];
 
     /**
-<<<<<<< HEAD
      * @param \Iterator $iterator        The Iterator to filter
      * @param string[]  $matchPatterns   An array of patterns that need to match
      * @param string[]  $noMatchPatterns An array of patterns that need to not match
-=======
-     * @param \Iterator<TKey, TValue> $iterator        The Iterator to filter
-     * @param string[]                $matchPatterns   An array of patterns that need to match
-     * @param string[]                $noMatchPatterns An array of patterns that need to not match
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function __construct(\Iterator $iterator, array $matchPatterns, array $noMatchPatterns)
     {
@@ -56,15 +50,10 @@ abstract class MultiplePcreFilterIterator extends \FilterIterator
      * If there is no regexps defined in the class, this method will accept the string.
      * Such case can be handled by child classes before calling the method if they want to
      * apply a different behavior.
-<<<<<<< HEAD
      *
      * @return bool
      */
     protected function isAccepted(string $string)
-=======
-     */
-    protected function isAccepted(string $string): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // should at least not match one rule to exclude
         foreach ($this->noMatchRegexps as $regex) {
@@ -90,15 +79,10 @@ abstract class MultiplePcreFilterIterator extends \FilterIterator
 
     /**
      * Checks whether the string is a regex.
-<<<<<<< HEAD
      *
      * @return bool
      */
     protected function isRegex(string $str)
-=======
-     */
-    protected function isRegex(string $str): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $availableModifiers = 'imsxuADU';
 
@@ -126,13 +110,8 @@ abstract class MultiplePcreFilterIterator extends \FilterIterator
 
     /**
      * Converts string into regexp.
-<<<<<<< HEAD
      *
      * @return string
      */
     abstract protected function toRegex(string $str);
-=======
-     */
-    abstract protected function toRegex(string $str): string;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

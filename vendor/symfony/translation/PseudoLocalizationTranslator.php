@@ -20,28 +20,16 @@ final class PseudoLocalizationTranslator implements TranslatorInterface
 {
     private const EXPANSION_CHARACTER = '~';
 
-<<<<<<< HEAD
     private $translator;
     private $accents;
     private $expansionFactor;
     private $brackets;
     private $parseHTML;
-=======
-    private TranslatorInterface $translator;
-    private bool $accents;
-    private float $expansionFactor;
-    private bool $brackets;
-    private bool $parseHTML;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var string[]
      */
-<<<<<<< HEAD
     private $localizableHTMLAttributes;
-=======
-    private array $localizableHTMLAttributes;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Available options:

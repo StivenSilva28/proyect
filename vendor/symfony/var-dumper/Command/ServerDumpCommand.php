@@ -11,10 +11,6 @@
 
 namespace Symfony\Component\VarDumper\Command;
 
-<<<<<<< HEAD
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Completion\CompletionSuggestions;
@@ -38,7 +34,6 @@ use Symfony\Component\VarDumper\Server\DumpServer;
  *
  * @final
  */
-<<<<<<< HEAD
 class ServerDumpCommand extends Command
 {
     protected static $defaultName = 'server:dump';
@@ -48,15 +43,6 @@ class ServerDumpCommand extends Command
 
     /** @var DumpDescriptorInterface[] */
     private $descriptors;
-=======
-#[AsCommand(name: 'server:dump', description: 'Start a dump server that collects and displays dumps in a single place')]
-class ServerDumpCommand extends Command
-{
-    private DumpServer $server;
-
-    /** @var DumpDescriptorInterface[] */
-    private array $descriptors;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(DumpServer $server, array $descriptors = [])
     {
@@ -73,10 +59,7 @@ class ServerDumpCommand extends Command
     {
         $this
             ->addOption('format', null, InputOption::VALUE_REQUIRED, sprintf('The output format (%s)', implode(', ', $this->getAvailableFormats())), 'cli')
-<<<<<<< HEAD
             ->setDescription(self::$defaultDescription)
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ->setHelp(<<<'EOF'
 <info>%command.name%</info> starts a dump server that collects and displays
 dumps in a single place for debugging you application:

@@ -3,16 +3,9 @@
 namespace Illuminate\Support\Facades;
 
 /**
-<<<<<<< HEAD
  * @method static \Doctrine\DBAL\Driver\PDOConnection getPdo()
  * @method static \Illuminate\Database\ConnectionInterface connection(string $name = null)
  * @method static \Illuminate\Database\Query\Builder table(string $table, string $as = null)
-=======
- * @method static \PDO getPdo()
- * @method static \Illuminate\Database\ConnectionInterface connection(string $name = null)
- * @method static \Illuminate\Database\Query\Builder table(string $table, string $as = null)
- * @method static \Illuminate\Database\Query\Builder query()
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static \Illuminate\Database\Query\Expression raw($value)
  * @method static array getQueryLog()
  * @method static array prepareBindings(array $bindings)
@@ -35,18 +28,10 @@ namespace Illuminate\Support\Facades;
  * @method static void enableQueryLog()
  * @method static void disableQueryLog()
  * @method static void flushQueryLog()
-<<<<<<< HEAD
-=======
- * @method static void registerDoctrineType(string $class, string $name, string $type)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static \Illuminate\Database\Connection beforeExecuting(\Closure $callback)
  * @method static void listen(\Closure $callback)
  * @method static void rollBack(int $toLevel = null)
  * @method static void setDefaultConnection(string $name)
-<<<<<<< HEAD
-=======
- * @method static void whenQueryingForLongerThan(\DateTimeInterface|\Carbon\CarbonInterval|float|int $threshold, callable $handler)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  *
  * @see \Illuminate\Database\DatabaseManager
  * @see \Illuminate\Database\Connection

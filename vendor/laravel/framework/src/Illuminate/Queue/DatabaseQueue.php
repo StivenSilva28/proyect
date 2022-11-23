@@ -112,11 +112,7 @@ class DatabaseQueue extends Queue implements QueueContract, ClearableQueue
     }
 
     /**
-<<<<<<< HEAD
      * Push a new job onto the queue after a delay.
-=======
-     * Push a new job onto the queue after (n) seconds.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  string  $job
@@ -149,33 +145,17 @@ class DatabaseQueue extends Queue implements QueueContract, ClearableQueue
     {
         $queue = $this->getQueue($queue);
 
-<<<<<<< HEAD
         $availableAt = $this->availableAt();
 
         return $this->database->table($this->table)->insert(collect((array) $jobs)->map(
             function ($job) use ($queue, $data, $availableAt) {
                 return $this->buildDatabaseRecord($queue, $this->createPayload($job, $this->getQueue($queue), $data), $availableAt);
-=======
-        $now = $this->availableAt();
-
-        return $this->database->table($this->table)->insert(collect((array) $jobs)->map(
-            function ($job) use ($queue, $data, $now) {
-                return $this->buildDatabaseRecord(
-                    $queue,
-                    $this->createPayload($job, $this->getQueue($queue), $data),
-                    isset($job->delay) ? $this->availableAt($job->delay) : $now,
-                );
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         )->all());
     }
 
     /**
-<<<<<<< HEAD
      * Release a reserved job back onto the queue.
-=======
-     * Release a reserved job back onto the queue after (n) seconds.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  string  $queue
      * @param  \Illuminate\Queue\Jobs\DatabaseJobRecord  $job
@@ -188,11 +168,7 @@ class DatabaseQueue extends Queue implements QueueContract, ClearableQueue
     }
 
     /**
-<<<<<<< HEAD
      * Push a raw payload to the database with a given delay.
-=======
-     * Push a raw payload to the database with a given delay of (n) seconds.
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  string|null  $queue
      * @param  string  $payload
@@ -281,12 +257,6 @@ class DatabaseQueue extends Queue implements QueueContract, ClearableQueue
         if (Str::of($databaseVersion)->contains('MariaDB')) {
             $databaseEngine = 'mariadb';
             $databaseVersion = Str::before(Str::after($databaseVersion, '5.5.5-'), '-');
-<<<<<<< HEAD
-=======
-        } elseif (Str::of($databaseVersion)->contains(['vitess', 'PlanetScale'])) {
-            $databaseEngine = 'vitess';
-            $databaseVersion = Str::before($databaseVersion, '-');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         if (($databaseEngine === 'mysql' && version_compare($databaseVersion, '8.0.1', '>=')) ||
@@ -295,13 +265,6 @@ class DatabaseQueue extends Queue implements QueueContract, ClearableQueue
             return 'FOR UPDATE SKIP LOCKED';
         }
 
-<<<<<<< HEAD
-=======
-        if ($databaseEngine === 'sqlsrv') {
-            return 'with(rowlock,updlock,readpast)';
-        }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return true;
     }
 

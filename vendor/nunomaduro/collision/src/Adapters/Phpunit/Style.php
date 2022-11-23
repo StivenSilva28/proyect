@@ -29,11 +29,7 @@ final class Style
      */
     public function __construct(ConsoleOutputInterface $output)
     {
-<<<<<<< HEAD
         if (!$output instanceof ConsoleOutput) {
-=======
-        if (! $output instanceof ConsoleOutput) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             throw new ShouldNotHappen();
         }
 
@@ -62,11 +58,7 @@ final class Style
             return;
         }
 
-<<<<<<< HEAD
         if (!$state->headerPrinted) {
-=======
-        if (! $state->headerPrinted) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->output->writeln($this->titleLineFrom(
                 $state->getTestCaseTitle() === 'FAIL' ? 'white' : 'black',
                 $state->getTestCaseTitleColor(),
@@ -100,20 +92,12 @@ final class Style
             return $testResult->type === TestResult::FAIL;
         });
 
-<<<<<<< HEAD
         if (!$onFailure) {
-=======
-        if (! $onFailure) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->output->writeln(['', "  \e[2m---\e[22m", '']);
         }
 
         array_map(function (TestResult $testResult) use ($onFailure) {
-<<<<<<< HEAD
             if (!$onFailure) {
-=======
-            if (! $onFailure) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $this->output->write(sprintf(
                     '  <fg=red;options=bold>• %s </>> <fg=red;options=bold>%s</>',
                     $testResult->testCaseName,
@@ -121,11 +105,7 @@ final class Style
                 ));
             }
 
-<<<<<<< HEAD
             if (!$testResult->throwable instanceof Throwable) {
-=======
-            if (! $testResult->throwable instanceof Throwable) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 throw new ShouldNotHappen();
             }
 
@@ -141,11 +121,7 @@ final class Style
         $types = [TestResult::FAIL, TestResult::WARN, TestResult::RISKY, TestResult::INCOMPLETE, TestResult::SKIPPED, TestResult::PASS];
         foreach ($types as $type) {
             if (($countTests = $state->countTestsInTestSuiteBy($type)) !== 0) {
-<<<<<<< HEAD
                 $color   = TestResult::makeColor($type);
-=======
-                $color = TestResult::makeColor($type);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $tests[] = "<fg=$color;options=bold>$countTests $type</>";
             }
         }
@@ -155,11 +131,7 @@ final class Style
             $tests[] = "\e[2m$pending pending\e[22m";
         }
 
-<<<<<<< HEAD
         if (!empty($tests)) {
-=======
-        if (! empty($tests)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->output->write([
                 "\n",
                 sprintf(
@@ -172,21 +144,12 @@ final class Style
         if ($timer !== null) {
             $timeElapsed = number_format($timer->result(), 2, '.', '');
             $this->output->writeln([
-<<<<<<< HEAD
                     '',
                     sprintf(
                         '  <fg=white;options=bold>Time:   </><fg=default>%ss</>',
                         $timeElapsed
                     ),
                 ]
-=======
-                '',
-                sprintf(
-                    '  <fg=white;options=bold>Time:   </><fg=default>%ss</>',
-                    $timeElapsed
-                ),
-            ]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             );
         }
 
@@ -215,16 +178,8 @@ final class Style
         }
 
         $writer->ignoreFilesIn([
-<<<<<<< HEAD
             '/vendor\/pestphp\/pest/',
             '/vendor\/phpspec\/prophecy-phpunit/',
-=======
-            '/vendor\/bin\/pest/',
-            '/bin\/pest/',
-            '/vendor\/pestphp\/pest/',
-            '/vendor\/phpspec\/prophecy-phpunit/',
-            '/vendor\/phpspec\/prophecy/',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             '/vendor\/phpunit\/phpunit\/src/',
             '/vendor\/mockery\/mockery/',
             '/vendor\/laravel\/dusk/',
@@ -241,10 +196,6 @@ final class Style
             '/bin\/phpunit/',
             '/vendor\/coduo\/php-matcher\/src\/PHPUnit/',
             '/vendor\/sulu\/sulu\/src\/Sulu\/Bundle\/TestBundle\/Testing/',
-<<<<<<< HEAD
-=======
-            '/vendor\/webmozart\/assert/',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ]);
 
         if ($throwable instanceof ExceptionWrapper && $throwable->getOriginalException() !== null) {
@@ -256,7 +207,6 @@ final class Style
         $writer->write($inspector);
 
         if ($throwable instanceof ExpectationFailedException && $comparisionFailure = $throwable->getComparisonFailure()) {
-<<<<<<< HEAD
             $diff  = $comparisionFailure->getDiff();
             $lines = explode(PHP_EOL, $diff);
             $diff  = '';
@@ -271,22 +221,6 @@ final class Style
             }
 
             $diff  = trim((string) preg_replace("/\r|\n/", "\n  ", $diff));
-=======
-            $diff = $comparisionFailure->getDiff();
-            $lines = explode(PHP_EOL, $diff);
-            $diff = '';
-            foreach ($lines as $line) {
-                if (0 === strpos($line, '-')) {
-                    $line = '<fg=red>'.$line.'</>';
-                } elseif (0 === strpos($line, '+')) {
-                    $line = '<fg=green>'.$line.'</>';
-                }
-
-                $diff .= $line.PHP_EOL;
-            }
-
-            $diff = trim((string) preg_replace("/\r|\n/", "\n  ", $diff));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             $this->output->write("  $diff");
         }
@@ -313,11 +247,7 @@ final class Style
      */
     private function testLineFrom(string $fg, string $icon, string $description, string $warning = null): string
     {
-<<<<<<< HEAD
         if (!empty($warning)) {
-=======
-        if (! empty($warning)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $warning = sprintf(
                 ' → %s',
                 $warning

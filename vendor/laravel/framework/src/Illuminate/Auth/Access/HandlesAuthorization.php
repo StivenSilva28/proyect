@@ -27,32 +27,4 @@ trait HandlesAuthorization
     {
         return Response::deny($message, $code);
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Deny with a HTTP status code.
-     *
-     * @param  int  $status
-     * @param  ?string  $message
-     * @param  ?int  $code
-     * @return \Illuminate\Auth\Access\Response
-     */
-    public function denyWithStatus($status, $message = null, $code = null)
-    {
-        return Response::denyWithStatus($status, $message, $code);
-    }
-
-    /**
-     * Deny with a 404 HTTP status code.
-     *
-     * @param  ?string  $message
-     * @param  ?int  $code
-     * @return \Illuminate\Auth\Access\Response
-     */
-    public function denyAsNotFound($message = null, $code = null)
-    {
-        return Response::denyWithStatus(404, $message, $code);
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

@@ -2,10 +2,7 @@
 
 namespace Illuminate\Translation;
 
-<<<<<<< HEAD
 use Countable;
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Contracts\Translation\Loader;
 use Illuminate\Contracts\Translation\Translator as TranslatorContract;
 use Illuminate\Support\Arr;
@@ -54,16 +51,6 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
     protected $selector;
 
     /**
-<<<<<<< HEAD
-=======
-     * The callable that should be invoked to determine applicable locales.
-     *
-     * @var callable
-     */
-    protected $determineLocalesUsing;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new translator instance.
      *
      * @param  \Illuminate\Contracts\Translation\Loader  $loader
@@ -166,11 +153,7 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
         // If the given "number" is actually an array or countable we will simply count the
         // number of elements in an instance. This allows developers to pass an array of
         // items without having to count it on their end first which gives bad syntax.
-<<<<<<< HEAD
         if (is_array($number) || $number instanceof Countable) {
-=======
-        if (is_countable($number)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $number = count($number);
         }
 
@@ -211,15 +194,9 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
         if (is_string($line)) {
             return $this->makeReplacements($line, $replace);
         } elseif (is_array($line) && count($line) > 0) {
-<<<<<<< HEAD
             foreach ($line as $key => $value) {
                 $line[$key] = $this->makeReplacements($value, $replace);
             }
-=======
-            array_walk_recursive($line, function (&$value, $key) use ($replace) {
-                $value = $this->makeReplacements($value, $replace);
-            });
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             return $line;
         }
@@ -349,24 +326,7 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
      */
     protected function localeArray($locale)
     {
-<<<<<<< HEAD
         return array_filter([$locale ?: $this->locale, $this->fallback]);
-=======
-        $locales = array_filter([$locale ?: $this->locale, $this->fallback]);
-
-        return call_user_func($this->determineLocalesUsing ?: fn () => $locales, $locales);
-    }
-
-    /**
-     * Specify a callback that should be invoked to determined the applicable locale array.
-     *
-     * @param  callable  $callback
-     * @return void
-     */
-    public function determineLocalesUsing($callback)
-    {
-        $this->determineLocalesUsing = $callback;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

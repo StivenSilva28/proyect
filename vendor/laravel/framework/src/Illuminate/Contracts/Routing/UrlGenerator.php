@@ -70,16 +70,6 @@ interface UrlGenerator
     public function action($action, $parameters = [], $absolute = true);
 
     /**
-<<<<<<< HEAD
-=======
-     * Get the root controller namespace.
-     *
-     * @return string
-     */
-    public function getRootControllerNamespace();
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Set the root controller namespace.
      *
      * @param  string  $rootNamespace

@@ -53,11 +53,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
     protected $dispatcher;
     protected $resolver;
     protected $requestStack;
-<<<<<<< HEAD
     private $argumentResolver;
-=======
-    private ArgumentResolverInterface $argumentResolver;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(EventDispatcherInterface $dispatcher, ControllerResolverInterface $resolver, RequestStack $requestStack = null, ArgumentResolverInterface $argumentResolver = null)
     {
@@ -70,11 +66,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function handle(Request $request, int $type = HttpKernelInterface::MAIN_REQUEST, bool $catch = true)
-=======
-    public function handle(Request $request, int $type = HttpKernelInterface::MAIN_REQUEST, bool $catch = true): Response
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $request->headers->set('X-Php-Ob-Level', (string) ob_get_level());
 
@@ -255,11 +247,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
 
         try {
             return $this->filterResponse($response, $request, $type);
-<<<<<<< HEAD
         } catch (\Exception $e) {
-=======
-        } catch (\Exception) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $response;
         }
     }
@@ -267,11 +255,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
     /**
      * Returns a human-readable string for the specified variable.
      */
-<<<<<<< HEAD
     private function varToString($var): string
-=======
-    private function varToString(mixed $var): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (\is_object($var)) {
             return sprintf('an object of type %s', \get_class($var));

@@ -71,19 +71,12 @@ interface UrlGeneratorInterface extends RequestContextAwareInterface
      *
      * The special parameter _fragment will be used as the document fragment suffixed to the final URL.
      *
-<<<<<<< HEAD
      * @return string
      *
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @throws RouteNotFoundException              If the named route doesn't exist
      * @throws MissingMandatoryParametersException When some parameters are missing that are mandatory for the route
      * @throws InvalidParameterException           When a parameter value for a placeholder is not correct because
      *                                             it does not match the requirement
      */
-<<<<<<< HEAD
     public function generate(string $name, array $parameters = [], int $referenceType = self::ABSOLUTE_PATH);
-=======
-    public function generate(string $name, array $parameters = [], int $referenceType = self::ABSOLUTE_PATH): string;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

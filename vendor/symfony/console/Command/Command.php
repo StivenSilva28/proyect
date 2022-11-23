@@ -15,10 +15,6 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Completion\CompletionSuggestions;
-<<<<<<< HEAD
-=======
-use Symfony\Component\Console\Completion\Suggestion;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\Console\Exception\ExceptionInterface;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Exception\LogicException;
@@ -43,17 +39,11 @@ class Command
 
     /**
      * @var string|null The default command name
-<<<<<<< HEAD
-=======
-     *
-     * @deprecated since Symfony 6.1, use the AsCommand attribute instead
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected static $defaultName;
 
     /**
      * @var string|null The default command description
-<<<<<<< HEAD
      */
     protected static $defaultDescription;
 
@@ -80,76 +70,25 @@ class Command
         $class = static::class;
 
         if (\PHP_VERSION_ID >= 80000 && $attribute = (new \ReflectionClass($class))->getAttributes(AsCommand::class)) {
-=======
-     *
-     * @deprecated since Symfony 6.1, use the AsCommand attribute instead
-     */
-    protected static $defaultDescription;
-
-    private ?Application $application = null;
-    private ?string $name = null;
-    private ?string $processTitle = null;
-    private array $aliases = [];
-    private InputDefinition $definition;
-    private bool $hidden = false;
-    private string $help = '';
-    private string $description = '';
-    private ?InputDefinition $fullDefinition = null;
-    private bool $ignoreValidationErrors = false;
-    private ?\Closure $code = null;
-    private array $synopsis = [];
-    private array $usages = [];
-    private ?HelperSet $helperSet = null;
-
-    public static function getDefaultName(): ?string
-    {
-        $class = static::class;
-
-        if ($attribute = (new \ReflectionClass($class))->getAttributes(AsCommand::class)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $attribute[0]->newInstance()->name;
         }
 
         $r = new \ReflectionProperty($class, 'defaultName');
 
-<<<<<<< HEAD
         return $class === $r->class ? static::$defaultName : null;
-=======
-        if ($class !== $r->class || null === static::$defaultName) {
-            return null;
-        }
-
-        trigger_deprecation('symfony/console', '6.1', 'Relying on the static property "$defaultName" for setting a command name is deprecated. Add the "%s" attribute to the "%s" class instead.', AsCommand::class, static::class);
-
-        return static::$defaultName;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     public static function getDefaultDescription(): ?string
     {
         $class = static::class;
 
-<<<<<<< HEAD
         if (\PHP_VERSION_ID >= 80000 && $attribute = (new \ReflectionClass($class))->getAttributes(AsCommand::class)) {
-=======
-        if ($attribute = (new \ReflectionClass($class))->getAttributes(AsCommand::class)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $attribute[0]->newInstance()->description;
         }
 
         $r = new \ReflectionProperty($class, 'defaultDescription');
 
-<<<<<<< HEAD
         return $class === $r->class ? static::$defaultDescription : null;
-=======
-        if ($class !== $r->class || null === static::$defaultDescription) {
-            return null;
-        }
-
-        trigger_deprecation('symfony/console', '6.1', 'Relying on the static property "$defaultDescription" for setting a command description is deprecated. Add the "%s" attribute to the "%s" class instead.', AsCommand::class, static::class);
-
-        return static::$defaultDescription;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -212,30 +151,20 @@ class Command
 
     /**
      * Gets the helper set.
-<<<<<<< HEAD
      *
      * @return HelperSet|null
      */
     public function getHelperSet()
-=======
-     */
-    public function getHelperSet(): ?HelperSet
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->helperSet;
     }
 
     /**
      * Gets the application instance for this command.
-<<<<<<< HEAD
      *
      * @return Application|null
      */
     public function getApplication()
-=======
-     */
-    public function getApplication(): ?Application
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->application;
     }
@@ -318,11 +247,7 @@ class Command
      * @see setCode()
      * @see execute()
      */
-<<<<<<< HEAD
     public function run(InputInterface $input, OutputInterface $output)
-=======
-    public function run(InputInterface $input, OutputInterface $output): int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // add the application arguments and options
         $this->mergeApplicationDefinition();
@@ -385,15 +310,6 @@ class Command
      */
     public function complete(CompletionInput $input, CompletionSuggestions $suggestions): void
     {
-<<<<<<< HEAD
-=======
-        $definition = $this->getDefinition();
-        if (CompletionInput::TYPE_OPTION_VALUE === $input->getCompletionType() && $definition->hasOption($input->getCompletionName())) {
-            $definition->getOption($input->getCompletionName())->complete($input, $suggestions);
-        } elseif (CompletionInput::TYPE_ARGUMENT_VALUE === $input->getCompletionType() && $definition->hasArgument($input->getCompletionName())) {
-            $definition->getArgument($input->getCompletionName())->complete($input, $suggestions);
-        }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -410,11 +326,7 @@ class Command
      *
      * @see execute()
      */
-<<<<<<< HEAD
     public function setCode(callable $code)
-=======
-    public function setCode(callable $code): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($code instanceof \Closure) {
             $r = new \ReflectionFunction($code);
@@ -428,11 +340,6 @@ class Command
                     restore_error_handler();
                 }
             }
-<<<<<<< HEAD
-=======
-        } else {
-            $code = $code(...);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $this->code = $code;
@@ -470,17 +377,11 @@ class Command
     /**
      * Sets an array of argument and option instances.
      *
-<<<<<<< HEAD
      * @param array|InputDefinition $definition An array of argument and option instances or a definition instance
      *
      * @return $this
      */
     public function setDefinition($definition)
-=======
-     * @return $this
-     */
-    public function setDefinition(array|InputDefinition $definition): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($definition instanceof InputDefinition) {
             $this->definition = $definition;
@@ -495,15 +396,10 @@ class Command
 
     /**
      * Gets the InputDefinition attached to this Command.
-<<<<<<< HEAD
      *
      * @return InputDefinition
      */
     public function getDefinition()
-=======
-     */
-    public function getDefinition(): InputDefinition
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->fullDefinition ?? $this->getNativeDefinition();
     }
@@ -515,7 +411,6 @@ class Command
      * be changed by merging with the application InputDefinition.
      *
      * This method is not part of public API and should not be used directly.
-<<<<<<< HEAD
      *
      * @return InputDefinition
      */
@@ -526,47 +421,24 @@ class Command
         }
 
         return $this->definition;
-=======
-     */
-    public function getNativeDefinition(): InputDefinition
-    {
-        return $this->definition ?? throw new LogicException(sprintf('Command class "%s" is not correctly initialized. You probably forgot to call the parent constructor.', static::class));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
      * Adds an argument.
      *
-<<<<<<< HEAD
      * @param int|null $mode    The argument mode: InputArgument::REQUIRED or InputArgument::OPTIONAL
      * @param mixed    $default The default value (for InputArgument::OPTIONAL mode only)
-=======
-     * @param $mode    The argument mode: InputArgument::REQUIRED or InputArgument::OPTIONAL
-     * @param $default The default value (for InputArgument::OPTIONAL mode only)
-     * @param array|\Closure(CompletionInput,CompletionSuggestions):list<string|Suggestion> $suggestedValues The values used for input completion
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @throws InvalidArgumentException When argument mode is not valid
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function addArgument(string $name, int $mode = null, string $description = '', $default = null)
     {
         $this->definition->addArgument(new InputArgument($name, $mode, $description, $default));
         if (null !== $this->fullDefinition) {
             $this->fullDefinition->addArgument(new InputArgument($name, $mode, $description, $default));
         }
-=======
-    public function addArgument(string $name, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = null */): static
-    {
-        $suggestedValues = 5 <= \func_num_args() ? func_get_arg(4) : [];
-        if (!\is_array($suggestedValues) && !$suggestedValues instanceof \Closure) {
-            throw new \TypeError(sprintf('Argument 5 passed to "%s()" must be array or \Closure, "%s" given.', __METHOD__, get_debug_type($suggestedValues)));
-        }
-        $this->definition->addArgument(new InputArgument($name, $mode, $description, $default, $suggestedValues));
-        $this->fullDefinition?->addArgument(new InputArgument($name, $mode, $description, $default, $suggestedValues));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this;
     }
@@ -574,38 +446,20 @@ class Command
     /**
      * Adds an option.
      *
-<<<<<<< HEAD
      * @param string|array|null $shortcut The shortcuts, can be null, a string of shortcuts delimited by | or an array of shortcuts
      * @param int|null          $mode     The option mode: One of the InputOption::VALUE_* constants
      * @param mixed             $default  The default value (must be null for InputOption::VALUE_NONE)
-=======
-     * @param $shortcut The shortcuts, can be null, a string of shortcuts delimited by | or an array of shortcuts
-     * @param $mode     The option mode: One of the InputOption::VALUE_* constants
-     * @param $default  The default value (must be null for InputOption::VALUE_NONE)
-     * @param array|\Closure(CompletionInput,CompletionSuggestions):list<string|Suggestion> $suggestedValues The values used for input completion
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @throws InvalidArgumentException If option mode is invalid or incompatible
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function addOption(string $name, $shortcut = null, int $mode = null, string $description = '', $default = null)
     {
         $this->definition->addOption(new InputOption($name, $shortcut, $mode, $description, $default));
         if (null !== $this->fullDefinition) {
             $this->fullDefinition->addOption(new InputOption($name, $shortcut, $mode, $description, $default));
         }
-=======
-    public function addOption(string $name, string|array $shortcut = null, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = [] */): static
-    {
-        $suggestedValues = 6 <= \func_num_args() ? func_get_arg(5) : [];
-        if (!\is_array($suggestedValues) && !$suggestedValues instanceof \Closure) {
-            throw new \TypeError(sprintf('Argument 5 passed to "%s()" must be array or \Closure, "%s" given.', __METHOD__, get_debug_type($suggestedValues)));
-        }
-        $this->definition->addOption(new InputOption($name, $shortcut, $mode, $description, $default, $suggestedValues));
-        $this->fullDefinition?->addOption(new InputOption($name, $shortcut, $mode, $description, $default, $suggestedValues));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this;
     }
@@ -622,11 +476,7 @@ class Command
      *
      * @throws InvalidArgumentException When the name is invalid
      */
-<<<<<<< HEAD
     public function setName(string $name)
-=======
-    public function setName(string $name): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->validateName($name);
 
@@ -643,11 +493,7 @@ class Command
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function setProcessTitle(string $title)
-=======
-    public function setProcessTitle(string $title): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->processTitle = $title;
 
@@ -656,22 +502,16 @@ class Command
 
     /**
      * Returns the command name.
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public function getName()
-=======
-     */
-    public function getName(): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->name;
     }
 
     /**
      * @param bool $hidden Whether or not the command should be hidden from the list of commands
-<<<<<<< HEAD
      *                     The default value will be true in Symfony 6.0
      *
      * @return $this
@@ -679,12 +519,6 @@ class Command
      * @final since Symfony 5.1
      */
     public function setHidden(bool $hidden /* = true */)
-=======
-     *
-     * @return $this
-     */
-    public function setHidden(bool $hidden = true): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->hidden = $hidden;
 
@@ -694,11 +528,7 @@ class Command
     /**
      * @return bool whether the command should be publicly shown or not
      */
-<<<<<<< HEAD
     public function isHidden()
-=======
-    public function isHidden(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->hidden;
     }
@@ -708,11 +538,7 @@ class Command
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function setDescription(string $description)
-=======
-    public function setDescription(string $description): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->description = $description;
 
@@ -721,15 +547,10 @@ class Command
 
     /**
      * Returns the description for the command.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getDescription()
-=======
-     */
-    public function getDescription(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->description;
     }
@@ -739,11 +560,7 @@ class Command
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function setHelp(string $help)
-=======
-    public function setHelp(string $help): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->help = $help;
 
@@ -752,15 +569,10 @@ class Command
 
     /**
      * Returns the help for the command.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getHelp()
-=======
-     */
-    public function getHelp(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->help;
     }
@@ -768,7 +580,6 @@ class Command
     /**
      * Returns the processed help for the command replacing the %command.name% and
      * %command.full_name% patterns with the real values dynamically.
-<<<<<<< HEAD
      *
      * @return string
      */
@@ -776,13 +587,6 @@ class Command
     {
         $name = $this->name;
         $isSingleCommand = $this->application && $this->application->isSingleCommand();
-=======
-     */
-    public function getProcessedHelp(): string
-    {
-        $name = $this->name;
-        $isSingleCommand = $this->application?->isSingleCommand();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $placeholders = [
             '%command.name%',
@@ -805,11 +609,7 @@ class Command
      *
      * @throws InvalidArgumentException When an alias is invalid
      */
-<<<<<<< HEAD
     public function setAliases(iterable $aliases)
-=======
-    public function setAliases(iterable $aliases): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $list = [];
 
@@ -825,15 +625,10 @@ class Command
 
     /**
      * Returns the aliases for the command.
-<<<<<<< HEAD
      *
      * @return array
      */
     public function getAliases()
-=======
-     */
-    public function getAliases(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->aliases;
     }
@@ -842,15 +637,10 @@ class Command
      * Returns the synopsis for the command.
      *
      * @param bool $short Whether to show the short version of the synopsis (with options folded) or not
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getSynopsis(bool $short = false)
-=======
-     */
-    public function getSynopsis(bool $short = false): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $key = $short ? 'short' : 'long';
 
@@ -866,11 +656,7 @@ class Command
      *
      * @return $this
      */
-<<<<<<< HEAD
     public function addUsage(string $usage)
-=======
-    public function addUsage(string $usage): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!str_starts_with($usage, $this->name)) {
             $usage = sprintf('%s %s', $this->name, $usage);
@@ -883,15 +669,10 @@ class Command
 
     /**
      * Returns alternative usages of the command.
-<<<<<<< HEAD
      *
      * @return array
      */
     public function getUsages()
-=======
-     */
-    public function getUsages(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->usages;
     }
@@ -899,19 +680,12 @@ class Command
     /**
      * Gets a helper instance by name.
      *
-<<<<<<< HEAD
      * @return mixed
      *
      * @throws LogicException           if no HelperSet is defined
      * @throws InvalidArgumentException if the helper is not defined
      */
     public function getHelper(string $name)
-=======
-     * @throws LogicException           if no HelperSet is defined
-     * @throws InvalidArgumentException if the helper is not defined
-     */
-    public function getHelper(string $name): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $this->helperSet) {
             throw new LogicException(sprintf('Cannot retrieve helper "%s" because there is no HelperSet defined. Did you forget to add your command to the application or to set the application on the command using the setApplication() method? You can also set the HelperSet directly using the setHelperSet() method.', $name));

@@ -56,10 +56,6 @@ abstract class GeneratorCommand extends Command
         'endif',
         'endswitch',
         'endwhile',
-<<<<<<< HEAD
-=======
-        'enum',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         'eval',
         'exit',
         'extends',
@@ -80,10 +76,6 @@ abstract class GeneratorCommand extends Command
         'interface',
         'isset',
         'list',
-<<<<<<< HEAD
-=======
-        'match',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         'namespace',
         'new',
         'or',
@@ -91,10 +83,6 @@ abstract class GeneratorCommand extends Command
         'private',
         'protected',
         'public',
-<<<<<<< HEAD
-=======
-        'readonly',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         'require',
         'require_once',
         'return',
@@ -109,17 +97,6 @@ abstract class GeneratorCommand extends Command
         'while',
         'xor',
         'yield',
-<<<<<<< HEAD
-=======
-        '__CLASS__',
-        '__DIR__',
-        '__FILE__',
-        '__FUNCTION__',
-        '__LINE__',
-        '__METHOD__',
-        '__NAMESPACE__',
-        '__TRAIT__',
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     ];
 
     /**
@@ -159,11 +136,7 @@ abstract class GeneratorCommand extends Command
         // language and that the class name will actually be valid. If it is not valid we
         // can error now and prevent from polluting the filesystem using invalid files.
         if ($this->isReservedName($this->getNameInput())) {
-<<<<<<< HEAD
             $this->error('The name "'.$this->getNameInput().'" is reserved by PHP.');
-=======
-            $this->components->error('The name "'.$this->getNameInput().'" is reserved by PHP.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             return false;
         }
@@ -178,11 +151,7 @@ abstract class GeneratorCommand extends Command
         if ((! $this->hasOption('force') ||
              ! $this->option('force')) &&
              $this->alreadyExists($this->getNameInput())) {
-<<<<<<< HEAD
             $this->error($this->type.' already exists!');
-=======
-            $this->components->error($this->type.' already exists.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             return false;
         }
@@ -194,23 +163,11 @@ abstract class GeneratorCommand extends Command
 
         $this->files->put($path, $this->sortImports($this->buildClass($name)));
 
-<<<<<<< HEAD
         $this->info($this->type.' created successfully.');
 
         if (in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
             $this->handleTestCreation($path);
         }
-=======
-        $info = $this->type;
-
-        if (in_array(CreatesMatchingTest::class, class_uses_recursive($this))) {
-            if ($this->handleTestCreation($path)) {
-                $info .= ' and test';
-            }
-        }
-
-        $this->components->info(sprintf('%s [%s] created successfully.', $info, $path));
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -383,11 +340,7 @@ abstract class GeneratorCommand extends Command
      */
     protected function sortImports($stub)
     {
-<<<<<<< HEAD
         if (preg_match('/(?P<imports>(?:use [^;]+;$\n?)+)/m', $stub, $match)) {
-=======
-        if (preg_match('/(?P<imports>(?:^use [^;{]+;$\n?)+)/m', $stub, $match)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $imports = explode("\n", trim($match['imports']));
 
             sort($imports);

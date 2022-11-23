@@ -20,11 +20,7 @@ use Symfony\Component\VarDumper\Cloner\Stub;
  */
 class ArgsStub extends EnumStub
 {
-<<<<<<< HEAD
     private static $parameters = [];
-=======
-    private static array $parameters = [];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(array $args, string $function, ?string $class)
     {
@@ -61,11 +57,7 @@ class ArgsStub extends EnumStub
 
         try {
             $r = null !== $class ? new \ReflectionMethod($class, $function) : new \ReflectionFunction($function);
-<<<<<<< HEAD
         } catch (\ReflectionException $e) {
-=======
-        } catch (\ReflectionException) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return [null, null];
         }
 

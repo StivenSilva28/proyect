@@ -19,13 +19,8 @@ use Ramsey\Uuid\Uuid;
 
 use function decbin;
 use function str_pad;
-<<<<<<< HEAD
 use function strlen;
 use function strpos;
-=======
-use function str_starts_with;
-use function strlen;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use function substr;
 use function unpack;
 
@@ -63,17 +58,7 @@ trait VariantTrait
             throw new InvalidBytesException('Invalid number of bytes');
         }
 
-<<<<<<< HEAD
         /** @var array $parts */
-=======
-        if ($this->isMax() || $this->isNil()) {
-            // RFC 4122 defines these special types of UUID, so we will consider
-            // them as belonging to the RFC 4122 variant.
-            return Uuid::RFC_4122;
-        }
-
-        /** @var int[] $parts */
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $parts = unpack('n*', $this->getBytes());
 
         // $parts[5] is a 16-bit, unsigned integer containing the variant bits
@@ -82,11 +67,7 @@ trait VariantTrait
         // three characters (three most-significant bits) to determine the
         // variant.
         $binary = str_pad(
-<<<<<<< HEAD
             decbin((int) $parts[5]),
-=======
-            decbin($parts[5]),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             16,
             '0',
             STR_PAD_LEFT
@@ -95,7 +76,6 @@ trait VariantTrait
         $msb = substr($binary, 0, 3);
 
         if ($msb === '111') {
-<<<<<<< HEAD
             $variant = Uuid::RESERVED_FUTURE;
         } elseif ($msb === '110') {
             $variant = Uuid::RESERVED_MICROSOFT;
@@ -106,15 +86,5 @@ trait VariantTrait
         }
 
         return $variant;
-=======
-            return Uuid::RESERVED_FUTURE;
-        } elseif ($msb === '110') {
-            return Uuid::RESERVED_MICROSOFT;
-        } elseif (str_starts_with($msb, '10')) {
-            return Uuid::RFC_4122;
-        }
-
-        return Uuid::RESERVED_NCS;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

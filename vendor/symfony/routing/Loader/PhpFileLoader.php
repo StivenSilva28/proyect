@@ -29,7 +29,6 @@ class PhpFileLoader extends FileLoader
 {
     /**
      * Loads a PHP file.
-<<<<<<< HEAD
      *
      * @param string      $file A PHP file path
      * @param string|null $type The resource type
@@ -37,10 +36,6 @@ class PhpFileLoader extends FileLoader
      * @return RouteCollection
      */
     public function load($file, string $type = null)
-=======
-     */
-    public function load(mixed $file, string $type = null): RouteCollection
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $path = $this->locator->locate($file);
         $this->setCurrentDir(\dirname($path));
@@ -67,11 +62,7 @@ class PhpFileLoader extends FileLoader
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function supports($resource, string $type = null)
-=======
-    public function supports(mixed $resource, string $type = null): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \is_string($resource) && 'php' === pathinfo($resource, \PATHINFO_EXTENSION) && (!$type || 'php' === $type);
     }

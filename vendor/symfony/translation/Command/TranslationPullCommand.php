@@ -11,10 +11,6 @@
 
 namespace Symfony\Component\Translation\Command;
 
-<<<<<<< HEAD
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Completion\CompletionSuggestions;
@@ -32,15 +28,10 @@ use Symfony\Component\Translation\Writer\TranslationWriterInterface;
 /**
  * @author Mathieu Santostefano <msantostefano@protonmail.com>
  */
-<<<<<<< HEAD
-=======
-#[AsCommand(name: 'translation:pull', description: 'Pull translations from a given provider.')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 final class TranslationPullCommand extends Command
 {
     use TranslationTrait;
 
-<<<<<<< HEAD
     protected static $defaultName = 'translation:pull';
     protected static $defaultDescription = 'Pull translations from a given provider.';
 
@@ -50,14 +41,6 @@ final class TranslationPullCommand extends Command
     private $defaultLocale;
     private $transPaths;
     private $enabledLocales;
-=======
-    private TranslationProviderCollection $providerCollection;
-    private TranslationWriterInterface $writer;
-    private TranslationReaderInterface $reader;
-    private string $defaultLocale;
-    private array $transPaths;
-    private array $enabledLocales;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(TranslationProviderCollection $providerCollection, TranslationWriterInterface $writer, TranslationReaderInterface $reader, string $defaultLocale, array $transPaths = [], array $enabledLocales = [])
     {

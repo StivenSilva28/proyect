@@ -37,21 +37,6 @@ class TargetOperation extends AbstractOperation
         ];
         $intlDomain = $domain.MessageCatalogueInterface::INTL_DOMAIN_SUFFIX;
 
-<<<<<<< HEAD
-=======
-        foreach ($this->target->getCatalogueMetadata('', $domain) ?? [] as $key => $value) {
-            if (null === $this->result->getCatalogueMetadata($key, $domain)) {
-                $this->result->setCatalogueMetadata($key, $value, $domain);
-            }
-        }
-
-        foreach ($this->target->getCatalogueMetadata('', $intlDomain) ?? [] as $key => $value) {
-            if (null === $this->result->getCatalogueMetadata($key, $intlDomain)) {
-                $this->result->setCatalogueMetadata($key, $value, $intlDomain);
-            }
-        }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         // For 'all' messages, the code can't be simplified as ``$this->messages[$domain]['all'] = $target->all($domain);``,
         // because doing so will drop messages like {x: x ∈ source ∧ x ∉ target.all ∧ x ∈ target.fallback}
         //

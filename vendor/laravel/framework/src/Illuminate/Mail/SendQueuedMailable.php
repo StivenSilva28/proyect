@@ -6,18 +6,10 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Mail\Factory as MailFactory;
 use Illuminate\Contracts\Mail\Mailable as MailableContract;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
-<<<<<<< HEAD
 
 class SendQueuedMailable
 {
     use Queueable;
-=======
-use Illuminate\Queue\InteractsWithQueue;
-
-class SendQueuedMailable
-{
-    use Queueable, InteractsWithQueue;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * The mailable message instance.
@@ -41,16 +33,6 @@ class SendQueuedMailable
     public $timeout;
 
     /**
-<<<<<<< HEAD
-=======
-     * The maximum number of unhandled exceptions to allow before failing.
-     *
-     * @return int|null
-     */
-    public $maxExceptions;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Indicates if the job should be encrypted.
      *
      * @var bool
@@ -68,10 +50,6 @@ class SendQueuedMailable
         $this->mailable = $mailable;
         $this->tries = property_exists($mailable, 'tries') ? $mailable->tries : null;
         $this->timeout = property_exists($mailable, 'timeout') ? $mailable->timeout : null;
-<<<<<<< HEAD
-=======
-        $this->maxExceptions = property_exists($mailable, 'maxExceptions') ? $mailable->maxExceptions : null;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->afterCommit = property_exists($mailable, 'afterCommit') ? $mailable->afterCommit : null;
         $this->shouldBeEncrypted = $mailable instanceof ShouldBeEncrypted;
     }
@@ -88,7 +66,6 @@ class SendQueuedMailable
     }
 
     /**
-<<<<<<< HEAD
      * Get the display name for the queued job.
      *
      * @return string
@@ -112,8 +89,6 @@ class SendQueuedMailable
     }
 
     /**
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Get the number of seconds before a released mailable will be available.
      *
      * @return mixed
@@ -128,46 +103,6 @@ class SendQueuedMailable
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Determine the time at which the job should timeout.
-     *
-     * @return \DateTime|null
-     */
-    public function retryUntil()
-    {
-        if (! method_exists($this->mailable, 'retryUntil') && ! isset($this->mailable->retryUntil)) {
-            return;
-        }
-
-        return $this->mailable->retryUntil ?? $this->mailable->retryUntil();
-    }
-
-    /**
-     * Call the failed method on the mailable instance.
-     *
-     * @param  \Throwable  $e
-     * @return void
-     */
-    public function failed($e)
-    {
-        if (method_exists($this->mailable, 'failed')) {
-            $this->mailable->failed($e);
-        }
-    }
-
-    /**
-     * Get the display name for the queued job.
-     *
-     * @return string
-     */
-    public function displayName()
-    {
-        return get_class($this->mailable);
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Prepare the instance for cloning.
      *
      * @return void

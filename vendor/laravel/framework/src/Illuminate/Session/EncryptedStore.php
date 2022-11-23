@@ -22,7 +22,6 @@ class EncryptedStore extends Store
      * @param  \SessionHandlerInterface  $handler
      * @param  \Illuminate\Contracts\Encryption\Encrypter  $encrypter
      * @param  string|null  $id
-<<<<<<< HEAD
      * @return void
      */
     public function __construct($name, SessionHandlerInterface $handler, EncrypterContract $encrypter, $id = null)
@@ -30,16 +29,6 @@ class EncryptedStore extends Store
         $this->encrypter = $encrypter;
 
         parent::__construct($name, $handler, $id);
-=======
-     * @param  string  $serialization
-     * @return void
-     */
-    public function __construct($name, SessionHandlerInterface $handler, EncrypterContract $encrypter, $id = null, $serialization = 'php')
-    {
-        $this->encrypter = $encrypter;
-
-        parent::__construct($name, $handler, $id, $serialization);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -53,11 +42,7 @@ class EncryptedStore extends Store
         try {
             return $this->encrypter->decrypt($data);
         } catch (DecryptException $e) {
-<<<<<<< HEAD
             return serialize([]);
-=======
-            return $this->serialization === 'json' ? json_encode([]) : serialize([]);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 

@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 @component('mail::message')
-=======
-<x-mail::message>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 # Introduction
 
 The body of your message.
 
-<<<<<<< HEAD
 @component('mail::button', ['url' => ''])
 Button Text
 @endcomponent
@@ -15,12 +10,3 @@ Button Text
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent
-=======
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
-
-Thanks,<br>
-{{ config('app.name') }}
-</x-mail::message>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2

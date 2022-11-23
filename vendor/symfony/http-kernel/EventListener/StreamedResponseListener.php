@@ -16,11 +16,6 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-<<<<<<< HEAD
-=======
-trigger_deprecation('symfony/http-kernel', '6.1', 'The "%s" class is deprecated.', StreamedResponseListener::class);
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 /**
  * StreamedResponseListener is responsible for sending the Response
  * to the client.
@@ -28,11 +23,6 @@ trigger_deprecation('symfony/http-kernel', '6.1', 'The "%s" class is deprecated.
  * @author Fabien Potencier <fabien@symfony.com>
  *
  * @final
-<<<<<<< HEAD
-=======
- *
- * @deprecated since Symfony 6.1
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  */
 class StreamedResponseListener implements EventSubscriberInterface
 {

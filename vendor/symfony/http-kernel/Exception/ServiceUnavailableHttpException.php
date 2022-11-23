@@ -18,7 +18,6 @@ class ServiceUnavailableHttpException extends HttpException
 {
     /**
      * @param int|string|null $retryAfter The number of seconds or HTTP-date after which the request may be retried
-<<<<<<< HEAD
      * @param string|null     $message    The internal exception message
      * @param \Throwable|null $previous   The previous exception
      * @param int|null        $code       The internal exception code
@@ -36,11 +35,6 @@ class ServiceUnavailableHttpException extends HttpException
             $code = 0;
         }
 
-=======
-     */
-    public function __construct(int|string $retryAfter = null, string $message = '', \Throwable $previous = null, int $code = 0, array $headers = [])
-    {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if ($retryAfter) {
             $headers['Retry-After'] = $retryAfter;
         }

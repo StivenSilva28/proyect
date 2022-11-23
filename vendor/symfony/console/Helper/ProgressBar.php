@@ -36,7 +36,6 @@ final class ProgressBar
     private const FORMAT_DEBUG_NOMAX = 'debug_nomax';
     private const FORMAT_NORMAL_NOMAX = 'normal_nomax';
 
-<<<<<<< HEAD
     private $barWidth = 28;
     private $barChar;
     private $emptyBarChar = '-';
@@ -63,34 +62,6 @@ final class ProgressBar
 
     private static $formatters;
     private static $formats;
-=======
-    private int $barWidth = 28;
-    private string $barChar;
-    private string $emptyBarChar = '-';
-    private string $progressChar = '>';
-    private ?string $format = null;
-    private ?string $internalFormat = null;
-    private ?int $redrawFreq = 1;
-    private int $writeCount = 0;
-    private float $lastWriteTime = 0;
-    private float $minSecondsBetweenRedraws = 0;
-    private float $maxSecondsBetweenRedraws = 1;
-    private OutputInterface $output;
-    private int $step = 0;
-    private ?int $max = null;
-    private int $startTime;
-    private int $stepWidth;
-    private float $percent = 0.0;
-    private int $formatLineCount;
-    private array $messages = [];
-    private bool $overwrite = true;
-    private Terminal $terminal;
-    private ?string $previousMessage = null;
-    private Cursor $cursor;
-
-    private static array $formatters;
-    private static array $formats;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param int $max Maximum steps (0 if unknown)
@@ -132,13 +103,9 @@ final class ProgressBar
      */
     public static function setPlaceholderFormatterDefinition(string $name, callable $callable): void
     {
-<<<<<<< HEAD
         if (!self::$formatters) {
             self::$formatters = self::initPlaceholderFormatters();
         }
-=======
-        self::$formatters ??= self::initPlaceholderFormatters();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         self::$formatters[$name] = $callable;
     }
@@ -150,13 +117,9 @@ final class ProgressBar
      */
     public static function getPlaceholderFormatterDefinition(string $name): ?callable
     {
-<<<<<<< HEAD
         if (!self::$formatters) {
             self::$formatters = self::initPlaceholderFormatters();
         }
-=======
-        self::$formatters ??= self::initPlaceholderFormatters();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return self::$formatters[$name] ?? null;
     }
@@ -171,13 +134,9 @@ final class ProgressBar
      */
     public static function setFormatDefinition(string $name, string $format): void
     {
-<<<<<<< HEAD
         if (!self::$formats) {
             self::$formats = self::initFormats();
         }
-=======
-        self::$formats ??= self::initFormats();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         self::$formats[$name] = $format;
     }
@@ -189,13 +148,9 @@ final class ProgressBar
      */
     public static function getFormatDefinition(string $name): ?string
     {
-<<<<<<< HEAD
         if (!self::$formats) {
             self::$formats = self::initFormats();
         }
-=======
-        self::$formats ??= self::initFormats();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return self::$formats[$name] ?? null;
     }
@@ -542,7 +497,6 @@ final class ProgressBar
 
     private function determineBestFormat(): string
     {
-<<<<<<< HEAD
         switch ($this->output->getVerbosity()) {
             // OutputInterface::VERBOSITY_QUIET: display is disabled anyway
             case OutputInterface::VERBOSITY_VERBOSE:
@@ -554,15 +508,6 @@ final class ProgressBar
             default:
                 return $this->max ? self::FORMAT_NORMAL : self::FORMAT_NORMAL_NOMAX;
         }
-=======
-        return match ($this->output->getVerbosity()) {
-            // OutputInterface::VERBOSITY_QUIET: display is disabled anyway
-            OutputInterface::VERBOSITY_VERBOSE => $this->max ? self::FORMAT_VERBOSE : self::FORMAT_VERBOSE_NOMAX,
-            OutputInterface::VERBOSITY_VERY_VERBOSE => $this->max ? self::FORMAT_VERY_VERBOSE : self::FORMAT_VERY_VERBOSE_NOMAX,
-            OutputInterface::VERBOSITY_DEBUG => $this->max ? self::FORMAT_DEBUG : self::FORMAT_DEBUG_NOMAX,
-            default => $this->max ? self::FORMAT_NORMAL : self::FORMAT_NORMAL_NOMAX,
-        };
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     private static function initPlaceholderFormatters(): array
@@ -629,11 +574,6 @@ final class ProgressBar
 
     private function buildLine(): string
     {
-<<<<<<< HEAD
-=======
-        \assert(null !== $this->format);
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $regex = "{%([a-z\-_]+)(?:\:([^%]+))?%}i";
         $callback = function ($matches) {
             if ($formatter = $this::getPlaceholderFormatterDefinition($matches[1])) {

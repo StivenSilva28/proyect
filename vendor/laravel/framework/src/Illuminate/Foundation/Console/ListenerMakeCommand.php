@@ -5,15 +5,8 @@ namespace Illuminate\Foundation\Console;
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
-<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputOption;
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Input\InputOption;
-
-#[AsCommand(name: 'make:listener')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ListenerMakeCommand extends GeneratorCommand
 {
     use CreatesMatchingTest;
@@ -26,20 +19,6 @@ class ListenerMakeCommand extends GeneratorCommand
     protected $name = 'make:listener';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'make:listener';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -129,11 +108,7 @@ class ListenerMakeCommand extends GeneratorCommand
     {
         return [
             ['event', 'e', InputOption::VALUE_OPTIONAL, 'The event class being listened for'],
-<<<<<<< HEAD
 
-=======
-            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the listener already exists'],
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ['queued', null, InputOption::VALUE_NONE, 'Indicates the event listener should be queued'],
         ];
     }

@@ -21,15 +21,10 @@ interface ConsoleOutputInterface extends OutputInterface
 {
     /**
      * Gets the OutputInterface for errors.
-<<<<<<< HEAD
      *
      * @return OutputInterface
      */
     public function getErrorOutput();
-=======
-     */
-    public function getErrorOutput(): OutputInterface;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function setErrorOutput(OutputInterface $error);
 

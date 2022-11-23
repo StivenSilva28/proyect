@@ -17,15 +17,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class ResponseHasCookie extends Constraint
 {
-<<<<<<< HEAD
     private $name;
     private $path;
     private $domain;
-=======
-    private string $name;
-    private string $path;
-    private ?string $domain;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(string $name, string $path = '/', string $domain = null)
     {

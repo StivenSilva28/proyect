@@ -33,13 +33,8 @@ class Logger extends AbstractLogger
         LogLevel::EMERGENCY => 7,
     ];
 
-<<<<<<< HEAD
     private $minLevelIndex;
     private $formatter;
-=======
-    private int $minLevelIndex;
-    private \Closure $formatter;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /** @var resource|null */
     private $handle;
@@ -71,11 +66,7 @@ class Logger extends AbstractLogger
         }
 
         $this->minLevelIndex = self::LEVELS[$minLevel];
-<<<<<<< HEAD
         $this->formatter = $formatter ?: [$this, 'format'];
-=======
-        $this->formatter = null !== $formatter ? $formatter(...) : $this->format(...);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if ($output && false === $this->handle = \is_resource($output) ? $output : @fopen($output, 'a')) {
             throw new InvalidArgumentException(sprintf('Unable to open "%s".', $output));
         }
@@ -83,15 +74,10 @@ class Logger extends AbstractLogger
 
     /**
      * {@inheritdoc}
-<<<<<<< HEAD
      *
      * @return void
      */
     public function log($level, $message, array $context = [])
-=======
-     */
-    public function log($level, $message, array $context = []): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!isset(self::LEVELS[$level])) {
             throw new InvalidArgumentException(sprintf('The log level "%s" does not exist.', $level));
@@ -114,11 +100,7 @@ class Logger extends AbstractLogger
         if (str_contains($message, '{')) {
             $replacements = [];
             foreach ($context as $key => $val) {
-<<<<<<< HEAD
                 if (null === $val || \is_scalar($val) || (\is_object($val) && method_exists($val, '__toString'))) {
-=======
-                if (null === $val || \is_scalar($val) || $val instanceof \Stringable) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     $replacements["{{$key}}"] = $val;
                 } elseif ($val instanceof \DateTimeInterface) {
                     $replacements["{{$key}}"] = $val->format(\DateTime::RFC3339);

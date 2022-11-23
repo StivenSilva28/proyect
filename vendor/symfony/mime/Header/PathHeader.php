@@ -21,11 +21,7 @@ use Symfony\Component\Mime\Exception\RfcComplianceException;
  */
 final class PathHeader extends AbstractHeader
 {
-<<<<<<< HEAD
     private $address;
-=======
-    private Address $address;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(string $name, Address $address)
     {
@@ -39,11 +35,7 @@ final class PathHeader extends AbstractHeader
      *
      * @throws RfcComplianceException
      */
-<<<<<<< HEAD
     public function setBody($body)
-=======
-    public function setBody(mixed $body)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->setAddress($body);
     }

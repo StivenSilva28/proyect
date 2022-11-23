@@ -26,10 +26,6 @@ namespace Illuminate\Support\Facades;
  * @method static string environmentFile()
  * @method static string environmentFilePath()
  * @method static string environmentPath()
-<<<<<<< HEAD
-=======
- * @method static void forgetInstance(string $abstract)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static string getCachedConfigPath()
  * @method static string getCachedPackagesPath()
  * @method static string getCachedRoutesPath()

@@ -24,12 +24,8 @@ use Symfony\Component\Lock\Store\SemaphoreStore;
  */
 trait LockableTrait
 {
-<<<<<<< HEAD
     /** @var LockInterface|null */
     private $lock;
-=======
-    private ?LockInterface $lock = null;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Locks a command.

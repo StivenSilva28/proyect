@@ -31,15 +31,9 @@ use Symfony\Component\EventDispatcher\Debug\WrappedListener;
  */
 class EventDispatcher implements EventDispatcherInterface
 {
-<<<<<<< HEAD
     private $listeners = [];
     private $sorted = [];
     private $optimized;
-=======
-    private array $listeners = [];
-    private array $sorted = [];
-    private array $optimized;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct()
     {
@@ -53,15 +47,9 @@ class EventDispatcher implements EventDispatcherInterface
      */
     public function dispatch(object $event, string $eventName = null): object
     {
-<<<<<<< HEAD
         $eventName = $eventName ?? \get_class($event);
 
         if (null !== $this->optimized) {
-=======
-        $eventName ??= \get_class($event);
-
-        if (isset($this->optimized)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $listeners = $this->optimized[$eventName] ?? (empty($this->listeners[$eventName]) ? [] : $this->optimizeListeners($eventName));
         } else {
             $listeners = $this->getListeners($eventName);
@@ -77,11 +65,7 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getListeners(string $eventName = null)
-=======
-    public function getListeners(string $eventName = null): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $eventName) {
             if (empty($this->listeners[$eventName])) {
@@ -107,11 +91,7 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function getListenerPriority(string $eventName, $listener)
-=======
-    public function getListenerPriority(string $eventName, callable|array $listener): ?int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (empty($this->listeners[$eventName])) {
             return null;
@@ -119,22 +99,14 @@ class EventDispatcher implements EventDispatcherInterface
 
         if (\is_array($listener) && isset($listener[0]) && $listener[0] instanceof \Closure && 2 >= \count($listener)) {
             $listener[0] = $listener[0]();
-<<<<<<< HEAD
             $listener[1] = $listener[1] ?? '__invoke';
-=======
-            $listener[1] ??= '__invoke';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         foreach ($this->listeners[$eventName] as $priority => &$listeners) {
             foreach ($listeners as &$v) {
                 if ($v !== $listener && \is_array($v) && isset($v[0]) && $v[0] instanceof \Closure && 2 >= \count($v)) {
                     $v[0] = $v[0]();
-<<<<<<< HEAD
                     $v[1] = $v[1] ?? '__invoke';
-=======
-                    $v[1] ??= '__invoke';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 }
                 if ($v === $listener || ($listener instanceof \Closure && $v == $listener)) {
                     return $priority;
@@ -148,11 +120,7 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function hasListeners(string $eventName = null)
-=======
-    public function hasListeners(string $eventName = null): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $eventName) {
             return !empty($this->listeners[$eventName]);
@@ -170,11 +138,7 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function addListener(string $eventName, $listener, int $priority = 0)
-=======
-    public function addListener(string $eventName, callable|array $listener, int $priority = 0)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->listeners[$eventName][$priority][] = $listener;
         unset($this->sorted[$eventName], $this->optimized[$eventName]);
@@ -183,11 +147,7 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     public function removeListener(string $eventName, $listener)
-=======
-    public function removeListener(string $eventName, callable|array $listener)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (empty($this->listeners[$eventName])) {
             return;
@@ -195,22 +155,14 @@ class EventDispatcher implements EventDispatcherInterface
 
         if (\is_array($listener) && isset($listener[0]) && $listener[0] instanceof \Closure && 2 >= \count($listener)) {
             $listener[0] = $listener[0]();
-<<<<<<< HEAD
             $listener[1] = $listener[1] ?? '__invoke';
-=======
-            $listener[1] ??= '__invoke';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         foreach ($this->listeners[$eventName] as $priority => &$listeners) {
             foreach ($listeners as $k => &$v) {
                 if ($v !== $listener && \is_array($v) && isset($v[0]) && $v[0] instanceof \Closure && 2 >= \count($v)) {
                     $v[0] = $v[0]();
-<<<<<<< HEAD
                     $v[1] = $v[1] ?? '__invoke';
-=======
-                    $v[1] ??= '__invoke';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 }
                 if ($v === $listener || ($listener instanceof \Closure && $v == $listener)) {
                     unset($listeners[$k], $this->sorted[$eventName], $this->optimized[$eventName]);
@@ -288,17 +240,10 @@ class EventDispatcher implements EventDispatcherInterface
         $this->sorted[$eventName] = [];
 
         foreach ($this->listeners[$eventName] as &$listeners) {
-<<<<<<< HEAD
             foreach ($listeners as $k => &$listener) {
                 if (\is_array($listener) && isset($listener[0]) && $listener[0] instanceof \Closure && 2 >= \count($listener)) {
                     $listener[0] = $listener[0]();
                     $listener[1] = $listener[1] ?? '__invoke';
-=======
-            foreach ($listeners as &$listener) {
-                if (\is_array($listener) && isset($listener[0]) && $listener[0] instanceof \Closure && 2 >= \count($listener)) {
-                    $listener[0] = $listener[0]();
-                    $listener[1] ??= '__invoke';
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 }
                 $this->sorted[$eventName][] = $listener;
             }
@@ -320,21 +265,12 @@ class EventDispatcher implements EventDispatcherInterface
                     $closure = static function (...$args) use (&$listener, &$closure) {
                         if ($listener[0] instanceof \Closure) {
                             $listener[0] = $listener[0]();
-<<<<<<< HEAD
                             $listener[1] = $listener[1] ?? '__invoke';
                         }
                         ($closure = \Closure::fromCallable($listener))(...$args);
                     };
                 } else {
                     $closure = $listener instanceof \Closure || $listener instanceof WrappedListener ? $listener : \Closure::fromCallable($listener);
-=======
-                            $listener[1] ??= '__invoke';
-                        }
-                        ($closure = $listener(...))(...$args);
-                    };
-                } else {
-                    $closure = $listener instanceof WrappedListener ? $listener : $listener(...);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 }
             }
         }

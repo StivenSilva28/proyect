@@ -3,10 +3,6 @@
 namespace Illuminate\Validation;
 
 use Closure;
-<<<<<<< HEAD
-=======
-use Illuminate\Contracts\Validation\InvokableRule;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Contracts\Validation\Rule as RuleContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -67,20 +63,12 @@ class ValidationRuleParser
     protected function explodeRules($rules)
     {
         foreach ($rules as $key => $rule) {
-<<<<<<< HEAD
             if (Str::contains($key, '*')) {
-=======
-            if (str_contains($key, '*')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $rules = $this->explodeWildcardRules($rules, $key, [$rule]);
 
                 unset($rules[$key]);
             } else {
-<<<<<<< HEAD
                 $rules[$key] = $this->explodeExplicitRule($rule);
-=======
-                $rules[$key] = $this->explodeExplicitRule($rule, $key);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
 
@@ -91,7 +79,6 @@ class ValidationRuleParser
      * Explode the explicit rule into an array if necessary.
      *
      * @param  mixed  $rule
-<<<<<<< HEAD
      * @return array
      */
     protected function explodeExplicitRule($rule)
@@ -103,56 +90,20 @@ class ValidationRuleParser
         }
 
         return array_map([$this, 'prepareRule'], $rule);
-=======
-     * @param  string  $attribute
-     * @return array
-     */
-    protected function explodeExplicitRule($rule, $attribute)
-    {
-        if (is_string($rule)) {
-            [$name] = static::parseStringRule($rule);
-
-            return static::ruleIsRegex($name) ? [$rule] : explode('|', $rule);
-        }
-
-        if (is_object($rule)) {
-            return Arr::wrap($this->prepareRule($rule, $attribute));
-        }
-
-        return array_map(
-            [$this, 'prepareRule'],
-            $rule,
-            array_fill((int) array_key_first($rule), count($rule), $attribute)
-        );
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
      * Prepare the given rule for the Validator.
      *
      * @param  mixed  $rule
-<<<<<<< HEAD
      * @return mixed
      */
     protected function prepareRule($rule)
-=======
-     * @param  string  $attribute
-     * @return mixed
-     */
-    protected function prepareRule($rule, $attribute)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($rule instanceof Closure) {
             $rule = new ClosureValidationRule($rule);
         }
 
-<<<<<<< HEAD
-=======
-        if ($rule instanceof InvokableRule) {
-            $rule = InvokableValidationRule::make($rule);
-        }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if (! is_object($rule) ||
             $rule instanceof RuleContract ||
             ($rule instanceof Exists && $rule->queryCallbacks()) ||
@@ -160,15 +111,6 @@ class ValidationRuleParser
             return $rule;
         }
 
-<<<<<<< HEAD
-=======
-        if ($rule instanceof NestedRules) {
-            return $rule->compile(
-                $attribute, $this->data[$attribute] ?? null, Arr::dot($this->data)
-            )->rules[$attribute];
-        }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return (string) $rule;
     }
 
@@ -189,27 +131,9 @@ class ValidationRuleParser
         foreach ($data as $key => $value) {
             if (Str::startsWith($key, $attribute) || (bool) preg_match('/^'.$pattern.'\z/', $key)) {
                 foreach ((array) $rules as $rule) {
-<<<<<<< HEAD
                     $this->implicitAttributes[$attribute][] = $key;
 
                     $results = $this->mergeRules($results, $key, $rule);
-=======
-                    if ($rule instanceof NestedRules) {
-                        $compiled = $rule->compile($key, $value, $data);
-
-                        $this->implicitAttributes = array_merge_recursive(
-                            $compiled->implicitAttributes,
-                            $this->implicitAttributes,
-                            [$attribute => [$key]]
-                        );
-
-                        $results = $this->mergeRules($results, $compiled->rules);
-                    } else {
-                        $this->implicitAttributes[$attribute][] = $key;
-
-                        $results = $this->mergeRules($results, $key, $rule);
-                    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 }
             }
         }
@@ -253,11 +177,7 @@ class ValidationRuleParser
         $merge = head($this->explodeRules([$rules]));
 
         $results[$attribute] = array_merge(
-<<<<<<< HEAD
             isset($results[$attribute]) ? $this->explodeExplicitRule($results[$attribute]) : [], $merge
-=======
-            isset($results[$attribute]) ? $this->explodeExplicitRule($results[$attribute], $attribute) : [], $merge
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         );
 
         return $results;
@@ -271,11 +191,7 @@ class ValidationRuleParser
      */
     public static function parse($rule)
     {
-<<<<<<< HEAD
         if ($rule instanceof RuleContract) {
-=======
-        if ($rule instanceof RuleContract || $rule instanceof NestedRules) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return [$rule, []];
         }
 
@@ -314,11 +230,7 @@ class ValidationRuleParser
         // The format for specifying validation rules and parameters follows an
         // easy {rule}:{parameters} formatting convention. For instance the
         // rule "Max:3" states that the value may only be three letters.
-<<<<<<< HEAD
         if (strpos($rule, ':') !== false) {
-=======
-        if (str_contains($rule, ':')) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             [$rule, $parameter] = explode(':', $rule, 2);
 
             $parameters = static::parseParameters($rule, $parameter);
@@ -336,7 +248,6 @@ class ValidationRuleParser
      */
     protected static function parseParameters($rule, $parameter)
     {
-<<<<<<< HEAD
         $rule = strtolower($rule);
 
         if (in_array($rule, ['regex', 'not_regex', 'notregex'], true)) {
@@ -344,20 +255,6 @@ class ValidationRuleParser
         }
 
         return str_getcsv($parameter);
-=======
-        return static::ruleIsRegex($rule) ? [$parameter] : str_getcsv($parameter);
-    }
-
-    /**
-     * Determine if the rule is a regular expression.
-     *
-     * @param  string  $rule
-     * @return bool
-     */
-    protected static function ruleIsRegex($rule)
-    {
-        return in_array(strtolower($rule), ['regex', 'not_regex', 'notregex'], true);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -368,7 +265,6 @@ class ValidationRuleParser
      */
     protected static function normalizeRule($rule)
     {
-<<<<<<< HEAD
         switch ($rule) {
             case 'Int':
                 return 'Integer';
@@ -377,13 +273,6 @@ class ValidationRuleParser
             default:
                 return $rule;
         }
-=======
-        return match ($rule) {
-            'Int' => 'Integer',
-            'Bool' => 'Boolean',
-            default => $rule,
-        };
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -403,13 +292,8 @@ class ValidationRuleParser
 
             if ($attributeRules instanceof ConditionalRules) {
                 return [$attribute => $attributeRules->passes($data)
-<<<<<<< HEAD
                                 ? array_filter($attributeRules->rules())
                                 : array_filter($attributeRules->defaultRules()), ];
-=======
-                                ? array_filter($attributeRules->rules($data))
-                                : array_filter($attributeRules->defaultRules($data)), ];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
 
             return [$attribute => collect($attributeRules)->map(function ($rule) use ($data) {
@@ -417,11 +301,7 @@ class ValidationRuleParser
                     return [$rule];
                 }
 
-<<<<<<< HEAD
                 return $rule->passes($data) ? $rule->rules() : $rule->defaultRules();
-=======
-                return $rule->passes($data) ? $rule->rules($data) : $rule->defaultRules($data);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             })->filter()->flatten(1)->values()->all()];
         })->all();
     }

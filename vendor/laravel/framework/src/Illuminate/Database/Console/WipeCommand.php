@@ -4,15 +4,8 @@ namespace Illuminate\Database\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
-<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputOption;
 
-=======
-use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Console\Input\InputOption;
-
-#[AsCommand(name: 'db:wipe')]
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class WipeCommand extends Command
 {
     use ConfirmableTrait;
@@ -25,20 +18,6 @@ class WipeCommand extends Command
     protected $name = 'db:wipe';
 
     /**
-<<<<<<< HEAD
-=======
-     * The name of the console command.
-     *
-     * This name is used to identify the command during lazy loading.
-     *
-     * @var string|null
-     *
-     * @deprecated
-     */
-    protected static $defaultName = 'db:wipe';
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -61,29 +40,17 @@ class WipeCommand extends Command
         if ($this->option('drop-views')) {
             $this->dropAllViews($database);
 
-<<<<<<< HEAD
             $this->info('Dropped all views successfully.');
-=======
-            $this->components->info('Dropped all views successfully.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $this->dropAllTables($database);
 
-<<<<<<< HEAD
         $this->info('Dropped all tables successfully.');
-=======
-        $this->components->info('Dropped all tables successfully.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if ($this->option('drop-types')) {
             $this->dropAllTypes($database);
 
-<<<<<<< HEAD
             $this->info('Dropped all types successfully.');
-=======
-            $this->components->info('Dropped all types successfully.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return 0;

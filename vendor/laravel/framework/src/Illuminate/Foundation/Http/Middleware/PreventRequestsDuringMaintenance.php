@@ -45,13 +45,8 @@ class PreventRequestsDuringMaintenance
      */
     public function handle($request, Closure $next)
     {
-<<<<<<< HEAD
         if ($this->app->isDownForMaintenance()) {
             $data = json_decode(file_get_contents($this->app->storagePath().'/framework/down'), true);
-=======
-        if ($this->app->maintenanceMode()->active()) {
-            $data = $this->app->maintenanceMode()->data();
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             if (isset($data['secret']) && $request->path() === $data['secret']) {
                 return $this->bypassResponse($data['secret']);
@@ -116,11 +111,7 @@ class PreventRequestsDuringMaintenance
      */
     protected function inExceptArray($request)
     {
-<<<<<<< HEAD
         foreach ($this->except as $except) {
-=======
-        foreach ($this->getExcludedPaths() as $except) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             if ($except !== '/') {
                 $except = trim($except, '/');
             }

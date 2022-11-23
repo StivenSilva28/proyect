@@ -48,7 +48,6 @@ class RedirectResponse extends Response
     }
 
     /**
-<<<<<<< HEAD
      * Factory method for chainability.
      *
      * @param string $url The URL to redirect to
@@ -70,11 +69,6 @@ class RedirectResponse extends Response
      * @return string
      */
     public function getTargetUrl()
-=======
-     * Returns the target URL.
-     */
-    public function getTargetUrl(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->targetUrl;
     }
@@ -86,11 +80,7 @@ class RedirectResponse extends Response
      *
      * @throws \InvalidArgumentException
      */
-<<<<<<< HEAD
     public function setTargetUrl(string $url)
-=======
-    public function setTargetUrl(string $url): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ('' === $url) {
             throw new \InvalidArgumentException('Cannot redirect to an empty URL.');

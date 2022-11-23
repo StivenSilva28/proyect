@@ -24,13 +24,8 @@ use Symfony\Component\VarDumper\Cloner\Stub;
  */
 class DumpServer
 {
-<<<<<<< HEAD
     private $host;
     private $logger;
-=======
-    private string $host;
-    private ?LoggerInterface $logger;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var resource|null
@@ -61,37 +56,25 @@ class DumpServer
         }
 
         foreach ($this->getMessages() as $clientId => $message) {
-<<<<<<< HEAD
             if ($this->logger) {
                 $this->logger->info('Received a payload from client {clientId}', ['clientId' => $clientId]);
             }
-=======
-            $this->logger?->info('Received a payload from client {clientId}', ['clientId' => $clientId]);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             $payload = @unserialize(base64_decode($message), ['allowed_classes' => [Data::class, Stub::class]]);
 
             // Impossible to decode the message, give up.
             if (false === $payload) {
-<<<<<<< HEAD
                 if ($this->logger) {
                     $this->logger->warning('Unable to decode a message from {clientId} client.', ['clientId' => $clientId]);
                 }
-=======
-                $this->logger?->warning('Unable to decode a message from {clientId} client.', ['clientId' => $clientId]);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                 continue;
             }
 
             if (!\is_array($payload) || \count($payload) < 2 || !$payload[0] instanceof Data || !\is_array($payload[1])) {
-<<<<<<< HEAD
                 if ($this->logger) {
                     $this->logger->warning('Invalid payload from {clientId} client. Expected an array of two elements (Data $data, array $context)', ['clientId' => $clientId]);
                 }
-=======
-                $this->logger?->warning('Invalid payload from {clientId} client. Expected an array of two elements (Data $data, array $context)', ['clientId' => $clientId]);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                 continue;
             }

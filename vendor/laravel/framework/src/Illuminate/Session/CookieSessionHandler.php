@@ -50,12 +50,8 @@ class CookieSessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function open($savePath, $sessionName)
-=======
-    public function open($savePath, $sessionName): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return true;
     }
@@ -65,12 +61,8 @@ class CookieSessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function close()
-=======
-    public function close(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return true;
     }
@@ -80,7 +72,6 @@ class CookieSessionHandler implements SessionHandlerInterface
      *
      * @return string|false
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function read($sessionId)
     {
@@ -90,15 +81,6 @@ class CookieSessionHandler implements SessionHandlerInterface
             if (isset($decoded['expires']) && $this->currentTime() <= $decoded['expires']) {
                 return $decoded['data'];
             }
-=======
-    public function read($sessionId): string|false
-    {
-        $value = $this->request->cookies->get($sessionId) ?: '';
-
-        if (! is_null($decoded = json_decode($value, true)) && is_array($decoded) &&
-            isset($decoded['expires']) && $this->currentTime() <= $decoded['expires']) {
-            return $decoded['data'];
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return '';
@@ -109,12 +91,8 @@ class CookieSessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function write($sessionId, $data)
-=======
-    public function write($sessionId, $data): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->cookie->queue($sessionId, json_encode([
             'data' => $data,
@@ -129,12 +107,8 @@ class CookieSessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function destroy($sessionId)
-=======
-    public function destroy($sessionId): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->cookie->queue($this->cookie->forget($sessionId));
 
@@ -144,20 +118,12 @@ class CookieSessionHandler implements SessionHandlerInterface
     /**
      * {@inheritdoc}
      *
-<<<<<<< HEAD
      * @return int|false
      */
     #[\ReturnTypeWillChange]
     public function gc($lifetime)
     {
         return true;
-=======
-     * @return int
-     */
-    public function gc($lifetime): int
-    {
-        return 0;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

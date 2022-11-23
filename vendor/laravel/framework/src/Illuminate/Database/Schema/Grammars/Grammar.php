@@ -4,10 +4,6 @@ namespace Illuminate\Database\Schema\Grammars;
 
 use Doctrine\DBAL\Schema\AbstractSchemaManager as SchemaManager;
 use Doctrine\DBAL\Schema\TableDiff;
-<<<<<<< HEAD
-=======
-use Illuminate\Database\Concerns\CompilesJsonPaths;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Database\Connection;
 use Illuminate\Database\Grammar as BaseGrammar;
 use Illuminate\Database\Query\Expression;
@@ -18,11 +14,6 @@ use RuntimeException;
 
 abstract class Grammar extends BaseGrammar
 {
-<<<<<<< HEAD
-=======
-    use CompilesJsonPaths;
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * If this Grammar supports schema changes wrapped in a transaction.
      *
@@ -112,19 +103,10 @@ abstract class Grammar extends BaseGrammar
      * @param  \Illuminate\Database\Schema\Blueprint  $blueprint
      * @param  \Illuminate\Support\Fluent  $command
      * @return string
-<<<<<<< HEAD
      */
     public function compileDropFullText(Blueprint $blueprint, Fluent $command)
     {
         throw new RuntimeException('This database driver does not support fulltext index creation.');
-=======
-     *
-     * @throws \RuntimeException
-     */
-    public function compileDropFullText(Blueprint $blueprint, Fluent $command)
-    {
-        throw new RuntimeException('This database driver does not support fulltext index removal.');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -178,11 +160,7 @@ abstract class Grammar extends BaseGrammar
         $columns = [];
 
         foreach ($blueprint->getAddedColumns() as $column) {
-<<<<<<< HEAD
             // Each of the column types have their own compiler functions which are tasked
-=======
-            // Each of the column types has their own compiler functions, which are tasked
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             // with turning the column definition into its SQL format for this platform
             // used by the connection. The column's modifiers are compiled and added.
             $sql = $this->wrap($column).' '.$this->getType($column);

@@ -371,11 +371,7 @@ class DatabaseStore implements LockProvider, Store
     {
         $result = serialize($value);
 
-<<<<<<< HEAD
         if ($this->connection instanceof PostgresConnection && Str::contains($result, "\0")) {
-=======
-        if ($this->connection instanceof PostgresConnection && str_contains($result, "\0")) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $result = base64_encode($result);
         }
 

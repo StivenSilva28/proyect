@@ -11,11 +11,8 @@
 
 namespace Symfony\Component\Console\Command;
 
-<<<<<<< HEAD
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Completion\CompletionSuggestions;
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\Console\Descriptor\ApplicationDescription;
 use Symfony\Component\Console\Helper\DescriptorHelper;
 use Symfony\Component\Console\Input\InputArgument;
@@ -38,19 +35,9 @@ class ListCommand extends Command
         $this
             ->setName('list')
             ->setDefinition([
-<<<<<<< HEAD
                 new InputArgument('namespace', InputArgument::OPTIONAL, 'The namespace name'),
                 new InputOption('raw', null, InputOption::VALUE_NONE, 'To output raw command list'),
                 new InputOption('format', null, InputOption::VALUE_REQUIRED, 'The output format (txt, xml, json, or md)', 'txt'),
-=======
-                new InputArgument('namespace', InputArgument::OPTIONAL, 'The namespace name', null, function () {
-                    return array_keys((new ApplicationDescription($this->getApplication()))->getNamespaces());
-                }),
-                new InputOption('raw', null, InputOption::VALUE_NONE, 'To output raw command list'),
-                new InputOption('format', null, InputOption::VALUE_REQUIRED, 'The output format (txt, xml, json, or md)', 'txt', function () {
-                    return (new DescriptorHelper())->getFormats();
-                }),
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 new InputOption('short', null, InputOption::VALUE_NONE, 'To skip describing commands\' arguments'),
             ])
             ->setDescription('List commands')
@@ -78,11 +65,7 @@ EOF
     /**
      * {@inheritdoc}
      */
-<<<<<<< HEAD
     protected function execute(InputInterface $input, OutputInterface $output)
-=======
-    protected function execute(InputInterface $input, OutputInterface $output): int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $helper = new DescriptorHelper();
         $helper->describe($output, $this->getApplication(), [
@@ -94,7 +77,6 @@ EOF
 
         return 0;
     }
-<<<<<<< HEAD
 
     public function complete(CompletionInput $input, CompletionSuggestions $suggestions): void
     {
@@ -110,6 +92,4 @@ EOF
             $suggestions->suggestValues($helper->getFormats());
         }
     }
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

@@ -23,7 +23,6 @@ interface MatcherDumperInterface
     /**
      * Dumps a set of routes to a string representation of executable code
      * that can then be used to match a request against these routes.
-<<<<<<< HEAD
      *
      * @return string
      */
@@ -35,13 +34,4 @@ interface MatcherDumperInterface
      * @return RouteCollection
      */
     public function getRoutes();
-=======
-     */
-    public function dump(array $options = []): string;
-
-    /**
-     * Gets the routes to dump.
-     */
-    public function getRoutes(): RouteCollection;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

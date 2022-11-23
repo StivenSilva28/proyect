@@ -37,15 +37,10 @@ class Glob
 {
     /**
      * Returns a regexp which is the equivalent of the glob pattern.
-<<<<<<< HEAD
      *
      * @return string
      */
     public static function toRegex(string $glob, bool $strictLeadingDot = true, bool $strictWildcardSlash = true, string $delimiter = '#')
-=======
-     */
-    public static function toRegex(string $glob, bool $strictLeadingDot = true, bool $strictWildcardSlash = true, string $delimiter = '#'): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $firstByte = true;
         $escaping = false;

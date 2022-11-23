@@ -24,16 +24,11 @@ class FilenameFilterIterator extends MultiplePcreFilterIterator
 {
     /**
      * Filters the iterator values.
-<<<<<<< HEAD
      *
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function accept()
-=======
-     */
-    public function accept(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->isAccepted($this->current()->getFilename());
     }
@@ -45,15 +40,10 @@ class FilenameFilterIterator extends MultiplePcreFilterIterator
      * Glob strings are transformed with Glob::toRegex().
      *
      * @param string $str Pattern: glob or regexp
-<<<<<<< HEAD
      *
      * @return string
      */
     protected function toRegex(string $str)
-=======
-     */
-    protected function toRegex(string $str): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->isRegex($str) ? $str : Glob::toRegex($str);
     }

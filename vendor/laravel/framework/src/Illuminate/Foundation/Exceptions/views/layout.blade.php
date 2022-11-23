@@ -6,23 +6,16 @@
 
         <title>@yield('title')</title>
 
-<<<<<<< HEAD
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
-<<<<<<< HEAD
                 font-family: 'Nunito', sans-serif;
-=======
-                font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;

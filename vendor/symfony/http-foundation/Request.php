@@ -48,11 +48,8 @@ class Request
     public const HEADER_X_FORWARDED_PORT = 0b010000;
     public const HEADER_X_FORWARDED_PREFIX = 0b100000;
 
-<<<<<<< HEAD
     /** @deprecated since Symfony 5.2, use either "HEADER_X_FORWARDED_FOR | HEADER_X_FORWARDED_HOST | HEADER_X_FORWARDED_PORT | HEADER_X_FORWARDED_PROTO" or "HEADER_X_FORWARDED_AWS_ELB" or "HEADER_X_FORWARDED_TRAEFIK" constants instead. */
     public const HEADER_X_FORWARDED_ALL = 0b1011110; // All "X-Forwarded-*" headers sent by "usual" reverse proxy
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     public const HEADER_X_FORWARDED_AWS_ELB = 0b0011010; // AWS ELB doesn't send X-Forwarded-Host
     public const HEADER_X_FORWARDED_TRAEFIK = 0b0111110; // All "X-Forwarded-*" headers sent by Traefik reverse proxy
 
@@ -210,7 +207,6 @@ class Request
 
     protected static $requestFactory;
 
-<<<<<<< HEAD
     /**
      * @var string|null
      */
@@ -224,14 +220,6 @@ class Request
     private $isSafeContentPreferred;
 
     private static $trustedHeaderSet = -1;
-=======
-    private ?string $preferredFormat = null;
-    private bool $isHostValid = true;
-    private bool $isForwardedValid = true;
-    private bool $isSafeContentPreferred;
-
-    private static int $trustedHeaderSet = -1;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     private const FORWARDED_PARAMS = [
         self::HEADER_X_FORWARDED_FOR => 'for',
@@ -310,15 +298,10 @@ class Request
 
     /**
      * Creates a new request with values from PHP's super globals.
-<<<<<<< HEAD
      *
      * @return static
      */
     public static function createFromGlobals()
-=======
-     */
-    public static function createFromGlobals(): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $request = self::createRequestFromFactory($_GET, $_POST, [], $_COOKIE, $_FILES, $_SERVER);
 
@@ -345,15 +328,10 @@ class Request
      * @param array                $files      The request files ($_FILES)
      * @param array                $server     The server parameters ($_SERVER)
      * @param string|resource|null $content    The raw body data
-<<<<<<< HEAD
      *
      * @return static
      */
     public static function create(string $uri, string $method = 'GET', array $parameters = [], array $cookies = [], array $files = [], array $server = [], $content = null)
-=======
-     */
-    public static function create(string $uri, string $method = 'GET', array $parameters = [], array $cookies = [], array $files = [], array $server = [], $content = null): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $server = array_replace([
             'SERVER_NAME' => 'localhost',
@@ -467,15 +445,10 @@ class Request
      * @param array $cookies    The COOKIE parameters
      * @param array $files      The FILES parameters
      * @param array $server     The SERVER parameters
-<<<<<<< HEAD
      *
      * @return static
      */
     public function duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null)
-=======
-     */
-    public function duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $dup = clone $this;
         if (null !== $query) {
@@ -536,16 +509,12 @@ class Request
         $this->headers = clone $this->headers;
     }
 
-<<<<<<< HEAD
     /**
      * Returns the request as a string.
      *
      * @return string
      */
     public function __toString()
-=======
-    public function __toString(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $content = $this->getContent();
 
@@ -615,12 +584,9 @@ class Request
      */
     public static function setTrustedProxies(array $proxies, int $trustedHeaderSet)
     {
-<<<<<<< HEAD
         if (self::HEADER_X_FORWARDED_ALL === $trustedHeaderSet) {
             trigger_deprecation('symfony/http-foundation', '5.2', 'The "HEADER_X_FORWARDED_ALL" constant is deprecated, use either "HEADER_X_FORWARDED_FOR | HEADER_X_FORWARDED_HOST | HEADER_X_FORWARDED_PORT | HEADER_X_FORWARDED_PROTO" or "HEADER_X_FORWARDED_AWS_ELB" or "HEADER_X_FORWARDED_TRAEFIK" constants instead.');
         }
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         self::$trustedProxies = array_reduce($proxies, function ($proxies, $proxy) {
             if ('REMOTE_ADDR' !== $proxy) {
                 $proxies[] = $proxy;
@@ -635,15 +601,10 @@ class Request
 
     /**
      * Gets the list of trusted proxies.
-<<<<<<< HEAD
      *
      * @return array
      */
     public static function getTrustedProxies()
-=======
-     */
-    public static function getTrustedProxies(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return self::$trustedProxies;
     }
@@ -653,11 +614,7 @@ class Request
      *
      * @return int A bit field of Request::HEADER_* that defines which headers are trusted from your proxies
      */
-<<<<<<< HEAD
     public static function getTrustedHeaderSet()
-=======
-    public static function getTrustedHeaderSet(): int
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return self::$trustedHeaderSet;
     }
@@ -680,15 +637,10 @@ class Request
 
     /**
      * Gets the list of trusted host patterns.
-<<<<<<< HEAD
      *
      * @return array
      */
     public static function getTrustedHosts()
-=======
-     */
-    public static function getTrustedHosts(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return self::$trustedHostPatterns;
     }
@@ -698,15 +650,10 @@ class Request
      *
      * It builds a normalized query string, where keys/value pairs are alphabetized,
      * have consistent escaping and unneeded delimiters are removed.
-<<<<<<< HEAD
      *
      * @return string
      */
     public static function normalizeQueryString(?string $qs)
-=======
-     */
-    public static function normalizeQueryString(?string $qs): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ('' === ($qs ?? '')) {
             return '';
@@ -736,15 +683,10 @@ class Request
 
     /**
      * Checks whether support for the _method request parameter is enabled.
-<<<<<<< HEAD
      *
      * @return bool
      */
     public static function getHttpMethodParameterOverride()
-=======
-     */
-    public static function getHttpMethodParameterOverride(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return self::$httpMethodParameterOverride;
     }
@@ -758,7 +700,6 @@ class Request
      *
      * Order of precedence: PATH (routing placeholders or custom attributes), GET, POST
      *
-<<<<<<< HEAD
      * @param mixed $default The default value if the parameter key does not exist
      *
      * @return mixed
@@ -766,11 +707,6 @@ class Request
      * @internal since Symfony 5.4, use explicit input sources instead
      */
     public function get(string $key, $default = null)
-=======
-     * @internal use explicit input sources instead
-     */
-    public function get(string $key, mixed $default = null): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this !== $result = $this->attributes->get($key, $this)) {
             return $result;
@@ -790,15 +726,9 @@ class Request
     /**
      * Gets the Session.
      *
-<<<<<<< HEAD
      * @return SessionInterface
      */
     public function getSession()
-=======
-     * @throws SessionNotFoundException When session is not set properly
-     */
-    public function getSession(): SessionInterface
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $session = $this->session;
         if (!$session instanceof SessionInterface && null !== $session) {
@@ -815,15 +745,10 @@ class Request
     /**
      * Whether the request contains a Session which was started in one of the
      * previous requests.
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function hasPreviousSession()
-=======
-     */
-    public function hasPreviousSession(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // the check for $this->session avoids malicious users trying to fake a session cookie with proper name
         return $this->hasSession() && $this->cookies->has($this->getSession()->getName());
@@ -837,7 +762,6 @@ class Request
      * is associated with a Session instance.
      *
      * @param bool $skipIfUninitialized When true, ignores factories injected by `setSessionFactory`
-<<<<<<< HEAD
      *
      * @return bool
      */
@@ -845,11 +769,6 @@ class Request
     {
         $skipIfUninitialized = \func_num_args() > 0 ? func_get_arg(0) : false;
 
-=======
-     */
-    public function hasSession(bool $skipIfUninitialized = false): bool
-    {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return null !== $this->session && (!$skipIfUninitialized || $this->session instanceof SessionInterface);
     }
 
@@ -877,17 +796,11 @@ class Request
      *
      * Use this method carefully; you should use getClientIp() instead.
      *
-<<<<<<< HEAD
      * @return array
      *
      * @see getClientIp()
      */
     public function getClientIps()
-=======
-     * @see getClientIp()
-     */
-    public function getClientIps(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $ip = $this->server->get('REMOTE_ADDR');
 
@@ -911,19 +824,12 @@ class Request
      * ("Client-Ip" for instance), configure it via the $trustedHeaderSet
      * argument of the Request::setTrustedProxies() method instead.
      *
-<<<<<<< HEAD
      * @return string|null
      *
      * @see getClientIps()
      * @see https://wikipedia.org/wiki/X-Forwarded-For
      */
     public function getClientIp()
-=======
-     * @see getClientIps()
-     * @see https://wikipedia.org/wiki/X-Forwarded-For
-     */
-    public function getClientIp(): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $ipAddresses = $this->getClientIps();
 
@@ -932,15 +838,10 @@ class Request
 
     /**
      * Returns current script name.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getScriptName()
-=======
-     */
-    public function getScriptName(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->server->get('SCRIPT_NAME', $this->server->get('ORIG_SCRIPT_NAME', ''));
     }
@@ -959,11 +860,7 @@ class Request
      *
      * @return string The raw path (i.e. not urldecoded)
      */
-<<<<<<< HEAD
     public function getPathInfo()
-=======
-    public function getPathInfo(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $this->pathInfo) {
             $this->pathInfo = $this->preparePathInfo();
@@ -984,11 +881,7 @@ class Request
      *
      * @return string The raw path (i.e. not urldecoded)
      */
-<<<<<<< HEAD
     public function getBasePath()
-=======
-    public function getBasePath(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $this->basePath) {
             $this->basePath = $this->prepareBasePath();
@@ -1007,11 +900,7 @@ class Request
      *
      * @return string The raw URL (i.e. not urldecoded)
      */
-<<<<<<< HEAD
     public function getBaseUrl()
-=======
-    public function getBaseUrl(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $trustedPrefix = '';
 
@@ -1040,15 +929,10 @@ class Request
 
     /**
      * Gets the request's scheme.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getScheme()
-=======
-     */
-    public function getScheme(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->isSecure() ? 'https' : 'http';
     }
@@ -1063,11 +947,7 @@ class Request
      *
      * @return int|string|null Can be a string if fetched from the server bag
      */
-<<<<<<< HEAD
     public function getPort()
-=======
-    public function getPort(): int|string|null
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->isFromTrustedProxy() && $host = $this->getTrustedValues(self::HEADER_X_FORWARDED_PORT)) {
             $host = $host[0];
@@ -1092,30 +972,20 @@ class Request
 
     /**
      * Returns the user.
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public function getUser()
-=======
-     */
-    public function getUser(): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->headers->get('PHP_AUTH_USER');
     }
 
     /**
      * Returns the password.
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public function getPassword()
-=======
-     */
-    public function getPassword(): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->headers->get('PHP_AUTH_PW');
     }
@@ -1125,11 +995,7 @@ class Request
      *
      * @return string|null A user name if any and, optionally, scheme-specific information about how to gain authorization to access the server
      */
-<<<<<<< HEAD
     public function getUserInfo()
-=======
-    public function getUserInfo(): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $userinfo = $this->getUser();
 
@@ -1145,15 +1011,10 @@ class Request
      * Returns the HTTP host being requested.
      *
      * The port name will be appended to the host if it's non-standard.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getHttpHost()
-=======
-     */
-    public function getHttpHost(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $scheme = $this->getScheme();
         $port = $this->getPort();
@@ -1170,11 +1031,7 @@ class Request
      *
      * @return string The raw URI (i.e. not URI decoded)
      */
-<<<<<<< HEAD
     public function getRequestUri()
-=======
-    public function getRequestUri(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $this->requestUri) {
             $this->requestUri = $this->prepareRequestUri();
@@ -1188,15 +1045,10 @@ class Request
      *
      * If the URL was called with basic authentication, the user
      * and the password are not added to the generated string.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getSchemeAndHttpHost()
-=======
-     */
-    public function getSchemeAndHttpHost(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->getScheme().'://'.$this->getHttpHost();
     }
@@ -1204,17 +1056,11 @@ class Request
     /**
      * Generates a normalized URI (URL) for the Request.
      *
-<<<<<<< HEAD
      * @return string
      *
      * @see getQueryString()
      */
     public function getUri()
-=======
-     * @see getQueryString()
-     */
-    public function getUri(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $qs = $this->getQueryString()) {
             $qs = '?'.$qs;
@@ -1227,15 +1073,10 @@ class Request
      * Generates a normalized URI for the given path.
      *
      * @param string $path A path to use instead of the current one
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getUriForPath(string $path)
-=======
-     */
-    public function getUriForPath(string $path): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->getSchemeAndHttpHost().$this->getBaseUrl().$path;
     }
@@ -1254,15 +1095,10 @@ class Request
      * - "/a/b/"        -> "../"
      * - "/a/b/c/other" -> "other"
      * - "/a/x/y"       -> "../../x/y"
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getRelativeUriForPath(string $path)
-=======
-     */
-    public function getRelativeUriForPath(string $path): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // be sure that we are dealing with an absolute path
         if (!isset($path[0]) || '/' !== $path[0]) {
@@ -1303,15 +1139,10 @@ class Request
      *
      * It builds a normalized query string, where keys/value pairs are alphabetized
      * and have consistent escaping.
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public function getQueryString()
-=======
-     */
-    public function getQueryString(): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $qs = static::normalizeQueryString($this->server->get('QUERY_STRING'));
 
@@ -1325,15 +1156,10 @@ class Request
      * when trusted proxies were set via "setTrustedProxies()".
      *
      * The "X-Forwarded-Proto" header must contain the protocol: "https" or "http".
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function isSecure()
-=======
-     */
-    public function isSecure(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->isFromTrustedProxy() && $proto = $this->getTrustedValues(self::HEADER_X_FORWARDED_PROTO)) {
             return \in_array(strtolower($proto[0]), ['https', 'on', 'ssl', '1'], true);
@@ -1352,17 +1178,11 @@ class Request
      *
      * The "X-Forwarded-Host" header must contain the client host name.
      *
-<<<<<<< HEAD
      * @return string
      *
      * @throws SuspiciousOperationException when the host name is invalid or not trusted
      */
     public function getHost()
-=======
-     * @throws SuspiciousOperationException when the host name is invalid or not trusted
-     */
-    public function getHost(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->isFromTrustedProxy() && $host = $this->getTrustedValues(self::HEADER_X_FORWARDED_HOST)) {
             $host = $host[0];
@@ -1434,17 +1254,11 @@ class Request
      *
      * The method is always an uppercased string.
      *
-<<<<<<< HEAD
      * @return string
      *
      * @see getRealMethod()
      */
     public function getMethod()
-=======
-     * @see getRealMethod()
-     */
-    public function getMethod(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $this->method) {
             return $this->method;
@@ -1482,32 +1296,21 @@ class Request
     /**
      * Gets the "real" request method.
      *
-<<<<<<< HEAD
      * @return string
      *
      * @see getMethod()
      */
     public function getRealMethod()
-=======
-     * @see getMethod()
-     */
-    public function getRealMethod(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return strtoupper($this->server->get('REQUEST_METHOD', 'GET'));
     }
 
     /**
      * Gets the mime type associated with the format.
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public function getMimeType(string $format)
-=======
-     */
-    public function getMimeType(string $format): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === static::$formats) {
             static::initializeFormats();
@@ -1518,15 +1321,10 @@ class Request
 
     /**
      * Gets the mime types associated with the format.
-<<<<<<< HEAD
      *
      * @return array
      */
     public static function getMimeTypes(string $format)
-=======
-     */
-    public static function getMimeTypes(string $format): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === static::$formats) {
             static::initializeFormats();
@@ -1537,15 +1335,10 @@ class Request
 
     /**
      * Gets the format associated with the mime type.
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public function getFormat(?string $mimeType)
-=======
-     */
-    public function getFormat(?string $mimeType): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $canonicalMimeType = null;
         if ($mimeType && false !== $pos = strpos($mimeType, ';')) {
@@ -1573,11 +1366,7 @@ class Request
      *
      * @param string|array $mimeTypes The associated mime types (the preferred one must be the first as it will be used as the content type)
      */
-<<<<<<< HEAD
     public function setFormat(?string $format, $mimeTypes)
-=======
-    public function setFormat(?string $format, string|array $mimeTypes)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === static::$formats) {
             static::initializeFormats();
@@ -1596,15 +1385,10 @@ class Request
      *  * $default
      *
      * @see getPreferredFormat
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public function getRequestFormat(?string $default = 'html')
-=======
-     */
-    public function getRequestFormat(?string $default = 'html'): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $this->format) {
             $this->format = $this->attributes->get('_format');
@@ -1623,15 +1407,10 @@ class Request
 
     /**
      * Gets the format associated with the request.
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public function getContentType()
-=======
-     */
-    public function getContentType(): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->getFormat($this->headers->get('CONTENT_TYPE', ''));
     }
@@ -1650,15 +1429,10 @@ class Request
 
     /**
      * Get the default locale.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getDefaultLocale()
-=======
-     */
-    public function getDefaultLocale(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->defaultLocale;
     }
@@ -1673,15 +1447,10 @@ class Request
 
     /**
      * Get the locale.
-<<<<<<< HEAD
      *
      * @return string
      */
     public function getLocale()
-=======
-     */
-    public function getLocale(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return null === $this->locale ? $this->defaultLocale : $this->locale;
     }
@@ -1690,15 +1459,10 @@ class Request
      * Checks if the request method is of specified type.
      *
      * @param string $method Uppercase request method (GET, POST etc)
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function isMethod(string $method)
-=======
-     */
-    public function isMethod(string $method): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->getMethod() === strtoupper($method);
     }
@@ -1707,30 +1471,20 @@ class Request
      * Checks whether or not the method is safe.
      *
      * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function isMethodSafe()
-=======
-     */
-    public function isMethodSafe(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \in_array($this->getMethod(), ['GET', 'HEAD', 'OPTIONS', 'TRACE']);
     }
 
     /**
      * Checks whether or not the method is idempotent.
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function isMethodIdempotent()
-=======
-     */
-    public function isMethodIdempotent(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \in_array($this->getMethod(), ['HEAD', 'GET', 'PUT', 'DELETE', 'TRACE', 'OPTIONS', 'PURGE']);
     }
@@ -1739,15 +1493,10 @@ class Request
      * Checks whether the method is cacheable or not.
      *
      * @see https://tools.ietf.org/html/rfc7231#section-4.2.3
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function isMethodCacheable()
-=======
-     */
-    public function isMethodCacheable(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \in_array($this->getMethod(), ['GET', 'HEAD']);
     }
@@ -1760,15 +1509,10 @@ class Request
      * server might be different. This returns the former (from the "Via" header)
      * if the proxy is trusted (see "setTrustedProxies()"), otherwise it returns
      * the latter (from the "SERVER_PROTOCOL" server parameter).
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public function getProtocolVersion()
-=======
-     */
-    public function getProtocolVersion(): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->isFromTrustedProxy()) {
             preg_match('~^(HTTP/)?([1-9]\.[0-9]) ~', $this->headers->get('Via') ?? '', $matches);
@@ -1830,37 +1574,25 @@ class Request
      * Gets the request body decoded as array, typically from a JSON payload.
      *
      * @throws JsonException When the body cannot be decoded to an array
-<<<<<<< HEAD
      *
      * @return array
      */
     public function toArray()
-=======
-     */
-    public function toArray(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ('' === $content = $this->getContent()) {
             throw new JsonException('Request body is empty.');
         }
 
         try {
-<<<<<<< HEAD
             $content = json_decode($content, true, 512, \JSON_BIGINT_AS_STRING | (\PHP_VERSION_ID >= 70300 ? \JSON_THROW_ON_ERROR : 0));
-=======
-            $content = json_decode($content, true, 512, \JSON_BIGINT_AS_STRING | \JSON_THROW_ON_ERROR);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         } catch (\JsonException $e) {
             throw new JsonException('Could not decode request body.', $e->getCode(), $e);
         }
 
-<<<<<<< HEAD
         if (\PHP_VERSION_ID < 70300 && \JSON_ERROR_NONE !== json_last_error()) {
             throw new JsonException('Could not decode request body: '.json_last_error_msg(), json_last_error());
         }
 
-=======
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if (!\is_array($content)) {
             throw new JsonException(sprintf('JSON content was expected to decode to an array, "%s" returned.', get_debug_type($content)));
         }
@@ -1870,27 +1602,18 @@ class Request
 
     /**
      * Gets the Etags.
-<<<<<<< HEAD
      *
      * @return array
      */
     public function getETags()
-=======
-     */
-    public function getETags(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return preg_split('/\s*,\s*/', $this->headers->get('If-None-Match', ''), -1, \PREG_SPLIT_NO_EMPTY);
     }
 
-<<<<<<< HEAD
     /**
      * @return bool
      */
     public function isNoCache()
-=======
-    public function isNoCache(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->headers->hasCacheControlDirective('no-cache') || 'no-cache' == $this->headers->get('Pragma');
     }
@@ -1922,15 +1645,10 @@ class Request
      * Returns the preferred language.
      *
      * @param string[] $locales An array of ordered available locales
-<<<<<<< HEAD
      *
      * @return string|null
      */
     public function getPreferredLanguage(array $locales = null)
-=======
-     */
-    public function getPreferredLanguage(array $locales = null): ?string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $preferredLanguages = $this->getLanguages();
 
@@ -1960,15 +1678,10 @@ class Request
 
     /**
      * Gets a list of languages acceptable by the client browser ordered in the user browser preferences.
-<<<<<<< HEAD
      *
      * @return array
      */
     public function getLanguages()
-=======
-     */
-    public function getLanguages(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $this->languages) {
             return $this->languages;
@@ -2006,15 +1719,10 @@ class Request
 
     /**
      * Gets a list of charsets acceptable by the client browser in preferable order.
-<<<<<<< HEAD
      *
      * @return array
      */
     public function getCharsets()
-=======
-     */
-    public function getCharsets(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $this->charsets) {
             return $this->charsets;
@@ -2025,15 +1733,10 @@ class Request
 
     /**
      * Gets a list of encodings acceptable by the client browser in preferable order.
-<<<<<<< HEAD
      *
      * @return array
      */
     public function getEncodings()
-=======
-     */
-    public function getEncodings(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $this->encodings) {
             return $this->encodings;
@@ -2044,15 +1747,10 @@ class Request
 
     /**
      * Gets a list of content types acceptable by the client browser in preferable order.
-<<<<<<< HEAD
      *
      * @return array
      */
     public function getAcceptableContentTypes()
-=======
-     */
-    public function getAcceptableContentTypes(): array
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $this->acceptableContentTypes) {
             return $this->acceptableContentTypes;
@@ -2068,15 +1766,10 @@ class Request
      * It is known to work with common JavaScript frameworks:
      *
      * @see https://wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function isXmlHttpRequest()
-=======
-     */
-    public function isXmlHttpRequest(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return 'XMLHttpRequest' == $this->headers->get('X-Requested-With');
     }
@@ -2088,11 +1781,7 @@ class Request
      */
     public function preferSafeContent(): bool
     {
-<<<<<<< HEAD
         if (null !== $this->isSafeContentPreferred) {
-=======
-        if (isset($this->isSafeContentPreferred)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $this->isSafeContentPreferred;
         }
 
@@ -2159,15 +1848,10 @@ class Request
 
     /**
      * Prepares the base URL.
-<<<<<<< HEAD
      *
      * @return string
      */
     protected function prepareBaseUrl()
-=======
-     */
-    protected function prepareBaseUrl(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $filename = basename($this->server->get('SCRIPT_FILENAME', ''));
 
@@ -2233,15 +1917,10 @@ class Request
 
     /**
      * Prepares the base path.
-<<<<<<< HEAD
      *
      * @return string
      */
     protected function prepareBasePath()
-=======
-     */
-    protected function prepareBasePath(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $baseUrl = $this->getBaseUrl();
         if (empty($baseUrl)) {
@@ -2264,15 +1943,10 @@ class Request
 
     /**
      * Prepares the path info.
-<<<<<<< HEAD
      *
      * @return string
      */
     protected function preparePathInfo()
-=======
-     */
-    protected function preparePathInfo(): string
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === ($requestUri = $this->getRequestUri())) {
             return '/';
@@ -2328,11 +2002,7 @@ class Request
             if (class_exists(\Locale::class, false)) {
                 \Locale::setDefault($locale);
             }
-<<<<<<< HEAD
         } catch (\Exception $e) {
-=======
-        } catch (\Exception) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 
@@ -2355,11 +2025,7 @@ class Request
         return null;
     }
 
-<<<<<<< HEAD
     private static function createRequestFromFactory(array $query = [], array $request = [], array $attributes = [], array $cookies = [], array $files = [], array $server = [], $content = null): self
-=======
-    private static function createRequestFromFactory(array $query = [], array $request = [], array $attributes = [], array $cookies = [], array $files = [], array $server = [], $content = null): static
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (self::$requestFactory) {
             $request = (self::$requestFactory)($query, $request, $attributes, $cookies, $files, $server, $content);
@@ -2379,15 +2045,10 @@ class Request
      *
      * This can be useful to determine whether or not to trust the
      * contents of a proxy-specific header.
-<<<<<<< HEAD
      *
      * @return bool
      */
     public function isFromTrustedProxy()
-=======
-     */
-    public function isFromTrustedProxy(): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return self::$trustedProxies && IpUtils::checkIp($this->server->get('REMOTE_ADDR', ''), self::$trustedProxies);
     }

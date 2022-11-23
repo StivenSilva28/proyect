@@ -69,13 +69,7 @@ class BelongsToRelationship
     {
         return function () use ($key) {
             if (! $this->resolved) {
-<<<<<<< HEAD
                 $instance = $this->factory instanceof Factory ? $this->factory->create() : $this->factory;
-=======
-                $instance = $this->factory instanceof Factory
-                    ? ($this->factory->getRandomRecycledModel($this->factory->modelName()) ?? $this->factory->create())
-                    : $this->factory;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                 return $this->resolved = $key ? $instance->{$key} : $instance->getKey();
             }
@@ -83,22 +77,4 @@ class BelongsToRelationship
             return $this->resolved;
         };
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Specify the model instances to always use when creating relationships.
-     *
-     * @param  \Illuminate\Support\Collection  $recycle
-     * @return $this
-     */
-    public function recycle($recycle)
-    {
-        if ($this->factory instanceof Factory) {
-            $this->factory = $this->factory->recycle($recycle);
-        }
-
-        return $this;
-    }
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }
