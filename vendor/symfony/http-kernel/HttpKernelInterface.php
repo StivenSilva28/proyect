@@ -40,15 +40,9 @@ interface HttpKernelInterface
      *                    (one of HttpKernelInterface::MAIN_REQUEST or HttpKernelInterface::SUB_REQUEST)
      * @param bool $catch Whether to catch exceptions or not
      *
-<<<<<<< HEAD
      * @return Response
      *
      * @throws \Exception When an Exception occurs during processing
      */
     public function handle(Request $request, int $type = self::MAIN_REQUEST, bool $catch = true);
-=======
-     * @throws \Exception When an Exception occurs during processing
-     */
-    public function handle(Request $request, int $type = self::MAIN_REQUEST, bool $catch = true): Response;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

@@ -56,16 +56,9 @@ interface Application extends Container
     /**
      * Get the path to the storage directory.
      *
-<<<<<<< HEAD
      * @return string
      */
     public function storagePath();
-=======
-     * @param  string  $path
-     * @return string
-     */
-    public function storagePath($path = '');
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Get or check the current application environment.
@@ -90,16 +83,6 @@ interface Application extends Container
     public function runningUnitTests();
 
     /**
-<<<<<<< HEAD
-=======
-     * Get an instance of the maintenance mode manager implementation.
-     *
-     * @return \Illuminate\Contracts\Foundation\MaintenanceMode
-     */
-    public function maintenanceMode();
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Determine if the application is currently down for maintenance.
      *
      * @return bool
@@ -224,17 +207,6 @@ interface Application extends Container
     public function shouldSkipMiddleware();
 
     /**
-<<<<<<< HEAD
-=======
-     * Register a terminating callback with the application.
-     *
-     * @param  callable|string  $callback
-     * @return \Illuminate\Contracts\Foundation\Application
-     */
-    public function terminating($callback);
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Terminate the application.
      *
      * @return void

@@ -191,11 +191,7 @@ class Container implements ArrayAccess, ContainerContract
      *
      * @return bool
      */
-<<<<<<< HEAD
     public function has($id)
-=======
-    public function has(string $id): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->bound($id);
     }
@@ -430,13 +426,9 @@ class Container implements ArrayAccess, ContainerContract
     public function scopedIf($abstract, $concrete = null)
     {
         if (! $this->bound($abstract)) {
-<<<<<<< HEAD
             $this->scopedInstances[] = $abstract;
 
             $this->singleton($abstract, $concrete);
-=======
-            $this->scoped($abstract, $concrete);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 
@@ -617,11 +609,7 @@ class Container implements ArrayAccess, ContainerContract
         $instance = $this->make($abstract);
 
         foreach ($this->getReboundCallbacks($abstract) as $callback) {
-<<<<<<< HEAD
             call_user_func($callback, $this, $instance);
-=======
-            $callback($this, $instance);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 
@@ -711,11 +699,7 @@ class Container implements ArrayAccess, ContainerContract
      *
      * @return mixed
      */
-<<<<<<< HEAD
     public function get($id)
-=======
-    public function get(string $id)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         try {
             return $this->resolve($id);
@@ -724,11 +708,7 @@ class Container implements ArrayAccess, ContainerContract
                 throw $e;
             }
 
-<<<<<<< HEAD
             throw new EntryNotFoundException($id, $e->getCode(), $e);
-=======
-            throw new EntryNotFoundException($id, is_int($e->getCode()) ? $e->getCode() : 0, $e);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 
@@ -1021,24 +1001,13 @@ class Container implements ArrayAccess, ContainerContract
     protected function resolvePrimitive(ReflectionParameter $parameter)
     {
         if (! is_null($concrete = $this->getContextualConcrete('$'.$parameter->getName()))) {
-<<<<<<< HEAD
             return $concrete instanceof Closure ? $concrete($this) : $concrete;
-=======
-            return Util::unwrapIfClosure($concrete, $this);
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         if ($parameter->isDefaultValueAvailable()) {
             return $parameter->getDefaultValue();
         }
 
-<<<<<<< HEAD
-=======
-        if ($parameter->isVariadic()) {
-            return [];
-        }
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->unresolvablePrimitive($parameter);
     }
 
@@ -1432,12 +1401,8 @@ class Container implements ArrayAccess, ContainerContract
      * @param  string  $key
      * @return bool
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetExists($key)
-=======
-    public function offsetExists($key): bool
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->bound($key);
     }
@@ -1448,12 +1413,8 @@ class Container implements ArrayAccess, ContainerContract
      * @param  string  $key
      * @return mixed
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetGet($key)
-=======
-    public function offsetGet($key): mixed
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->make($key);
     }
@@ -1465,12 +1426,8 @@ class Container implements ArrayAccess, ContainerContract
      * @param  mixed  $value
      * @return void
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
-=======
-    public function offsetSet($key, $value): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->bind($key, $value instanceof Closure ? $value : function () use ($value) {
             return $value;
@@ -1483,12 +1440,8 @@ class Container implements ArrayAccess, ContainerContract
      * @param  string  $key
      * @return void
      */
-<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetUnset($key)
-=======
-    public function offsetUnset($key): void
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         unset($this->bindings[$key], $this->instances[$key], $this->resolved[$key]);
     }

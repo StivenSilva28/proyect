@@ -7,16 +7,8 @@ if (! function_exists('collect')) {
     /**
      * Create a collection from the given value.
      *
-<<<<<<< HEAD
      * @param  mixed  $value
      * @return \Illuminate\Support\Collection
-=======
-     * @template TKey of array-key
-     * @template TValue
-     *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>|null  $value
-     * @return \Illuminate\Support\Collection<TKey, TValue>
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     function collect($value = null)
     {
@@ -66,11 +58,7 @@ if (! function_exists('data_get')) {
             if ($segment === '*') {
                 if ($target instanceof Collection) {
                     $target = $target->all();
-<<<<<<< HEAD
                 } elseif (! is_array($target)) {
-=======
-                } elseif (! is_iterable($target)) {
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     return value($default);
                 }
 

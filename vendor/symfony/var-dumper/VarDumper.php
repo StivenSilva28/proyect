@@ -37,11 +37,7 @@ class VarDumper
      */
     private static $handler;
 
-<<<<<<< HEAD
     public static function dump($var)
-=======
-    public static function dump(mixed $var)
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === self::$handler) {
             self::register();
@@ -50,14 +46,10 @@ class VarDumper
         return (self::$handler)($var);
     }
 
-<<<<<<< HEAD
     /**
      * @return callable|null
      */
     public static function setHandler(callable $callable = null)
-=======
-    public static function setHandler(callable $callable = null): ?callable
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $prevHandler = self::$handler;
 

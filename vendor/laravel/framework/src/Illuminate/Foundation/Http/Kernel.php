@@ -2,34 +2,18 @@
 
 namespace Illuminate\Foundation\Http;
 
-<<<<<<< HEAD
-=======
-use Carbon\CarbonInterval;
-use DateTimeInterface;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel as KernelContract;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Routing\Pipeline;
 use Illuminate\Routing\Router;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Facade;
-=======
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Facade;
-use Illuminate\Support\InteractsWithTime;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use InvalidArgumentException;
 use Throwable;
 
 class Kernel implements KernelContract
 {
-<<<<<<< HEAD
-=======
-    use InteractsWithTime;
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * The application implementation.
      *
@@ -80,23 +64,6 @@ class Kernel implements KernelContract
     protected $routeMiddleware = [];
 
     /**
-<<<<<<< HEAD
-=======
-     * All of the registered request duration handlers.
-     *
-     * @var array
-     */
-    protected $requestLifecycleDurationHandlers = [];
-
-    /**
-     * When the kernel starting handling the current request.
-     *
-     * @var \Illuminate\Support\Carbon|null
-     */
-    protected $requestStartedAt;
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The priority-sorted list of middleware.
      *
      * Forces non-global middleware to always be in the given order.
@@ -104,21 +71,13 @@ class Kernel implements KernelContract
      * @var string[]
      */
     protected $middlewarePriority = [
-<<<<<<< HEAD
-=======
-        \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         \Illuminate\Cookie\Middleware\EncryptCookies::class,
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests::class,
         \Illuminate\Routing\Middleware\ThrottleRequests::class,
         \Illuminate\Routing\Middleware\ThrottleRequestsWithRedis::class,
-<<<<<<< HEAD
         \Illuminate\Session\Middleware\AuthenticateSession::class,
-=======
-        \Illuminate\Contracts\Session\Middleware\AuthenticatesSessions::class,
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
     ];
@@ -146,11 +105,6 @@ class Kernel implements KernelContract
      */
     public function handle($request)
     {
-<<<<<<< HEAD
-=======
-        $this->requestStartedAt = Carbon::now();
-
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         try {
             $request->enableHttpMethodParameterOverride();
 
@@ -226,19 +180,6 @@ class Kernel implements KernelContract
         $this->terminateMiddleware($request, $response);
 
         $this->app->terminate();
-<<<<<<< HEAD
-=======
-
-        foreach ($this->requestLifecycleDurationHandlers as ['threshold' => $threshold, 'handler' => $handler]) {
-            $end ??= Carbon::now();
-
-            if ($this->requestStartedAt->diffInMilliseconds($end) > $threshold) {
-                $handler($this->requestStartedAt, $request, $response);
-            }
-        }
-
-        $this->requestStartedAt = null;
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -271,42 +212,6 @@ class Kernel implements KernelContract
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Register a callback to be invoked when the requests lifecyle duration exceeds a given amount of time.
-     *
-     * @param  \DateTimeInterface|\Carbon\CarbonInterval|float|int  $threshold
-     * @param  callable  $handler
-     * @return void
-     */
-    public function whenRequestLifecycleIsLongerThan($threshold, $handler)
-    {
-        $threshold = $threshold instanceof DateTimeInterface
-            ? $this->secondsUntil($threshold) * 1000
-            : $threshold;
-
-        $threshold = $threshold instanceof CarbonInterval
-            ? $threshold->totalMilliseconds
-            : $threshold;
-
-        $this->requestLifecycleDurationHandlers[] = [
-            'threshold' => $threshold,
-            'handler' => $handler,
-        ];
-    }
-
-    /**
-     * When the request being handled started.
-     *
-     * @return \Illuminate\Support\Carbon|null
-     */
-    public function requestStartedAt()
-    {
-        return $this->requestStartedAt;
-    }
-
-    /**
->>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Gather the route middleware for the given request.
      *
      * @param  \Illuminate\Http\Request  $request
