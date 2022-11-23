@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('ESTAN DENTRO DE LA APLICACION NUEVA DE SIMDE') }}
                 </div>
             </div>
         </div>

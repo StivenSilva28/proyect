@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Laravel--') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -36,6 +36,7 @@
                         @if (Auth::check())
                         <a class="nav-link" href="{{ route('libros.index') }}">{{ __('libros') }}</a>
                         <a class="nav-link" href="{{ route('categorias.index') }}">{{ __('categorias') }}</a>
+                        <a class="nav-link" href="{{ route('pacientes.index') }}">{{ __('pacientes') }}</a>
                         @endif
                     </ul>
 
