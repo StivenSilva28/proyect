@@ -3,6 +3,10 @@
 namespace Illuminate\Support;
 
 use Closure;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Date;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Traits\Tappable;
@@ -65,6 +69,20 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Append a new line to the string.
+     *
+     * @param  int  $count
+     * @return $this
+     */
+    public function newLine($count = 1)
+    {
+        return $this->append(str_repeat(PHP_EOL, $count));
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Transliterate a UTF-8 value to ASCII.
      *
      * @param  string  $language
@@ -131,6 +149,21 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Get the smallest possible portion of a string between two given values.
+     *
+     * @param  string  $from
+     * @param  string  $to
+     * @return static
+     */
+    public function betweenFirst($from, $to)
+    {
+        return new static(Str::betweenFirst($this->value, $from, $to));
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Convert a value to camel case.
      *
      * @return static
@@ -143,23 +176,43 @@ class Stringable implements JsonSerializable
     /**
      * Determine if a given string contains a given substring.
      *
+<<<<<<< HEAD
      * @param  string|array  $needles
      * @return bool
      */
     public function contains($needles)
     {
         return Str::contains($this->value, $needles);
+=======
+     * @param  string|iterable<string>  $needles
+     * @param  bool  $ignoreCase
+     * @return bool
+     */
+    public function contains($needles, $ignoreCase = false)
+    {
+        return Str::contains($this->value, $needles, $ignoreCase);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
      * Determine if a given string contains all array values.
      *
+<<<<<<< HEAD
      * @param  array  $needles
      * @return bool
      */
     public function containsAll(array $needles)
     {
         return Str::containsAll($this->value, $needles);
+=======
+     * @param  iterable<string>  $needles
+     * @param  bool  $ignoreCase
+     * @return bool
+     */
+    public function containsAll($needles, $ignoreCase = false)
+    {
+        return Str::containsAll($this->value, $needles, $ignoreCase);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -176,7 +229,11 @@ class Stringable implements JsonSerializable
     /**
      * Determine if a given string ends with a given substring.
      *
+<<<<<<< HEAD
      * @param  string|array  $needles
+=======
+     * @param  string|iterable<string>  $needles
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return bool
      */
     public function endsWith($needles)
@@ -187,15 +244,41 @@ class Stringable implements JsonSerializable
     /**
      * Determine if the string is an exact match with the given value.
      *
+<<<<<<< HEAD
      * @param  string  $value
+=======
+     * @param  \Illuminate\Support\Stringable|string  $value
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return bool
      */
     public function exactly($value)
     {
+<<<<<<< HEAD
+=======
+        if ($value instanceof Stringable) {
+            $value = $value->toString();
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return $this->value === $value;
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Extracts an excerpt from text that matches the first instance of a phrase.
+     *
+     * @param  string  $phrase
+     * @param  array  $options
+     * @return string|null
+     */
+    public function excerpt($phrase = '', $options = [])
+    {
+        return Str::excerpt($this->value, $phrase, $options);
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Explode the string into an array.
      *
      * @param  string  $delimiter
@@ -240,7 +323,11 @@ class Stringable implements JsonSerializable
     /**
      * Determine if a given string matches a given pattern.
      *
+<<<<<<< HEAD
      * @param  string|array  $pattern
+=======
+     * @param  string|iterable<string>  $pattern
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return bool
      */
     public function is($pattern)
@@ -259,6 +346,19 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Determine if a given string is valid JSON.
+     *
+     * @return bool
+     */
+    public function isJson()
+    {
+        return Str::isJson($this->value);
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Determine if a given string is a valid UUID.
      *
      * @return bool
@@ -343,6 +443,20 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Convert inline Markdown into HTML.
+     *
+     * @param  array  $options
+     * @return static
+     */
+    public function inlineMarkdown(array $options = [])
+    {
+        return new static(Str::inlineMarkdown($this->value, $options));
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Masks a portion of a string with a repeated character.
      *
      * @param  string  $character
@@ -444,7 +558,11 @@ class Stringable implements JsonSerializable
      */
     public function pipe(callable $callback)
     {
+<<<<<<< HEAD
         return new static(call_user_func($callback, $this));
+=======
+        return new static($callback($this));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -510,14 +628,23 @@ class Stringable implements JsonSerializable
      */
     public function repeat(int $times)
     {
+<<<<<<< HEAD
         return new static(Str::repeat($this->value, $times));
+=======
+        return new static(str_repeat($this->value, $times));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
      * Replace the given value in the given string.
      *
+<<<<<<< HEAD
      * @param  string|string[]  $search
      * @param  string|string[]  $replace
+=======
+     * @param  string|iterable<string>  $search
+     * @param  string|iterable<string>  $replace
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return static
      */
     public function replace($search, $replace)
@@ -529,10 +656,17 @@ class Stringable implements JsonSerializable
      * Replace a given value in the string sequentially with an array.
      *
      * @param  string  $search
+<<<<<<< HEAD
      * @param  array  $replace
      * @return static
      */
     public function replaceArray($search, array $replace)
+=======
+     * @param  iterable<string>  $replace
+     * @return static
+     */
+    public function replaceArray($search, $replace)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new static(Str::replaceArray($search, $replace, $this->value));
     }
@@ -590,6 +724,19 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Remove all "extra" blank space from the given string.
+     *
+     * @return static
+     */
+    public function squish()
+    {
+        return new static(Str::squish($this->value));
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Begin a string with a single instance of a given value.
      *
      * @param  string  $prefix
@@ -677,7 +824,11 @@ class Stringable implements JsonSerializable
     /**
      * Determine if a given string starts with a given substring.
      *
+<<<<<<< HEAD
      * @param  string|array  $needles
+=======
+     * @param  string|iterable<string>  $needles
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return bool
      */
     public function startsWith($needles)
@@ -723,9 +874,15 @@ class Stringable implements JsonSerializable
     /**
      * Replace text within a portion of a string.
      *
+<<<<<<< HEAD
      * @param  string|array  $replace
      * @param  array|int  $offset
      * @param  array|int|null  $length
+=======
+     * @param  string|string[]  $replace
+     * @param  int|int[]  $offset
+     * @param  int|int[]|null  $length
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return static
      */
     public function substrReplace($replace, $offset = 0, $length = null)
@@ -778,6 +935,19 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Make a string's first character lowercase.
+     *
+     * @return static
+     */
+    public function lcfirst()
+    {
+        return new static(Str::lcfirst($this->value));
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Make a string's first character uppercase.
      *
      * @return static
@@ -800,7 +970,11 @@ class Stringable implements JsonSerializable
     /**
      * Execute the given callback if the string contains a given substring.
      *
+<<<<<<< HEAD
      * @param  string|array  $needles
+=======
+     * @param  string|iterable<string>  $needles
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  callable  $callback
      * @param  callable|null  $default
      * @return static
@@ -813,7 +987,11 @@ class Stringable implements JsonSerializable
     /**
      * Execute the given callback if the string contains all array values.
      *
+<<<<<<< HEAD
      * @param  array  $needles
+=======
+     * @param  iterable<string>  $needles
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  callable  $callback
      * @param  callable|null  $default
      * @return static
@@ -850,7 +1028,11 @@ class Stringable implements JsonSerializable
     /**
      * Execute the given callback if the string ends with a given substring.
      *
+<<<<<<< HEAD
      * @param  string|array  $needles
+=======
+     * @param  string|iterable<string>  $needles
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  callable  $callback
      * @param  callable|null  $default
      * @return static
@@ -874,9 +1056,28 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
      * Execute the given callback if the string matches a given pattern.
      *
      * @param  string|array  $pattern
+=======
+     * Execute the given callback if the string is not an exact match with the given value.
+     *
+     * @param  string  $value
+     * @param  callable  $callback
+     * @param  callable|null  $default
+     * @return static
+     */
+    public function whenNotExactly($value, $callback, $default = null)
+    {
+        return $this->when(! $this->exactly($value), $callback, $default);
+    }
+
+    /**
+     * Execute the given callback if the string matches a given pattern.
+     *
+     * @param  string|iterable<string>  $pattern
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  callable  $callback
      * @param  callable|null  $default
      * @return static
@@ -913,7 +1114,11 @@ class Stringable implements JsonSerializable
     /**
      * Execute the given callback if the string starts with a given substring.
      *
+<<<<<<< HEAD
      * @param  string|array  $needles
+=======
+     * @param  string|iterable<string>  $needles
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  callable  $callback
      * @param  callable|null  $default
      * @return static
@@ -959,6 +1164,21 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Wrap the string with the given strings.
+     *
+     * @param  string  $before
+     * @param  string|null  $after
+     * @return static
+     */
+    public function wrap($before, $after = null)
+    {
+        return new static(Str::wrap($this->value, $before, $after));
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Convert the string into a `HtmlString` instance.
      *
      * @return \Illuminate\Support\HtmlString
@@ -993,12 +1213,89 @@ class Stringable implements JsonSerializable
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Get the underlying string value.
+     *
+     * @return string
+     */
+    public function value()
+    {
+        return $this->toString();
+    }
+
+    /**
+     * Get the underlying string value.
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Get the underlying string value as an integer.
+     *
+     * @return int
+     */
+    public function toInteger()
+    {
+        return intval($this->value);
+    }
+
+    /**
+     * Get the underlying string value as a float.
+     *
+     * @return float
+     */
+    public function toFloat()
+    {
+        return floatval($this->value);
+    }
+
+    /**
+     * Get the underlying string value as a boolean.
+     *
+     * Returns true when value is "1", "true", "on", and "yes". Otherwise, returns false.
+     *
+     * @return bool
+     */
+    public function toBoolean()
+    {
+        return filter_var($this->value, FILTER_VALIDATE_BOOLEAN);
+    }
+
+    /**
+     * Get the underlying string value as a Carbon instance.
+     *
+     * @param  string|null  $format
+     * @param  string|null  $tz
+     * @return \Illuminate\Support\Carbon
+     *
+     * @throws \Carbon\Exceptions\InvalidFormatException
+     */
+    public function toDate($format = null, $tz = null)
+    {
+        if (is_null($format)) {
+            return Date::parse($this->value, $tz);
+        }
+
+        return Date::createFromFormat($format, $this->value, $tz);
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Convert the object to a string when JSON encoded.
      *
      * @return string
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
+=======
+    public function jsonSerialize(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->__toString();
     }

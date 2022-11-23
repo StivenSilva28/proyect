@@ -43,7 +43,11 @@ class Gitignore
         foreach ($gitignoreLines as $line) {
             $line = preg_replace('~(?<!\\\\)[ \t]+$~', '', $line);
 
+<<<<<<< HEAD
             if ('!' === substr($line, 0, 1)) {
+=======
+            if (str_starts_with($line, '!')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $line = substr($line, 1);
                 $isNegative = true;
             } else {

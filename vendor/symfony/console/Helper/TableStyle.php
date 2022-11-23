@@ -23,6 +23,7 @@ use Symfony\Component\Console\Exception\LogicException;
  */
 class TableStyle
 {
+<<<<<<< HEAD
     private $paddingChar = ' ';
     private $horizontalOutsideBorderChar = '-';
     private $horizontalInsideBorderChar = '-';
@@ -47,13 +48,43 @@ class TableStyle
     private $cellRowContentFormat = ' %s ';
     private $borderFormat = '%s';
     private $padType = \STR_PAD_RIGHT;
+=======
+    private string $paddingChar = ' ';
+    private string $horizontalOutsideBorderChar = '-';
+    private string $horizontalInsideBorderChar = '-';
+    private string $verticalOutsideBorderChar = '|';
+    private string $verticalInsideBorderChar = '|';
+    private string $crossingChar = '+';
+    private string $crossingTopRightChar = '+';
+    private string $crossingTopMidChar = '+';
+    private string $crossingTopLeftChar = '+';
+    private string $crossingMidRightChar = '+';
+    private string $crossingBottomRightChar = '+';
+    private string $crossingBottomMidChar = '+';
+    private string $crossingBottomLeftChar = '+';
+    private string $crossingMidLeftChar = '+';
+    private string $crossingTopLeftBottomChar = '+';
+    private string $crossingTopMidBottomChar = '+';
+    private string $crossingTopRightBottomChar = '+';
+    private string $headerTitleFormat = '<fg=black;bg=white;options=bold> %s </>';
+    private string $footerTitleFormat = '<fg=black;bg=white;options=bold> %s </>';
+    private string $cellHeaderFormat = '<info>%s</info>';
+    private string $cellRowFormat = '%s';
+    private string $cellRowContentFormat = ' %s ';
+    private string $borderFormat = '%s';
+    private int $padType = \STR_PAD_RIGHT;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Sets padding character, used for cell padding.
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setPaddingChar(string $paddingChar)
+=======
+    public function setPaddingChar(string $paddingChar): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$paddingChar) {
             throw new LogicException('The padding char must not be empty.');
@@ -66,10 +97,15 @@ class TableStyle
 
     /**
      * Gets padding character, used for cell padding.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getPaddingChar()
+=======
+     */
+    public function getPaddingChar(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->paddingChar;
     }
@@ -90,7 +126,11 @@ class TableStyle
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setHorizontalBorderChars(string $outside, string $inside = null): self
+=======
+    public function setHorizontalBorderChars(string $outside, string $inside = null): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->horizontalOutsideBorderChar = $outside;
         $this->horizontalInsideBorderChar = $inside ?? $outside;
@@ -115,7 +155,11 @@ class TableStyle
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setVerticalBorderChars(string $outside, string $inside = null): self
+=======
+    public function setVerticalBorderChars(string $outside, string $inside = null): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->verticalOutsideBorderChar = $outside;
         $this->verticalInsideBorderChar = $inside ?? $outside;
@@ -169,7 +213,11 @@ class TableStyle
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setCrossingChars(string $cross, string $topLeft, string $topMid, string $topRight, string $midRight, string $bottomRight, string $bottomMid, string $bottomLeft, string $midLeft, string $topLeftBottom = null, string $topMidBottom = null, string $topRightBottom = null): self
+=======
+    public function setCrossingChars(string $cross, string $topLeft, string $topMid, string $topRight, string $midRight, string $bottomRight, string $bottomMid, string $bottomLeft, string $midLeft, string $topLeftBottom = null, string $topMidBottom = null, string $topRightBottom = null): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->crossingChar = $cross;
         $this->crossingTopLeftChar = $topLeft;
@@ -199,10 +247,15 @@ class TableStyle
 
     /**
      * Gets crossing character.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getCrossingChar()
+=======
+     */
+    public function getCrossingChar(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->crossingChar;
     }
@@ -235,7 +288,11 @@ class TableStyle
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setCellHeaderFormat(string $cellHeaderFormat)
+=======
+    public function setCellHeaderFormat(string $cellHeaderFormat): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->cellHeaderFormat = $cellHeaderFormat;
 
@@ -244,10 +301,15 @@ class TableStyle
 
     /**
      * Gets header cell format.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getCellHeaderFormat()
+=======
+     */
+    public function getCellHeaderFormat(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->cellHeaderFormat;
     }
@@ -257,7 +319,11 @@ class TableStyle
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setCellRowFormat(string $cellRowFormat)
+=======
+    public function setCellRowFormat(string $cellRowFormat): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->cellRowFormat = $cellRowFormat;
 
@@ -266,10 +332,15 @@ class TableStyle
 
     /**
      * Gets row cell format.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getCellRowFormat()
+=======
+     */
+    public function getCellRowFormat(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->cellRowFormat;
     }
@@ -279,7 +350,11 @@ class TableStyle
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setCellRowContentFormat(string $cellRowContentFormat)
+=======
+    public function setCellRowContentFormat(string $cellRowContentFormat): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->cellRowContentFormat = $cellRowContentFormat;
 
@@ -288,10 +363,15 @@ class TableStyle
 
     /**
      * Gets row cell content format.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getCellRowContentFormat()
+=======
+     */
+    public function getCellRowContentFormat(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->cellRowContentFormat;
     }
@@ -301,7 +381,11 @@ class TableStyle
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setBorderFormat(string $borderFormat)
+=======
+    public function setBorderFormat(string $borderFormat): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->borderFormat = $borderFormat;
 
@@ -310,10 +394,15 @@ class TableStyle
 
     /**
      * Gets table border format.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getBorderFormat()
+=======
+     */
+    public function getBorderFormat(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->borderFormat;
     }
@@ -323,7 +412,11 @@ class TableStyle
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setPadType(int $padType)
+=======
+    public function setPadType(int $padType): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!\in_array($padType, [\STR_PAD_LEFT, \STR_PAD_RIGHT, \STR_PAD_BOTH], true)) {
             throw new InvalidArgumentException('Invalid padding type. Expected one of (STR_PAD_LEFT, STR_PAD_RIGHT, STR_PAD_BOTH).');
@@ -336,10 +429,15 @@ class TableStyle
 
     /**
      * Gets cell padding type.
+<<<<<<< HEAD
      *
      * @return int
      */
     public function getPadType()
+=======
+     */
+    public function getPadType(): int
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->padType;
     }
@@ -352,7 +450,11 @@ class TableStyle
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function setHeaderTitleFormat(string $format): self
+=======
+    public function setHeaderTitleFormat(string $format): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->headerTitleFormat = $format;
 
@@ -367,7 +469,11 @@ class TableStyle
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function setFooterTitleFormat(string $format): self
+=======
+    public function setFooterTitleFormat(string $format): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->footerTitleFormat = $format;
 

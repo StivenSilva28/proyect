@@ -50,6 +50,7 @@ class GenericTimeConverter implements TimeConverterInterface
      */
     private const MICROSECOND_INTERVALS = '10';
 
+<<<<<<< HEAD
     /**
      * @var CalculatorInterface
      */
@@ -58,6 +59,10 @@ class GenericTimeConverter implements TimeConverterInterface
     public function __construct(CalculatorInterface $calculator)
     {
         $this->calculator = $calculator;
+=======
+    public function __construct(private CalculatorInterface $calculator)
+    {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     public function calculateTime(string $seconds, string $microseconds): Hexadecimal

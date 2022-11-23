@@ -42,8 +42,13 @@ final class Headers
     /**
      * @var HeaderInterface[][]
      */
+<<<<<<< HEAD
     private $headers = [];
     private $lineLength = 76;
+=======
+    private array $headers = [];
+    private int $lineLength = 76;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(HeaderInterface ...$headers)
     {
@@ -79,37 +84,59 @@ final class Headers
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function addMailboxListHeader(string $name, array $addresses): self
+=======
+    public function addMailboxListHeader(string $name, array $addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->add(new MailboxListHeader($name, Address::createArray($addresses)));
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string $address
      *
      * @return $this
      */
     public function addMailboxHeader(string $name, $address): self
+=======
+     * @return $this
+     */
+    public function addMailboxHeader(string $name, Address|string $address): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->add(new MailboxHeader($name, Address::create($address)));
     }
 
     /**
+<<<<<<< HEAD
      * @param string|array $ids
      *
      * @return $this
      */
     public function addIdHeader(string $name, $ids): self
+=======
+     * @return $this
+     */
+    public function addIdHeader(string $name, string|array $ids): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->add(new IdentificationHeader($name, $ids));
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string $path
      *
      * @return $this
      */
     public function addPathHeader(string $name, $path): self
+=======
+     * @return $this
+     */
+    public function addPathHeader(string $name, Address|string $path): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->add(new PathHeader($name, $path instanceof Address ? $path : new Address($path)));
     }
@@ -117,7 +144,11 @@ final class Headers
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function addDateHeader(string $name, \DateTimeInterface $dateTime): self
+=======
+    public function addDateHeader(string $name, \DateTimeInterface $dateTime): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->add(new DateHeader($name, $dateTime));
     }
@@ -125,7 +156,11 @@ final class Headers
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function addTextHeader(string $name, string $value): self
+=======
+    public function addTextHeader(string $name, string $value): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->add(new UnstructuredHeader($name, $value));
     }
@@ -133,7 +168,11 @@ final class Headers
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function addParameterizedHeader(string $name, string $value, array $params = []): self
+=======
+    public function addParameterizedHeader(string $name, string $value, array $params = []): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->add(new ParameterizedHeader($name, $value, $params));
     }
@@ -141,7 +180,11 @@ final class Headers
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function addHeader(string $name, $argument, array $more = []): self
+=======
+    public function addHeader(string $name, mixed $argument, array $more = []): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $parts = explode('\\', self::HEADER_CLASS_MAP[strtolower($name)] ?? UnstructuredHeader::class);
         $method = 'add'.ucfirst(array_pop($parts));
@@ -162,7 +205,11 @@ final class Headers
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function add(HeaderInterface $header): self
+=======
+    public function add(HeaderInterface $header): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         self::checkHeaderClass($header);
 
@@ -254,9 +301,12 @@ final class Headers
         return $arr;
     }
 
+<<<<<<< HEAD
     /**
      * @internal
      */
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     public function getHeaderBody(string $name)
     {
         return $this->has($name) ? $this->get($name)->getBody() : null;
@@ -265,7 +315,11 @@ final class Headers
     /**
      * @internal
      */
+<<<<<<< HEAD
     public function setHeaderBody(string $type, string $name, $body): void
+=======
+    public function setHeaderBody(string $type, string $name, mixed $body): void
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->has($name)) {
             $this->get($name)->setBody($body);

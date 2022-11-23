@@ -91,10 +91,17 @@ class Dispatcher implements DispatcherContract
         }
 
         foreach ((array) $events as $event) {
+<<<<<<< HEAD
             if (Str::contains($event, '*')) {
                 $this->setupWildcardListen($event, $listener);
             } else {
                 $this->listeners[$event][] = $this->makeListener($listener);
+=======
+            if (str_contains($event, '*')) {
+                $this->setupWildcardListen($event, $listener);
+            } else {
+                $this->listeners[$event][] = $listener;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
     }
@@ -108,7 +115,11 @@ class Dispatcher implements DispatcherContract
      */
     protected function setupWildcardListen($event, $listener)
     {
+<<<<<<< HEAD
         $this->wildcards[$event][] = $this->makeListener($listener, true);
+=======
+        $this->wildcards[$event][] = $listener;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $this->wildcardsCache = [];
     }
@@ -147,7 +158,11 @@ class Dispatcher implements DispatcherContract
      * Register an event and payload to be fired later.
      *
      * @param  string  $event
+<<<<<<< HEAD
      * @param  array  $payload
+=======
+     * @param  object|array  $payload
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return void
      */
     public function push($event, $payload = [])
@@ -328,10 +343,15 @@ class Dispatcher implements DispatcherContract
      */
     public function getListeners($eventName)
     {
+<<<<<<< HEAD
         $listeners = $this->listeners[$eventName] ?? [];
 
         $listeners = array_merge(
             $listeners,
+=======
+        $listeners = array_merge(
+            $this->prepareListeners($eventName),
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->wildcardsCache[$eventName] ?? $this->getWildcardListeners($eventName)
         );
 
@@ -352,7 +372,13 @@ class Dispatcher implements DispatcherContract
 
         foreach ($this->wildcards as $key => $listeners) {
             if (Str::is($key, $eventName)) {
+<<<<<<< HEAD
                 $wildcards = array_merge($wildcards, $listeners);
+=======
+                foreach ($listeners as $listener) {
+                    $wildcards[] = $this->makeListener($listener, true);
+                }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
 
@@ -370,7 +396,11 @@ class Dispatcher implements DispatcherContract
     {
         foreach (class_implements($eventName) as $interface) {
             if (isset($this->listeners[$interface])) {
+<<<<<<< HEAD
                 foreach ($this->listeners[$interface] as $names) {
+=======
+                foreach ($this->prepareListeners($interface) as $names) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     $listeners = array_merge($listeners, (array) $names);
                 }
             }
@@ -380,6 +410,26 @@ class Dispatcher implements DispatcherContract
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Prepare the listeners for a given event.
+     *
+     * @param  string  $eventName
+     * @return \Closure[]
+     */
+    protected function prepareListeners(string $eventName)
+    {
+        $listeners = [];
+
+        foreach ($this->listeners[$eventName] ?? [] as $listener) {
+            $listeners[] = $this->makeListener($listener);
+        }
+
+        return $listeners;
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Register an event listener with the dispatcher.
      *
      * @param  \Closure|string|array  $listener
@@ -562,11 +612,19 @@ class Dispatcher implements DispatcherContract
         [$listener, $job] = $this->createListenerAndJob($class, $method, $arguments);
 
         $connection = $this->resolveQueue()->connection(method_exists($listener, 'viaConnection')
+<<<<<<< HEAD
                     ? $listener->viaConnection()
                     : $listener->connection ?? null);
 
         $queue = method_exists($listener, 'viaQueue')
                     ? $listener->viaQueue()
+=======
+                    ? (isset($arguments[0]) ? $listener->viaConnection($arguments[0]) : $listener->viaConnection())
+                    : $listener->connection ?? null);
+
+        $queue = method_exists($listener, 'viaQueue')
+                    ? (isset($arguments[0]) ? $listener->viaQueue($arguments[0]) : $listener->viaQueue())
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     : $listener->queue ?? null;
 
         isset($listener->delay)
@@ -595,22 +653,39 @@ class Dispatcher implements DispatcherContract
      * Propagate listener options to the job.
      *
      * @param  mixed  $listener
+<<<<<<< HEAD
      * @param  mixed  $job
+=======
+     * @param  \Illuminate\Events\CallQueuedListener  $job
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return mixed
      */
     protected function propagateListenerOptions($listener, $job)
     {
         return tap($job, function ($job) use ($listener) {
+<<<<<<< HEAD
             $job->afterCommit = property_exists($listener, 'afterCommit') ? $listener->afterCommit : null;
             $job->backoff = method_exists($listener, 'backoff') ? $listener->backoff() : ($listener->backoff ?? null);
             $job->maxExceptions = $listener->maxExceptions ?? null;
             $job->retryUntil = method_exists($listener, 'retryUntil') ? $listener->retryUntil() : null;
+=======
+            $data = array_values($job->data);
+
+            $job->afterCommit = property_exists($listener, 'afterCommit') ? $listener->afterCommit : null;
+            $job->backoff = method_exists($listener, 'backoff') ? $listener->backoff(...$data) : ($listener->backoff ?? null);
+            $job->maxExceptions = $listener->maxExceptions ?? null;
+            $job->retryUntil = method_exists($listener, 'retryUntil') ? $listener->retryUntil(...$data) : null;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $job->shouldBeEncrypted = $listener instanceof ShouldBeEncrypted;
             $job->timeout = $listener->timeout ?? null;
             $job->tries = $listener->tries ?? null;
 
             $job->through(array_merge(
+<<<<<<< HEAD
                 method_exists($listener, 'middleware') ? $listener->middleware() : [],
+=======
+                method_exists($listener, 'middleware') ? $listener->middleware(...$data) : [],
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $listener->middleware ?? []
             ));
         });
@@ -624,7 +699,11 @@ class Dispatcher implements DispatcherContract
      */
     public function forget($event)
     {
+<<<<<<< HEAD
         if (Str::contains($event, '*')) {
+=======
+        if (str_contains($event, '*')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             unset($this->wildcards[$event]);
         } else {
             unset($this->listeners[$event]);
@@ -645,7 +724,11 @@ class Dispatcher implements DispatcherContract
     public function forgetPushed()
     {
         foreach ($this->listeners as $key => $value) {
+<<<<<<< HEAD
             if (Str::endsWith($key, '_pushed')) {
+=======
+            if (str_ends_with($key, '_pushed')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $this->forget($key);
             }
         }
@@ -673,4 +756,17 @@ class Dispatcher implements DispatcherContract
 
         return $this;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Gets the raw, unprepared listeners.
+     *
+     * @return array
+     */
+    public function getRawListeners()
+    {
+        return $this->listeners;
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

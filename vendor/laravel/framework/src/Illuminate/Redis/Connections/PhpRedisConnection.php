@@ -5,7 +5,10 @@ namespace Illuminate\Redis\Connections;
 use Closure;
 use Illuminate\Contracts\Redis\Connection as ConnectionContract;
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Redis;
 use RedisException;
 
@@ -532,8 +535,17 @@ class PhpRedisConnection extends Connection implements ConnectionContract
         try {
             return parent::command($method, $parameters);
         } catch (RedisException $e) {
+<<<<<<< HEAD
             if (Str::contains($e->getMessage(), 'went away')) {
                 $this->client = $this->connector ? call_user_func($this->connector) : $this->client;
+=======
+            foreach (['went away', 'socket', 'read error on connection'] as $errorMessage) {
+                if (str_contains($e->getMessage(), $errorMessage)) {
+                    $this->client = $this->connector ? call_user_func($this->connector) : $this->client;
+
+                    break;
+                }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
 
             throw $e;
@@ -551,6 +563,7 @@ class PhpRedisConnection extends Connection implements ConnectionContract
     }
 
     /**
+<<<<<<< HEAD
      * Apply a prefix to the given key if necessary.
      *
      * @param  string  $key
@@ -564,6 +577,8 @@ class PhpRedisConnection extends Connection implements ConnectionContract
     }
 
     /**
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Pass other method calls down to the underlying client.
      *
      * @param  string  $method

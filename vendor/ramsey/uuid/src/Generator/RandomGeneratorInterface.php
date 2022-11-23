@@ -22,7 +22,11 @@ interface RandomGeneratorInterface
     /**
      * Generates a string of randomized binary data
      *
+<<<<<<< HEAD
      * @param int $length The number of bytes of random binary data to generate
+=======
+     * @param int<1, max> $length The number of bytes of random binary data to generate
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @return string A binary string
      */

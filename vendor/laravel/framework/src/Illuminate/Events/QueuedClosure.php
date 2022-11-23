@@ -3,7 +3,11 @@
 namespace Illuminate\Events;
 
 use Closure;
+<<<<<<< HEAD
 use Illuminate\Queue\SerializableClosureFactory;
+=======
+use Laravel\SerializableClosure\SerializableClosure;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class QueuedClosure
 {
@@ -80,7 +84,11 @@ class QueuedClosure
     }
 
     /**
+<<<<<<< HEAD
      * Set the desired delay for the job.
+=======
+     * Set the desired delay in seconds for the job.
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  \DateTimeInterface|\DateInterval|int|null  $delay
      * @return $this
@@ -114,10 +122,17 @@ class QueuedClosure
     {
         return function (...$arguments) {
             dispatch(new CallQueuedListener(InvokeQueuedClosure::class, 'handle', [
+<<<<<<< HEAD
                 'closure' => SerializableClosureFactory::make($this->closure),
                 'arguments' => $arguments,
                 'catch' => collect($this->catchCallbacks)->map(function ($callback) {
                     return SerializableClosureFactory::make($callback);
+=======
+                'closure' => new SerializableClosure($this->closure),
+                'arguments' => $arguments,
+                'catch' => collect($this->catchCallbacks)->map(function ($callback) {
+                    return new SerializableClosure($callback);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 })->all(),
             ]))->onConnection($this->connection)->onQueue($this->queue)->delay($this->delay);
         };

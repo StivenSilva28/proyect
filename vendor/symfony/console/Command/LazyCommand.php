@@ -14,6 +14,10 @@ namespace Symfony\Component\Console\Command;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Completion\CompletionInput;
 use Symfony\Component\Console\Completion\CompletionSuggestions;
+<<<<<<< HEAD
+=======
+use Symfony\Component\Console\Completion\Suggestion;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,8 +28,13 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class LazyCommand extends Command
 {
+<<<<<<< HEAD
     private $command;
     private $isEnabled;
+=======
+    private \Closure|Command $command;
+    private ?bool $isEnabled;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(string $name, array $aliases, string $description, bool $isHidden, \Closure $commandFactory, ?bool $isEnabled = true)
     {
@@ -76,10 +85,14 @@ final class LazyCommand extends Command
         $this->getCommand()->complete($input, $suggestions);
     }
 
+<<<<<<< HEAD
     /**
      * @return $this
      */
     public function setCode(callable $code): self
+=======
+    public function setCode(callable $code): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->getCommand()->setCode($code);
 
@@ -94,10 +107,14 @@ final class LazyCommand extends Command
         $this->getCommand()->mergeApplicationDefinition($mergeArgs);
     }
 
+<<<<<<< HEAD
     /**
      * @return $this
      */
     public function setDefinition($definition): self
+=======
+    public function setDefinition(array|InputDefinition $definition): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->getCommand()->setDefinition($definition);
 
@@ -115,39 +132,69 @@ final class LazyCommand extends Command
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function addArgument(string $name, int $mode = null, string $description = '', $default = null): self
     {
         $this->getCommand()->addArgument($name, $mode, $description, $default);
+=======
+     * {@inheritdoc}
+     *
+     * @param array|\Closure(CompletionInput,CompletionSuggestions):list<string|Suggestion> $suggestedValues The values used for input completion
+     */
+    public function addArgument(string $name, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = [] */): static
+    {
+        $suggestedValues = 5 <= \func_num_args() ? func_get_arg(4) : [];
+        $this->getCommand()->addArgument($name, $mode, $description, $default, $suggestedValues);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this;
     }
 
     /**
+<<<<<<< HEAD
      * @return $this
      */
     public function addOption(string $name, $shortcut = null, int $mode = null, string $description = '', $default = null): self
     {
         $this->getCommand()->addOption($name, $shortcut, $mode, $description, $default);
+=======
+     * {@inheritdoc}
+     *
+     * @param array|\Closure(CompletionInput,CompletionSuggestions):list<string|Suggestion> $suggestedValues The values used for input completion
+     */
+    public function addOption(string $name, string|array $shortcut = null, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = [] */): static
+    {
+        $suggestedValues = 6 <= \func_num_args() ? func_get_arg(5) : [];
+        $this->getCommand()->addOption($name, $shortcut, $mode, $description, $default, $suggestedValues);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this;
     }
 
+<<<<<<< HEAD
     /**
      * @return $this
      */
     public function setProcessTitle(string $title): self
+=======
+    public function setProcessTitle(string $title): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->getCommand()->setProcessTitle($title);
 
         return $this;
     }
 
+<<<<<<< HEAD
     /**
      * @return $this
      */
     public function setHelp(string $help): self
+=======
+    public function setHelp(string $help): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->getCommand()->setHelp($help);
 
@@ -169,10 +216,14 @@ final class LazyCommand extends Command
         return $this->getCommand()->getSynopsis($short);
     }
 
+<<<<<<< HEAD
     /**
      * @return $this
      */
     public function addUsage(string $usage): self
+=======
+    public function addUsage(string $usage): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->getCommand()->addUsage($usage);
 
@@ -184,10 +235,14 @@ final class LazyCommand extends Command
         return $this->getCommand()->getUsages();
     }
 
+<<<<<<< HEAD
     /**
      * @return mixed
      */
     public function getHelper(string $name)
+=======
+    public function getHelper(string $name): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->getCommand()->getHelper($name);
     }

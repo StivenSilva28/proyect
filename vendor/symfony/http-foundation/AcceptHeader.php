@@ -27,12 +27,18 @@ class AcceptHeader
     /**
      * @var AcceptHeaderItem[]
      */
+<<<<<<< HEAD
     private $items = [];
 
     /**
      * @var bool
      */
     private $sorted = true;
+=======
+    private array $items = [];
+
+    private bool $sorted = true;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param AcceptHeaderItem[] $items
@@ -46,10 +52,15 @@ class AcceptHeader
 
     /**
      * Builds an AcceptHeader instance from a string.
+<<<<<<< HEAD
      *
      * @return self
      */
     public static function fromString(?string $headerValue)
+=======
+     */
+    public static function fromString(?string $headerValue): self
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $index = 0;
 
@@ -68,30 +79,45 @@ class AcceptHeader
 
     /**
      * Returns header value's string representation.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function __toString()
+=======
+     */
+    public function __toString(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return implode(',', $this->items);
     }
 
     /**
      * Tests if header has given value.
+<<<<<<< HEAD
      *
      * @return bool
      */
     public function has(string $value)
+=======
+     */
+    public function has(string $value): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return isset($this->items[$value]);
     }
 
     /**
      * Returns given value's item, if exists.
+<<<<<<< HEAD
      *
      * @return AcceptHeaderItem|null
      */
     public function get(string $value)
+=======
+     */
+    public function get(string $value): ?AcceptHeaderItem
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->items[$value] ?? $this->items[explode('/', $value)[0].'/*'] ?? $this->items['*/*'] ?? $this->items['*'] ?? null;
     }
@@ -101,7 +127,11 @@ class AcceptHeader
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function add(AcceptHeaderItem $item)
+=======
+    public function add(AcceptHeaderItem $item): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->items[$item->getValue()] = $item;
         $this->sorted = false;
@@ -114,7 +144,11 @@ class AcceptHeader
      *
      * @return AcceptHeaderItem[]
      */
+<<<<<<< HEAD
     public function all()
+=======
+    public function all(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->sort();
 
@@ -123,10 +157,15 @@ class AcceptHeader
 
     /**
      * Filters items on their value using given regex.
+<<<<<<< HEAD
      *
      * @return self
      */
     public function filter(string $pattern)
+=======
+     */
+    public function filter(string $pattern): self
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new self(array_filter($this->items, function (AcceptHeaderItem $item) use ($pattern) {
             return preg_match($pattern, $item->getValue());
@@ -135,10 +174,15 @@ class AcceptHeader
 
     /**
      * Returns first item.
+<<<<<<< HEAD
      *
      * @return AcceptHeaderItem|null
      */
     public function first()
+=======
+     */
+    public function first(): ?AcceptHeaderItem
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->sort();
 

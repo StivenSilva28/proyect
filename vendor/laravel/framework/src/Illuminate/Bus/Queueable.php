@@ -47,7 +47,11 @@ trait Queueable
     /**
      * The number of seconds before the job should be made available.
      *
+<<<<<<< HEAD
      * @var \DateTimeInterface|\DateInterval|int|null
+=======
+     * @var \DateTimeInterface|\DateInterval|array|int|null
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public $delay;
 
@@ -127,9 +131,15 @@ trait Queueable
     }
 
     /**
+<<<<<<< HEAD
      * Set the desired delay for the job.
      *
      * @param  \DateTimeInterface|\DateInterval|int|null  $delay
+=======
+     * Set the desired delay in seconds for the job.
+     *
+     * @param  \DateTimeInterface|\DateInterval|array|int|null  $delay
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      */
     public function delay($delay)
@@ -192,6 +202,35 @@ trait Queueable
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Prepend a job to the current chain so that it is run after the currently running job.
+     *
+     * @param  mixed  $job
+     * @return $this
+     */
+    public function prependToChain($job)
+    {
+        $this->chained = Arr::prepend($this->chained, $this->serializeJob($job));
+
+        return $this;
+    }
+
+    /**
+     * Append a job to the end of the current chain.
+     *
+     * @param  mixed  $job
+     * @return $this
+     */
+    public function appendToChain($job)
+    {
+        $this->chained = array_merge($this->chained, [$this->serializeJob($job)]);
+
+        return $this;
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Serialize a job for queuing.
      *
      * @param  mixed  $job

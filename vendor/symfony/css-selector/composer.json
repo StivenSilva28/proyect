@@ -20,8 +20,12 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
         "php": ">=7.2.5",
         "symfony/polyfill-php80": "^1.16"
+=======
+        "php": ">=8.1"
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     },
     "autoload": {
         "psr-4": { "Symfony\\Component\\CssSelector\\": "" },

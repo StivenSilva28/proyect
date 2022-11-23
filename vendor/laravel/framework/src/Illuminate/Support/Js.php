@@ -112,7 +112,11 @@ class Js implements Htmlable
      */
     protected function convertJsonToJavaScriptExpression($json, $flags = 0)
     {
+<<<<<<< HEAD
         if ('[]' === $json || '{}' === $json) {
+=======
+        if ($json === '[]' || $json === '{}') {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $json;
         }
 

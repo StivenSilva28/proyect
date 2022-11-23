@@ -29,8 +29,13 @@ use Symfony\Component\Console\Formatter\OutputFormatterInterface;
  */
 class ConsoleOutput extends StreamOutput implements ConsoleOutputInterface
 {
+<<<<<<< HEAD
     private $stderr;
     private $consoleSectionOutputs = [];
+=======
+    private OutputInterface $stderr;
+    private array $consoleSectionOutputs = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param int                           $verbosity The verbosity level (one of the VERBOSITY constants in OutputInterface)
@@ -94,7 +99,11 @@ class ConsoleOutput extends StreamOutput implements ConsoleOutputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getErrorOutput()
+=======
+    public function getErrorOutput(): OutputInterface
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->stderr;
     }
@@ -110,10 +119,15 @@ class ConsoleOutput extends StreamOutput implements ConsoleOutputInterface
     /**
      * Returns true if current environment supports writing console output to
      * STDOUT.
+<<<<<<< HEAD
      *
      * @return bool
      */
     protected function hasStdoutSupport()
+=======
+     */
+    protected function hasStdoutSupport(): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return false === $this->isRunningOS400();
     }
@@ -121,10 +135,15 @@ class ConsoleOutput extends StreamOutput implements ConsoleOutputInterface
     /**
      * Returns true if current environment supports writing console output to
      * STDERR.
+<<<<<<< HEAD
      *
      * @return bool
      */
     protected function hasStderrSupport()
+=======
+     */
+    protected function hasStderrSupport(): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return false === $this->isRunningOS400();
     }

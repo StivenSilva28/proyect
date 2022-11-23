@@ -38,6 +38,13 @@ class Enum implements Rule
             return false;
         }
 
+<<<<<<< HEAD
+=======
+        if ($value instanceof $this->type) {
+            return true;
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         try {
             return ! is_null($this->type::tryFrom($value));
         } catch (TypeError $e) {

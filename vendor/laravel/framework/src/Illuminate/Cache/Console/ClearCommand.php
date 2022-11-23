@@ -5,9 +5,17 @@ namespace Illuminate\Cache\Console;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+
+#[AsCommand(name: 'cache:clear')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ClearCommand extends Command
 {
     /**
@@ -18,6 +26,20 @@ class ClearCommand extends Command
     protected $name = 'cache:clear';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'cache:clear';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -69,14 +91,22 @@ class ClearCommand extends Command
         $this->flushFacades();
 
         if (! $successful) {
+<<<<<<< HEAD
             return $this->error('Failed to clear cache. Make sure you have the appropriate permissions.');
+=======
+            return $this->components->error('Failed to clear cache. Make sure you have the appropriate permissions.');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $this->laravel['events']->dispatch(
             'cache:cleared', [$this->argument('store'), $this->tags()]
         );
 
+<<<<<<< HEAD
         $this->info('Application cache cleared!');
+=======
+        $this->components->info('Application cache cleared successfully.');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

@@ -29,9 +29,15 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class FragmentHandler
 {
+<<<<<<< HEAD
     private $debug;
     private $renderers = [];
     private $requestStack;
+=======
+    private bool $debug;
+    private array $renderers = [];
+    private RequestStack $requestStack;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param FragmentRendererInterface[] $renderers An array of FragmentRendererInterface instances
@@ -61,6 +67,7 @@ class FragmentHandler
      *
      *  * ignore_errors: true to return an empty string in case of an error
      *
+<<<<<<< HEAD
      * @param string|ControllerReference $uri A URI as a string or a ControllerReference instance
      *
      * @return string|null
@@ -69,6 +76,12 @@ class FragmentHandler
      * @throws \LogicException           when no main request is being handled
      */
     public function render($uri, string $renderer = 'inline', array $options = [])
+=======
+     * @throws \InvalidArgumentException when the renderer does not exist
+     * @throws \LogicException           when no main request is being handled
+     */
+    public function render(string|ControllerReference $uri, string $renderer = 'inline', array $options = []): ?string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!isset($options['ignore_errors'])) {
             $options['ignore_errors'] = !$this->debug;
@@ -95,7 +108,11 @@ class FragmentHandler
      *
      * @throws \RuntimeException when the Response is not successful
      */
+<<<<<<< HEAD
     protected function deliver(Response $response)
+=======
+    protected function deliver(Response $response): ?string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$response->isSuccessful()) {
             $responseStatusCode = $response->getStatusCode();

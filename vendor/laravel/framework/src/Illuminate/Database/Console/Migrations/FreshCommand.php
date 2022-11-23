@@ -39,12 +39,24 @@ class FreshCommand extends Command
 
         $database = $this->input->getOption('database');
 
+<<<<<<< HEAD
         $this->call('db:wipe', array_filter([
+=======
+        $this->newLine();
+
+        $this->components->task('Dropping all tables', fn () => $this->callSilent('db:wipe', array_filter([
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             '--database' => $database,
             '--drop-views' => $this->option('drop-views'),
             '--drop-types' => $this->option('drop-types'),
             '--force' => true,
+<<<<<<< HEAD
         ]));
+=======
+        ])) == 0);
+
+        $this->newLine();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $this->call('migrate', array_filter([
             '--database' => $database,

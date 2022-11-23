@@ -24,6 +24,7 @@ use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
  */
 class LoggerDataCollector extends DataCollector implements LateDataCollectorInterface
 {
+<<<<<<< HEAD
     private $logger;
     private $containerPathPrefix;
     private $currentRequest;
@@ -33,6 +34,17 @@ class LoggerDataCollector extends DataCollector implements LateDataCollectorInte
     public function __construct(object $logger = null, string $containerPathPrefix = null, RequestStack $requestStack = null)
     {
         if (null !== $logger && $logger instanceof DebugLoggerInterface) {
+=======
+    private DebugLoggerInterface $logger;
+    private ?string $containerPathPrefix;
+    private ?Request $currentRequest = null;
+    private ?RequestStack $requestStack;
+    private ?array $processedLogs = null;
+
+    public function __construct(object $logger = null, string $containerPathPrefix = null, RequestStack $requestStack = null)
+    {
+        if ($logger instanceof DebugLoggerInterface) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->logger = $logger;
         }
 
@@ -53,7 +65,11 @@ class LoggerDataCollector extends DataCollector implements LateDataCollectorInte
      */
     public function reset()
     {
+<<<<<<< HEAD
         if ($this->logger instanceof DebugLoggerInterface) {
+=======
+        if (isset($this->logger)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->logger->clear();
         }
         $this->data = [];
@@ -64,7 +80,11 @@ class LoggerDataCollector extends DataCollector implements LateDataCollectorInte
      */
     public function lateCollect()
     {
+<<<<<<< HEAD
         if (null !== $this->logger) {
+=======
+        if (isset($this->logger)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $containerDeprecationLogs = $this->getContainerDeprecationLogs();
             $this->data = $this->computeErrorsCount($containerDeprecationLogs);
             // get compiler logs later (only when they are needed) to improve performance

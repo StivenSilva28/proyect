@@ -32,6 +32,7 @@ class PseudoClassExtension extends AbstractExtension
     public function getPseudoClassTranslators(): array
     {
         return [
+<<<<<<< HEAD
             'root' => [$this, 'translateRoot'],
             'first-child' => [$this, 'translateFirstChild'],
             'last-child' => [$this, 'translateLastChild'],
@@ -40,6 +41,16 @@ class PseudoClassExtension extends AbstractExtension
             'only-child' => [$this, 'translateOnlyChild'],
             'only-of-type' => [$this, 'translateOnlyOfType'],
             'empty' => [$this, 'translateEmpty'],
+=======
+            'root' => $this->translateRoot(...),
+            'first-child' => $this->translateFirstChild(...),
+            'last-child' => $this->translateLastChild(...),
+            'first-of-type' => $this->translateFirstOfType(...),
+            'last-of-type' => $this->translateLastOfType(...),
+            'only-child' => $this->translateOnlyChild(...),
+            'only-of-type' => $this->translateOnlyOfType(...),
+            'empty' => $this->translateEmpty(...),
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ];
     }
 

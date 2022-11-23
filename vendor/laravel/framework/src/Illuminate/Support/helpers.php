@@ -6,6 +6,10 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Env;
 use Illuminate\Support\HigherOrderTapProxy;
 use Illuminate\Support\Optional;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 if (! function_exists('append_config')) {
     /**
@@ -101,7 +105,11 @@ if (! function_exists('e')) {
     /**
      * Encode HTML special characters in a string.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Contracts\Support\DeferringDisplayableValue|\Illuminate\Contracts\Support\Htmlable|string|null  $value
+=======
+     * @param  \Illuminate\Contracts\Support\DeferringDisplayableValue|\Illuminate\Contracts\Support\Htmlable|\BackedEnum|string|null  $value
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  bool  $doubleEncode
      * @return string
      */
@@ -115,6 +123,13 @@ if (! function_exists('e')) {
             return $value->toHtml();
         }
 
+<<<<<<< HEAD
+=======
+        if ($value instanceof BackedEnum) {
+            $value = $value->value;
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8', $doubleEncode);
     }
 }
@@ -203,7 +218,11 @@ if (! function_exists('preg_replace_array')) {
     function preg_replace_array($pattern, array $replacements, $subject)
     {
         return preg_replace_callback($pattern, function () use (&$replacements) {
+<<<<<<< HEAD
             foreach ($replacements as $key => $value) {
+=======
+            foreach ($replacements as $value) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return array_shift($replacements);
             }
         }, $subject);
@@ -214,7 +233,11 @@ if (! function_exists('retry')) {
     /**
      * Retry an operation a given number of times.
      *
+<<<<<<< HEAD
      * @param  int  $times
+=======
+     * @param  int|array  $times
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  callable  $callback
      * @param  int|\Closure  $sleepMilliseconds
      * @param  callable|null  $when
@@ -226,6 +249,17 @@ if (! function_exists('retry')) {
     {
         $attempts = 0;
 
+<<<<<<< HEAD
+=======
+        $backoff = [];
+
+        if (is_array($times)) {
+            $backoff = $times;
+
+            $times = count($times) + 1;
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         beginning:
         $attempts++;
         $times--;
@@ -237,8 +271,15 @@ if (! function_exists('retry')) {
                 throw $e;
             }
 
+<<<<<<< HEAD
             if ($sleepMilliseconds) {
                 usleep(value($sleepMilliseconds, $attempts) * 1000);
+=======
+            $sleepMilliseconds = $backoff[$attempts - 1] ?? $sleepMilliseconds;
+
+            if ($sleepMilliseconds) {
+                usleep(value($sleepMilliseconds, $attempts, $e) * 1000);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
 
             goto beginning;
@@ -246,6 +287,37 @@ if (! function_exists('retry')) {
     }
 }
 
+<<<<<<< HEAD
+=======
+if (! function_exists('str')) {
+    /**
+     * Get a new stringable object from the given string.
+     *
+     * @param  string|null  $string
+     * @return \Illuminate\Support\Stringable|mixed
+     */
+    function str($string = null)
+    {
+        if (func_num_args() === 0) {
+            return new class
+            {
+                public function __call($method, $parameters)
+                {
+                    return Str::$method(...$parameters);
+                }
+
+                public function __toString()
+                {
+                    return '';
+                }
+            };
+        }
+
+        return Str::of($string);
+    }
+}
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 if (! function_exists('tap')) {
     /**
      * Call the given Closure with the given value then return the value.
@@ -368,9 +440,17 @@ if (! function_exists('with')) {
     /**
      * Return the given value, optionally passed through the given callback.
      *
+<<<<<<< HEAD
      * @param  mixed  $value
      * @param  callable|null  $callback
      * @return mixed
+=======
+     * @template TValue
+     *
+     * @param  TValue  $value
+     * @param  (callable(TValue): TValue)|null  $callback
+     * @return TValue
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     function with($value, callable $callback = null)
     {

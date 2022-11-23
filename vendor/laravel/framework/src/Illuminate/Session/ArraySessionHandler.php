@@ -39,8 +39,12 @@ class ArraySessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function open($savePath, $sessionName)
+=======
+    public function open($savePath, $sessionName): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return true;
     }
@@ -50,8 +54,12 @@ class ArraySessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function close()
+=======
+    public function close(): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return true;
     }
@@ -61,8 +69,12 @@ class ArraySessionHandler implements SessionHandlerInterface
      *
      * @return string|false
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function read($sessionId)
+=======
+    public function read($sessionId): string|false
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (! isset($this->storage[$sessionId])) {
             return '';
@@ -84,8 +96,12 @@ class ArraySessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function write($sessionId, $data)
+=======
+    public function write($sessionId, $data): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->storage[$sessionId] = [
             'data' => $data,
@@ -100,8 +116,12 @@ class ArraySessionHandler implements SessionHandlerInterface
      *
      * @return bool
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function destroy($sessionId)
+=======
+    public function destroy($sessionId): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (isset($this->storage[$sessionId])) {
             unset($this->storage[$sessionId]);
@@ -113,6 +133,7 @@ class ArraySessionHandler implements SessionHandlerInterface
     /**
      * {@inheritdoc}
      *
+<<<<<<< HEAD
      * @return int|false
      */
     #[\ReturnTypeWillChange]
@@ -127,6 +148,24 @@ class ArraySessionHandler implements SessionHandlerInterface
         }
 
         return true;
+=======
+     * @return int
+     */
+    public function gc($lifetime): int
+    {
+        $expiration = $this->calculateExpiration($lifetime);
+
+        $deletedSessions = 0;
+
+        foreach ($this->storage as $sessionId => $session) {
+            if ($session['time'] < $expiration) {
+                unset($this->storage[$sessionId]);
+                $deletedSessions++;
+            }
+        }
+
+        return $deletedSessions;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

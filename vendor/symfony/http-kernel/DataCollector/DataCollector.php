@@ -33,27 +33,40 @@ abstract class DataCollector implements DataCollectorInterface
      */
     protected $data = [];
 
+<<<<<<< HEAD
     /**
      * @var ClonerInterface
      */
     private $cloner;
+=======
+    private ClonerInterface $cloner;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Converts the variable into a serializable Data instance.
      *
      * This array can be displayed in the template using
      * the VarDumper component.
+<<<<<<< HEAD
      *
      * @param mixed $var
      *
      * @return Data
      */
     protected function cloneVar($var)
+=======
+     */
+    protected function cloneVar(mixed $var): Data
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($var instanceof Data) {
             return $var;
         }
+<<<<<<< HEAD
         if (null === $this->cloner) {
+=======
+        if (!isset($this->cloner)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->cloner = new VarCloner();
             $this->cloner->setMaxItems(-1);
             $this->cloner->addCasters($this->getCasters());
@@ -84,10 +97,14 @@ abstract class DataCollector implements DataCollectorInterface
         return $casters;
     }
 
+<<<<<<< HEAD
     /**
      * @return array
      */
     public function __sleep()
+=======
+    public function __sleep(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return ['data'];
     }
@@ -106,7 +123,11 @@ abstract class DataCollector implements DataCollectorInterface
     /**
      * @internal to prevent implementing \Serializable
      */
+<<<<<<< HEAD
     final protected function unserialize($data)
+=======
+    final protected function unserialize(string $data)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
     }
 }

@@ -2,15 +2,27 @@
 
 namespace Illuminate\Database\Query\Grammars;
 
+<<<<<<< HEAD
+=======
+use Illuminate\Database\Concerns\CompilesJsonPaths;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Database\Grammar as BaseGrammar;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use RuntimeException;
 
 class Grammar extends BaseGrammar
 {
+<<<<<<< HEAD
+=======
+    use CompilesJsonPaths;
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * The grammar specific operators.
      *
@@ -190,7 +202,11 @@ class Grammar extends BaseGrammar
      */
     public function compileWheres(Builder $query)
     {
+<<<<<<< HEAD
         // Each type of where clauses has its own compiler function which is responsible
+=======
+        // Each type of where clause has its own compiler function, which is responsible
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         // for actually creating the where clauses SQL. This helps keep the code nice
         // and maintainable since each clause has a very small method that it uses.
         if (is_null($query->wheres)) {
@@ -377,9 +393,15 @@ class Grammar extends BaseGrammar
     {
         $between = $where['not'] ? 'not between' : 'between';
 
+<<<<<<< HEAD
         $min = $this->parameter(reset($where['values']));
 
         $max = $this->parameter(end($where['values']));
+=======
+        $min = $this->parameter(is_array($where['values']) ? reset($where['values']) : $where['values'][0]);
+
+        $max = $this->parameter(is_array($where['values']) ? end($where['values']) : $where['values'][1]);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this->wrap($where['column']).' '.$between.' '.$min.' and '.$max;
     }
@@ -395,9 +417,15 @@ class Grammar extends BaseGrammar
     {
         $between = $where['not'] ? 'not between' : 'between';
 
+<<<<<<< HEAD
         $min = $this->wrap(reset($where['values']));
 
         $max = $this->wrap(end($where['values']));
+=======
+        $min = $this->wrap(is_array($where['values']) ? reset($where['values']) : $where['values'][0]);
+
+        $max = $this->wrap(is_array($where['values']) ? end($where['values']) : $where['values'][1]);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this->wrap($where['column']).' '.$between.' '.$min.' and '.$max;
     }
@@ -621,6 +649,38 @@ class Grammar extends BaseGrammar
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Compile a "where JSON contains key" clause.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  array  $where
+     * @return string
+     */
+    protected function whereJsonContainsKey(Builder $query, $where)
+    {
+        $not = $where['not'] ? 'not ' : '';
+
+        return $not.$this->compileJsonContainsKey(
+            $where['column']
+        );
+    }
+
+    /**
+     * Compile a "JSON contains key" statement into SQL.
+     *
+     * @param  string  $column
+     * @return string
+     *
+     * @throws \RuntimeException
+     */
+    protected function compileJsonContainsKey($column)
+    {
+        throw new RuntimeException('This database engine does not support JSON contains key operations.');
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Compile a "where JSON length" clause.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
@@ -652,6 +712,20 @@ class Grammar extends BaseGrammar
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Compile a "JSON value cast" statement into SQL.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function compileJsonValueCast($value)
+    {
+        return $value;
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Compile a "where fulltext" clause.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
@@ -679,6 +753,7 @@ class Grammar extends BaseGrammar
      * Compile the "having" portions of the query.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
+<<<<<<< HEAD
      * @param  array  $havings
      * @return string
      */
@@ -687,6 +762,15 @@ class Grammar extends BaseGrammar
         $sql = implode(' ', array_map([$this, 'compileHaving'], $havings));
 
         return 'having '.$this->removeLeadingBoolean($sql);
+=======
+     * @return string
+     */
+    protected function compileHavings(Builder $query)
+    {
+        return 'having '.$this->removeLeadingBoolean(collect($query->havings)->map(function ($having) {
+            return $having['boolean'].' '.$this->compileHaving($having);
+        })->implode(' '));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -701,9 +785,23 @@ class Grammar extends BaseGrammar
         // without doing any more processing on it. Otherwise, we will compile the
         // clause into SQL based on the components that make it up from builder.
         if ($having['type'] === 'Raw') {
+<<<<<<< HEAD
             return $having['boolean'].' '.$having['sql'];
         } elseif ($having['type'] === 'between') {
             return $this->compileHavingBetween($having);
+=======
+            return $having['sql'];
+        } elseif ($having['type'] === 'between') {
+            return $this->compileHavingBetween($having);
+        } elseif ($having['type'] === 'Null') {
+            return $this->compileHavingNull($having);
+        } elseif ($having['type'] === 'NotNull') {
+            return $this->compileHavingNotNull($having);
+        } elseif ($having['type'] === 'bit') {
+            return $this->compileHavingBit($having);
+        } elseif ($having['type'] === 'Nested') {
+            return $this->compileNestedHavings($having);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $this->compileBasicHaving($having);
@@ -721,7 +819,11 @@ class Grammar extends BaseGrammar
 
         $parameter = $this->parameter($having['value']);
 
+<<<<<<< HEAD
         return $having['boolean'].' '.$column.' '.$having['operator'].' '.$parameter;
+=======
+        return $column.' '.$having['operator'].' '.$parameter;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -740,7 +842,63 @@ class Grammar extends BaseGrammar
 
         $max = $this->parameter(last($having['values']));
 
+<<<<<<< HEAD
         return $having['boolean'].' '.$column.' '.$between.' '.$min.' and '.$max;
+=======
+        return $column.' '.$between.' '.$min.' and '.$max;
+    }
+
+    /**
+     * Compile a having null clause.
+     *
+     * @param  array  $having
+     * @return string
+     */
+    protected function compileHavingNull($having)
+    {
+        $column = $this->wrap($having['column']);
+
+        return $column.' is null';
+    }
+
+    /**
+     * Compile a having not null clause.
+     *
+     * @param  array  $having
+     * @return string
+     */
+    protected function compileHavingNotNull($having)
+    {
+        $column = $this->wrap($having['column']);
+
+        return $column.' is not null';
+    }
+
+    /**
+     * Compile a having clause involving a bit operator.
+     *
+     * @param  array  $having
+     * @return string
+     */
+    protected function compileHavingBit($having)
+    {
+        $column = $this->wrap($having['column']);
+
+        $parameter = $this->parameter($having['value']);
+
+        return '('.$column.' '.$having['operator'].' '.$parameter.') != 0';
+    }
+
+    /**
+     * Compile a nested having clause.
+     *
+     * @param  array  $having
+     * @return string
+     */
+    protected function compileNestedHavings($having)
+    {
+        return '('.substr($this->compileHavings($having['query']), 7).')';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -914,7 +1072,11 @@ class Grammar extends BaseGrammar
         $columns = $this->columnize(array_keys(reset($values)));
 
         // We need to build a list of parameter place-holders of values that are bound
+<<<<<<< HEAD
         // to the query. Each insert should have the exact same amount of parameter
+=======
+        // to the query. Each insert should have the exact same number of parameter
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         // bindings so we will loop through the record and parameterize them all.
         $parameters = collect($values)->map(function ($record) {
             return '('.$this->parameterize($record).')';
@@ -1179,6 +1341,7 @@ class Grammar extends BaseGrammar
     }
 
     /**
+<<<<<<< HEAD
      * Wrap a value in keyword identifiers.
      *
      * @param  \Illuminate\Database\Query\Expression|string  $value
@@ -1222,6 +1385,8 @@ class Grammar extends BaseGrammar
     }
 
     /**
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Wrap the given JSON selector for boolean values.
      *
      * @param  string  $value
@@ -1244,6 +1409,7 @@ class Grammar extends BaseGrammar
     }
 
     /**
+<<<<<<< HEAD
      * Split the given JSON selector into the field and the optional path and wrap them separately.
      *
      * @param  string  $column
@@ -1286,6 +1452,8 @@ class Grammar extends BaseGrammar
     }
 
     /**
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Concatenate an array of segments, removing empties.
      *
      * @param  array  $segments

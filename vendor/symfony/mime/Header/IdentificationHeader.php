@@ -21,6 +21,7 @@ use Symfony\Component\Mime\Exception\RfcComplianceException;
  */
 final class IdentificationHeader extends AbstractHeader
 {
+<<<<<<< HEAD
     private $ids = [];
     private $idsAsAddresses = [];
 
@@ -28,6 +29,12 @@ final class IdentificationHeader extends AbstractHeader
      * @param string|array $ids
      */
     public function __construct(string $name, $ids)
+=======
+    private array $ids = [];
+    private array $idsAsAddresses = [];
+
+    public function __construct(string $name, string|array $ids)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         parent::__construct($name);
 
@@ -35,11 +42,19 @@ final class IdentificationHeader extends AbstractHeader
     }
 
     /**
+<<<<<<< HEAD
      * @param string|array $body a string ID or an array of IDs
      *
      * @throws RfcComplianceException
      */
     public function setBody($body)
+=======
+     * @param string|string[] $body a string ID or an array of IDs
+     *
+     * @throws RfcComplianceException
+     */
+    public function setBody(mixed $body)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->setId($body);
     }
@@ -52,11 +67,19 @@ final class IdentificationHeader extends AbstractHeader
     /**
      * Set the ID used in the value of this header.
      *
+<<<<<<< HEAD
      * @param string|array $id
      *
      * @throws RfcComplianceException
      */
     public function setId($id)
+=======
+     * @param string|string[] $id
+     *
+     * @throws RfcComplianceException
+     */
+    public function setId(string|array $id)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->setIds(\is_array($id) ? $id : [$id]);
     }

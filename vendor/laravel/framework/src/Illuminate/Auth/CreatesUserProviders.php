@@ -33,6 +33,7 @@ trait CreatesUserProviders
             );
         }
 
+<<<<<<< HEAD
         switch ($driver) {
             case 'database':
                 return $this->createDatabaseProvider($config);
@@ -43,6 +44,15 @@ trait CreatesUserProviders
                     "Authentication user provider [{$driver}] is not defined."
                 );
         }
+=======
+        return match ($driver) {
+            'database' => $this->createDatabaseProvider($config),
+            'eloquent' => $this->createEloquentProvider($config),
+            default => throw new InvalidArgumentException(
+                "Authentication user provider [{$driver}] is not defined."
+            ),
+        };
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

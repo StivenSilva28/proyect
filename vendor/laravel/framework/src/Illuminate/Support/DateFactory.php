@@ -9,6 +9,7 @@ use InvalidArgumentException;
  * @see https://carbon.nesbot.com/docs/
  * @see https://github.com/briannesbitt/Carbon/blob/master/src/Carbon/Factory.php
  *
+<<<<<<< HEAD
  * @method static Carbon create($year = 0, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0, $tz = null)
  * @method static Carbon createFromDate($year = null, $month = null, $day = null, $tz = null)
  * @method static Carbon|false createFromFormat($format, $time, $tz = null)
@@ -80,6 +81,79 @@ use InvalidArgumentException;
  * @method static Carbon useStrictMode($strictModeEnabled = true)
  * @method static void useYearsOverflow($yearsOverflow = true)
  * @method static Carbon yesterday($tz = null)
+=======
+ * @method Carbon create($year = 0, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0, $tz = null)
+ * @method Carbon createFromDate($year = null, $month = null, $day = null, $tz = null)
+ * @method Carbon|false createFromFormat($format, $time, $tz = null)
+ * @method Carbon createFromTime($hour = 0, $minute = 0, $second = 0, $tz = null)
+ * @method Carbon createFromTimeString($time, $tz = null)
+ * @method Carbon createFromTimestamp($timestamp, $tz = null)
+ * @method Carbon createFromTimestampMs($timestamp, $tz = null)
+ * @method Carbon createFromTimestampUTC($timestamp)
+ * @method Carbon createMidnightDate($year = null, $month = null, $day = null, $tz = null)
+ * @method Carbon|false createSafe($year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null, $tz = null)
+ * @method Carbon disableHumanDiffOption($humanDiffOption)
+ * @method Carbon enableHumanDiffOption($humanDiffOption)
+ * @method mixed executeWithLocale($locale, $func)
+ * @method Carbon fromSerialized($value)
+ * @method array getAvailableLocales()
+ * @method array getDays()
+ * @method int getHumanDiffOptions()
+ * @method array getIsoUnits()
+ * @method Carbon getLastErrors()
+ * @method string getLocale()
+ * @method int getMidDayAt()
+ * @method Carbon getTestNow()
+ * @method \Symfony\Component\Translation\TranslatorInterface getTranslator()
+ * @method int getWeekEndsAt()
+ * @method int getWeekStartsAt()
+ * @method array getWeekendDays()
+ * @method bool hasFormat($date, $format)
+ * @method bool hasMacro($name)
+ * @method bool hasRelativeKeywords($time)
+ * @method bool hasTestNow()
+ * @method Carbon instance($date)
+ * @method bool isImmutable()
+ * @method bool isModifiableUnit($unit)
+ * @method Carbon isMutable()
+ * @method bool isStrictModeEnabled()
+ * @method bool localeHasDiffOneDayWords($locale)
+ * @method bool localeHasDiffSyntax($locale)
+ * @method bool localeHasDiffTwoDayWords($locale)
+ * @method bool localeHasPeriodSyntax($locale)
+ * @method bool localeHasShortUnits($locale)
+ * @method void macro($name, $macro)
+ * @method Carbon|null make($var)
+ * @method Carbon maxValue()
+ * @method Carbon minValue()
+ * @method void mixin($mixin)
+ * @method Carbon now($tz = null)
+ * @method Carbon parse($time = null, $tz = null)
+ * @method string pluralUnit(string $unit)
+ * @method void resetMonthsOverflow()
+ * @method void resetToStringFormat()
+ * @method void resetYearsOverflow()
+ * @method void serializeUsing($callback)
+ * @method Carbon setHumanDiffOptions($humanDiffOptions)
+ * @method bool setLocale($locale)
+ * @method void setMidDayAt($hour)
+ * @method void setTestNow($testNow = null)
+ * @method void setToStringFormat($format)
+ * @method void setTranslator(\Symfony\Component\Translation\TranslatorInterface $translator)
+ * @method Carbon setUtf8($utf8)
+ * @method void setWeekEndsAt($day)
+ * @method void setWeekStartsAt($day)
+ * @method void setWeekendDays($days)
+ * @method bool shouldOverflowMonths()
+ * @method bool shouldOverflowYears()
+ * @method string singularUnit(string $unit)
+ * @method Carbon today($tz = null)
+ * @method Carbon tomorrow($tz = null)
+ * @method void useMonthsOverflow($monthsOverflow = true)
+ * @method Carbon useStrictMode($strictModeEnabled = true)
+ * @method void useYearsOverflow($yearsOverflow = true)
+ * @method Carbon yesterday($tz = null)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  */
 class DateFactory
 {
@@ -211,7 +285,11 @@ class DateFactory
 
         $dateClass = static::$dateClass ?: $defaultClassName;
 
+<<<<<<< HEAD
         // Check if date can be created using public class method...
+=======
+        // Check if the date can be created using the public class method...
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if (method_exists($dateClass, $method) ||
             method_exists($dateClass, 'hasMacro') && $dateClass::hasMacro($method)) {
             return $dateClass::$method(...$parameters);

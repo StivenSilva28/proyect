@@ -24,6 +24,7 @@ interface SessionStorageInterface
     /**
      * Starts the session.
      *
+<<<<<<< HEAD
      * @return bool
      *
      * @throws \RuntimeException if something goes wrong starting the session
@@ -43,6 +44,21 @@ interface SessionStorageInterface
      * @return string
      */
     public function getId();
+=======
+     * @throws \RuntimeException if something goes wrong starting the session
+     */
+    public function start(): bool;
+
+    /**
+     * Checks if the session is started.
+     */
+    public function isStarted(): bool;
+
+    /**
+     * Returns the session ID.
+     */
+    public function getId(): string;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Sets the session ID.
@@ -51,10 +67,15 @@ interface SessionStorageInterface
 
     /**
      * Returns the session name.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getName();
+=======
+     */
+    public function getName(): string;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Sets the session name.
@@ -86,11 +107,17 @@ interface SessionStorageInterface
      *                       to expire with browser session. Time is in seconds, and is
      *                       not a Unix timestamp.
      *
+<<<<<<< HEAD
      * @return bool
      *
      * @throws \RuntimeException If an error occurs while regenerating this storage
      */
     public function regenerate(bool $destroy = false, int $lifetime = null);
+=======
+     * @throws \RuntimeException If an error occurs while regenerating this storage
+     */
+    public function regenerate(bool $destroy = false, int $lifetime = null): bool;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Force the session to be saved and closed.
@@ -113,19 +140,29 @@ interface SessionStorageInterface
     /**
      * Gets a SessionBagInterface by name.
      *
+<<<<<<< HEAD
      * @return SessionBagInterface
      *
      * @throws \InvalidArgumentException If the bag does not exist
      */
     public function getBag(string $name);
+=======
+     * @throws \InvalidArgumentException If the bag does not exist
+     */
+    public function getBag(string $name): SessionBagInterface;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Registers a SessionBagInterface for use.
      */
     public function registerBag(SessionBagInterface $bag);
 
+<<<<<<< HEAD
     /**
      * @return MetadataBag
      */
     public function getMetadataBag();
+=======
+    public function getMetadataBag(): MetadataBag;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

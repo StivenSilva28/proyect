@@ -12,22 +12,29 @@
 namespace Symfony\Component\HttpKernel\EventListener;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+<<<<<<< HEAD
 use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 /**
  * Sets the session in the request.
  *
+<<<<<<< HEAD
  * When the passed container contains a "session_storage" entry which
  * holds a NativeSessionStorage instance, the "cookie_secure" option
  * will be set to true whenever the current main request is secure.
  *
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @author Fabien Potencier <fabien@symfony.com>
  *
  * @final
  */
 class SessionListener extends AbstractSessionListener
 {
+<<<<<<< HEAD
     public function onKernelRequest(RequestEvent $event)
     {
         parent::onKernelRequest($event);
@@ -51,6 +58,10 @@ class SessionListener extends AbstractSessionListener
             return $this->container->get('session');
         }
 
+=======
+    protected function getSession(): ?SessionInterface
+    {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if ($this->container->has('session_factory')) {
             return $this->container->get('session_factory')->createSession();
         }

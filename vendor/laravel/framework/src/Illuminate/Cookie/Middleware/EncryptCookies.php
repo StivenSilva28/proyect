@@ -76,18 +76,26 @@ class EncryptCookies
     protected function decrypt(Request $request)
     {
         foreach ($request->cookies as $key => $cookie) {
+<<<<<<< HEAD
             if ($this->isDisabled($key) || is_array($cookie)) {
+=======
+            if ($this->isDisabled($key)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 continue;
             }
 
             try {
                 $value = $this->decryptCookie($key, $cookie);
 
+<<<<<<< HEAD
                 $hasValidPrefix = strpos($value, CookieValuePrefix::create($key, $this->encrypter->getKey())) === 0;
 
                 $request->cookies->set(
                     $key, $hasValidPrefix ? CookieValuePrefix::remove($value) : null
                 );
+=======
+                $request->cookies->set($key, $this->validateValue($key, $value));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             } catch (DecryptException $e) {
                 $request->cookies->set($key, null);
             }
@@ -97,6 +105,41 @@ class EncryptCookies
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Validate and remove the cookie value prefix from the value.
+     *
+     * @param  string  $key
+     * @param  string  $value
+     * @return string|array|null
+     */
+    protected function validateValue(string $key, $value)
+    {
+        return is_array($value)
+                    ? $this->validateArray($key, $value)
+                    : CookieValuePrefix::validate($key, $value, $this->encrypter->getKey());
+    }
+
+    /**
+     * Validate and remove the cookie value prefix from all values of an array.
+     *
+     * @param  string  $key
+     * @param  array  $value
+     * @return array
+     */
+    protected function validateArray(string $key, array $value)
+    {
+        $validated = [];
+
+        foreach ($value as $index => $subValue) {
+            $validated[$index] = $this->validateValue("{$key}[{$index}]", $subValue);
+        }
+
+        return $validated;
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Decrypt the given cookie and return the value.
      *
      * @param  string  $name
@@ -124,6 +167,13 @@ class EncryptCookies
             if (is_string($value)) {
                 $decrypted[$key] = $this->encrypter->decrypt($value, static::serialized($key));
             }
+<<<<<<< HEAD
+=======
+
+            if (is_array($value)) {
+                $decrypted[$key] = $this->decryptArray($value);
+            }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $decrypted;

@@ -6,6 +6,10 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Routing\ResponseFactory as ResponseFactoryContract;
 use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContract;
 use Illuminate\Contracts\View\Factory as ViewFactoryContract;
+<<<<<<< HEAD
+=======
+use Illuminate\Routing\Contracts\CallableDispatcher as CallableDispatcherContract;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Routing\Contracts\ControllerDispatcher as ControllerDispatcherContract;
 use Illuminate\Support\ServiceProvider;
 use Nyholm\Psr7\Factory\Psr17Factory;
@@ -29,6 +33,10 @@ class RoutingServiceProvider extends ServiceProvider
         $this->registerPsrRequest();
         $this->registerPsrResponse();
         $this->registerResponseFactory();
+<<<<<<< HEAD
+=======
+        $this->registerCallableDispatcher();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->registerControllerDispatcher();
     }
 
@@ -174,6 +182,21 @@ class RoutingServiceProvider extends ServiceProvider
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Register the callable dispatcher.
+     *
+     * @return void
+     */
+    protected function registerCallableDispatcher()
+    {
+        $this->app->singleton(CallableDispatcherContract::class, function ($app) {
+            return new CallableDispatcher($app);
+        });
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Register the controller dispatcher.
      *
      * @return void

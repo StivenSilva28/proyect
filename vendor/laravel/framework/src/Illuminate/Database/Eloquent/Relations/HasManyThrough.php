@@ -2,6 +2,10 @@
 
 namespace Illuminate\Database\Eloquent\Relations;
 
+<<<<<<< HEAD
+=======
+use Closure;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -290,7 +294,11 @@ class HasManyThrough extends Relation
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Model|static
      *
+<<<<<<< HEAD
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+=======
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function firstOrFail($columns = ['*'])
     {
@@ -302,6 +310,31 @@ class HasManyThrough extends Relation
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Execute the query and get the first result or call a callback.
+     *
+     * @param  \Closure|array  $columns
+     * @param  \Closure|null  $callback
+     * @return \Illuminate\Database\Eloquent\Model|static|mixed
+     */
+    public function firstOr($columns = ['*'], Closure $callback = null)
+    {
+        if ($columns instanceof Closure) {
+            $callback = $columns;
+
+            $columns = ['*'];
+        }
+
+        if (! is_null($model = $this->first($columns))) {
+            return $model;
+        }
+
+        return $callback();
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Find a related model by its primary key.
      *
      * @param  mixed  $id
@@ -346,7 +379,11 @@ class HasManyThrough extends Relation
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection
      *
+<<<<<<< HEAD
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+=======
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\Illuminate\Database\Eloquent\Model>
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function findOrFail($id, $columns = ['*'])
     {
@@ -366,6 +403,40 @@ class HasManyThrough extends Relation
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Find a related model by its primary key or call a callback.
+     *
+     * @param  mixed  $id
+     * @param  \Closure|array  $columns
+     * @param  \Closure|null  $callback
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|mixed
+     */
+    public function findOr($id, $columns = ['*'], Closure $callback = null)
+    {
+        if ($columns instanceof Closure) {
+            $callback = $columns;
+
+            $columns = ['*'];
+        }
+
+        $result = $this->find($id, $columns);
+
+        $id = $id instanceof Arrayable ? $id->toArray() : $id;
+
+        if (is_array($id)) {
+            if (count($result) === count(array_unique($id))) {
+                return $result;
+            }
+        } elseif (! is_null($result)) {
+            return $result;
+        }
+
+        return $callback();
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Get the results of the relationship.
      *
      * @return mixed
@@ -485,9 +556,15 @@ class HasManyThrough extends Relation
      */
     public function chunkById($count, callable $callback, $column = null, $alias = null)
     {
+<<<<<<< HEAD
         $column = $column ?? $this->getRelated()->getQualifiedKeyName();
 
         $alias = $alias ?? $this->getRelated()->getKeyName();
+=======
+        $column ??= $this->getRelated()->getQualifiedKeyName();
+
+        $alias ??= $this->getRelated()->getKeyName();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this->prepareQueryBuilder()->chunkById($count, $callback, $column, $alias);
     }
@@ -541,9 +618,15 @@ class HasManyThrough extends Relation
      */
     public function lazyById($chunkSize = 1000, $column = null, $alias = null)
     {
+<<<<<<< HEAD
         $column = $column ?? $this->getRelated()->getQualifiedKeyName();
 
         $alias = $alias ?? $this->getRelated()->getKeyName();
+=======
+        $column ??= $this->getRelated()->getQualifiedKeyName();
+
+        $alias ??= $this->getRelated()->getKeyName();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this->prepareQueryBuilder()->lazyById($chunkSize, $column, $alias);
     }

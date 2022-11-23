@@ -2,12 +2,20 @@
 
 namespace Illuminate\Http\Client;
 
+<<<<<<< HEAD
+=======
+use Exception;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\HandlerStack;
+<<<<<<< HEAD
+=======
+use Illuminate\Contracts\Support\Arrayable;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Http\Client\Events\ConnectionFailed;
 use Illuminate\Http\Client\Events\RequestSending;
 use Illuminate\Http\Client\Events\ResponseReceived;
@@ -16,8 +24,15 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
+<<<<<<< HEAD
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
+=======
+use JsonSerializable;
+use Psr\Http\Message\MessageInterface;
+use Psr\Http\Message\RequestInterface;
+use RuntimeException;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\VarDumper\VarDumper;
 
 class PendingRequest
@@ -39,6 +54,16 @@ class PendingRequest
     protected $client;
 
     /**
+<<<<<<< HEAD
+=======
+     * The Guzzle HTTP handler.
+     *
+     * @var callable
+     */
+    protected $handler;
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The base URL for the request.
      *
      * @var string
@@ -88,6 +113,16 @@ class PendingRequest
     protected $options = [];
 
     /**
+<<<<<<< HEAD
+=======
+     * A callback to run when throwing if a server or client error occurs.
+     *
+     * @var \Closure
+     */
+    protected $throwCallback;
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The number of times to try the request.
      *
      * @var int
@@ -102,6 +137,16 @@ class PendingRequest
     protected $retryDelay = 100;
 
     /**
+<<<<<<< HEAD
+=======
+     * Whether to throw an exception when all retries fail.
+     *
+     * @var bool
+     */
+    protected $retryThrow = true;
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The callback that will determine if the request should be retried.
      *
      * @var callable|null
@@ -123,6 +168,16 @@ class PendingRequest
     protected $stubCallbacks;
 
     /**
+<<<<<<< HEAD
+=======
+     * Indicates that an exception should be thrown if any request is not faked.
+     *
+     * @var bool
+     */
+    protected $preventStrayRequests = false;
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The middleware callables added by users that will handle requests.
      *
      * @var \Illuminate\Support\Collection
@@ -178,7 +233,13 @@ class PendingRequest
         $this->asJson();
 
         $this->options = [
+<<<<<<< HEAD
             'http_errors' => false,
+=======
+            'connect_timeout' => 10,
+            'http_errors' => false,
+            'timeout' => 30,
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ];
 
         $this->beforeSendingCallbacks = collect([function (Request $request, array $options, PendingRequest $pendingRequest) {
@@ -289,7 +350,11 @@ class PendingRequest
      */
     public function bodyFormat(string $format)
     {
+<<<<<<< HEAD
         return tap($this, function ($request) use ($format) {
+=======
+        return tap($this, function () use ($format) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->bodyFormat = $format;
         });
     }
@@ -334,8 +399,13 @@ class PendingRequest
      */
     public function withHeaders(array $headers)
     {
+<<<<<<< HEAD
         return tap($this, function ($request) use ($headers) {
             return $this->options = array_merge_recursive($this->options, [
+=======
+        return tap($this, function () use ($headers) {
+            $this->options = array_merge_recursive($this->options, [
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 'headers' => $headers,
             ]);
         });
@@ -350,8 +420,13 @@ class PendingRequest
      */
     public function withBasicAuth(string $username, string $password)
     {
+<<<<<<< HEAD
         return tap($this, function ($request) use ($username, $password) {
             return $this->options['auth'] = [$username, $password];
+=======
+        return tap($this, function () use ($username, $password) {
+            $this->options['auth'] = [$username, $password];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 
@@ -364,8 +439,13 @@ class PendingRequest
      */
     public function withDigestAuth($username, $password)
     {
+<<<<<<< HEAD
         return tap($this, function ($request) use ($username, $password) {
             return $this->options['auth'] = [$username, $password, 'digest'];
+=======
+        return tap($this, function () use ($username, $password) {
+            $this->options['auth'] = [$username, $password, 'digest'];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 
@@ -378,8 +458,13 @@ class PendingRequest
      */
     public function withToken($token, $type = 'Bearer')
     {
+<<<<<<< HEAD
         return tap($this, function ($request) use ($token, $type) {
             return $this->options['headers']['Authorization'] = trim($type.' '.$token);
+=======
+        return tap($this, function () use ($token, $type) {
+            $this->options['headers']['Authorization'] = trim($type.' '.$token);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 
@@ -391,8 +476,13 @@ class PendingRequest
      */
     public function withUserAgent($userAgent)
     {
+<<<<<<< HEAD
         return tap($this, function ($request) use ($userAgent) {
             return $this->options['headers']['User-Agent'] = trim($userAgent);
+=======
+        return tap($this, function () use ($userAgent) {
+            $this->options['headers']['User-Agent'] = trim($userAgent);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 
@@ -405,22 +495,48 @@ class PendingRequest
      */
     public function withCookies(array $cookies, string $domain)
     {
+<<<<<<< HEAD
         return tap($this, function ($request) use ($cookies, $domain) {
             return $this->options = array_merge_recursive($this->options, [
+=======
+        return tap($this, function () use ($cookies, $domain) {
+            $this->options = array_merge_recursive($this->options, [
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 'cookies' => CookieJar::fromArray($cookies, $domain),
             ]);
         });
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Specify the maximum number of redirects to allow.
+     *
+     * @param  int  $max
+     * @return $this
+     */
+    public function maxRedirects(int $max)
+    {
+        return tap($this, function () use ($max) {
+            $this->options['allow_redirects']['max'] = $max;
+        });
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Indicate that redirects should not be followed.
      *
      * @return $this
      */
     public function withoutRedirecting()
     {
+<<<<<<< HEAD
         return tap($this, function ($request) {
             return $this->options['allow_redirects'] = false;
+=======
+        return tap($this, function () {
+            $this->options['allow_redirects'] = false;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 
@@ -431,8 +547,13 @@ class PendingRequest
      */
     public function withoutVerifying()
     {
+<<<<<<< HEAD
         return tap($this, function ($request) {
             return $this->options['verify'] = false;
+=======
+        return tap($this, function () {
+            $this->options['verify'] = false;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 
@@ -444,8 +565,13 @@ class PendingRequest
      */
     public function sink($to)
     {
+<<<<<<< HEAD
         return tap($this, function ($request) use ($to) {
             return $this->options['sink'] = $to;
+=======
+        return tap($this, function () use ($to) {
+            $this->options['sink'] = $to;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 
@@ -463,6 +589,7 @@ class PendingRequest
     }
 
     /**
+<<<<<<< HEAD
      * Specify the number of times the request should be attempted.
      *
      * @param  int  $times
@@ -474,6 +601,34 @@ class PendingRequest
     {
         $this->tries = $times;
         $this->retryDelay = $sleep;
+=======
+     * Specify the connect timeout (in seconds) for the request.
+     *
+     * @param  int  $seconds
+     * @return $this
+     */
+    public function connectTimeout(int $seconds)
+    {
+        return tap($this, function () use ($seconds) {
+            $this->options['connect_timeout'] = $seconds;
+        });
+    }
+
+    /**
+     * Specify the number of times the request should be attempted.
+     *
+     * @param  int  $times
+     * @param  int  $sleepMilliseconds
+     * @param  callable|null  $when
+     * @param  bool  $throw
+     * @return $this
+     */
+    public function retry(int $times, int $sleepMilliseconds = 0, ?callable $when = null, bool $throw = true)
+    {
+        $this->tries = $times;
+        $this->retryDelay = $sleepMilliseconds;
+        $this->retryThrow = $throw;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->retryWhenCallback = $when;
 
         return $this;
@@ -487,8 +642,13 @@ class PendingRequest
      */
     public function withOptions(array $options)
     {
+<<<<<<< HEAD
         return tap($this, function ($request) use ($options) {
             return $this->options = array_replace_recursive(
+=======
+        return tap($this, function () use ($options) {
+            $this->options = array_replace_recursive(
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 array_merge_recursive($this->options, Arr::only($options, $this->mergableOptions)),
                 $options
             );
@@ -522,6 +682,44 @@ class PendingRequest
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Throw an exception if a server or client error occurs.
+     *
+     * @param  callable|null  $callback
+     * @return $this
+     */
+    public function throw(callable $callback = null)
+    {
+        $this->throwCallback = $callback ?: fn () => null;
+
+        return $this;
+    }
+
+    /**
+     * Throw an exception if a server or client error occurred and the given condition evaluates to true.
+     *
+     * @param  bool  $condition
+     * @return $this
+     */
+    public function throwIf($condition)
+    {
+        return $condition ? $this->throw() : $this;
+    }
+
+    /**
+     * Throw an exception if a server or client error occurred and the given condition evaluates to false.
+     *
+     * @param  bool  $condition
+     * @return $this
+     */
+    public function throwUnless($condition)
+    {
+        return $this->throwIf(! $condition);
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Dump the request before sending.
      *
      * @return $this
@@ -590,7 +788,11 @@ class PendingRequest
      * @param  array  $data
      * @return \Illuminate\Http\Client\Response
      */
+<<<<<<< HEAD
     public function post(string $url, array $data = [])
+=======
+    public function post(string $url, $data = [])
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->send('POST', $url, [
             $this->bodyFormat => $data,
@@ -670,8 +872,76 @@ class PendingRequest
      */
     public function send(string $method, string $url, array $options = [])
     {
+<<<<<<< HEAD
         $url = ltrim(rtrim($this->baseUrl, '/').'/'.ltrim($url, '/'), '/');
 
+=======
+        if (! Str::startsWith($url, ['http://', 'https://'])) {
+            $url = ltrim(rtrim($this->baseUrl, '/').'/'.ltrim($url, '/'), '/');
+        }
+
+        $options = $this->parseHttpOptions($options);
+
+        [$this->pendingBody, $this->pendingFiles] = [null, []];
+
+        if ($this->async) {
+            return $this->makePromise($method, $url, $options);
+        }
+
+        $shouldRetry = null;
+
+        return retry($this->tries ?? 1, function ($attempt) use ($method, $url, $options, &$shouldRetry) {
+            try {
+                return tap(new Response($this->sendRequest($method, $url, $options)), function ($response) use ($attempt, &$shouldRetry) {
+                    $this->populateResponse($response);
+
+                    $this->dispatchResponseReceivedEvent($response);
+
+                    if (! $response->successful()) {
+                        try {
+                            $shouldRetry = $this->retryWhenCallback ? call_user_func($this->retryWhenCallback, $response->toException(), $this) : true;
+                        } catch (Exception $exception) {
+                            $shouldRetry = false;
+
+                            throw $exception;
+                        }
+
+                        if ($this->throwCallback) {
+                            $response->throw($this->throwCallback);
+                        }
+
+                        if ($attempt < $this->tries && $shouldRetry) {
+                            $response->throw();
+                        }
+
+                        if ($this->tries > 1 && $this->retryThrow) {
+                            $response->throw();
+                        }
+                    }
+                });
+            } catch (ConnectException $e) {
+                $this->dispatchConnectionFailedEvent();
+
+                throw new ConnectionException($e->getMessage(), 0, $e);
+            }
+        }, $this->retryDelay ?? 100, function ($exception) use (&$shouldRetry) {
+            $result = $shouldRetry ?? ($this->retryWhenCallback ? call_user_func($this->retryWhenCallback, $exception, $this) : true);
+
+            $shouldRetry = null;
+
+            return $result;
+        });
+    }
+
+    /**
+     * Parse the given HTTP options and set the appropriate additional options.
+     *
+     * @param  array  $options
+     * @return array
+     */
+    protected function parseHttpOptions(array $options)
+    {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if (isset($options[$this->bodyFormat])) {
             if ($this->bodyFormat === 'multipart') {
                 $options[$this->bodyFormat] = $this->parseMultipartBodyFormat($options[$this->bodyFormat]);
@@ -688,6 +958,7 @@ class PendingRequest
             $options[$this->bodyFormat] = $this->pendingBody;
         }
 
+<<<<<<< HEAD
         [$this->pendingBody, $this->pendingFiles] = [null, []];
 
         if ($this->async) {
@@ -711,6 +982,15 @@ class PendingRequest
                 throw new ConnectionException($e->getMessage(), 0, $e);
             }
         }, $this->retryDelay ?? 100, $this->retryWhenCallback);
+=======
+        return collect($options)->map(function ($value, $key) {
+            if ($key === 'json' && $value instanceof JsonSerializable) {
+                return $value;
+            }
+
+            return $value instanceof Arrayable ? $value->toArray() : $value;
+        })->all();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -744,7 +1024,11 @@ class PendingRequest
                 });
             })
             ->otherwise(function (TransferException $e) {
+<<<<<<< HEAD
                 return $e instanceof RequestException ? $this->populateResponse(new Response($e->getResponse())) : $e;
+=======
+                return $e instanceof RequestException && $e->hasResponse() ? $this->populateResponse(new Response($e->getResponse())) : $e;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             });
     }
 
@@ -782,6 +1066,13 @@ class PendingRequest
      */
     protected function parseRequestData($method, $url, array $options)
     {
+<<<<<<< HEAD
+=======
+        if ($this->bodyFormat === 'body') {
+            return [];
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $laravelData = $options[$this->bodyFormat] ?? $options['query'] ?? [];
 
         $urlString = Str::of($url);
@@ -796,7 +1087,15 @@ class PendingRequest
             $laravelData = is_array($parsedData) ? $parsedData : [];
         }
 
+<<<<<<< HEAD
         return $laravelData;
+=======
+        if ($laravelData instanceof JsonSerializable) {
+            $laravelData = $laravelData->jsonSerialize();
+        }
+
+        return is_array($laravelData) ? $laravelData : [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -821,9 +1120,13 @@ class PendingRequest
      */
     public function buildClient()
     {
+<<<<<<< HEAD
         return $this->requestsReusableClient()
                ? $this->getReusableClient()
                : $this->createClient($this->buildHandlerStack());
+=======
+        return $this->client ?? $this->createClient($this->buildHandlerStack());
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -867,7 +1170,11 @@ class PendingRequest
      */
     public function buildHandlerStack()
     {
+<<<<<<< HEAD
         return $this->pushHandlers(HandlerStack::create());
+=======
+        return $this->pushHandlers(HandlerStack::create($this->handler));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -881,11 +1188,19 @@ class PendingRequest
         return tap($handlerStack, function ($stack) {
             $stack->push($this->buildBeforeSendingHandler());
             $stack->push($this->buildRecorderHandler());
+<<<<<<< HEAD
             $stack->push($this->buildStubHandler());
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             $this->middleware->each(function ($middleware) use ($stack) {
                 $stack->push($middleware);
             });
+<<<<<<< HEAD
+=======
+
+            $stack->push($this->buildStubHandler());
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 
@@ -915,7 +1230,11 @@ class PendingRequest
                 $promise = $handler($request, $options);
 
                 return $promise->then(function ($response) use ($request, $options) {
+<<<<<<< HEAD
                     optional($this->factory)->recordRequestResponsePair(
+=======
+                    $this->factory?->recordRequestResponsePair(
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                         (new Request($request))->withData($options['laravel_data']),
                         new Response($response)
                     );
@@ -942,6 +1261,13 @@ class PendingRequest
                      ->first();
 
                 if (is_null($response)) {
+<<<<<<< HEAD
+=======
+                    if ($this->preventStrayRequests) {
+                        throw new RuntimeException('Attempted request to ['.(string) $request->getUri().'] without a matching fake.');
+                    }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     return $handler($request, $options);
                 }
 
@@ -1032,6 +1358,22 @@ class PendingRequest
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Indicate that an exception should be thrown if any request is not faked.
+     *
+     * @param  bool  $prevent
+     * @return $this
+     */
+    public function preventStrayRequests($prevent = true)
+    {
+        $this->preventStrayRequests = $prevent;
+
+        return $this;
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Toggle asynchronicity in requests.
      *
      * @param  bool  $async
@@ -1061,7 +1403,11 @@ class PendingRequest
      */
     protected function dispatchRequestSendingEvent()
     {
+<<<<<<< HEAD
         if ($dispatcher = optional($this->factory)->getDispatcher()) {
+=======
+        if ($dispatcher = $this->factory?->getDispatcher()) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $dispatcher->dispatch(new RequestSending($this->request));
         }
     }
@@ -1074,7 +1420,11 @@ class PendingRequest
      */
     protected function dispatchResponseReceivedEvent(Response $response)
     {
+<<<<<<< HEAD
         if (! ($dispatcher = optional($this->factory)->getDispatcher()) ||
+=======
+        if (! ($dispatcher = $this->factory?->getDispatcher()) ||
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ! $this->request) {
             return;
         }
@@ -1089,7 +1439,11 @@ class PendingRequest
      */
     protected function dispatchConnectionFailedEvent()
     {
+<<<<<<< HEAD
         if ($dispatcher = optional($this->factory)->getDispatcher()) {
+=======
+        if ($dispatcher = $this->factory?->getDispatcher()) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $dispatcher->dispatch(new ConnectionFailed($this->request));
         }
     }
@@ -1115,9 +1469,13 @@ class PendingRequest
      */
     public function setHandler($handler)
     {
+<<<<<<< HEAD
         $this->client = $this->createClient(
             $this->pushHandlers(HandlerStack::create($handler))
         );
+=======
+        $this->handler = $handler;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this;
     }

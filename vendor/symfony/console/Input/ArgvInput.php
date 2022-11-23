@@ -40,12 +40,21 @@ use Symfony\Component\Console\Exception\RuntimeException;
  */
 class ArgvInput extends Input
 {
+<<<<<<< HEAD
     private $tokens;
     private $parsed;
 
     public function __construct(array $argv = null, InputDefinition $definition = null)
     {
         $argv = $argv ?? $_SERVER['argv'] ?? [];
+=======
+    private array $tokens;
+    private array $parsed;
+
+    public function __construct(array $argv = null, InputDefinition $definition = null)
+    {
+        $argv ??= $_SERVER['argv'] ?? [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         // strip the application name
         array_shift($argv);
@@ -199,7 +208,11 @@ class ArgvInput extends Input
      *
      * @throws RuntimeException When option given doesn't exist
      */
+<<<<<<< HEAD
     private function addShortOption(string $shortcut, $value)
+=======
+    private function addShortOption(string $shortcut, mixed $value)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->definition->hasShortcut($shortcut)) {
             throw new RuntimeException(sprintf('The "-%s" option does not exist.', $shortcut));
@@ -213,7 +226,11 @@ class ArgvInput extends Input
      *
      * @throws RuntimeException When option given doesn't exist
      */
+<<<<<<< HEAD
     private function addLongOption(string $name, $value)
+=======
+    private function addLongOption(string $name, mixed $value)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->definition->hasOption($name)) {
             if (!$this->definition->hasNegation($name)) {
@@ -266,7 +283,11 @@ class ArgvInput extends Input
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getFirstArgument()
+=======
+    public function getFirstArgument(): ?string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $isOption = false;
         foreach ($this->tokens as $i => $token) {
@@ -301,7 +322,11 @@ class ArgvInput extends Input
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function hasParameterOption($values, bool $onlyParams = false)
+=======
+    public function hasParameterOption(string|array $values, bool $onlyParams = false): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $values = (array) $values;
 
@@ -326,7 +351,11 @@ class ArgvInput extends Input
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getParameterOption($values, $default = false, bool $onlyParams = false)
+=======
+    public function getParameterOption(string|array $values, string|bool|int|float|array|null $default = false, bool $onlyParams = false): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $values = (array) $values;
         $tokens = $this->tokens;
@@ -356,10 +385,15 @@ class ArgvInput extends Input
 
     /**
      * Returns a stringified representation of the args passed to the command.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function __toString()
+=======
+     */
+    public function __toString(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $tokens = array_map(function ($token) {
             if (preg_match('{^(-[^=]+=)(.+)}', $token, $match)) {

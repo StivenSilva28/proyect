@@ -27,4 +27,16 @@ interface ContextualBindingBuilder
      * @return void
      */
     public function giveTagged($tag);
+<<<<<<< HEAD
+=======
+
+    /**
+     * Specify the configuration item to bind as a primitive.
+     *
+     * @param  string  $key
+     * @param  mixed  $default
+     * @return void
+     */
+    public function giveConfig($key, $default = null);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

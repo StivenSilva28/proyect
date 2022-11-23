@@ -7,6 +7,10 @@ use Illuminate\Container\Container;
 use Illuminate\Contracts\Foundation\Application as ApplicationContract;
 use Illuminate\Contracts\Foundation\CachesConfiguration;
 use Illuminate\Contracts\Foundation\CachesRoutes;
+<<<<<<< HEAD
+=======
+use Illuminate\Contracts\Foundation\MaintenanceMode as MaintenanceModeContract;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Contracts\Http\Kernel as HttpKernelContract;
 use Illuminate\Events\EventServiceProvider;
 use Illuminate\Filesystem\Filesystem;
@@ -20,20 +24,36 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Env;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+=======
+use Illuminate\Support\Traits\Macroable;
+use RuntimeException;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class Application extends Container implements ApplicationContract, CachesConfiguration, CachesRoutes, HttpKernelInterface
 {
+<<<<<<< HEAD
+=======
+    use Macroable;
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * The Laravel framework version.
      *
      * @var string
      */
+<<<<<<< HEAD
     const VERSION = '8.83.26';
+=======
+    const VERSION = '9.40.1';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * The base path for the Laravel installation.
@@ -311,13 +331,27 @@ class Application extends Container implements ApplicationContract, CachesConfig
     {
         $this->instance('path', $this->path());
         $this->instance('path.base', $this->basePath());
+<<<<<<< HEAD
         $this->instance('path.lang', $this->langPath());
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->instance('path.config', $this->configPath());
         $this->instance('path.public', $this->publicPath());
         $this->instance('path.storage', $this->storagePath());
         $this->instance('path.database', $this->databasePath());
         $this->instance('path.resources', $this->resourcePath());
         $this->instance('path.bootstrap', $this->bootstrapPath());
+<<<<<<< HEAD
+=======
+
+        $this->useLangPath(value(function () {
+            if (is_dir($directory = $this->resourcePath('lang'))) {
+                return $directory;
+            }
+
+            return $this->basePath('lang');
+        }));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -330,7 +364,11 @@ class Application extends Container implements ApplicationContract, CachesConfig
     {
         $appPath = $this->appPath ?: $this->basePath.DIRECTORY_SEPARATOR.'app';
 
+<<<<<<< HEAD
         return $appPath.($path ? DIRECTORY_SEPARATOR.$path : $path);
+=======
+        return $appPath.($path != '' ? DIRECTORY_SEPARATOR.$path : '');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -356,7 +394,11 @@ class Application extends Container implements ApplicationContract, CachesConfig
      */
     public function basePath($path = '')
     {
+<<<<<<< HEAD
         return $this->basePath.($path ? DIRECTORY_SEPARATOR.$path : $path);
+=======
+        return $this->basePath.($path != '' ? DIRECTORY_SEPARATOR.$path : '');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -367,7 +409,11 @@ class Application extends Container implements ApplicationContract, CachesConfig
      */
     public function bootstrapPath($path = '')
     {
+<<<<<<< HEAD
         return $this->basePath.DIRECTORY_SEPARATOR.'bootstrap'.($path ? DIRECTORY_SEPARATOR.$path : $path);
+=======
+        return $this->basePath.DIRECTORY_SEPARATOR.'bootstrap'.($path != '' ? DIRECTORY_SEPARATOR.$path : '');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -378,7 +424,11 @@ class Application extends Container implements ApplicationContract, CachesConfig
      */
     public function configPath($path = '')
     {
+<<<<<<< HEAD
         return $this->basePath.DIRECTORY_SEPARATOR.'config'.($path ? DIRECTORY_SEPARATOR.$path : $path);
+=======
+        return $this->basePath.DIRECTORY_SEPARATOR.'config'.($path != '' ? DIRECTORY_SEPARATOR.$path : '');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -389,7 +439,11 @@ class Application extends Container implements ApplicationContract, CachesConfig
      */
     public function databasePath($path = '')
     {
+<<<<<<< HEAD
         return ($this->databasePath ?: $this->basePath.DIRECTORY_SEPARATOR.'database').($path ? DIRECTORY_SEPARATOR.$path : $path);
+=======
+        return ($this->databasePath ?: $this->basePath.DIRECTORY_SEPARATOR.'database').($path != '' ? DIRECTORY_SEPARATOR.$path : '');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -410,6 +464,7 @@ class Application extends Container implements ApplicationContract, CachesConfig
     /**
      * Get the path to the language files.
      *
+<<<<<<< HEAD
      * @return string
      */
     public function langPath()
@@ -423,6 +478,14 @@ class Application extends Container implements ApplicationContract, CachesConfig
         }
 
         return $this->basePath().DIRECTORY_SEPARATOR.'lang';
+=======
+     * @param  string  $path
+     * @return string
+     */
+    public function langPath($path = '')
+    {
+        return $this->langPath.($path != '' ? DIRECTORY_SEPARATOR.$path : '');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -453,11 +516,21 @@ class Application extends Container implements ApplicationContract, CachesConfig
     /**
      * Get the path to the storage directory.
      *
+<<<<<<< HEAD
      * @return string
      */
     public function storagePath()
     {
         return $this->storagePath ?: $this->basePath.DIRECTORY_SEPARATOR.'storage';
+=======
+     * @param  string  $path
+     * @return string
+     */
+    public function storagePath($path = '')
+    {
+        return ($this->storagePath ?: $this->basePath.DIRECTORY_SEPARATOR.'storage')
+                            .($path != '' ? DIRECTORY_SEPARATOR.$path : '');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -483,7 +556,11 @@ class Application extends Container implements ApplicationContract, CachesConfig
      */
     public function resourcePath($path = '')
     {
+<<<<<<< HEAD
         return $this->basePath.DIRECTORY_SEPARATOR.'resources'.($path ? DIRECTORY_SEPARATOR.$path : $path);
+=======
+        return $this->basePath.DIRECTORY_SEPARATOR.'resources'.($path != '' ? DIRECTORY_SEPARATOR.$path : '');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -498,7 +575,11 @@ class Application extends Container implements ApplicationContract, CachesConfig
     {
         $basePath = $this['config']->get('view.paths')[0];
 
+<<<<<<< HEAD
         return rtrim($basePath, DIRECTORY_SEPARATOR).($path ? DIRECTORY_SEPARATOR.$path : $path);
+=======
+        return rtrim($basePath, DIRECTORY_SEPARATOR).($path != '' ? DIRECTORY_SEPARATOR.$path : '');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -650,7 +731,11 @@ class Application extends Container implements ApplicationContract, CachesConfig
     {
         $providers = Collection::make($this->make('config')->get('app.providers'))
                         ->partition(function ($provider) {
+<<<<<<< HEAD
                             return strpos($provider, 'Illuminate\\') === 0;
+=======
+                            return str_starts_with($provider, 'Illuminate\\');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                         });
 
         $providers->splice(1, 0, [$this->make(PackageManifest::class)->providers()]);
@@ -692,6 +777,11 @@ class Application extends Container implements ApplicationContract, CachesConfig
 
         if (property_exists($provider, 'singletons')) {
             foreach ($provider->singletons as $key => $value) {
+<<<<<<< HEAD
+=======
+                $key = is_int($key) ? $value : $key;
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $this->singleton($key, $value);
             }
         }
@@ -975,7 +1065,11 @@ class Application extends Container implements ApplicationContract, CachesConfig
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
+<<<<<<< HEAD
     public function handle(SymfonyRequest $request, int $type = self::MASTER_REQUEST, bool $catch = true)
+=======
+    public function handle(SymfonyRequest $request, int $type = self::MAIN_REQUEST, bool $catch = true): SymfonyResponse
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this[HttpKernelContract::class]->handle(Request::createFromBase($request));
     }
@@ -1103,13 +1197,30 @@ class Application extends Container implements ApplicationContract, CachesConfig
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Get an instance of the maintenance mode manager implementation.
+     *
+     * @return \Illuminate\Contracts\Foundation\MaintenanceMode
+     */
+    public function maintenanceMode()
+    {
+        return $this->make(MaintenanceModeContract::class);
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Determine if the application is currently down for maintenance.
      *
      * @return bool
      */
     public function isDownForMaintenance()
     {
+<<<<<<< HEAD
         return file_exists($this->storagePath().'/framework/down');
+=======
+        return $this->maintenanceMode()->active();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -1324,6 +1435,10 @@ class Application extends Container implements ApplicationContract, CachesConfig
             'cookie' => [\Illuminate\Cookie\CookieJar::class, \Illuminate\Contracts\Cookie\Factory::class, \Illuminate\Contracts\Cookie\QueueingFactory::class],
             'db' => [\Illuminate\Database\DatabaseManager::class, \Illuminate\Database\ConnectionResolverInterface::class],
             'db.connection' => [\Illuminate\Database\Connection::class, \Illuminate\Database\ConnectionInterface::class],
+<<<<<<< HEAD
+=======
+            'db.schema' => [\Illuminate\Database\Schema\Builder::class],
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             'encrypter' => [\Illuminate\Encryption\Encrypter::class, \Illuminate\Contracts\Encryption\Encrypter::class, \Illuminate\Contracts\Encryption\StringEncrypter::class],
             'events' => [\Illuminate\Events\Dispatcher::class, \Illuminate\Contracts\Events\Dispatcher::class],
             'files' => [\Illuminate\Filesystem\Filesystem::class],

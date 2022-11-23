@@ -21,10 +21,22 @@ use Symfony\Component\Translation\MessageCatalogue;
  */
 class XliffFileDumper extends FileDumper
 {
+<<<<<<< HEAD
     /**
      * {@inheritdoc}
      */
     public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = [])
+=======
+    public function __construct(
+        private string $extension = 'xlf',
+    ) {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $xliffVersion = '1.2';
         if (\array_key_exists('xliff_version', $options)) {
@@ -50,9 +62,15 @@ class XliffFileDumper extends FileDumper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     protected function getExtension()
     {
         return 'xlf';
+=======
+    protected function getExtension(): string
+    {
+        return $this->extension;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     private function dumpXliff1(string $defaultLocale, MessageCatalogue $messages, ?string $domain, array $options = [])
@@ -81,6 +99,18 @@ class XliffFileDumper extends FileDumper
             $xliffTool->setAttribute($id, $value);
         }
 
+<<<<<<< HEAD
+=======
+        if ($catalogueMetadata = $messages->getCatalogueMetadata('', $domain) ?? []) {
+            $xliffPropGroup = $xliffHead->appendChild($dom->createElement('prop-group'));
+            foreach ($catalogueMetadata as $key => $value) {
+                $xliffProp = $xliffPropGroup->appendChild($dom->createElement('prop'));
+                $xliffProp->setAttribute('prop-type', $key);
+                $xliffProp->appendChild($dom->createTextNode($value));
+            }
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $xliffBody = $xliffFile->appendChild($dom->createElement('body'));
         foreach ($messages->all($domain) as $source => $target) {
             $translation = $dom->createElement('trans-unit');
@@ -147,6 +177,19 @@ class XliffFileDumper extends FileDumper
             $xliffFile->setAttribute('id', $domain.'.'.$messages->getLocale());
         }
 
+<<<<<<< HEAD
+=======
+        if ($catalogueMetadata = $messages->getCatalogueMetadata('', $domain) ?? []) {
+            $xliff->setAttribute('xmlns:m', 'urn:oasis:names:tc:xliff:metadata:2.0');
+            $xliffMetadata = $xliffFile->appendChild($dom->createElement('m:metadata'));
+            foreach ($catalogueMetadata as $key => $value) {
+                $xliffMeta = $xliffMetadata->appendChild($dom->createElement('prop'));
+                $xliffMeta->setAttribute('type', $key);
+                $xliffMeta->appendChild($dom->createTextNode($value));
+            }
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         foreach ($messages->all($domain) as $source => $target) {
             $translation = $dom->createElement('unit');
             $translation->setAttribute('id', strtr(substr(base64_encode(hash('sha256', $source, true)), 0, 7), '/+', '._'));

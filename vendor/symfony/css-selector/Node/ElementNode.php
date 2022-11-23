@@ -23,8 +23,13 @@ namespace Symfony\Component\CssSelector\Node;
  */
 class ElementNode extends AbstractNode
 {
+<<<<<<< HEAD
     private $namespace;
     private $element;
+=======
+    private ?string $namespace;
+    private ?string $element;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(string $namespace = null, string $element = null)
     {

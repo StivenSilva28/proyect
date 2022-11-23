@@ -29,7 +29,11 @@ abstract class Bundle implements BundleInterface
     protected $name;
     protected $extension;
     protected $path;
+<<<<<<< HEAD
     private $namespace;
+=======
+    private string $namespace;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * {@inheritdoc}
@@ -58,11 +62,17 @@ abstract class Bundle implements BundleInterface
     /**
      * Returns the bundle's container extension.
      *
+<<<<<<< HEAD
      * @return ExtensionInterface|null
      *
      * @throws \LogicException
      */
     public function getContainerExtension()
+=======
+     * @throws \LogicException
+     */
+    public function getContainerExtension(): ?ExtensionInterface
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $this->extension) {
             $extension = $this->createContainerExtension();
@@ -92,9 +102,15 @@ abstract class Bundle implements BundleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getNamespace()
     {
         if (null === $this->namespace) {
+=======
+    public function getNamespace(): string
+    {
+        if (!isset($this->namespace)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->parseClassName();
         }
 
@@ -104,7 +120,11 @@ abstract class Bundle implements BundleInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getPath()
+=======
+    public function getPath(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $this->path) {
             $reflected = new \ReflectionObject($this);
@@ -132,10 +152,15 @@ abstract class Bundle implements BundleInterface
 
     /**
      * Returns the bundle's container extension class.
+<<<<<<< HEAD
      *
      * @return string
      */
     protected function getContainerExtensionClass()
+=======
+     */
+    protected function getContainerExtensionClass(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $basename = preg_replace('/Bundle$/', '', $this->getName());
 
@@ -144,10 +169,15 @@ abstract class Bundle implements BundleInterface
 
     /**
      * Creates the bundle's container extension.
+<<<<<<< HEAD
      *
      * @return ExtensionInterface|null
      */
     protected function createContainerExtension()
+=======
+     */
+    protected function createContainerExtension(): ?ExtensionInterface
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return class_exists($class = $this->getContainerExtensionClass()) ? new $class() : null;
     }

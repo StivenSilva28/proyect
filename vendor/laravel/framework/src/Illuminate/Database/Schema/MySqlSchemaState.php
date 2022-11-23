@@ -103,10 +103,23 @@ class MySqlSchemaState extends SchemaState
     {
         $value = ' --user="${:LARAVEL_LOAD_USER}" --password="${:LARAVEL_LOAD_PASSWORD}"';
 
+<<<<<<< HEAD
         $value .= $this->connection->getConfig()['unix_socket'] ?? false
                         ? ' --socket="${:LARAVEL_LOAD_SOCKET}"'
                         : ' --host="${:LARAVEL_LOAD_HOST}" --port="${:LARAVEL_LOAD_PORT}"';
 
+=======
+        $config = $this->connection->getConfig();
+
+        $value .= $config['unix_socket'] ?? false
+                        ? ' --socket="${:LARAVEL_LOAD_SOCKET}"'
+                        : ' --host="${:LARAVEL_LOAD_HOST}" --port="${:LARAVEL_LOAD_PORT}"';
+
+        if (isset($config['options'][\PDO::MYSQL_ATTR_SSL_CA])) {
+            $value .= ' --ssl-ca="${:LARAVEL_LOAD_SSL_CA}"';
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return $value;
     }
 
@@ -118,7 +131,11 @@ class MySqlSchemaState extends SchemaState
      */
     protected function baseVariables(array $config)
     {
+<<<<<<< HEAD
         $config['host'] = $config['host'] ?? '';
+=======
+        $config['host'] ??= '';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return [
             'LARAVEL_LOAD_SOCKET' => $config['unix_socket'] ?? '',
@@ -127,6 +144,10 @@ class MySqlSchemaState extends SchemaState
             'LARAVEL_LOAD_USER' => $config['username'],
             'LARAVEL_LOAD_PASSWORD' => $config['password'] ?? '',
             'LARAVEL_LOAD_DATABASE' => $config['database'],
+<<<<<<< HEAD
+=======
+            'LARAVEL_LOAD_SSL_CA' => $config['options'][\PDO::MYSQL_ATTR_SSL_CA] ?? '',
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ];
     }
 
@@ -149,7 +170,11 @@ class MySqlSchemaState extends SchemaState
                 ), $output, $variables);
             }
 
+<<<<<<< HEAD
             if (Str::contains($e->getMessage(), ['set-gtid-purged'])) {
+=======
+            if (str_contains($e->getMessage(), 'set-gtid-purged')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return $this->executeDumpProcess(Process::fromShellCommandLine(
                     str_replace(' --set-gtid-purged=OFF', '', $process->getCommandLine())
                 ), $output, $variables);

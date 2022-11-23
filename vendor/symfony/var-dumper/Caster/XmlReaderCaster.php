@@ -52,7 +52,11 @@ class XmlReaderCaster
                 'VALIDATE' => @$reader->getParserProperty(\XMLReader::VALIDATE),
                 'SUBST_ENTITIES' => @$reader->getParserProperty(\XMLReader::SUBST_ENTITIES),
             ];
+<<<<<<< HEAD
         } catch (\Error $e) {
+=======
+        } catch (\Error) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $properties = [
                 'LOADDTD' => false,
                 'DEFAULTATTRS' => false,

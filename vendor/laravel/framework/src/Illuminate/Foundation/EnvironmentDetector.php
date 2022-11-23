@@ -3,7 +3,10 @@
 namespace Illuminate\Foundation;
 
 use Closure;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class EnvironmentDetector
 {
@@ -66,7 +69,11 @@ class EnvironmentDetector
                 return $args[$i + 1] ?? null;
             }
 
+<<<<<<< HEAD
             if (Str::startsWith($value, '--env')) {
+=======
+            if (str_starts_with($value, '--env')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return head(array_slice(explode('=', $value), 1));
             }
         }

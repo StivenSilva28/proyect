@@ -28,7 +28,11 @@ class QtFileLoader implements LoaderInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function load($resource, string $locale, string $domain = 'messages')
+=======
+    public function load(mixed $resource, string $locale, string $domain = 'messages'): MessageCatalogue
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!class_exists(XmlUtils::class)) {
             throw new RuntimeException('Loading translations from the QT format requires the Symfony Config component.');

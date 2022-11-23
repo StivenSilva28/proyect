@@ -15,6 +15,10 @@ class PersonalAccessToken extends Model implements HasAbilities
     protected $casts = [
         'abilities' => 'json',
         'last_used_at' => 'datetime',
+<<<<<<< HEAD
+=======
+        'expires_at' => 'datetime',
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     ];
 
     /**
@@ -26,6 +30,10 @@ class PersonalAccessToken extends Model implements HasAbilities
         'name',
         'token',
         'abilities',
+<<<<<<< HEAD
+=======
+        'expires_at',
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     ];
 
     /**

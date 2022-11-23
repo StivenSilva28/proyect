@@ -23,6 +23,7 @@ interface ArgumentValueResolverInterface
 {
     /**
      * Whether this resolver can resolve the value for the given ArgumentMetadata.
+<<<<<<< HEAD
      *
      * @return bool
      */
@@ -34,4 +35,13 @@ interface ArgumentValueResolverInterface
      * @return iterable
      */
     public function resolve(Request $request, ArgumentMetadata $argument);
+=======
+     */
+    public function supports(Request $request, ArgumentMetadata $argument): bool;
+
+    /**
+     * Returns the possible value(s).
+     */
+    public function resolve(Request $request, ArgumentMetadata $argument): iterable;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

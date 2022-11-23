@@ -40,7 +40,11 @@ class RouteConfigurator
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function host($host): self
+=======
+    final public function host(string|array $host): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->addHost($this->route, $host);
 

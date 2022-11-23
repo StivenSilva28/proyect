@@ -21,7 +21,11 @@ class IniFileLoader extends FileLoader
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     protected function loadResource(string $resource)
+=======
+    protected function loadResource(string $resource): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return parse_ini_file($resource, true);
     }

@@ -18,9 +18,15 @@ namespace Symfony\Component\HttpFoundation\Session\Flash;
  */
 class AutoExpireFlashBag implements FlashBagInterface
 {
+<<<<<<< HEAD
     private $name = 'flashes';
     private $flashes = ['display' => [], 'new' => []];
     private $storageKey;
+=======
+    private string $name = 'flashes';
+    private array $flashes = ['display' => [], 'new' => []];
+    private string $storageKey;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param string $storageKey The key used to store flashes in the session
@@ -33,7 +39,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getName()
+=======
+    public function getName(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->name;
     }
@@ -60,7 +70,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function add(string $type, $message)
+=======
+    public function add(string $type, mixed $message)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->flashes['new'][$type][] = $message;
     }
@@ -68,7 +82,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function peek(string $type, array $default = [])
+=======
+    public function peek(string $type, array $default = []): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->has($type) ? $this->flashes['display'][$type] : $default;
     }
@@ -76,7 +94,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function peekAll()
+=======
+    public function peekAll(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \array_key_exists('display', $this->flashes) ? $this->flashes['display'] : [];
     }
@@ -84,7 +106,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function get(string $type, array $default = [])
+=======
+    public function get(string $type, array $default = []): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $return = $default;
 
@@ -103,7 +129,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function all()
+=======
+    public function all(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $return = $this->flashes['display'];
         $this->flashes['display'] = [];
@@ -122,7 +152,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function set(string $type, $messages)
+=======
+    public function set(string $type, string|array $messages)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->flashes['new'][$type] = (array) $messages;
     }
@@ -130,7 +164,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function has(string $type)
+=======
+    public function has(string $type): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \array_key_exists($type, $this->flashes['display']) && $this->flashes['display'][$type];
     }
@@ -138,7 +176,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function keys()
+=======
+    public function keys(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return array_keys($this->flashes['display']);
     }
@@ -146,7 +188,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getStorageKey()
+=======
+    public function getStorageKey(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->storageKey;
     }
@@ -154,7 +200,11 @@ class AutoExpireFlashBag implements FlashBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function clear()
+=======
+    public function clear(): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->all();
     }

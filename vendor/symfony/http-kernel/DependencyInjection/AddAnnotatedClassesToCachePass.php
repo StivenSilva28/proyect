@@ -25,7 +25,11 @@ use Symfony\Component\HttpKernel\Kernel;
  */
 class AddAnnotatedClassesToCachePass implements CompilerPassInterface
 {
+<<<<<<< HEAD
     private $kernel;
+=======
+    private Kernel $kernel;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(Kernel $kernel)
     {
@@ -117,7 +121,11 @@ class AddAnnotatedClassesToCachePass implements CompilerPassInterface
             $regex = strtr($regex, ['\\*\\*' => '.*?', '\\*' => '[^\\\\]*?']);
 
             // If this class does not end by a slash, anchor the end
+<<<<<<< HEAD
             if ('\\' !== substr($regex, -1)) {
+=======
+            if (!str_ends_with($regex, '\\')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $regex .= '$';
             }
 

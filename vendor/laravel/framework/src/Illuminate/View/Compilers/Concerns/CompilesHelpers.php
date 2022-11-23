@@ -2,6 +2,11 @@
 
 namespace Illuminate\View\Compilers\Concerns;
 
+<<<<<<< HEAD
+=======
+use Illuminate\Foundation\Vite;
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 trait CompilesHelpers
 {
     /**
@@ -46,4 +51,34 @@ trait CompilesHelpers
     {
         return "<?php echo method_field{$method}; ?>";
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Compile the "vite" statements into valid PHP.
+     *
+     * @param  ?string  $arguments
+     * @return string
+     */
+    protected function compileVite($arguments)
+    {
+        $arguments ??= '()';
+
+        $class = Vite::class;
+
+        return "<?php echo app('$class'){$arguments}; ?>";
+    }
+
+    /**
+     * Compile the "viteReactRefresh" statements into valid PHP.
+     *
+     * @return string
+     */
+    protected function compileViteReactRefresh()
+    {
+        $class = Vite::class;
+
+        return "<?php echo app('$class')->reactRefresh(); ?>";
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

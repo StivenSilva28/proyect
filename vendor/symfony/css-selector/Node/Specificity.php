@@ -29,9 +29,15 @@ class Specificity
     public const B_FACTOR = 10;
     public const C_FACTOR = 1;
 
+<<<<<<< HEAD
     private $a;
     private $b;
     private $c;
+=======
+    private int $a;
+    private int $b;
+    private int $c;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(int $a, int $b, int $c)
     {

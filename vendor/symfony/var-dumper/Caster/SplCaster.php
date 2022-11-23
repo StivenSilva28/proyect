@@ -94,6 +94,7 @@ class SplCaster
         unset($a["\0SplFileInfo\0fileName"]);
         unset($a["\0SplFileInfo\0pathName"]);
 
+<<<<<<< HEAD
         if (\PHP_VERSION_ID < 80000) {
             if (false === $c->getPathname()) {
                 $a[$prefix.'⚠'] = 'The parent constructor was not called: the object is in an invalid state';
@@ -120,12 +121,36 @@ class SplCaster
 
                 return $a;
             }
+=======
+        try {
+            $c->isReadable();
+        } catch (\RuntimeException $e) {
+            if ('Object not initialized' !== $e->getMessage()) {
+                throw $e;
+            }
+
+            $a[$prefix.'⚠'] = 'The parent constructor was not called: the object is in an invalid state';
+
+            return $a;
+        } catch (\Error $e) {
+            if ('Object not initialized' !== $e->getMessage()) {
+                throw $e;
+            }
+
+            $a[$prefix.'⚠'] = 'The parent constructor was not called: the object is in an invalid state';
+
+            return $a;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         foreach ($map as $key => $accessor) {
             try {
                 $a[$prefix.$key] = $c->$accessor();
+<<<<<<< HEAD
             } catch (\Exception $e) {
+=======
+            } catch (\Exception) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
 
@@ -163,7 +188,11 @@ class SplCaster
         foreach ($map as $key => $accessor) {
             try {
                 $a[$prefix.$key] = $c->$accessor();
+<<<<<<< HEAD
             } catch (\Exception $e) {
+=======
+            } catch (\Exception) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
 
@@ -219,7 +248,11 @@ class SplCaster
         return $a;
     }
 
+<<<<<<< HEAD
     private static function castSplArray($c, array $a, Stub $stub, bool $isNested): array
+=======
+    private static function castSplArray(\ArrayObject|\ArrayIterator $c, array $a, Stub $stub, bool $isNested): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $prefix = Caster::PREFIX_VIRTUAL;
         $flags = $c->getFlags();
@@ -229,9 +262,12 @@ class SplCaster
             $a = Caster::castObject($c, \get_class($c), method_exists($c, '__debugInfo'), $stub->class);
             $c->setFlags($flags);
         }
+<<<<<<< HEAD
         if (\PHP_VERSION_ID < 70400) {
             $a[$prefix.'storage'] = $c->getArrayCopy();
         }
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $a += [
             $prefix.'flag::STD_PROP_LIST' => (bool) ($flags & \ArrayObject::STD_PROP_LIST),
             $prefix.'flag::ARRAY_AS_PROPS' => (bool) ($flags & \ArrayObject::ARRAY_AS_PROPS),

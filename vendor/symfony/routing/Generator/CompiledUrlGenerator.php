@@ -20,8 +20,13 @@ use Symfony\Component\Routing\RequestContext;
  */
 class CompiledUrlGenerator extends UrlGenerator
 {
+<<<<<<< HEAD
     private $compiledRoutes = [];
     private $defaultLocale;
+=======
+    private array $compiledRoutes = [];
+    private ?string $defaultLocale;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(array $compiledRoutes, RequestContext $context, LoggerInterface $logger = null, string $defaultLocale = null)
     {
@@ -31,7 +36,11 @@ class CompiledUrlGenerator extends UrlGenerator
         $this->defaultLocale = $defaultLocale;
     }
 
+<<<<<<< HEAD
     public function generate(string $name, array $parameters = [], int $referenceType = self::ABSOLUTE_PATH)
+=======
+    public function generate(string $name, array $parameters = [], int $referenceType = self::ABSOLUTE_PATH): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $locale = $parameters['_locale']
             ?? $this->context->getParameter('_locale')

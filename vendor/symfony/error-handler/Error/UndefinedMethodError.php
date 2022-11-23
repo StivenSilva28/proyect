@@ -26,7 +26,10 @@ class UndefinedMethodError extends \Error
             'trace' => $previous->getTrace(),
         ] as $property => $value) {
             $refl = new \ReflectionProperty(\Error::class, $property);
+<<<<<<< HEAD
             $refl->setAccessible(true);
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $refl->setValue($this, $value);
         }
     }

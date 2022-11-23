@@ -17,10 +17,17 @@ namespace Ramsey\Uuid\Type;
 use Ramsey\Uuid\Exception\InvalidArgumentException;
 use ValueError;
 
+<<<<<<< HEAD
 use function ctype_digit;
 use function ltrim;
 use function sprintf;
 use function strpos;
+=======
+use function assert;
+use function is_numeric;
+use function preg_match;
+use function sprintf;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use function substr;
 
 /**
@@ -40,6 +47,7 @@ final class Integer implements NumberInterface
     /**
      * @psalm-var numeric-string
      */
+<<<<<<< HEAD
     private $value;
 
     /**
@@ -86,6 +94,15 @@ final class Integer implements NumberInterface
         $numericValue = $value;
 
         $this->value = $numericValue;
+=======
+    private string $value;
+
+    private bool $isNegative = false;
+
+    public function __construct(float | int | string | self $value)
+    {
+        $this->value = $value instanceof self ? (string) $value : $this->prepareValue($value);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     public function isNegative(): bool
@@ -101,6 +118,12 @@ final class Integer implements NumberInterface
         return $this->value;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * @psalm-return numeric-string
+     */
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     public function __toString(): string
     {
         return $this->toString();
@@ -127,6 +150,7 @@ final class Integer implements NumberInterface
     /**
      * Constructs the object from a serialized string representation
      *
+<<<<<<< HEAD
      * @param string $serialized The serialized string representation of the object
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
@@ -139,6 +163,19 @@ final class Integer implements NumberInterface
 
     /**
      * @param array{string: string} $data
+=======
+     * @param string $data The serialized string representation of the object
+     *
+     * @psalm-suppress UnusedMethodCall
+     */
+    public function unserialize(string $data): void
+    {
+        $this->__construct($data);
+    }
+
+    /**
+     * @param array{string?: string} $data
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function __unserialize(array $data): void
     {
@@ -150,4 +187,49 @@ final class Integer implements NumberInterface
 
         $this->unserialize($data['string']);
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * @return numeric-string
+     */
+    private function prepareValue(float | int | string $value): string
+    {
+        $value = (string) $value;
+        $sign = '+';
+
+        // If the value contains a sign, remove it for digit pattern check.
+        if (str_starts_with($value, '-') || str_starts_with($value, '+')) {
+            $sign = substr($value, 0, 1);
+            $value = substr($value, 1);
+        }
+
+        if (!preg_match('/^\d+$/', $value)) {
+            throw new InvalidArgumentException(
+                'Value must be a signed integer or a string containing only '
+                . 'digits 0-9 and, optionally, a sign (+ or -)'
+            );
+        }
+
+        // Trim any leading zeros.
+        $value = ltrim($value, '0');
+
+        // Set to zero if the string is empty after trimming zeros.
+        if ($value === '') {
+            $value = '0';
+        }
+
+        // Add the negative sign back to the value.
+        if ($sign === '-' && $value !== '0') {
+            $value = $sign . $value;
+
+            /** @psalm-suppress InaccessibleProperty */
+            $this->isNegative = true;
+        }
+
+        assert(is_numeric($value));
+
+        return $value;
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

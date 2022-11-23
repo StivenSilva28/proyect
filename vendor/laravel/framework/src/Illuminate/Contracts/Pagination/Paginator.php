@@ -15,7 +15,11 @@ interface Paginator
     /**
      * Add a set of query string values to the paginator.
      *
+<<<<<<< HEAD
      * @param  array|string  $key
+=======
+     * @param  array|string|null  $key
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  string|null  $value
      * @return $this
      */
@@ -25,7 +29,11 @@ interface Paginator
      * Get / set the URL fragment to be appended to URLs.
      *
      * @param  string|null  $fragment
+<<<<<<< HEAD
      * @return $this|string
+=======
+     * @return $this|string|null
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function fragment($fragment = null);
 

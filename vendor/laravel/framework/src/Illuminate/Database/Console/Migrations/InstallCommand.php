@@ -53,7 +53,11 @@ class InstallCommand extends Command
 
         $this->repository->createRepository();
 
+<<<<<<< HEAD
         $this->info('Migration table created successfully.');
+=======
+        $this->components->info('Migration table created successfully.');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

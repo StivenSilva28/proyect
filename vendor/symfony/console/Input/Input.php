@@ -80,7 +80,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isInteractive()
+=======
+    public function isInteractive(): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->interactive;
     }
@@ -96,7 +100,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getArguments()
+=======
+    public function getArguments(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return array_merge($this->definition->getArgumentDefaults(), $this->arguments);
     }
@@ -104,7 +112,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getArgument(string $name)
+=======
+    public function getArgument(string $name): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->definition->hasArgument($name)) {
             throw new InvalidArgumentException(sprintf('The "%s" argument does not exist.', $name));
@@ -116,7 +128,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function setArgument(string $name, $value)
+=======
+    public function setArgument(string $name, mixed $value)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->definition->hasArgument($name)) {
             throw new InvalidArgumentException(sprintf('The "%s" argument does not exist.', $name));
@@ -128,7 +144,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function hasArgument(string $name)
+=======
+    public function hasArgument(string $name): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->definition->hasArgument($name);
     }
@@ -136,7 +156,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getOptions()
+=======
+    public function getOptions(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return array_merge($this->definition->getOptionDefaults(), $this->options);
     }
@@ -144,7 +168,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getOption(string $name)
+=======
+    public function getOption(string $name): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->definition->hasNegation($name)) {
             if (null === $value = $this->getOption($this->definition->negationToName($name))) {
@@ -164,7 +192,11 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function setOption(string $name, $value)
+=======
+    public function setOption(string $name, mixed $value)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->definition->hasNegation($name)) {
             $this->options[$this->definition->negationToName($name)] = !$value;
@@ -180,17 +212,26 @@ abstract class Input implements InputInterface, StreamableInputInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function hasOption(string $name)
+=======
+    public function hasOption(string $name): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->definition->hasOption($name) || $this->definition->hasNegation($name);
     }
 
     /**
      * Escapes a token through escapeshellarg if it contains unsafe chars.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function escapeToken(string $token)
+=======
+     */
+    public function escapeToken(string $token): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return preg_match('{^[\w-]+$}', $token) ? $token : escapeshellarg($token);
     }

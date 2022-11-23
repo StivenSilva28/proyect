@@ -41,7 +41,11 @@ class ErrorListener implements EventSubscriberInterface
     /**
      * @param array<class-string, array{log_level: string|null, status_code: int<100,599>|null}> $exceptionsMapping
      */
+<<<<<<< HEAD
     public function __construct($controller, LoggerInterface $logger = null, bool $debug = false, array $exceptionsMapping = [])
+=======
+    public function __construct(string|object|array|null $controller, LoggerInterface $logger = null, bool $debug = false, array $exceptionsMapping = [])
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->controller = $controller;
         $this->logger = $logger;
@@ -102,7 +106,10 @@ class ErrorListener implements EventSubscriberInterface
             } while ($prev = $wrapper->getPrevious());
 
             $prev = new \ReflectionProperty($wrapper instanceof \Exception ? \Exception::class : \Error::class, 'previous');
+<<<<<<< HEAD
             $prev->setAccessible(true);
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $prev->setValue($wrapper, $throwable);
 
             throw $e;
@@ -130,7 +137,11 @@ class ErrorListener implements EventSubscriberInterface
             return;
         }
 
+<<<<<<< HEAD
         $r = new \ReflectionFunction(\Closure::fromCallable($event->getController()));
+=======
+        $r = new \ReflectionFunction($event->getController()(...));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $r = $r->getParameters()[$k] ?? null;
 
         if ($r && (!($r = $r->getType()) instanceof \ReflectionNamedType || \in_array($r->getName(), [FlattenException::class, LegacyFlattenException::class], true))) {

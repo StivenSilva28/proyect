@@ -10,6 +10,7 @@ trait SerializesModels
     use SerializesAndRestoresModelIdentifiers;
 
     /**
+<<<<<<< HEAD
      * Prepare the instance for serialization.
      *
      * @return array
@@ -48,6 +49,8 @@ trait SerializesModels
     }
 
     /**
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Prepare the instance values for serialization.
      *
      * @return array
@@ -71,6 +74,15 @@ trait SerializesModels
                 continue;
             }
 
+<<<<<<< HEAD
+=======
+            $value = $this->getPropertyValue($property);
+
+            if ($property->hasDefaultValue() && $value === $property->getDefaultValue()) {
+                continue;
+            }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $name = $property->getName();
 
             if ($property->isPrivate()) {
@@ -79,9 +91,13 @@ trait SerializesModels
                 $name = "\0*\0{$name}";
             }
 
+<<<<<<< HEAD
             $values[$name] = $this->getSerializedPropertyValue(
                 $this->getPropertyValue($property)
             );
+=======
+            $values[$name] = $this->getSerializedPropertyValue($value);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $values;

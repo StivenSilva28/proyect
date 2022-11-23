@@ -4,6 +4,10 @@ namespace Illuminate\Auth\Access;
 
 use Closure;
 use Exception;
+<<<<<<< HEAD
+=======
+use Illuminate\Auth\Access\Events\GateEvaluated;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -180,7 +184,11 @@ class Gate implements GateContract
      * Define a new ability.
      *
      * @param  string  $ability
+<<<<<<< HEAD
      * @param  callable|string  $callback
+=======
+     * @param  callable|array|string  $callback
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      *
      * @throws \InvalidArgumentException
@@ -198,7 +206,11 @@ class Gate implements GateContract
 
             $this->abilities[$ability] = $this->buildAbilityCallback($ability, $callback);
         } else {
+<<<<<<< HEAD
             throw new InvalidArgumentException("Callback must be a callable or a 'Class@method' string.");
+=======
+            throw new InvalidArgumentException("Callback must be a callable, callback array, or a 'Class@method' string.");
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $this;
@@ -239,7 +251,11 @@ class Gate implements GateContract
     protected function buildAbilityCallback($ability, $callback)
     {
         return function () use ($ability, $callback) {
+<<<<<<< HEAD
             if (Str::contains($callback, '@')) {
+=======
+            if (str_contains($callback, '@')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 [$class, $method] = Str::parseCallback($callback);
             } else {
                 $class = $callback;
@@ -338,9 +354,15 @@ class Gate implements GateContract
      */
     public function check($abilities, $arguments = [])
     {
+<<<<<<< HEAD
         return collect($abilities)->every(function ($ability) use ($arguments) {
             return $this->inspect($ability, $arguments)->allowed();
         });
+=======
+        return collect($abilities)->every(
+            fn ($ability) => $this->inspect($ability, $arguments)->allowed()
+        );
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -352,9 +374,13 @@ class Gate implements GateContract
      */
     public function any($abilities, $arguments = [])
     {
+<<<<<<< HEAD
         return collect($abilities)->contains(function ($ability) use ($arguments) {
             return $this->check($ability, $arguments);
         });
+=======
+        return collect($abilities)->contains(fn ($ability) => $this->check($ability, $arguments));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -575,7 +601,11 @@ class Gate implements GateContract
 
             $afterResult = $after($user, $ability, $result, $arguments);
 
+<<<<<<< HEAD
             $result = $result ?? $afterResult;
+=======
+            $result ??= $afterResult;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $result;
@@ -594,7 +624,11 @@ class Gate implements GateContract
     {
         if ($this->container->bound(Dispatcher::class)) {
             $this->container->make(Dispatcher::class)->dispatch(
+<<<<<<< HEAD
                 new Events\GateEvaluated($user, $ability, $result, $arguments)
+=======
+                new GateEvaluated($user, $ability, $result, $arguments)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             );
         }
     }
@@ -808,7 +842,11 @@ class Gate implements GateContract
      */
     protected function formatAbilityToMethod($ability)
     {
+<<<<<<< HEAD
         return strpos($ability, '-') !== false ? Str::camel($ability) : $ability;
+=======
+        return str_contains($ability, '-') ? Str::camel($ability) : $ability;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -819,9 +857,13 @@ class Gate implements GateContract
      */
     public function forUser($user)
     {
+<<<<<<< HEAD
         $callback = function () use ($user) {
             return $user;
         };
+=======
+        $callback = fn () => $user;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return new static(
             $this->container, $callback, $this->abilities,

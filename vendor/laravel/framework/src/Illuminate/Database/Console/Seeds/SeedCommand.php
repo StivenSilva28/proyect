@@ -6,9 +6,17 @@ use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+
+#[AsCommand(name: 'db:seed')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class SeedCommand extends Command
 {
     use ConfirmableTrait;
@@ -21,6 +29,20 @@ class SeedCommand extends Command
     protected $name = 'db:seed';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'db:seed';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -58,6 +80,11 @@ class SeedCommand extends Command
             return 1;
         }
 
+<<<<<<< HEAD
+=======
+        $this->components->info('Seeding database.');
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $previousConnection = $this->resolver->getDefaultConnection();
 
         $this->resolver->setDefaultConnection($this->getDatabase());
@@ -70,8 +97,11 @@ class SeedCommand extends Command
             $this->resolver->setDefaultConnection($previousConnection);
         }
 
+<<<<<<< HEAD
         $this->info('Database seeding completed successfully.');
 
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return 0;
     }
 
@@ -84,7 +114,11 @@ class SeedCommand extends Command
     {
         $class = $this->input->getArgument('class') ?? $this->input->getOption('class');
 
+<<<<<<< HEAD
         if (strpos($class, '\\') === false) {
+=======
+        if (! str_contains($class, '\\')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $class = 'Database\\Seeders\\'.$class;
         }
 

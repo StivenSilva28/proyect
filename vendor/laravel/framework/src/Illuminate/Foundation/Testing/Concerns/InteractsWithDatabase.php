@@ -26,7 +26,11 @@ trait InteractsWithDatabase
     protected function assertDatabaseHas($table, array $data, $connection = null)
     {
         $this->assertThat(
+<<<<<<< HEAD
             $this->getTable($table), new HasInDatabase($this->getConnection($connection), $data)
+=======
+            $this->getTable($table), new HasInDatabase($this->getConnection($connection, $table), $data)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         );
 
         return $this;
@@ -43,7 +47,11 @@ trait InteractsWithDatabase
     protected function assertDatabaseMissing($table, array $data, $connection = null)
     {
         $constraint = new ReverseConstraint(
+<<<<<<< HEAD
             new HasInDatabase($this->getConnection($connection), $data)
+=======
+            new HasInDatabase($this->getConnection($connection, $table), $data)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         );
 
         $this->assertThat($this->getTable($table), $constraint);
@@ -62,13 +70,18 @@ trait InteractsWithDatabase
     protected function assertDatabaseCount($table, int $count, $connection = null)
     {
         $this->assertThat(
+<<<<<<< HEAD
             $this->getTable($table), new CountInDatabase($this->getConnection($connection), $count)
+=======
+            $this->getTable($table), new CountInDatabase($this->getConnection($connection, $table), $count)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         );
 
         return $this;
     }
 
     /**
+<<<<<<< HEAD
      * Assert the given record has been deleted.
      *
      * @param  \Illuminate\Database\Eloquent\Model|string  $table
@@ -83,6 +96,19 @@ trait InteractsWithDatabase
         }
 
         $this->assertDatabaseMissing($this->getTable($table), $data, $connection);
+=======
+     * Assert that the given table has no entries.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model|string  $table
+     * @param  string|null  $connection
+     * @return $this
+     */
+    protected function assertDatabaseEmpty($table, $connection = null)
+    {
+        $this->assertThat(
+            $this->getTable($table), new CountInDatabase($this->getConnection($connection, $table), 0)
+        );
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $this;
     }
@@ -108,7 +134,11 @@ trait InteractsWithDatabase
         }
 
         $this->assertThat(
+<<<<<<< HEAD
             $this->getTable($table), new SoftDeletedInDatabase($this->getConnection($connection), $data, $deletedAtColumn)
+=======
+            $this->getTable($table), new SoftDeletedInDatabase($this->getConnection($connection, $table), $data, $deletedAtColumn)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         );
 
         return $this;
@@ -135,7 +165,11 @@ trait InteractsWithDatabase
         }
 
         $this->assertThat(
+<<<<<<< HEAD
             $this->getTable($table), new NotSoftDeletedInDatabase($this->getConnection($connection), $data, $deletedAtColumn)
+=======
+            $this->getTable($table), new NotSoftDeletedInDatabase($this->getConnection($connection, $table), $data, $deletedAtColumn)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         );
 
         return $this;
@@ -186,7 +220,11 @@ trait InteractsWithDatabase
     /**
      * Cast a JSON string to a database compatible type.
      *
+<<<<<<< HEAD
      * @param  array|string  $value
+=======
+     * @param  array|object|string  $value
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return \Illuminate\Database\Query\Expression
      */
     public function castAsJson($value)
@@ -199,13 +237,20 @@ trait InteractsWithDatabase
 
         $value = DB::connection()->getPdo()->quote($value);
 
+<<<<<<< HEAD
         return DB::raw("CAST($value AS JSON)");
+=======
+        return DB::raw(
+            DB::connection()->getQueryGrammar()->compileJsonValueCast($value)
+        );
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
      * Get the database connection.
      *
      * @param  string|null  $connection
+<<<<<<< HEAD
      * @return \Illuminate\Database\Connection
      */
     protected function getConnection($connection = null)
@@ -213,6 +258,16 @@ trait InteractsWithDatabase
         $database = $this->app->make('db');
 
         $connection = $connection ?: $database->getDefaultConnection();
+=======
+     * @param  string|null  $table
+     * @return \Illuminate\Database\Connection
+     */
+    protected function getConnection($connection = null, $table = null)
+    {
+        $database = $this->app->make('db');
+
+        $connection = $connection ?: $this->getTableConnection($table) ?: $database->getDefaultConnection();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $database->connection($connection);
     }
@@ -225,7 +280,33 @@ trait InteractsWithDatabase
      */
     protected function getTable($table)
     {
+<<<<<<< HEAD
         return is_subclass_of($table, Model::class) ? (new $table)->getTable() : $table;
+=======
+        return $this->newModelFor($table)?->getTable() ?: $table;
+    }
+
+    /**
+     * Get the table connection specified in the given model.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model|string  $table
+     * @return string|null
+     */
+    protected function getTableConnection($table)
+    {
+        return $this->newModelFor($table)?->getConnectionName();
+    }
+
+    /**
+     * Get the model entity from the given model or string.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model|string  $table
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    protected function newModelFor($table)
+    {
+        return is_subclass_of($table, Model::class) ? (new $table) : null;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

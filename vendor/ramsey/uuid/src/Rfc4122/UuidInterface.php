@@ -26,6 +26,7 @@ use Ramsey\Uuid\UuidInterface as BaseUuidInterface;
  */
 interface UuidInterface extends BaseUuidInterface
 {
+<<<<<<< HEAD
     /**
      * Returns the string standard representation of the UUID as a URN
      *
@@ -33,4 +34,6 @@ interface UuidInterface extends BaseUuidInterface
      * @link https://tools.ietf.org/html/rfc4122#section-3 RFC 4122, § 3: Namespace Registration Template
      */
     public function getUrn(): string;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

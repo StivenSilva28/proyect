@@ -36,6 +36,7 @@ class YamlFileLoader extends FileLoader
     private const AVAILABLE_KEYS = [
         'resource', 'type', 'prefix', 'path', 'host', 'schemes', 'methods', 'defaults', 'requirements', 'options', 'condition', 'controller', 'name_prefix', 'trailing_slash_on_root', 'locale', 'format', 'utf8', 'exclude', 'stateless',
     ];
+<<<<<<< HEAD
     private $yamlParser;
 
     /**
@@ -49,6 +50,14 @@ class YamlFileLoader extends FileLoader
      * @throws \InvalidArgumentException When a route can't be parsed because YAML is invalid
      */
     public function load($file, string $type = null)
+=======
+    private YamlParser $yamlParser;
+
+    /**
+     * @throws \InvalidArgumentException When a route can't be parsed because YAML is invalid
+     */
+    public function load(mixed $file, string $type = null): RouteCollection
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $path = $this->locator->locate($file);
 
@@ -60,9 +69,13 @@ class YamlFileLoader extends FileLoader
             throw new \InvalidArgumentException(sprintf('File "%s" not found.', $path));
         }
 
+<<<<<<< HEAD
         if (null === $this->yamlParser) {
             $this->yamlParser = new YamlParser();
         }
+=======
+        $this->yamlParser ??= new YamlParser();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         try {
             $parsedConfig = $this->yamlParser->parseFile($path, Yaml::PARSE_CONSTANT);
@@ -84,7 +97,11 @@ class YamlFileLoader extends FileLoader
         }
 
         foreach ($parsedConfig as $name => $config) {
+<<<<<<< HEAD
             if (0 === strpos($name, 'when@')) {
+=======
+            if (str_starts_with($name, 'when@')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 if (!$this->env || 'when@'.$this->env !== $name) {
                     continue;
                 }
@@ -117,7 +134,11 @@ class YamlFileLoader extends FileLoader
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function supports($resource, string $type = null)
+=======
+    public function supports(mixed $resource, string $type = null): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \is_string($resource) && \in_array(pathinfo($resource, \PATHINFO_EXTENSION), ['yml', 'yaml'], true) && (!$type || 'yaml' === $type);
     }
@@ -250,6 +271,7 @@ class YamlFileLoader extends FileLoader
     }
 
     /**
+<<<<<<< HEAD
      * Validates the route configuration.
      *
      * @param array  $config A resource config
@@ -260,6 +282,12 @@ class YamlFileLoader extends FileLoader
      *                                   something is missing or the combination is nonsense
      */
     protected function validate($config, string $name, string $path)
+=======
+     * @throws \InvalidArgumentException If one of the provided config keys is not supported,
+     *                                   something is missing or the combination is nonsense
+     */
+    protected function validate(mixed $config, string $name, string $path)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!\is_array($config)) {
             throw new \InvalidArgumentException(sprintf('The definition of "%s" in "%s" must be a YAML array.', $name, $path));

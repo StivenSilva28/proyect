@@ -41,7 +41,14 @@ interface FailedJobProviderInterface
     /**
      * Flush all of the failed jobs from storage.
      *
+<<<<<<< HEAD
      * @return void
      */
     public function flush();
+=======
+     * @param  int|null  $hours
+     * @return void
+     */
+    public function flush($hours = null);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

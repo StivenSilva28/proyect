@@ -14,10 +14,18 @@ namespace Illuminate\Support\Facades;
  * @method static bool deleteDirectories(string $directory)
  * @method static bool deleteDirectory(string $directory, bool $preserve = false)
  * @method static bool exists(string $path)
+<<<<<<< HEAD
+=======
+ * @method static bool hasSameHash(string $file, string $compared)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static bool isDirectory(string $directory)
  * @method static bool isFile(string $file)
  * @method static bool isReadable(string $path)
  * @method static bool isWritable(string $path)
+<<<<<<< HEAD
+=======
+ * @method static bool isEmptyDirectory(string $directory, bool $ignoreDotFiles = false)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static bool makeDirectory(string $path, int $mode = 0755, bool $recursive = false, bool $force = false)
  * @method static bool missing(string $path)
  * @method static bool move(string $path, string $target)

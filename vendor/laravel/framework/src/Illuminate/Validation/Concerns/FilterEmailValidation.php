@@ -3,6 +3,10 @@
 namespace Illuminate\Validation\Concerns;
 
 use Egulias\EmailValidator\EmailLexer;
+<<<<<<< HEAD
+=======
+use Egulias\EmailValidator\Result\InvalidEmail;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Egulias\EmailValidator\Validation\EmailValidation;
 
 class FilterEmailValidation implements EmailValidation
@@ -42,7 +46,11 @@ class FilterEmailValidation implements EmailValidation
      * @param  \Egulias\EmailValidator\EmailLexer  $emailLexer
      * @return bool
      */
+<<<<<<< HEAD
     public function isValid($email, EmailLexer $emailLexer)
+=======
+    public function isValid(string $email, EmailLexer $emailLexer): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return is_null($this->flags)
                     ? filter_var($email, FILTER_VALIDATE_EMAIL) !== false
@@ -52,11 +60,19 @@ class FilterEmailValidation implements EmailValidation
     /**
      * Returns the validation error.
      *
+<<<<<<< HEAD
      * @return \Egulias\EmailValidator\Exception\InvalidEmail|null
      */
     public function getError()
     {
         //
+=======
+     * @return \Egulias\EmailValidator\Result\InvalidEmail|null
+     */
+    public function getError(): ?InvalidEmail
+    {
+        return null;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -64,7 +80,11 @@ class FilterEmailValidation implements EmailValidation
      *
      * @return \Egulias\EmailValidator\Warning\Warning[]
      */
+<<<<<<< HEAD
     public function getWarnings()
+=======
+    public function getWarnings(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return [];
     }

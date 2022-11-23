@@ -32,7 +32,11 @@ class DateComparator extends Comparator
         try {
             $date = new \DateTime($matches[2]);
             $target = $date->format('U');
+<<<<<<< HEAD
         } catch (\Exception $e) {
+=======
+        } catch (\Exception) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             throw new \InvalidArgumentException(sprintf('"%s" is not a valid date.', $matches[2]));
         }
 

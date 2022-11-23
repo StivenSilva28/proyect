@@ -19,6 +19,10 @@ use ValueError;
 
 use function is_numeric;
 use function sprintf;
+<<<<<<< HEAD
+=======
+use function str_starts_with;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 /**
  * A value object representing a decimal
@@ -34,6 +38,7 @@ use function sprintf;
  */
 final class Decimal implements NumberInterface
 {
+<<<<<<< HEAD
     /**
      * @var string
      */
@@ -48,6 +53,12 @@ final class Decimal implements NumberInterface
      * @param mixed $value The decimal value to store
      */
     public function __construct($value)
+=======
+    private string $value;
+    private bool $isNegative = false;
+
+    public function __construct(float | int | string | self $value)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $value = (string) $value;
 
@@ -59,7 +70,11 @@ final class Decimal implements NumberInterface
         }
 
         // Remove the leading +-symbol.
+<<<<<<< HEAD
         if (strpos($value, '+') === 0) {
+=======
+        if (str_starts_with($value, '+')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $value = substr($value, 1);
         }
 
@@ -68,7 +83,11 @@ final class Decimal implements NumberInterface
             $value = '0';
         }
 
+<<<<<<< HEAD
         if (strpos($value, '-') === 0) {
+=======
+        if (str_starts_with($value, '-')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->isNegative = true;
         }
 
@@ -111,6 +130,7 @@ final class Decimal implements NumberInterface
     /**
      * Constructs the object from a serialized string representation
      *
+<<<<<<< HEAD
      * @param string $serialized The serialized string representation of the object
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
@@ -123,6 +143,21 @@ final class Decimal implements NumberInterface
 
     /**
      * @param array{string: string} $data
+=======
+     * @param string $data The serialized string representation of the object
+     *
+     * @psalm-suppress UnusedMethodCall
+     */
+    public function unserialize(string $data): void
+    {
+        $this->__construct($data);
+    }
+
+    /**
+     * @param array{string?: string} $data
+     *
+     * @psalm-suppress UnusedMethodCall
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function __unserialize(array $data): void
     {

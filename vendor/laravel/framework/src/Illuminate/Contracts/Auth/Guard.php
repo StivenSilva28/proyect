@@ -41,6 +41,16 @@ interface Guard
     public function validate(array $credentials = []);
 
     /**
+<<<<<<< HEAD
+=======
+     * Determine if the guard has a user instance.
+     *
+     * @return bool
+     */
+    public function hasUser();
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Set the current user.
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user

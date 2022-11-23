@@ -3,7 +3,13 @@
 namespace Illuminate\Queue\Console;
 
 use Illuminate\Console\Command;
+<<<<<<< HEAD
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+
+#[AsCommand(name: 'queue:flush')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class FlushFailedCommand extends Command
 {
     /**
@@ -11,7 +17,22 @@ class FlushFailedCommand extends Command
      *
      * @var string
      */
+<<<<<<< HEAD
     protected $name = 'queue:flush';
+=======
+    protected $signature = 'queue:flush {--hours= : The number of hours to retain failed job data}';
+
+    /**
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'queue:flush';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * The console command description.
@@ -27,8 +48,20 @@ class FlushFailedCommand extends Command
      */
     public function handle()
     {
+<<<<<<< HEAD
         $this->laravel['queue.failer']->flush();
 
         $this->info('All failed jobs deleted successfully!');
+=======
+        $this->laravel['queue.failer']->flush($this->option('hours'));
+
+        if ($this->option('hours')) {
+            $this->components->info("All jobs that failed more than {$this->option('hours')} hours ago have been deleted successfully.");
+
+            return;
+        }
+
+        $this->components->info('All failed jobs deleted successfully.');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

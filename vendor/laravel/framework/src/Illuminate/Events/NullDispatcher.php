@@ -139,6 +139,10 @@ class NullDispatcher implements DispatcherContract
      */
     public function __call($method, $parameters)
     {
+<<<<<<< HEAD
         return $this->forwardCallTo($this->dispatcher, $method, $parameters);
+=======
+        return $this->forwardDecoratedCallTo($this->dispatcher, $method, $parameters);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

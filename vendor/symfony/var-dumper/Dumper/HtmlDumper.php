@@ -67,12 +67,20 @@ class HtmlDumper extends CliDumper
     protected $lastDepth = -1;
     protected $styles;
 
+<<<<<<< HEAD
     private $displayOptions = [
+=======
+    private array $displayOptions = [
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         'maxDepth' => 1,
         'maxStringLength' => 160,
         'fileLinkFormat' => null,
     ];
+<<<<<<< HEAD
     private $extraDisplayOptions = [];
+=======
+    private array $extraDisplayOptions = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * {@inheritdoc}
@@ -134,7 +142,11 @@ class HtmlDumper extends CliDumper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function dump(Data $data, $output = null, array $extraDisplayOptions = [])
+=======
+    public function dump(Data $data, $output = null, array $extraDisplayOptions = []): ?string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->extraDisplayOptions = $extraDisplayOptions;
         $result = parent::dump($data, $output);
@@ -803,7 +815,11 @@ EOHTML
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function enterHash(Cursor $cursor, int $type, $class, bool $hasChild)
+=======
+    public function enterHash(Cursor $cursor, int $type, string|int|null $class, bool $hasChild)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (Cursor::HASH_OBJECT === $type) {
             $cursor->attr['depth'] = $cursor->depth;
@@ -834,7 +850,11 @@ EOHTML
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function leaveHash(Cursor $cursor, int $type, $class, bool $hasChild, int $cut)
+=======
+    public function leaveHash(Cursor $cursor, int $type, string|int|null $class, bool $hasChild, int $cut)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->dumpEllipsis($cursor, $hasChild, $cut);
         if ($hasChild) {
@@ -846,7 +866,11 @@ EOHTML
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     protected function style(string $style, string $value, array $attr = [])
+=======
+    protected function style(string $style, string $value, array $attr = []): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ('' === $value) {
             return '';

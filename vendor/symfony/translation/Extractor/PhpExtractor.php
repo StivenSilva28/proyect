@@ -28,7 +28,11 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
     /**
      * Prefix for new found message.
      */
+<<<<<<< HEAD
     private $prefix = '';
+=======
+    private string $prefix = '';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * The sequence that captures translation messages.
@@ -131,7 +135,11 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function extract($resource, MessageCatalogue $catalog)
+=======
+    public function extract(string|iterable $resource, MessageCatalogue $catalog)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $files = $this->extractFiles($resource);
         foreach ($files as $file) {
@@ -151,12 +159,17 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
 
     /**
      * Normalizes a token.
+<<<<<<< HEAD
      *
      * @param mixed $token
      *
      * @return string|null
      */
     protected function normalizeToken($token)
+=======
+     */
+    protected function normalizeToken(mixed $token): ?string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (isset($token[1]) && 'b"' !== $token) {
             return $token[1];
@@ -311,11 +324,17 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
     }
 
     /**
+<<<<<<< HEAD
      * @return bool
      *
      * @throws \InvalidArgumentException
      */
     protected function canBeExtracted(string $file)
+=======
+     * @throws \InvalidArgumentException
+     */
+    protected function canBeExtracted(string $file): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->isFile($file) && 'php' === pathinfo($file, \PATHINFO_EXTENSION);
     }
@@ -323,7 +342,11 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     protected function extractFromDirectory($directory)
+=======
+    protected function extractFromDirectory(string|array $directory): iterable
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!class_exists(Finder::class)) {
             throw new \LogicException(sprintf('You cannot use "%s" as the "symfony/finder" package is not installed. Try running "composer require symfony/finder".', static::class));

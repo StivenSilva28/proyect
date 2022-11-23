@@ -3,7 +3,10 @@
 namespace Illuminate\Database\Schema;
 
 use Illuminate\Database\Connection;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class PostgresSchemaState extends SchemaState
 {
@@ -41,7 +44,11 @@ class PostgresSchemaState extends SchemaState
     {
         $command = 'pg_restore --no-owner --no-acl --clean --if-exists --host="${:LARAVEL_LOAD_HOST}" --port="${:LARAVEL_LOAD_PORT}" --username="${:LARAVEL_LOAD_USER}" --dbname="${:LARAVEL_LOAD_DATABASE}" "${:LARAVEL_LOAD_PATH}"';
 
+<<<<<<< HEAD
         if (Str::endsWith($path, '.sql')) {
+=======
+        if (str_ends_with($path, '.sql')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $command = 'psql --file="${:LARAVEL_LOAD_PATH}" --host="${:LARAVEL_LOAD_HOST}" --port="${:LARAVEL_LOAD_PORT}" --username="${:LARAVEL_LOAD_USER}" --dbname="${:LARAVEL_LOAD_DATABASE}"';
         }
 
@@ -70,7 +77,11 @@ class PostgresSchemaState extends SchemaState
      */
     protected function baseVariables(array $config)
     {
+<<<<<<< HEAD
         $config['host'] = $config['host'] ?? '';
+=======
+        $config['host'] ??= '';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return [
             'LARAVEL_LOAD_HOST' => is_array($config['host']) ? $config['host'][0] : $config['host'],

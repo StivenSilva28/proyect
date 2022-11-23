@@ -21,6 +21,7 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class TranslationExtractorPass implements CompilerPassInterface
 {
+<<<<<<< HEAD
     private $extractorServiceId;
     private $extractorTag;
 
@@ -43,6 +44,17 @@ class TranslationExtractorPass implements CompilerPassInterface
         $definition = $container->getDefinition($this->extractorServiceId);
 
         foreach ($container->findTaggedServiceIds($this->extractorTag, true) as $id => $attributes) {
+=======
+    public function process(ContainerBuilder $container)
+    {
+        if (!$container->hasDefinition('translation.extractor')) {
+            return;
+        }
+
+        $definition = $container->getDefinition('translation.extractor');
+
+        foreach ($container->findTaggedServiceIds('translation.extractor', true) as $id => $attributes) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             if (!isset($attributes[0]['alias'])) {
                 throw new RuntimeException(sprintf('The alias for the tag "translation.extractor" of service "%s" must be set.', $id));
             }

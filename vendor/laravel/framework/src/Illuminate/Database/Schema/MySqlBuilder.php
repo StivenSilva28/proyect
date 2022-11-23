@@ -40,7 +40,11 @@ class MySqlBuilder extends Builder
     {
         $table = $this->connection->getTablePrefix().$table;
 
+<<<<<<< HEAD
         return count($this->connection->select(
+=======
+        return count($this->connection->selectFromWriteConnection(
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->grammar->compileTableExists(), [$this->connection->getDatabaseName(), $table]
         )) > 0;
     }
@@ -55,7 +59,11 @@ class MySqlBuilder extends Builder
     {
         $table = $this->connection->getTablePrefix().$table;
 
+<<<<<<< HEAD
         $results = $this->connection->select(
+=======
+        $results = $this->connection->selectFromWriteConnection(
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->grammar->compileColumnListing(), [$this->connection->getDatabaseName(), $table]
         );
 

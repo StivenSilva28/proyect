@@ -21,6 +21,7 @@ class {{ class }} extends Command
     protected $description = 'Command description';
 
     /**
+<<<<<<< HEAD
      * Create a new command instance.
      *
      * @return void
@@ -31,12 +32,18 @@ class {{ class }} extends Command
     }
 
     /**
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Execute the console command.
      *
      * @return int
      */
     public function handle()
     {
+<<<<<<< HEAD
         return 0;
+=======
+        return Command::SUCCESS;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

@@ -99,6 +99,7 @@ class Encrypter implements EncrypterContract, StringEncrypter
     {
         $iv = random_bytes(openssl_cipher_iv_length(strtolower($this->cipher)));
 
+<<<<<<< HEAD
         $tag = '';
 
         $value = self::$supportedCiphers[strtolower($this->cipher)]['aead']
@@ -110,13 +111,23 @@ class Encrypter implements EncrypterContract, StringEncrypter
                 $serialize ? serialize($value) : $value,
                 strtolower($this->cipher), $this->key, 0, $iv
             );
+=======
+        $value = \openssl_encrypt(
+            $serialize ? serialize($value) : $value,
+            strtolower($this->cipher), $this->key, 0, $iv, $tag
+        );
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if ($value === false) {
             throw new EncryptException('Could not encrypt the data.');
         }
 
         $iv = base64_encode($iv);
+<<<<<<< HEAD
         $tag = base64_encode($tag);
+=======
+        $tag = base64_encode($tag ?? '');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $mac = self::$supportedCiphers[strtolower($this->cipher)]['aead']
             ? '' // For AEAD-algoritms, the tag / MAC is returned by openssl_encrypt...
@@ -271,7 +282,11 @@ class Encrypter implements EncrypterContract, StringEncrypter
     }
 
     /**
+<<<<<<< HEAD
      * Get the encryption key.
+=======
+     * Get the encryption key that the encrypter is currently using.
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @return string
      */

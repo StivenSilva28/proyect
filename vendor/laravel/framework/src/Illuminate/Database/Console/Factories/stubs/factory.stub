@@ -4,12 +4,22 @@ namespace {{ factoryNamespace }};
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+<<<<<<< HEAD
+=======
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\{{ namespacedModel }}>
+ */
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class {{ factory }}Factory extends Factory
 {
     /**
      * Define the model's default state.
      *
+<<<<<<< HEAD
      * @return array
+=======
+     * @return array<string, mixed>
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function definition()
     {

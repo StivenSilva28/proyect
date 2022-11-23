@@ -3,8 +3,15 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\GeneratorCommand;
+<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputOption;
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Input\InputOption;
+
+#[AsCommand(name: 'make:exception')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ExceptionMakeCommand extends GeneratorCommand
 {
     /**
@@ -15,6 +22,20 @@ class ExceptionMakeCommand extends GeneratorCommand
     protected $name = 'make:exception';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'make:exception';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -76,8 +97,13 @@ class ExceptionMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
+<<<<<<< HEAD
             ['render', null, InputOption::VALUE_NONE, 'Create the exception with an empty render method'],
 
+=======
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the exception already exists'],
+            ['render', null, InputOption::VALUE_NONE, 'Create the exception with an empty render method'],
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ['report', null, InputOption::VALUE_NONE, 'Create the exception with an empty report method'],
         ];
     }

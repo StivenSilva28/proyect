@@ -23,6 +23,16 @@ trait InteractsWithConsole
     public $expectedOutput = [];
 
     /**
+<<<<<<< HEAD
+=======
+     * All of the expected text to be present in the output.
+     *
+     * @var array
+     */
+    public $expectedOutputSubstrings = [];
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * All of the output lines that aren't expected to be displayed.
      *
      * @var array
@@ -30,6 +40,16 @@ trait InteractsWithConsole
     public $unexpectedOutput = [];
 
     /**
+<<<<<<< HEAD
+=======
+     * All of the text that is not expected to be present in the output.
+     *
+     * @var array
+     */
+    public $unexpectedOutputSubstrings = [];
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * All of the expected output tables.
      *
      * @var array

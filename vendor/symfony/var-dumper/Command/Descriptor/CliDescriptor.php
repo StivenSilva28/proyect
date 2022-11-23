@@ -26,8 +26,13 @@ use Symfony\Component\VarDumper\Dumper\CliDumper;
  */
 class CliDescriptor implements DumpDescriptorInterface
 {
+<<<<<<< HEAD
     private $dumper;
     private $lastIdentifier;
+=======
+    private CliDumper $dumper;
+    private mixed $lastIdentifier = null;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(CliDumper $dumper)
     {

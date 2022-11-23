@@ -70,11 +70,19 @@ class DurationLimiter
      *
      * @param  int  $timeout
      * @param  callable|null  $callback
+<<<<<<< HEAD
+=======
+     * @param  int  $sleep
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return mixed
      *
      * @throws \Illuminate\Contracts\Redis\LimiterTimeoutException
      */
+<<<<<<< HEAD
     public function block($timeout, $callback = null)
+=======
+    public function block($timeout, $callback = null, $sleep = 750)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $starting = time();
 
@@ -83,7 +91,11 @@ class DurationLimiter
                 throw new LimiterTimeoutException;
             }
 
+<<<<<<< HEAD
             usleep(750 * 1000);
+=======
+            usleep($sleep * 1000);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         if (is_callable($callback)) {

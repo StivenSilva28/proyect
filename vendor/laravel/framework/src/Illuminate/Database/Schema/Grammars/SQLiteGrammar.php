@@ -247,6 +247,29 @@ class SQLiteGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Compile the SQL needed to retrieve all table names.
+     *
+     * @return string
+     */
+    public function compileGetAllTables()
+    {
+        return 'select type, name from sqlite_master where type = \'table\' and name not like \'sqlite_%\'';
+    }
+
+    /**
+     * Compile the SQL needed to retrieve all view names.
+     *
+     * @return string
+     */
+    public function compileGetAllViews()
+    {
+        return 'select type, name from sqlite_master where type = \'view\'';
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Compile the SQL needed to rebuild the database.
      *
      * @return string
@@ -858,8 +881,21 @@ class SQLiteGrammar extends Grammar
      */
     protected function modifyVirtualAs(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (! is_null($column->virtualAs)) {
             return " as ({$column->virtualAs})";
+=======
+        if (! is_null($virtualAs = $column->virtualAsJson)) {
+            if ($this->isJsonSelector($virtualAs)) {
+                $virtualAs = $this->wrapJsonSelector($virtualAs);
+            }
+
+            return " as ({$virtualAs})";
+        }
+
+        if (! is_null($virtualAs = $column->virtualAs)) {
+            return " as ({$virtualAs})";
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 
@@ -872,7 +908,19 @@ class SQLiteGrammar extends Grammar
      */
     protected function modifyStoredAs(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (! is_null($column->storedAs)) {
+=======
+        if (! is_null($storedAs = $column->storedAsJson)) {
+            if ($this->isJsonSelector($storedAs)) {
+                $storedAs = $this->wrapJsonSelector($storedAs);
+            }
+
+            return " as ({$storedAs}) stored";
+        }
+
+        if (! is_null($storedAs = $column->storedAs)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return " as ({$column->storedAs}) stored";
         }
     }
@@ -886,7 +934,14 @@ class SQLiteGrammar extends Grammar
      */
     protected function modifyNullable(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (is_null($column->virtualAs) && is_null($column->storedAs)) {
+=======
+        if (is_null($column->virtualAs) &&
+            is_null($column->virtualAsJson) &&
+            is_null($column->storedAs) &&
+            is_null($column->storedAsJson)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $column->nullable ? '' : ' not null';
         }
 
@@ -904,7 +959,11 @@ class SQLiteGrammar extends Grammar
      */
     protected function modifyDefault(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (! is_null($column->default) && is_null($column->virtualAs) && is_null($column->storedAs)) {
+=======
+        if (! is_null($column->default) && is_null($column->virtualAs) && is_null($column->virtualAsJson) && is_null($column->storedAs)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return ' default '.$this->getDefaultValue($column->default);
         }
     }
@@ -922,4 +981,20 @@ class SQLiteGrammar extends Grammar
             return ' primary key autoincrement';
         }
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Wrap the given JSON selector.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function wrapJsonSelector($value)
+    {
+        [$field, $path] = $this->wrapJsonFieldAndPath($value);
+
+        return 'json_extract('.$field.$path.')';
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

@@ -493,6 +493,24 @@ class MySqlGrammar extends Grammar
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Compile a table comment command.
+     *
+     * @param  \Illuminate\Database\Schema\Blueprint  $blueprint
+     * @param  \Illuminate\Support\Fluent  $command
+     * @return string
+     */
+    public function compileTableComment(Blueprint $blueprint, Fluent $command)
+    {
+        return sprintf('alter table %s comment = %s',
+            $this->wrapTable($blueprint),
+            "'".str_replace("'", "''", $command->comment)."'"
+        );
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create the column definition for a char type.
      *
      * @param  \Illuminate\Support\Fluent  $column
@@ -959,8 +977,21 @@ class MySqlGrammar extends Grammar
      */
     protected function modifyVirtualAs(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (! is_null($column->virtualAs)) {
             return " as ({$column->virtualAs})";
+=======
+        if (! is_null($virtualAs = $column->virtualAsJson)) {
+            if ($this->isJsonSelector($virtualAs)) {
+                $virtualAs = $this->wrapJsonSelector($virtualAs);
+            }
+
+            return " as ({$virtualAs})";
+        }
+
+        if (! is_null($virtualAs = $column->virtualAs)) {
+            return " as ({$virtualAs})";
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 
@@ -973,8 +1004,21 @@ class MySqlGrammar extends Grammar
      */
     protected function modifyStoredAs(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (! is_null($column->storedAs)) {
             return " as ({$column->storedAs}) stored";
+=======
+        if (! is_null($storedAs = $column->storedAsJson)) {
+            if ($this->isJsonSelector($storedAs)) {
+                $storedAs = $this->wrapJsonSelector($storedAs);
+            }
+
+            return " as ({$storedAs}) stored";
+        }
+
+        if (! is_null($storedAs = $column->storedAs)) {
+            return " as ({$storedAs}) stored";
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 
@@ -1029,7 +1073,14 @@ class MySqlGrammar extends Grammar
      */
     protected function modifyNullable(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (is_null($column->virtualAs) && is_null($column->storedAs)) {
+=======
+        if (is_null($column->virtualAs) &&
+            is_null($column->virtualAsJson) &&
+            is_null($column->storedAs) &&
+            is_null($column->storedAsJson)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return $column->nullable ? ' null' : ' not null';
         }
 
@@ -1131,7 +1182,11 @@ class MySqlGrammar extends Grammar
      */
     protected function modifySrid(Blueprint $blueprint, Fluent $column)
     {
+<<<<<<< HEAD
         if (! is_null($column->srid) && is_int($column->srid) && $column->srid > 0) {
+=======
+        if (is_int($column->srid) && $column->srid > 0) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return ' srid '.$column->srid;
         }
     }
@@ -1150,4 +1205,20 @@ class MySqlGrammar extends Grammar
 
         return $value;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Wrap the given JSON selector.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    protected function wrapJsonSelector($value)
+    {
+        [$field, $path] = $this->wrapJsonFieldAndPath($value);
+
+        return 'json_unquote(json_extract('.$field.$path.'))';
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

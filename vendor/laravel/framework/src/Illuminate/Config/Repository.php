@@ -5,9 +5,18 @@ namespace Illuminate\Config;
 use ArrayAccess;
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
 
 class Repository implements ArrayAccess, ConfigContract
 {
+=======
+use Illuminate\Support\Traits\Macroable;
+
+class Repository implements ArrayAccess, ConfigContract
+{
+    use Macroable;
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * All of the configuration items.
      *
@@ -138,8 +147,12 @@ class Repository implements ArrayAccess, ConfigContract
      * @param  string  $key
      * @return bool
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetExists($key)
+=======
+    public function offsetExists($key): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->has($key);
     }
@@ -150,8 +163,12 @@ class Repository implements ArrayAccess, ConfigContract
      * @param  string  $key
      * @return mixed
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetGet($key)
+=======
+    public function offsetGet($key): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->get($key);
     }
@@ -163,8 +180,12 @@ class Repository implements ArrayAccess, ConfigContract
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
+=======
+    public function offsetSet($key, $value): void
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->set($key, $value);
     }
@@ -175,8 +196,12 @@ class Repository implements ArrayAccess, ConfigContract
      * @param  string  $key
      * @return void
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetUnset($key)
+=======
+    public function offsetUnset($key): void
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->set($key, null);
     }

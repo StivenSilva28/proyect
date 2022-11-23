@@ -2,6 +2,11 @@
 
 namespace Illuminate\Validation;
 
+<<<<<<< HEAD
+=======
+use Illuminate\Foundation\Precognition;
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 /**
  * Provides default implementation of ValidatesWhenResolved contract.
  */
@@ -22,6 +27,13 @@ trait ValidatesWhenResolvedTrait
 
         $instance = $this->getValidatorInstance();
 
+<<<<<<< HEAD
+=======
+        if ($this->isPrecognitive()) {
+            $instance->after(Precognition::afterValidationHook($this));
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if ($instance->fails()) {
             $this->failedValidation($instance);
         }

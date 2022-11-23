@@ -160,6 +160,13 @@ class SqlServerConnector extends Connector implements ConnectorInterface
             $arguments['LoginTimeout'] = $config['login_timeout'];
         }
 
+<<<<<<< HEAD
+=======
+        if (isset($config['authentication'])) {
+            $arguments['Authentication'] = $config['authentication'];
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return $this->buildConnectString('sqlsrv', $arguments);
     }
 

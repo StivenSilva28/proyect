@@ -20,11 +20,22 @@ trait SerializesAndRestoresModelIdentifiers
     protected function getSerializedPropertyValue($value)
     {
         if ($value instanceof QueueableCollection) {
+<<<<<<< HEAD
             return new ModelIdentifier(
+=======
+            return (new ModelIdentifier(
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $value->getQueueableClass(),
                 $value->getQueueableIds(),
                 $value->getQueueableRelations(),
                 $value->getQueueableConnection()
+<<<<<<< HEAD
+=======
+            ))->useCollectionClass(
+                ($collectionClass = get_class($value)) !== EloquentCollection::class
+                    ? $collectionClass
+                    : null
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             );
         }
 
@@ -66,7 +77,13 @@ trait SerializesAndRestoresModelIdentifiers
     protected function restoreCollection($value)
     {
         if (! $value->class || count($value->id) === 0) {
+<<<<<<< HEAD
             return new EloquentCollection;
+=======
+            return ! is_null($value->collectionClass ?? null)
+                ? new $value->collectionClass
+                : new EloquentCollection;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $collection = $this->getQueryForModelRestoration(

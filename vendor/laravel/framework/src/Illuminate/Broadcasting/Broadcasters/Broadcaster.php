@@ -2,6 +2,10 @@
 
 namespace Illuminate\Broadcasting\Broadcasters;
 
+<<<<<<< HEAD
+=======
+use Closure;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Exception;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Broadcasting\Broadcaster as BroadcasterContract;
@@ -10,7 +14,10 @@ use Illuminate\Contracts\Routing\BindingRegistrar;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Reflector;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use ReflectionClass;
 use ReflectionFunction;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -18,6 +25,16 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 abstract class Broadcaster implements BroadcasterContract
 {
     /**
+<<<<<<< HEAD
+=======
+     * The callback to resolve the authenticated user information.
+     *
+     * @var \Closure|null
+     */
+    protected $authenticatedUserCallback = null;
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The registered channel authenticators.
      *
      * @var array
@@ -39,6 +56,37 @@ abstract class Broadcaster implements BroadcasterContract
     protected $bindingRegistrar;
 
     /**
+<<<<<<< HEAD
+=======
+     * Resolve the authenticated user payload for the incoming connection request.
+     *
+     * See: https://pusher.com/docs/channels/library_auth_reference/auth-signatures/#user-authentication.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array|null
+     */
+    public function resolveAuthenticatedUser($request)
+    {
+        if ($this->authenticatedUserCallback) {
+            return $this->authenticatedUserCallback->__invoke($request);
+        }
+    }
+
+    /**
+     * Register the user retrieval callback used to authenticate connections.
+     *
+     * See: https://pusher.com/docs/channels/library_auth_reference/auth-signatures/#user-authentication.
+     *
+     * @param  \Closure  $callback
+     * @return void
+     */
+    public function resolveAuthenticatedUserUsing(Closure $callback)
+    {
+        $this->authenticatedUserCallback = $callback;
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Register a channel authenticator.
      *
      * @param  \Illuminate\Contracts\Broadcasting\HasBroadcastChannel|string  $channel
@@ -81,7 +129,15 @@ abstract class Broadcaster implements BroadcasterContract
 
             $handler = $this->normalizeChannelHandlerToCallable($callback);
 
+<<<<<<< HEAD
             if ($result = $handler($this->retrieveUser($request, $channel), ...$parameters)) {
+=======
+            $result = $handler($this->retrieveUser($request, $channel), ...$parameters);
+
+            if ($result === false) {
+                throw new AccessDeniedHttpException;
+            } elseif ($result) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return $this->validAuthenticationResponse($request, $result);
             }
         }
@@ -332,6 +388,10 @@ abstract class Broadcaster implements BroadcasterContract
      */
     protected function channelNameMatchesPattern($channel, $pattern)
     {
+<<<<<<< HEAD
         return Str::is(preg_replace('/\{(.*?)\}/', '*', $pattern), $channel);
+=======
+        return preg_match('/'.preg_replace('/\{(.*?)\}/', '([^\.]+)', $pattern).'$/', $channel);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

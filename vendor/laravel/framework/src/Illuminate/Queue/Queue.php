@@ -58,7 +58,11 @@ abstract class Queue
     }
 
     /**
+<<<<<<< HEAD
      * Push a new job onto the queue after a delay.
+=======
+     * Push a new job onto a specific queue after (n) seconds.
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  string  $queue
      * @param  \DateTimeInterface|\DateInterval|int  $delay
@@ -104,7 +108,11 @@ abstract class Queue
 
         $payload = json_encode($this->createPayloadArray($job, $queue, $data), \JSON_UNESCAPED_UNICODE);
 
+<<<<<<< HEAD
         if (JSON_ERROR_NONE !== json_last_error()) {
+=======
+        if (json_last_error() !== JSON_ERROR_NONE) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             throw new InvalidPayloadException(
                 'Unable to JSON encode payload. Error code: '.json_last_error()
             );
@@ -282,9 +290,13 @@ abstract class Queue
     {
         if (! empty(static::$createPayloadCallbacks)) {
             foreach (static::$createPayloadCallbacks as $callback) {
+<<<<<<< HEAD
                 $payload = array_merge($payload, call_user_func(
                     $callback, $this->getConnectionName(), $queue, $payload
                 ));
+=======
+                $payload = array_merge($payload, $callback($this->getConnectionName(), $queue, $payload));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
 

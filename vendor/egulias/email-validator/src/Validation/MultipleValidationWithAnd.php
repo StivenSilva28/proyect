@@ -3,13 +3,24 @@
 namespace Egulias\EmailValidator\Validation;
 
 use Egulias\EmailValidator\EmailLexer;
+<<<<<<< HEAD
 use Egulias\EmailValidator\Validation\Exception\EmptyValidationList;
+=======
+use Egulias\EmailValidator\Result\InvalidEmail;
+use Egulias\EmailValidator\Validation\Exception\EmptyValidationList;
+use Egulias\EmailValidator\Result\MultipleErrors;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class MultipleValidationWithAnd implements EmailValidation
 {
     /**
+<<<<<<< HEAD
      * If one of validations gets failure skips all succeeding validation.
      * This means MultipleErrors will only contain a single error which first found.
+=======
+     * If one of validations fails, the remaining validations will be skipped.
+     * This means MultipleErrors will only contain a single error, the first found.
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     const STOP_ON_ERROR = 0;
 
@@ -56,22 +67,35 @@ class MultipleValidationWithAnd implements EmailValidation
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function isValid($email, EmailLexer $emailLexer)
     {
         $result = true;
         $errors = [];
+=======
+    public function isValid(string $email, EmailLexer $emailLexer) : bool
+    {
+        $result = true;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         foreach ($this->validations as $validation) {
             $emailLexer->reset();
             $validationResult = $validation->isValid($email, $emailLexer);
             $result = $result && $validationResult;
             $this->warnings = array_merge($this->warnings, $validation->getWarnings());
+<<<<<<< HEAD
             $errors = $this->addNewError($validation->getError(), $errors);
+=======
+            if (!$validationResult) {
+                $this->processError($validation);
+            }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             if ($this->shouldStop($result)) {
                 break;
             }
         }
 
+<<<<<<< HEAD
         if (!empty($errors)) {
             $this->error = new MultipleErrors($errors);
         }
@@ -100,16 +124,43 @@ class MultipleValidationWithAnd implements EmailValidation
      * @return bool
      */
     private function shouldStop($result)
+=======
+        return $result;
+    }
+
+    private function initErrorStorage() : void
+    {
+        if (null === $this->error) {
+            $this->error = new MultipleErrors();
+        }
+    }
+
+    private function processError(EmailValidation $validation) : void
+    {
+        if (null !== $validation->getError()) {
+            $this->initErrorStorage();
+            /** @psalm-suppress PossiblyNullReference */
+            $this->error->addReason($validation->getError()->reason());
+        }
+    }
+
+    private function shouldStop(bool $result) : bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return !$result && $this->mode === self::STOP_ON_ERROR;
     }
 
     /**
      * Returns the validation errors.
+<<<<<<< HEAD
      *
      * @return MultipleErrors|null
      */
     public function getError()
+=======
+     */
+    public function getError() : ?InvalidEmail
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->error;
     }
@@ -117,7 +168,11 @@ class MultipleValidationWithAnd implements EmailValidation
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getWarnings()
+=======
+    public function getWarnings() : array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->warnings;
     }

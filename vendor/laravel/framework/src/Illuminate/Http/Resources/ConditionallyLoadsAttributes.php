@@ -3,6 +3,10 @@
 namespace Illuminate\Http\Resources;
 
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 trait ConditionallyLoadsAttributes
 {
@@ -120,7 +124,11 @@ trait ConditionallyLoadsAttributes
     }
 
     /**
+<<<<<<< HEAD
      * Merge a value based on a given condition.
+=======
+     * Merge a value if the given condition is truthy.
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  bool  $condition
      * @param  mixed  $value
@@ -132,6 +140,21 @@ trait ConditionallyLoadsAttributes
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Merge a value unless the given condition is truthy.
+     *
+     * @param  bool  $condition
+     * @param  mixed  $value
+     * @return \Illuminate\Http\Resources\MergeValue|mixed
+     */
+    protected function mergeUnless($condition, $value)
+    {
+        return ! $condition ? new MergeValue(value($value)) : new MissingValue;
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Merge the given attributes.
      *
      * @param  array  $attributes
@@ -145,6 +168,37 @@ trait ConditionallyLoadsAttributes
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Retrieve a model attribute if it is null.
+     *
+     * @param  mixed  $value
+     * @param  mixed  $default
+     * @return \Illuminate\Http\Resources\MissingValue|mixed
+     */
+    protected function whenNull($value, $default = null)
+    {
+        $arguments = func_num_args() == 1 ? [$value] : [$value, $default];
+
+        return $this->when(is_null($value), ...$arguments);
+    }
+
+    /**
+     * Retrieve a model attribute if it is not null.
+     *
+     * @param  mixed  $value
+     * @param  mixed  $default
+     * @return \Illuminate\Http\Resources\MissingValue|mixed
+     */
+    protected function whenNotNull($value, $default = null)
+    {
+        $arguments = func_num_args() == 1 ? [$value] : [$value, $default];
+
+        return $this->when(! is_null($value), ...$arguments);
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Retrieve an accessor when it has been appended.
      *
      * @param  string  $attribute
@@ -191,6 +245,40 @@ trait ConditionallyLoadsAttributes
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Retrieve a relationship count if it exists.
+     *
+     * @param  string  $relationship
+     * @param  mixed  $value
+     * @param  mixed  $default
+     * @return \Illuminate\Http\Resources\MissingValue|mixed
+     */
+    public function whenCounted($relationship, $value = null, $default = null)
+    {
+        if (func_num_args() < 3) {
+            $default = new MissingValue();
+        }
+
+        $attribute = (string) Str::of($relationship)->snake()->finish('_count');
+
+        if (! isset($this->resource->getAttributes()[$attribute])) {
+            return value($default);
+        }
+
+        if (func_num_args() === 1) {
+            return $this->resource->{$attribute};
+        }
+
+        if ($this->resource->{$attribute} === null) {
+            return;
+        }
+
+        return value($value, $this->resource->{$attribute});
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Execute a callback if the given pivot table has been loaded.
      *
      * @param  string  $table
@@ -219,7 +307,11 @@ trait ConditionallyLoadsAttributes
         }
 
         return $this->when(
+<<<<<<< HEAD
             $this->resource->$accessor &&
+=======
+            isset($this->resource->$accessor) &&
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ($this->resource->$accessor instanceof $table ||
             $this->resource->$accessor->getTable() === $table),
             ...[$value, $default]

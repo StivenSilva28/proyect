@@ -17,7 +17,10 @@ namespace Ramsey\Uuid\Type;
 use Ramsey\Uuid\Exception\UnsupportedOperationException;
 use Ramsey\Uuid\Type\Integer as IntegerObject;
 use ValueError;
+<<<<<<< HEAD
 use stdClass;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 use function json_decode;
 use function json_encode;
@@ -34,6 +37,7 @@ use function sprintf;
  */
 final class Time implements TypeInterface
 {
+<<<<<<< HEAD
     /**
      * @var IntegerObject
      */
@@ -50,6 +54,15 @@ final class Time implements TypeInterface
      */
     public function __construct($seconds, $microseconds = 0)
     {
+=======
+    private IntegerObject $seconds;
+    private IntegerObject $microseconds;
+
+    public function __construct(
+        float | int | string | IntegerObject $seconds,
+        float | int | string | IntegerObject $microseconds = 0,
+    ) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->seconds = new IntegerObject($seconds);
         $this->microseconds = new IntegerObject($microseconds);
     }
@@ -66,7 +79,11 @@ final class Time implements TypeInterface
 
     public function toString(): string
     {
+<<<<<<< HEAD
         return $this->seconds->toString() . '.' . $this->microseconds->toString();
+=======
+        return $this->seconds->toString() . '.' . sprintf('%06s', $this->microseconds->toString());
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     public function __toString(): string
@@ -104,6 +121,7 @@ final class Time implements TypeInterface
     /**
      * Constructs the object from a serialized string representation
      *
+<<<<<<< HEAD
      * @param string $serialized The serialized string representation of the object
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
@@ -115,16 +133,36 @@ final class Time implements TypeInterface
         $time = json_decode($serialized);
 
         if (!isset($time->seconds) || !isset($time->microseconds)) {
+=======
+     * @param string $data The serialized string representation of the object
+     *
+     * @psalm-suppress UnusedMethodCall
+     */
+    public function unserialize(string $data): void
+    {
+        /** @var array{seconds?: int|float|string, microseconds?: int|float|string} $time */
+        $time = json_decode($data, true);
+
+        if (!isset($time['seconds']) || !isset($time['microseconds'])) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             throw new UnsupportedOperationException(
                 'Attempted to unserialize an invalid value'
             );
         }
 
+<<<<<<< HEAD
         $this->__construct($time->seconds, $time->microseconds);
     }
 
     /**
      * @param array{seconds: string, microseconds: string} $data
+=======
+        $this->__construct($time['seconds'], $time['microseconds']);
+    }
+
+    /**
+     * @param array{seconds?: string, microseconds?: string} $data
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function __unserialize(array $data): void
     {

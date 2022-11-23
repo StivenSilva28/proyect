@@ -254,7 +254,11 @@ class CacheManager implements FactoryContract
     /**
      * Create new DynamoDb Client instance.
      *
+<<<<<<< HEAD
      * @return DynamoDbClient
+=======
+     * @return \Aws\DynamoDb\DynamoDbClient
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected function newDynamodbClient(array $config)
     {
@@ -264,7 +268,11 @@ class CacheManager implements FactoryContract
             'endpoint' => $config['endpoint'] ?? null,
         ];
 
+<<<<<<< HEAD
         if (isset($config['key']) && isset($config['secret'])) {
+=======
+        if (isset($config['key'], $config['secret'])) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $dynamoConfig['credentials'] = Arr::only(
                 $config, ['key', 'secret', 'token']
             );
@@ -328,7 +336,11 @@ class CacheManager implements FactoryContract
      * Get the cache connection configuration.
      *
      * @param  string  $name
+<<<<<<< HEAD
      * @return array
+=======
+     * @return array|null
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected function getConfig($name)
     {
@@ -368,7 +380,11 @@ class CacheManager implements FactoryContract
      */
     public function forgetDriver($name = null)
     {
+<<<<<<< HEAD
         $name = $name ?? $this->getDefaultDriver();
+=======
+        $name ??= $this->getDefaultDriver();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         foreach ((array) $name as $cacheName) {
             if (isset($this->stores[$cacheName])) {
@@ -387,7 +403,11 @@ class CacheManager implements FactoryContract
      */
     public function purge($name = null)
     {
+<<<<<<< HEAD
         $name = $name ?? $this->getDefaultDriver();
+=======
+        $name ??= $this->getDefaultDriver();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         unset($this->stores[$name]);
     }

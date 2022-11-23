@@ -19,7 +19,11 @@ class TrustProxies
      *
      * @var int
      */
+<<<<<<< HEAD
     protected $headers = Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_HOST | Request::HEADER_X_FORWARDED_PORT | Request::HEADER_X_FORWARDED_PROTO | Request::HEADER_X_FORWARDED_AWS_ELB;
+=======
+    protected $headers = Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_HOST | Request::HEADER_X_FORWARDED_PORT | Request::HEADER_X_FORWARDED_PROTO | Request::HEADER_X_FORWARDED_PREFIX | Request::HEADER_X_FORWARDED_AWS_ELB;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Handle an incoming request.
@@ -92,6 +96,7 @@ class TrustProxies
      */
     protected function getTrustedHeaderNames()
     {
+<<<<<<< HEAD
         switch ($this->headers) {
             case 'HEADER_X_FORWARDED_AWS_ELB':
             case Request::HEADER_X_FORWARDED_AWS_ELB:
@@ -122,6 +127,18 @@ class TrustProxies
         }
 
         return $this->headers;
+=======
+        return match ($this->headers) {
+            'HEADER_X_FORWARDED_AWS_ELB', Request::HEADER_X_FORWARDED_AWS_ELB => Request::HEADER_X_FORWARDED_AWS_ELB,
+            'HEADER_FORWARDED', Request::HEADER_FORWARDED => Request::HEADER_FORWARDED,
+            'HEADER_X_FORWARDED_FOR', Request::HEADER_X_FORWARDED_FOR => Request::HEADER_X_FORWARDED_FOR,
+            'HEADER_X_FORWARDED_HOST', Request::HEADER_X_FORWARDED_HOST => Request::HEADER_X_FORWARDED_HOST,
+            'HEADER_X_FORWARDED_PORT', Request::HEADER_X_FORWARDED_PORT => Request::HEADER_X_FORWARDED_PORT,
+            'HEADER_X_FORWARDED_PROTO', Request::HEADER_X_FORWARDED_PROTO => Request::HEADER_X_FORWARDED_PROTO,
+            'HEADER_X_FORWARDED_PREFIX', Request::HEADER_X_FORWARDED_PREFIX => Request::HEADER_X_FORWARDED_PREFIX,
+            default => Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_HOST | Request::HEADER_X_FORWARDED_PORT | Request::HEADER_X_FORWARDED_PROTO | Request::HEADER_X_FORWARDED_PREFIX | Request::HEADER_X_FORWARDED_AWS_ELB,
+        };
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

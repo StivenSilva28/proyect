@@ -18,7 +18,11 @@ trait InteractsWithViews
      * @param  \Illuminate\Contracts\Support\Arrayable|array  $data
      * @return \Illuminate\Testing\TestView
      */
+<<<<<<< HEAD
     protected function view(string $view, array $data = [])
+=======
+    protected function view(string $view, $data = [])
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new TestView(view($view, $data));
     }
@@ -30,7 +34,11 @@ trait InteractsWithViews
      * @param  \Illuminate\Contracts\Support\Arrayable|array  $data
      * @return \Illuminate\Testing\TestView
      */
+<<<<<<< HEAD
     protected function blade(string $template, array $data = [])
+=======
+    protected function blade(string $template, $data = [])
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $tempDirectory = sys_get_temp_dir();
 
@@ -54,7 +62,11 @@ trait InteractsWithViews
      * @param  \Illuminate\Contracts\Support\Arrayable|array  $data
      * @return \Illuminate\Testing\TestComponent
      */
+<<<<<<< HEAD
     protected function component(string $componentClass, array $data = [])
+=======
+    protected function component(string $componentClass, $data = [])
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $component = $this->app->make($componentClass, $data);
 

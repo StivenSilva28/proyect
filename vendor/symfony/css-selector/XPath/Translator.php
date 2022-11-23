@@ -30,16 +30,25 @@ use Symfony\Component\CssSelector\Parser\ParserInterface;
  */
 class Translator implements TranslatorInterface
 {
+<<<<<<< HEAD
     private $mainParser;
+=======
+    private ParserInterface $mainParser;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var ParserInterface[]
      */
+<<<<<<< HEAD
     private $shortcutParsers = [];
+=======
+    private array $shortcutParsers = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var Extension\ExtensionInterface[]
      */
+<<<<<<< HEAD
     private $extensions = [];
 
     private $nodeTranslators = [];
@@ -47,6 +56,15 @@ class Translator implements TranslatorInterface
     private $functionTranslators = [];
     private $pseudoClassTranslators = [];
     private $attributeMatchingTranslators = [];
+=======
+    private array $extensions = [];
+
+    private array $nodeTranslators = [];
+    private array $combinationTranslators = [];
+    private array $functionTranslators = [];
+    private array $pseudoClassTranslators = [];
+    private array $attributeMatchingTranslators = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(ParserInterface $parser = null)
     {
@@ -117,7 +135,11 @@ class Translator implements TranslatorInterface
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function registerExtension(Extension\ExtensionInterface $extension): self
+=======
+    public function registerExtension(Extension\ExtensionInterface $extension): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->extensions[$extension->getName()] = $extension;
 
@@ -145,7 +167,11 @@ class Translator implements TranslatorInterface
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function registerParserShortcut(ParserInterface $shortcut): self
+=======
+    public function registerParserShortcut(ParserInterface $shortcut): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->shortcutParsers[] = $shortcut;
 

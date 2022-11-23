@@ -22,10 +22,19 @@ use PHPUnit\Framework\Assert as PHPUnit;
  * @method \Illuminate\Http\Client\PendingRequest baseUrl(string $url)
  * @method \Illuminate\Http\Client\PendingRequest beforeSending(callable $callback)
  * @method \Illuminate\Http\Client\PendingRequest bodyFormat(string $format)
+<<<<<<< HEAD
  * @method \Illuminate\Http\Client\PendingRequest contentType(string $contentType)
  * @method \Illuminate\Http\Client\PendingRequest dd()
  * @method \Illuminate\Http\Client\PendingRequest dump()
  * @method \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleep = 0, ?callable $when = null)
+=======
+ * @method \Illuminate\Http\Client\PendingRequest connectTimeout(int $seconds)
+ * @method \Illuminate\Http\Client\PendingRequest contentType(string $contentType)
+ * @method \Illuminate\Http\Client\PendingRequest dd()
+ * @method \Illuminate\Http\Client\PendingRequest dump()
+ * @method \Illuminate\Http\Client\PendingRequest maxRedirects(int $max)
+ * @method \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleepMilliseconds = 0, ?callable $when = null, bool $throw = true)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method \Illuminate\Http\Client\PendingRequest sink(string|resource $to)
  * @method \Illuminate\Http\Client\PendingRequest stub(callable $callback)
  * @method \Illuminate\Http\Client\PendingRequest timeout(int $seconds)
@@ -40,6 +49,12 @@ use PHPUnit\Framework\Assert as PHPUnit;
  * @method \Illuminate\Http\Client\PendingRequest withUserAgent(string $userAgent)
  * @method \Illuminate\Http\Client\PendingRequest withoutRedirecting()
  * @method \Illuminate\Http\Client\PendingRequest withoutVerifying()
+<<<<<<< HEAD
+=======
+ * @method \Illuminate\Http\Client\PendingRequest throw(callable $callback = null)
+ * @method \Illuminate\Http\Client\PendingRequest throwIf($condition)
+ * @method \Illuminate\Http\Client\PendingRequest throwUnless($condition)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method array pool(callable $callback)
  * @method \Illuminate\Http\Client\Response delete(string $url, array $data = [])
  * @method \Illuminate\Http\Client\Response get(string $url, array|string|null $query = null)
@@ -93,6 +108,16 @@ class Factory
     protected $responseSequences = [];
 
     /**
+<<<<<<< HEAD
+=======
+     * Indicates that an exception should be thrown if any request is not faked.
+     *
+     * @var bool
+     */
+    protected $preventStrayRequests = false;
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new factory instance.
      *
      * @param  \Illuminate\Contracts\Events\Dispatcher|null  $dispatcher
@@ -108,7 +133,11 @@ class Factory
     /**
      * Create a new response instance for use during stubbing.
      *
+<<<<<<< HEAD
      * @param  array|string  $body
+=======
+     * @param  array|string|null  $body
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  int  $status
      * @param  array  $headers
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -142,7 +171,11 @@ class Factory
     /**
      * Register a stub callable that will intercept requests and be able to return stub responses.
      *
+<<<<<<< HEAD
      * @param  callable|array  $callback
+=======
+     * @param  callable|array|null  $callback
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      */
     public function fake($callback = null)
@@ -219,6 +252,32 @@ class Factory
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Indicate that an exception should be thrown if any request is not faked.
+     *
+     * @param  bool  $prevent
+     * @return $this
+     */
+    public function preventStrayRequests($prevent = true)
+    {
+        $this->preventStrayRequests = $prevent;
+
+        return $this;
+    }
+
+    /**
+     * Indicate that an exception should not be thrown if any request is not faked.
+     *
+     * @return $this
+     */
+    public function allowStrayRequests()
+    {
+        return $this->preventStrayRequests(false);
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Begin recording request / response pairs.
      *
      * @return $this
@@ -388,7 +447,11 @@ class Factory
         }
 
         return tap($this->newPendingRequest(), function ($request) {
+<<<<<<< HEAD
             $request->stub($this->stubCallbacks);
+=======
+            $request->stub($this->stubCallbacks)->preventStrayRequests($this->preventStrayRequests);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         })->{$method}(...$parameters);
     }
 }

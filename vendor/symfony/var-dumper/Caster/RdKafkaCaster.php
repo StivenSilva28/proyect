@@ -37,7 +37,11 @@ class RdKafkaCaster
 
         try {
             $assignment = $c->getAssignment();
+<<<<<<< HEAD
         } catch (RdKafkaException $e) {
+=======
+        } catch (RdKafkaException) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $assignment = [];
         }
 
@@ -166,13 +170,21 @@ class RdKafkaCaster
         return $a;
     }
 
+<<<<<<< HEAD
     private static function extractMetadata($c)
+=======
+    private static function extractMetadata(KafkaConsumer|\RdKafka $c)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $prefix = Caster::PREFIX_VIRTUAL;
 
         try {
             $m = $c->getMetadata(true, null, 500);
+<<<<<<< HEAD
         } catch (RdKafkaException $e) {
+=======
+        } catch (RdKafkaException) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return [];
         }
 

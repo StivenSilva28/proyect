@@ -6,9 +6,17 @@ use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Contracts\Queue\ClearableQueue;
 use ReflectionClass;
+<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+
+#[AsCommand(name: 'queue:clear')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ClearCommand extends Command
 {
     use ConfirmableTrait;
@@ -21,6 +29,20 @@ class ClearCommand extends Command
     protected $name = 'queue:clear';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'queue:clear';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -51,9 +73,15 @@ class ClearCommand extends Command
         if ($queue instanceof ClearableQueue) {
             $count = $queue->clear($queueName);
 
+<<<<<<< HEAD
             $this->line('<info>Cleared '.$count.' jobs from the ['.$queueName.'] queue</info> ');
         } else {
             $this->line('<error>Clearing queues is not supported on ['.(new ReflectionClass($queue))->getShortName().']</error> ');
+=======
+            $this->components->info('Cleared '.$count.' jobs from the ['.$queueName.'] queue');
+        } else {
+            $this->components->error('Clearing queues is not supported on ['.(new ReflectionClass($queue))->getShortName().']');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return 0;

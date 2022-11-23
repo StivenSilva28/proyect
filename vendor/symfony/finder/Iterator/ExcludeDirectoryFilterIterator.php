@@ -11,11 +11,17 @@
 
 namespace Symfony\Component\Finder\Iterator;
 
+<<<<<<< HEAD
+=======
+use Symfony\Component\Finder\SplFileInfo;
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 /**
  * ExcludeDirectoryFilterIterator filters out directories.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  *
+<<<<<<< HEAD
  * @extends \FilterIterator<string, \SplFileInfo>
  * @implements \RecursiveIterator<string, \SplFileInfo>
  */
@@ -29,6 +35,22 @@ class ExcludeDirectoryFilterIterator extends \FilterIterator implements \Recursi
     /**
      * @param \Iterator $iterator    The Iterator to filter
      * @param string[]  $directories An array of directories to exclude
+=======
+ * @extends \FilterIterator<string, SplFileInfo>
+ * @implements \RecursiveIterator<string, SplFileInfo>
+ */
+class ExcludeDirectoryFilterIterator extends \FilterIterator implements \RecursiveIterator
+{
+    /** @var \Iterator<string, SplFileInfo> */
+    private \Iterator $iterator;
+    private bool $isRecursive;
+    private array $excludedDirs = [];
+    private ?string $excludedPattern = null;
+
+    /**
+     * @param \Iterator<string, SplFileInfo> $iterator    The Iterator to filter
+     * @param string[]                       $directories An array of directories to exclude
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function __construct(\Iterator $iterator, array $directories)
     {
@@ -52,11 +74,16 @@ class ExcludeDirectoryFilterIterator extends \FilterIterator implements \Recursi
 
     /**
      * Filters the iterator values.
+<<<<<<< HEAD
      *
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function accept()
+=======
+     */
+    public function accept(): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->isRecursive && isset($this->excludedDirs[$this->getFilename()]) && $this->isDir()) {
             return false;
@@ -72,20 +99,28 @@ class ExcludeDirectoryFilterIterator extends \FilterIterator implements \Recursi
         return true;
     }
 
+<<<<<<< HEAD
     /**
      * @return bool
      */
     #[\ReturnTypeWillChange]
     public function hasChildren()
+=======
+    public function hasChildren(): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->isRecursive && $this->iterator->hasChildren();
     }
 
+<<<<<<< HEAD
     /**
      * @return self
      */
     #[\ReturnTypeWillChange]
     public function getChildren()
+=======
+    public function getChildren(): self
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $children = new self($this->iterator->getChildren(), []);
         $children->excludedDirs = $this->excludedDirs;

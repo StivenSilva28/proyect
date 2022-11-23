@@ -4,8 +4,15 @@ namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputOption;
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Input\InputOption;
+
+#[AsCommand(name: 'make:test')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class TestMakeCommand extends GeneratorCommand
 {
     /**
@@ -16,6 +23,20 @@ class TestMakeCommand extends GeneratorCommand
     protected $name = 'make:test';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'make:test';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -102,8 +123,14 @@ class TestMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
+<<<<<<< HEAD
             ['unit', 'u', InputOption::VALUE_NONE, 'Create a unit test.'],
             ['pest', 'p', InputOption::VALUE_NONE, 'Create a Pest test.'],
+=======
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the test already exists'],
+            ['unit', 'u', InputOption::VALUE_NONE, 'Create a unit test'],
+            ['pest', 'p', InputOption::VALUE_NONE, 'Create a Pest test'],
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ];
     }
 }

@@ -32,6 +32,7 @@ class AttributeMatchingExtension extends AbstractExtension
     public function getAttributeMatchingTranslators(): array
     {
         return [
+<<<<<<< HEAD
             'exists' => [$this, 'translateExists'],
             '=' => [$this, 'translateEquals'],
             '~=' => [$this, 'translateIncludes'],
@@ -40,6 +41,16 @@ class AttributeMatchingExtension extends AbstractExtension
             '$=' => [$this, 'translateSuffixMatch'],
             '*=' => [$this, 'translateSubstringMatch'],
             '!=' => [$this, 'translateDifferent'],
+=======
+            'exists' => $this->translateExists(...),
+            '=' => $this->translateEquals(...),
+            '~=' => $this->translateIncludes(...),
+            '|=' => $this->translateDashMatch(...),
+            '^=' => $this->translatePrefixMatch(...),
+            '$=' => $this->translateSuffixMatch(...),
+            '*=' => $this->translateSubstringMatch(...),
+            '!=' => $this->translateDifferent(...),
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ];
     }
 

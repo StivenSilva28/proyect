@@ -20,11 +20,19 @@ namespace Symfony\Component\HttpKernel\CacheWarmer;
  */
 class CacheWarmerAggregate implements CacheWarmerInterface
 {
+<<<<<<< HEAD
     private $warmers;
     private $debug;
     private $deprecationLogsFilepath;
     private $optionalsEnabled = false;
     private $onlyOptionalsEnabled = false;
+=======
+    private iterable $warmers;
+    private bool $debug;
+    private ?string $deprecationLogsFilepath;
+    private bool $optionalsEnabled = false;
+    private bool $onlyOptionalsEnabled = false;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param iterable<mixed, CacheWarmerInterface> $warmers

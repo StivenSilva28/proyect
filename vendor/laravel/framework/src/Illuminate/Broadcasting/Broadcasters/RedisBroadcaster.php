@@ -2,8 +2,16 @@
 
 namespace Illuminate\Broadcasting\Broadcasters;
 
+<<<<<<< HEAD
 use Illuminate\Contracts\Redis\Factory as Redis;
 use Illuminate\Support\Arr;
+=======
+use Illuminate\Broadcasting\BroadcastException;
+use Illuminate\Contracts\Redis\Factory as Redis;
+use Illuminate\Support\Arr;
+use Predis\Connection\ConnectionException;
+use RedisException;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class RedisBroadcaster extends Broadcaster
@@ -105,6 +113,11 @@ class RedisBroadcaster extends Broadcaster
      * @param  string  $event
      * @param  array  $payload
      * @return void
+<<<<<<< HEAD
+=======
+     *
+     * @throws \Illuminate\Broadcasting\BroadcastException
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function broadcast(array $channels, $event, array $payload = [])
     {
@@ -120,10 +133,23 @@ class RedisBroadcaster extends Broadcaster
             'socket' => Arr::pull($payload, 'socket'),
         ]);
 
+<<<<<<< HEAD
         $connection->eval(
             $this->broadcastMultipleChannelsScript(),
             0, $payload, ...$this->formatChannels($channels)
         );
+=======
+        try {
+            $connection->eval(
+                $this->broadcastMultipleChannelsScript(),
+                0, $payload, ...$this->formatChannels($channels)
+            );
+        } catch (ConnectionException|RedisException $e) {
+            throw new BroadcastException(
+                sprintf('Redis error: %s.', $e->getMessage())
+            );
+        }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

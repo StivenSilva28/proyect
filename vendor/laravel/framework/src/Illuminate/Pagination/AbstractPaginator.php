@@ -6,9 +6,15 @@ use Closure;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\ForwardsCalls;
 use Illuminate\Support\Traits\Tappable;
+=======
+use Illuminate\Support\Traits\ForwardsCalls;
+use Illuminate\Support\Traits\Tappable;
+use Traversable;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 /**
  * @mixin \Illuminate\Support\Collection
@@ -181,7 +187,11 @@ abstract class AbstractPaginator implements Htmlable
         }
 
         return $this->path()
+<<<<<<< HEAD
                         .(Str::contains($this->path(), '?') ? '&' : '?')
+=======
+                        .(str_contains($this->path(), '?') ? '&' : '?')
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                         .Arr::query($parameters)
                         .$this->buildFragment();
     }
@@ -609,8 +619,12 @@ abstract class AbstractPaginator implements Htmlable
      */
     public static function useBootstrap()
     {
+<<<<<<< HEAD
         static::defaultView('pagination::bootstrap-4');
         static::defaultSimpleView('pagination::simple-bootstrap-4');
+=======
+        static::useBootstrapFour();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -625,12 +639,41 @@ abstract class AbstractPaginator implements Htmlable
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Indicate that Bootstrap 4 styling should be used for generated links.
+     *
+     * @return void
+     */
+    public static function useBootstrapFour()
+    {
+        static::defaultView('pagination::bootstrap-4');
+        static::defaultSimpleView('pagination::simple-bootstrap-4');
+    }
+
+    /**
+     * Indicate that Bootstrap 5 styling should be used for generated links.
+     *
+     * @return void
+     */
+    public static function useBootstrapFive()
+    {
+        static::defaultView('pagination::bootstrap-5');
+        static::defaultSimpleView('pagination::simple-bootstrap-5');
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Get an iterator for the items.
      *
      * @return \ArrayIterator
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function getIterator()
+=======
+    public function getIterator(): Traversable
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->items->getIterator();
     }
@@ -660,8 +703,12 @@ abstract class AbstractPaginator implements Htmlable
      *
      * @return int
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function count()
+=======
+    public function count(): int
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->items->count();
     }
@@ -705,8 +752,12 @@ abstract class AbstractPaginator implements Htmlable
      * @param  mixed  $key
      * @return bool
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetExists($key)
+=======
+    public function offsetExists($key): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->items->has($key);
     }
@@ -717,8 +768,12 @@ abstract class AbstractPaginator implements Htmlable
      * @param  mixed  $key
      * @return mixed
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetGet($key)
+=======
+    public function offsetGet($key): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->items->get($key);
     }
@@ -730,8 +785,12 @@ abstract class AbstractPaginator implements Htmlable
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
+=======
+    public function offsetSet($key, $value): void
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->items->put($key, $value);
     }
@@ -742,8 +801,12 @@ abstract class AbstractPaginator implements Htmlable
      * @param  mixed  $key
      * @return void
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetUnset($key)
+=======
+    public function offsetUnset($key): void
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->items->forget($key);
     }

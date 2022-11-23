@@ -34,12 +34,17 @@ abstract class Helper implements HelperInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getHelperSet()
+=======
+    public function getHelperSet(): ?HelperSet
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->helperSet;
     }
 
     /**
+<<<<<<< HEAD
      * Returns the length of a string, using mb_strwidth if it is available.
      *
      * @deprecated since Symfony 5.3
@@ -54,12 +59,18 @@ abstract class Helper implements HelperInterface
     }
 
     /**
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Returns the width of a string, using mb_strwidth if it is available.
      * The width is how many characters positions the string will use.
      */
     public static function width(?string $string): int
     {
+<<<<<<< HEAD
         $string ?? $string = '';
+=======
+        $string ??= '';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if (preg_match('//u', $string)) {
             return (new UnicodeString($string))->width(false);
@@ -78,7 +89,11 @@ abstract class Helper implements HelperInterface
      */
     public static function length(?string $string): int
     {
+<<<<<<< HEAD
         $string ?? $string = '';
+=======
+        $string ??= '';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if (preg_match('//u', $string)) {
             return (new UnicodeString($string))->length();
@@ -93,12 +108,19 @@ abstract class Helper implements HelperInterface
 
     /**
      * Returns the subset of a string, using mb_substr if it is available.
+<<<<<<< HEAD
      *
      * @return string
      */
     public static function substr(?string $string, int $from, int $length = null)
     {
         $string ?? $string = '';
+=======
+     */
+    public static function substr(?string $string, int $from, int $length = null): string
+    {
+        $string ??= '';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if (false === $encoding = mb_detect_encoding($string, null, true)) {
             return substr($string, $from, $length);
@@ -107,7 +129,11 @@ abstract class Helper implements HelperInterface
         return mb_substr($string, $from, $length, $encoding);
     }
 
+<<<<<<< HEAD
     public static function formatTime($secs)
+=======
+    public static function formatTime(int|float $secs)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         static $timeFormats = [
             [0, '< 1 sec'],
@@ -153,6 +179,7 @@ abstract class Helper implements HelperInterface
         return sprintf('%d B', $memory);
     }
 
+<<<<<<< HEAD
     /**
      * @deprecated since Symfony 5.3
      */
@@ -163,6 +190,8 @@ abstract class Helper implements HelperInterface
         return self::width(self::removeDecoration($formatter, $string));
     }
 
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     public static function removeDecoration(OutputFormatterInterface $formatter, ?string $string)
     {
         $isDecorated = $formatter->isDecorated();

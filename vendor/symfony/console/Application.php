@@ -70,6 +70,7 @@ use Symfony\Contracts\Service\ResetInterface;
  */
 class Application implements ResetInterface
 {
+<<<<<<< HEAD
     private $commands = [];
     private $wantHelps = false;
     private $runningCommand;
@@ -87,6 +88,25 @@ class Application implements ResetInterface
     private $initialized;
     private $signalRegistry;
     private $signalsToDispatchEvent = [];
+=======
+    private array $commands = [];
+    private bool $wantHelps = false;
+    private ?Command $runningCommand = null;
+    private string $name;
+    private string $version;
+    private ?CommandLoaderInterface $commandLoader = null;
+    private bool $catchExceptions = true;
+    private bool $autoExit = true;
+    private InputDefinition $definition;
+    private HelperSet $helperSet;
+    private ?EventDispatcherInterface $dispatcher = null;
+    private Terminal $terminal;
+    private string $defaultCommand;
+    private bool $singleCommand = false;
+    private bool $initialized = false;
+    private SignalRegistry $signalRegistry;
+    private array $signalsToDispatchEvent = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(string $name = 'UNKNOWN', string $version = 'UNKNOWN')
     {
@@ -134,7 +154,11 @@ class Application implements ResetInterface
      *
      * @throws \Exception When running fails. Bypass this when {@link setCatchExceptions()}.
      */
+<<<<<<< HEAD
     public function run(InputInterface $input = null, OutputInterface $output = null)
+=======
+    public function run(InputInterface $input = null, OutputInterface $output = null): int
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (\function_exists('putenv')) {
             @putenv('LINES='.$this->terminal->getHeight());
@@ -228,7 +252,11 @@ class Application implements ResetInterface
         try {
             // Makes ArgvInput::getFirstArgument() able to distinguish an option from an argument.
             $input->bind($this->getDefinition());
+<<<<<<< HEAD
         } catch (ExceptionInterface $e) {
+=======
+        } catch (ExceptionInterface) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             // Errors must be ignored, full binding/validation happens later when the command is known.
         }
 
@@ -318,6 +346,7 @@ class Application implements ResetInterface
 
     /**
      * Get the helper set associated with the command.
+<<<<<<< HEAD
      *
      * @return HelperSet
      */
@@ -328,6 +357,12 @@ class Application implements ResetInterface
         }
 
         return $this->helperSet;
+=======
+     */
+    public function getHelperSet(): HelperSet
+    {
+        return $this->helperSet ??= $this->getDefaultHelperSet();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     public function setDefinition(InputDefinition $definition)
@@ -337,6 +372,7 @@ class Application implements ResetInterface
 
     /**
      * Gets the InputDefinition related to this Application.
+<<<<<<< HEAD
      *
      * @return InputDefinition
      */
@@ -345,6 +381,12 @@ class Application implements ResetInterface
         if (!$this->definition) {
             $this->definition = $this->getDefaultInputDefinition();
         }
+=======
+     */
+    public function getDefinition(): InputDefinition
+    {
+        $this->definition ??= $this->getDefaultInputDefinition();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if ($this->singleCommand) {
             $inputDefinition = $this->definition;
@@ -390,20 +432,30 @@ class Application implements ResetInterface
 
     /**
      * Gets the help message.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getHelp()
+=======
+     */
+    public function getHelp(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->getLongVersion();
     }
 
     /**
      * Gets whether to catch exceptions or not during commands execution.
+<<<<<<< HEAD
      *
      * @return bool
      */
     public function areExceptionsCaught()
+=======
+     */
+    public function areExceptionsCaught(): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->catchExceptions;
     }
@@ -418,10 +470,15 @@ class Application implements ResetInterface
 
     /**
      * Gets whether to automatically exit after a command execution or not.
+<<<<<<< HEAD
      *
      * @return bool
      */
     public function isAutoExitEnabled()
+=======
+     */
+    public function isAutoExitEnabled(): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->autoExit;
     }
@@ -436,10 +493,15 @@ class Application implements ResetInterface
 
     /**
      * Gets the name of the application.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getName()
+=======
+     */
+    public function getName(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->name;
     }
@@ -454,10 +516,15 @@ class Application implements ResetInterface
 
     /**
      * Gets the application version.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getVersion()
+=======
+     */
+    public function getVersion(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->version;
     }
@@ -490,10 +557,15 @@ class Application implements ResetInterface
 
     /**
      * Registers a new command.
+<<<<<<< HEAD
      *
      * @return Command
      */
     public function register(string $name)
+=======
+     */
+    public function register(string $name): Command
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->add(new Command($name));
     }
@@ -586,6 +658,7 @@ class Application implements ResetInterface
 
     /**
      * Returns true if the command exists, false otherwise.
+<<<<<<< HEAD
      *
      * @return bool
      */
@@ -594,6 +667,14 @@ class Application implements ResetInterface
         $this->init();
 
         return isset($this->commands[$name]) || ($this->commandLoader && $this->commandLoader->has($name) && $this->add($this->commandLoader->get($name)));
+=======
+     */
+    public function has(string $name): bool
+    {
+        $this->init();
+
+        return isset($this->commands[$name]) || ($this->commandLoader?->has($name) && $this->add($this->commandLoader->get($name)));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -603,7 +684,11 @@ class Application implements ResetInterface
      *
      * @return string[]
      */
+<<<<<<< HEAD
     public function getNamespaces()
+=======
+    public function getNamespaces(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $namespaces = [];
         foreach ($this->all() as $command) {
@@ -624,11 +709,17 @@ class Application implements ResetInterface
     /**
      * Finds a registered namespace by a name or an abbreviation.
      *
+<<<<<<< HEAD
      * @return string
      *
      * @throws NamespaceNotFoundException When namespace is incorrect or ambiguous
      */
     public function findNamespace(string $namespace)
+=======
+     * @throws NamespaceNotFoundException When namespace is incorrect or ambiguous
+     */
+    public function findNamespace(string $namespace): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $allNamespaces = $this->getNamespaces();
         $expr = implode('[^:]*:', array_map('preg_quote', explode(':', $namespace))).'[^:]*';
@@ -820,7 +911,11 @@ class Application implements ResetInterface
      *
      * @return string[][]
      */
+<<<<<<< HEAD
     public static function getAbbreviations(array $names)
+=======
+    public static function getAbbreviations(array $names): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $abbrevs = [];
         foreach ($names as $name) {
@@ -1044,7 +1139,11 @@ class Application implements ResetInterface
         try {
             $command->mergeApplicationDefinition();
             $input->bind($command->getDefinition());
+<<<<<<< HEAD
         } catch (ExceptionInterface $e) {
+=======
+        } catch (ExceptionInterface) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             // ignore invalid options/arguments for now, to allow the event listeners to customize the InputDefinition
         }
 
@@ -1081,20 +1180,30 @@ class Application implements ResetInterface
 
     /**
      * Gets the name of the command based on input.
+<<<<<<< HEAD
      *
      * @return string|null
      */
     protected function getCommandName(InputInterface $input)
+=======
+     */
+    protected function getCommandName(InputInterface $input): ?string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->singleCommand ? $this->defaultCommand : $input->getFirstArgument();
     }
 
     /**
      * Gets the default input definition.
+<<<<<<< HEAD
      *
      * @return InputDefinition
      */
     protected function getDefaultInputDefinition()
+=======
+     */
+    protected function getDefaultInputDefinition(): InputDefinition
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new InputDefinition([
             new InputArgument('command', InputArgument::REQUIRED, 'The command to execute'),
@@ -1112,17 +1221,26 @@ class Application implements ResetInterface
      *
      * @return Command[]
      */
+<<<<<<< HEAD
     protected function getDefaultCommands()
+=======
+    protected function getDefaultCommands(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return [new HelpCommand(), new ListCommand(), new CompleteCommand(), new DumpCompletionCommand()];
     }
 
     /**
      * Gets the default helper set with the helpers that should always be available.
+<<<<<<< HEAD
      *
      * @return HelperSet
      */
     protected function getDefaultHelperSet()
+=======
+     */
+    protected function getDefaultHelperSet(): HelperSet
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new HelperSet([
             new FormatterHelper(),
@@ -1144,10 +1262,15 @@ class Application implements ResetInterface
      * Returns the namespace part of the command name.
      *
      * This method is not part of public API and should not be used directly.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function extractNamespace(string $name, int $limit = null)
+=======
+     */
+    public function extractNamespace(string $name, int $limit = null): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $parts = explode(':', $name, -1);
 
@@ -1207,7 +1330,11 @@ class Application implements ResetInterface
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setDefaultCommand(string $commandName, bool $isSingleCommand = false)
+=======
+    public function setDefaultCommand(string $commandName, bool $isSingleCommand = false): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->defaultCommand = explode('|', ltrim($commandName, '|'))[0];
 

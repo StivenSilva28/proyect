@@ -35,11 +35,17 @@ class ProcessUtils
      * @param string $caller The name of method call that validates the input
      * @param mixed  $input  The input to validate
      *
+<<<<<<< HEAD
      * @return mixed
      *
      * @throws InvalidArgumentException In case the input is not valid
      */
     public static function validateInput(string $caller, $input)
+=======
+     * @throws InvalidArgumentException In case the input is not valid
+     */
+    public static function validateInput(string $caller, mixed $input): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $input) {
             if (\is_resource($input)) {

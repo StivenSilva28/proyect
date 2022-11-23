@@ -24,10 +24,14 @@ use Symfony\Component\VarDumper\Caster\ClassStub;
  */
 class ConfigDataCollector extends DataCollector implements LateDataCollectorInterface
 {
+<<<<<<< HEAD
     /**
      * @var KernelInterface
      */
     private $kernel;
+=======
+    private KernelInterface $kernel;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Sets the Kernel associated with this Request.
@@ -108,9 +112,14 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
     }
 
     /**
+<<<<<<< HEAD
      * Returns the state of the current Symfony release.
      *
      * @return string One of: unknown, dev, stable, eom, eol
+=======
+     * Returns the state of the current Symfony release
+     * as one of: unknown, dev, stable, eom, eol.
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function getSymfonyState(): string
     {
@@ -126,9 +135,12 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
         return $this->data['symfony_minor_version'];
     }
 
+<<<<<<< HEAD
     /**
      * Returns if the current Symfony version is a Long-Term Support one.
      */
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     public function isSymfonyLts(): bool
     {
         return $this->data['symfony_lts'];
@@ -168,9 +180,12 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
         return $this->data['php_version_extra'] ?? null;
     }
 
+<<<<<<< HEAD
     /**
      * @return int The PHP architecture as number of bits (e.g. 32 or 64)
      */
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     public function getPhpArchitecture(): int
     {
         return $this->data['php_architecture'];
@@ -199,20 +214,41 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
      *
      * @return bool|string true if debug is enabled, false otherwise or a string if no kernel was set
      */
+<<<<<<< HEAD
     public function isDebug()
+=======
+    public function isDebug(): bool|string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->data['debug'];
     }
 
     /**
+<<<<<<< HEAD
      * Returns true if the XDebug is enabled.
      */
     public function hasXDebug(): bool
+=======
+     * Returns true if the Xdebug is enabled.
+     */
+    public function hasXdebug(): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->data['xdebug_enabled'];
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Returns true if the function xdebug_info is available.
+     */
+    public function hasXdebugInfo(): bool
+    {
+        return \function_exists('xdebug_info');
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Returns true if APCu is enabled.
      */
     public function hasApcu(): bool
@@ -249,11 +285,14 @@ class ConfigDataCollector extends DataCollector implements LateDataCollectorInte
         return 'config';
     }
 
+<<<<<<< HEAD
     /**
      * Tries to retrieve information about the current Symfony version.
      *
      * @return string One of: dev, stable, eom, eol
      */
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     private function determineSymfonyState(): string
     {
         $now = new \DateTime();

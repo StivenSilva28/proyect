@@ -14,7 +14,10 @@ use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\CallQueuedClosure;
 use Illuminate\Support\ProcessUtils;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Support\Traits\Macroable;
 use RuntimeException;
 
@@ -23,11 +26,25 @@ class Schedule
     use Macroable;
 
     const SUNDAY = 0;
+<<<<<<< HEAD
     const MONDAY = 1;
     const TUESDAY = 2;
     const WEDNESDAY = 3;
     const THURSDAY = 4;
     const FRIDAY = 5;
+=======
+
+    const MONDAY = 1;
+
+    const TUESDAY = 2;
+
+    const WEDNESDAY = 3;
+
+    const THURSDAY = 4;
+
+    const FRIDAY = 5;
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     const SATURDAY = 6;
 
     /**
@@ -272,11 +289,19 @@ class Schedule
             return ProcessUtils::escapeArgument($value);
         });
 
+<<<<<<< HEAD
         if (Str::startsWith($key, '--')) {
             $value = $value->map(function ($value) use ($key) {
                 return "{$key}={$value}";
             });
         } elseif (Str::startsWith($key, '-')) {
+=======
+        if (str_starts_with($key, '--')) {
+            $value = $value->map(function ($value) use ($key) {
+                return "{$key}={$value}";
+            });
+        } elseif (str_starts_with($key, '-')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $value = $value->map(function ($value) use ($key) {
                 return "{$key} {$value}";
             });
@@ -352,7 +377,11 @@ class Schedule
             } catch (BindingResolutionException $e) {
                 throw new RuntimeException(
                     'Unable to resolve the dispatcher from the service container. Please bind it or install the illuminate/bus package.',
+<<<<<<< HEAD
                     $e->getCode(), $e
+=======
+                    is_int($e->getCode()) ? $e->getCode() : 0, $e
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 );
             }
         }

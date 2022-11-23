@@ -20,7 +20,11 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class GithubActionReporter
 {
+<<<<<<< HEAD
     private $output;
+=======
+    private OutputInterface $output;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @see https://github.com/actions/toolkit/blob/5e5e1b7aacba68a53836a34db4a288c3c1c1585b/packages/core/src/command.ts#L80-L85

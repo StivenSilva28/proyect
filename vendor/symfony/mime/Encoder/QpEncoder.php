@@ -76,7 +76,11 @@ class QpEncoder implements EncoderInterface
         255 => '=FF',
     ];
 
+<<<<<<< HEAD
     private static $safeMapShare = [];
+=======
+    private static array $safeMapShare = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * A map of non-encoded ascii characters.
@@ -85,7 +89,11 @@ class QpEncoder implements EncoderInterface
      *
      * @internal
      */
+<<<<<<< HEAD
     protected $safeMap = [];
+=======
+    protected array $safeMap = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct()
     {
@@ -184,6 +192,7 @@ class QpEncoder implements EncoderInterface
     private function standardize(string $string): string
     {
         $string = str_replace(["\t=0D=0A", ' =0D=0A', '=0D=0A'], ["=09\r\n", "=20\r\n", "\r\n"], $string);
+<<<<<<< HEAD
         switch ($end = \ord(substr($string, -1))) {
             case 0x09:
             case 0x20:
@@ -191,5 +200,13 @@ class QpEncoder implements EncoderInterface
         }
 
         return $string;
+=======
+
+        return match ($end = \ord(substr($string, -1))) {
+            0x09,
+            0x20 => substr_replace($string, self::QP_MAP[$end], -1),
+            default => $string,
+        };
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

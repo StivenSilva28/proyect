@@ -22,6 +22,7 @@ use InvalidArgumentException;
  * @method \Illuminate\Routing\RouteRegistrar middleware(array|string|null $middleware)
  * @method \Illuminate\Routing\RouteRegistrar name(string $value)
  * @method \Illuminate\Routing\RouteRegistrar namespace(string|null $value)
+<<<<<<< HEAD
  * @method \Illuminate\Routing\RouteRegistrar prefix(string  $prefix)
  * @method \Illuminate\Routing\RouteRegistrar scopeBindings()
  * @method \Illuminate\Routing\RouteRegistrar where(array  $where)
@@ -29,6 +30,18 @@ use InvalidArgumentException;
  */
 class RouteRegistrar
 {
+=======
+ * @method \Illuminate\Routing\RouteRegistrar prefix(string $prefix)
+ * @method \Illuminate\Routing\RouteRegistrar scopeBindings()
+ * @method \Illuminate\Routing\RouteRegistrar where(array $where)
+ * @method \Illuminate\Routing\RouteRegistrar withoutMiddleware(array|string $middleware)
+ * @method \Illuminate\Routing\RouteRegistrar withoutScopedBindings()
+ */
+class RouteRegistrar
+{
+    use CreatesRegularExpressionRouteConstraints;
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * The router instance.
      *
@@ -156,11 +169,20 @@ class RouteRegistrar
      * Create a route group with shared attributes.
      *
      * @param  \Closure|string  $callback
+<<<<<<< HEAD
      * @return void
+=======
+     * @return $this
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function group($callback)
     {
         $this->router->group($this->attributes, $callback);
+<<<<<<< HEAD
+=======
+
+        return $this;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

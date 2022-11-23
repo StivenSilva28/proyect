@@ -7,7 +7,10 @@ use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;
 use Illuminate\Contracts\Support\Arrayable;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class EloquentUserProvider implements UserProvider
 {
@@ -26,6 +29,16 @@ class EloquentUserProvider implements UserProvider
     protected $model;
 
     /**
+<<<<<<< HEAD
+=======
+     * The callback that may modify the user retrieval queries.
+     *
+     * @var (\Closure(\Illuminate\Database\Eloquent\Builder):mixed)|null
+     */
+    protected $queryCallback;
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new database user provider.
      *
      * @param  \Illuminate\Contracts\Hashing\Hasher  $hasher
@@ -81,7 +94,11 @@ class EloquentUserProvider implements UserProvider
     /**
      * Update the "remember me" token for the given user in storage.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Contracts\Auth\Authenticatable|\Illuminate\Database\Eloquent\Model  $user
+=======
+     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  string  $token
      * @return void
      */
@@ -106,9 +123,19 @@ class EloquentUserProvider implements UserProvider
      */
     public function retrieveByCredentials(array $credentials)
     {
+<<<<<<< HEAD
         if (empty($credentials) ||
            (count($credentials) === 1 &&
             Str::contains($this->firstCredentialKey($credentials), 'password'))) {
+=======
+        $credentials = array_filter(
+            $credentials,
+            fn ($key) => ! str_contains($key, 'password'),
+            ARRAY_FILTER_USE_KEY
+        );
+
+        if (empty($credentials)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return;
         }
 
@@ -118,10 +145,13 @@ class EloquentUserProvider implements UserProvider
         $query = $this->newModelQuery();
 
         foreach ($credentials as $key => $value) {
+<<<<<<< HEAD
             if (Str::contains($key, 'password')) {
                 continue;
             }
 
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             if (is_array($value) || $value instanceof Arrayable) {
                 $query->whereIn($key, $value);
             } elseif ($value instanceof Closure) {
@@ -135,6 +165,7 @@ class EloquentUserProvider implements UserProvider
     }
 
     /**
+<<<<<<< HEAD
      * Get the first key from the credential array.
      *
      * @param  array  $credentials
@@ -148,6 +179,8 @@ class EloquentUserProvider implements UserProvider
     }
 
     /**
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Validate a user against the given credentials.
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
@@ -169,9 +202,19 @@ class EloquentUserProvider implements UserProvider
      */
     protected function newModelQuery($model = null)
     {
+<<<<<<< HEAD
         return is_null($model)
                 ? $this->createModel()->newQuery()
                 : $model->newQuery();
+=======
+        $query = is_null($model)
+                ? $this->createModel()->newQuery()
+                : $model->newQuery();
+
+        with($query, $this->queryCallback);
+
+        return $query;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -231,4 +274,30 @@ class EloquentUserProvider implements UserProvider
 
         return $this;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Get the callback that modifies the query before retrieving users.
+     *
+     * @return \Closure|null
+     */
+    public function getQueryCallback()
+    {
+        return $this->queryCallback;
+    }
+
+    /**
+     * Sets the callback to modify the query before retrieving users.
+     *
+     * @param  (\Closure(\Illuminate\Database\Eloquent\Builder):mixed)|null  $queryCallback
+     * @return $this
+     */
+    public function withQuery($queryCallback = null)
+    {
+        $this->queryCallback = $queryCallback;
+
+        return $this;
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

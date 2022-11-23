@@ -45,6 +45,7 @@ trait TestDatabases
                 Testing\RefreshDatabase::class,
             ];
 
+<<<<<<< HEAD
             if (Arr::hasAny($uses, $databaseTraits)) {
                 if (! ParallelTesting::option('without_databases')) {
                     $this->whenNotUsingInMemoryDatabase(function ($database) use ($uses) {
@@ -63,6 +64,34 @@ trait TestDatabases
                 }
             }
         });
+=======
+            if (Arr::hasAny($uses, $databaseTraits) && ! ParallelTesting::option('without_databases')) {
+                $this->whenNotUsingInMemoryDatabase(function ($database) use ($uses) {
+                    [$testDatabase, $created] = $this->ensureTestDatabaseExists($database);
+
+                    $this->switchToDatabase($testDatabase);
+
+                    if (isset($uses[Testing\DatabaseTransactions::class])) {
+                        $this->ensureSchemaIsUpToDate();
+                    }
+
+                    if ($created) {
+                        ParallelTesting::callSetUpTestDatabaseCallbacks($testDatabase);
+                    }
+                });
+            }
+        });
+
+        ParallelTesting::tearDownProcess(function () {
+            $this->whenNotUsingInMemoryDatabase(function ($database) {
+                if (ParallelTesting::option('drop_databases')) {
+                    Schema::dropDatabaseIfExists(
+                        $this->testDatabase($database)
+                    );
+                }
+            });
+        });
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

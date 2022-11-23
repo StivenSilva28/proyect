@@ -78,6 +78,22 @@ class View implements ArrayAccess, Htmlable, ViewContract
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Get the evaluated contents of a given fragment.
+     *
+     * @param  string  $fragment
+     * @return string
+     */
+    public function fragment($fragment)
+    {
+        return $this->render(function () use ($fragment) {
+            return $this->factory->getFragment($fragment);
+        });
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Get the string contents of the view.
      *
      * @param  callable|null  $callback
@@ -112,7 +128,11 @@ class View implements ArrayAccess, Htmlable, ViewContract
      */
     protected function renderContents()
     {
+<<<<<<< HEAD
         // We will keep track of the amount of views being rendered so we can flush
+=======
+        // We will keep track of the number of views being rendered so we can flush
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         // the section after the complete rendering operation is done. This will
         // clear out the sections for any separate views that may be rendered.
         $this->factory->incrementRender();
@@ -122,7 +142,11 @@ class View implements ArrayAccess, Htmlable, ViewContract
         $contents = $this->getContents();
 
         // Once we've finished rendering the view, we'll decrement the render count
+<<<<<<< HEAD
         // so that each sections get flushed out next time a view is created and
+=======
+        // so that each section gets flushed out next time a view is created and
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         // no old sections are staying around in the memory of an environment.
         $this->factory->decrementRender();
 
@@ -306,8 +330,12 @@ class View implements ArrayAccess, Htmlable, ViewContract
      * @param  string  $key
      * @return bool
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetExists($key)
+=======
+    public function offsetExists($key): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return array_key_exists($key, $this->data);
     }
@@ -318,8 +346,12 @@ class View implements ArrayAccess, Htmlable, ViewContract
      * @param  string  $key
      * @return mixed
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetGet($key)
+=======
+    public function offsetGet($key): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->data[$key];
     }
@@ -331,8 +363,12 @@ class View implements ArrayAccess, Htmlable, ViewContract
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
+=======
+    public function offsetSet($key, $value): void
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->with($key, $value);
     }
@@ -343,8 +379,12 @@ class View implements ArrayAccess, Htmlable, ViewContract
      * @param  string  $key
      * @return void
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetUnset($key)
+=======
+    public function offsetUnset($key): void
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         unset($this->data[$key]);
     }
@@ -409,7 +449,11 @@ class View implements ArrayAccess, Htmlable, ViewContract
             return $this->macroCall($method, $parameters);
         }
 
+<<<<<<< HEAD
         if (! Str::startsWith($method, 'with')) {
+=======
+        if (! str_starts_with($method, 'with')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             throw new BadMethodCallException(sprintf(
                 'Method %s::%s does not exist.', static::class, $method
             ));

@@ -128,9 +128,15 @@ class MailFake implements Factory, Mailer, MailQueue
      */
     public function assertNothingSent()
     {
+<<<<<<< HEAD
         $mailableNames = collect($this->mailables)->map(function ($mailable) {
             return get_class($mailable);
         })->join(', ');
+=======
+        $mailableNames = collect($this->mailables)->map(
+            fn ($mailable) => get_class($mailable)
+        )->join(', ');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         PHPUnit::assertEmpty($this->mailables, 'The following mailables were sent unexpectedly: '.$mailableNames);
     }
@@ -197,9 +203,15 @@ class MailFake implements Factory, Mailer, MailQueue
      */
     public function assertNothingQueued()
     {
+<<<<<<< HEAD
         $mailableNames = collect($this->queuedMailables)->map(function ($mailable) {
             return get_class($mailable);
         })->join(', ');
+=======
+        $mailableNames = collect($this->queuedMailables)->map(
+            fn ($mailable) => get_class($mailable)
+        )->join(', ');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         PHPUnit::assertEmpty($this->queuedMailables, 'The following mailables were queued unexpectedly: '.$mailableNames);
     }
@@ -219,6 +231,7 @@ class MailFake implements Factory, Mailer, MailQueue
             return collect();
         }
 
+<<<<<<< HEAD
         $callback = $callback ?: function () {
             return true;
         };
@@ -226,6 +239,11 @@ class MailFake implements Factory, Mailer, MailQueue
         return $this->mailablesOf($mailable)->filter(function ($mailable) use ($callback) {
             return $callback($mailable);
         });
+=======
+        $callback = $callback ?: fn () => true;
+
+        return $this->mailablesOf($mailable)->filter(fn ($mailable) => $callback($mailable));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -254,6 +272,7 @@ class MailFake implements Factory, Mailer, MailQueue
             return collect();
         }
 
+<<<<<<< HEAD
         $callback = $callback ?: function () {
             return true;
         };
@@ -261,6 +280,11 @@ class MailFake implements Factory, Mailer, MailQueue
         return $this->queuedMailablesOf($mailable)->filter(function ($mailable) use ($callback) {
             return $callback($mailable);
         });
+=======
+        $callback = $callback ?: fn () => true;
+
+        return $this->queuedMailablesOf($mailable)->filter(fn ($mailable) => $callback($mailable));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -282,9 +306,13 @@ class MailFake implements Factory, Mailer, MailQueue
      */
     protected function mailablesOf($type)
     {
+<<<<<<< HEAD
         return collect($this->mailables)->filter(function ($mailable) use ($type) {
             return $mailable instanceof $type;
         });
+=======
+        return collect($this->mailables)->filter(fn ($mailable) => $mailable instanceof $type);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -295,9 +323,13 @@ class MailFake implements Factory, Mailer, MailQueue
      */
     protected function queuedMailablesOf($type)
     {
+<<<<<<< HEAD
         return collect($this->queuedMailables)->filter(function ($mailable) use ($type) {
             return $mailable instanceof $type;
         });
+=======
+        return collect($this->queuedMailables)->filter(fn ($mailable) => $mailable instanceof $type);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -330,6 +362,20 @@ class MailFake implements Factory, Mailer, MailQueue
      * @param  mixed  $users
      * @return \Illuminate\Mail\PendingMail
      */
+<<<<<<< HEAD
+=======
+    public function cc($users)
+    {
+        return (new PendingMailFake($this))->cc($users);
+    }
+
+    /**
+     * Begin the process of mailing a mailable class instance.
+     *
+     * @param  mixed  $users
+     * @return \Illuminate\Mail\PendingMail
+     */
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     public function bcc($users)
     {
         return (new PendingMailFake($this))->bcc($users);

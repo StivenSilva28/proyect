@@ -92,17 +92,32 @@ trait InteractsWithPivotTable
         $current = $this->getCurrentlyAttachedPivots()
                         ->pluck($this->relatedPivotKey)->all();
 
+<<<<<<< HEAD
         $detach = array_diff($current, array_keys(
             $records = $this->formatRecordsList($this->parseIds($ids))
         ));
+=======
+        $records = $this->formatRecordsList($this->parseIds($ids));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         // Next, we will take the differences of the currents and given IDs and detach
         // all of the entities that exist in the "current" array but are not in the
         // array of the new IDs given to the method which will complete the sync.
+<<<<<<< HEAD
         if ($detaching && count($detach) > 0) {
             $this->detach($detach);
 
             $changes['detached'] = $this->castKeys($detach);
+=======
+        if ($detaching) {
+            $detach = array_diff($current, array_keys($records));
+
+            if (count($detach) > 0) {
+                $this->detach($detach);
+
+                $changes['detached'] = $this->castKeys($detach);
+            }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         // Now we are finally ready to attach the new records. Note that we'll disable
@@ -207,7 +222,11 @@ trait InteractsWithPivotTable
             return $this->updateExistingPivotUsingCustomClass($id, $attributes, $touch);
         }
 
+<<<<<<< HEAD
         if (in_array($this->updatedAt(), $this->pivotColumns)) {
+=======
+        if ($this->hasPivotColumn($this->updatedAt())) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $attributes = $this->addTimestampsToAttachment($attributes, true);
         }
 
@@ -669,6 +688,7 @@ trait InteractsWithPivotTable
      */
     protected function getTypeSwapValue($type, $value)
     {
+<<<<<<< HEAD
         switch (strtolower($type)) {
             case 'int':
             case 'integer':
@@ -682,5 +702,13 @@ trait InteractsWithPivotTable
             default:
                 return $value;
         }
+=======
+        return match (strtolower($type)) {
+            'int', 'integer' => (int) $value,
+            'real', 'float', 'double' => (float) $value,
+            'string' => (string) $value,
+            default => $value,
+        };
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

@@ -23,9 +23,21 @@ class PhpRedisConnector implements Connector
      */
     public function connect(array $config, array $options)
     {
+<<<<<<< HEAD
         $connector = function () use ($config, $options) {
             return $this->createClient(array_merge(
                 $config, $options, Arr::pull($config, 'options', [])
+=======
+        $formattedOptions = Arr::pull($config, 'options', []);
+
+        if (isset($config['prefix'])) {
+            $formattedOptions['prefix'] = $config['prefix'];
+        }
+
+        $connector = function () use ($config, $options, $formattedOptions) {
+            return $this->createClient(array_merge(
+                $config, $options, $formattedOptions
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ));
         };
 
@@ -84,7 +96,15 @@ class PhpRedisConnector implements Connector
             $this->establishConnection($client, $config);
 
             if (! empty($config['password'])) {
+<<<<<<< HEAD
                 $client->auth($config['password']);
+=======
+                if (isset($config['username']) && $config['username'] !== '' && is_string($config['password'])) {
+                    $client->auth([$config['username'], $config['password']]);
+                } else {
+                    $client->auth($config['password']);
+                }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
 
             if (isset($config['database'])) {
@@ -144,10 +164,15 @@ class PhpRedisConnector implements Connector
             $parameters[] = Arr::get($config, 'read_timeout', 0.0);
         }
 
+<<<<<<< HEAD
         if (version_compare(phpversion('redis'), '5.3.0', '>=')) {
             if (! is_null($context = Arr::get($config, 'context'))) {
                 $parameters[] = $context;
             }
+=======
+        if (version_compare(phpversion('redis'), '5.3.0', '>=') && ! is_null($context = Arr::get($config, 'context'))) {
+            $parameters[] = $context;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         $client->{($persistent ? 'pconnect' : 'connect')}(...$parameters);
@@ -174,10 +199,15 @@ class PhpRedisConnector implements Connector
             $parameters[] = $options['password'] ?? null;
         }
 
+<<<<<<< HEAD
         if (version_compare(phpversion('redis'), '5.3.2', '>=')) {
             if (! is_null($context = Arr::get($options, 'context'))) {
                 $parameters[] = $context;
             }
+=======
+        if (version_compare(phpversion('redis'), '5.3.2', '>=') && ! is_null($context = Arr::get($options, 'context'))) {
+            $parameters[] = $context;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return tap(new RedisCluster(...$parameters), function ($client) use ($options) {

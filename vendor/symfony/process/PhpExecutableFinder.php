@@ -28,10 +28,15 @@ class PhpExecutableFinder
 
     /**
      * Finds The PHP executable.
+<<<<<<< HEAD
      *
      * @return string|false
      */
     public function find(bool $includeArgs = true)
+=======
+     */
+    public function find(bool $includeArgs = true): string|false
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($php = getenv('PHP_BINARY')) {
             if (!is_executable($php)) {
@@ -88,10 +93,15 @@ class PhpExecutableFinder
 
     /**
      * Finds the PHP executable arguments.
+<<<<<<< HEAD
      *
      * @return array
      */
     public function findArguments()
+=======
+     */
+    public function findArguments(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $arguments = [];
         if ('phpdbg' === \PHP_SAPI) {

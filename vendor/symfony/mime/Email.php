@@ -38,6 +38,7 @@ class Email extends Message
         self::PRIORITY_LOWEST => 'Lowest',
     ];
 
+<<<<<<< HEAD
     private $text;
     private $textCharset;
     private $html;
@@ -47,11 +48,32 @@ class Email extends Message
      * @var AbstractPart|null
      */
     private $cachedBody; // Used to avoid wrong body hash in DKIM signatures with multiple parts (e.g. HTML + TEXT) due to multiple boundaries.
+=======
+    /**
+     * @var resource|string|null
+     */
+    private $text;
+
+    private ?string $textCharset = null;
+
+    /**
+     * @var resource|string|null
+     */
+    private $html;
+
+    private ?string $htmlCharset = null;
+    private array $attachments = [];
+    private ?AbstractPart $cachedBody = null; // Used to avoid wrong body hash in DKIM signatures with multiple parts (e.g. HTML + TEXT) due to multiple boundaries.
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function subject(string $subject)
+=======
+    public function subject(string $subject): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->setHeaderBody('Text', 'Subject', $subject);
     }
@@ -64,7 +86,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function date(\DateTimeInterface $dateTime)
+=======
+    public function date(\DateTimeInterface $dateTime): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->setHeaderBody('Date', 'Date', $dateTime);
     }
@@ -75,11 +101,17 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string $address
      *
      * @return $this
      */
     public function returnPath($address)
+=======
+     * @return $this
+     */
+    public function returnPath(Address|string $address): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->setHeaderBody('Path', 'Return-Path', Address::create($address));
     }
@@ -90,11 +122,17 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string $address
      *
      * @return $this
      */
     public function sender($address)
+=======
+     * @return $this
+     */
+    public function sender(Address|string $address): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->setHeaderBody('Mailbox', 'Sender', Address::create($address));
     }
@@ -105,21 +143,33 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string ...$addresses
      *
      * @return $this
      */
     public function addFrom(...$addresses)
+=======
+     * @return $this
+     */
+    public function addFrom(Address|string ...$addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->addListAddressHeaderBody('From', $addresses);
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string ...$addresses
      *
      * @return $this
      */
     public function from(...$addresses)
+=======
+     * @return $this
+     */
+    public function from(Address|string ...$addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->setListAddressHeaderBody('From', $addresses);
     }
@@ -133,21 +183,33 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string ...$addresses
      *
      * @return $this
      */
     public function addReplyTo(...$addresses)
+=======
+     * @return $this
+     */
+    public function addReplyTo(Address|string ...$addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->addListAddressHeaderBody('Reply-To', $addresses);
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string ...$addresses
      *
      * @return $this
      */
     public function replyTo(...$addresses)
+=======
+     * @return $this
+     */
+    public function replyTo(Address|string ...$addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->setListAddressHeaderBody('Reply-To', $addresses);
     }
@@ -161,21 +223,33 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string ...$addresses
      *
      * @return $this
      */
     public function addTo(...$addresses)
+=======
+     * @return $this
+     */
+    public function addTo(Address|string ...$addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->addListAddressHeaderBody('To', $addresses);
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string ...$addresses
      *
      * @return $this
      */
     public function to(...$addresses)
+=======
+     * @return $this
+     */
+    public function to(Address|string ...$addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->setListAddressHeaderBody('To', $addresses);
     }
@@ -189,21 +263,33 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string ...$addresses
      *
      * @return $this
      */
     public function addCc(...$addresses)
+=======
+     * @return $this
+     */
+    public function addCc(Address|string ...$addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->addListAddressHeaderBody('Cc', $addresses);
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string ...$addresses
      *
      * @return $this
      */
     public function cc(...$addresses)
+=======
+     * @return $this
+     */
+    public function cc(Address|string ...$addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->setListAddressHeaderBody('Cc', $addresses);
     }
@@ -217,21 +303,33 @@ class Email extends Message
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string ...$addresses
      *
      * @return $this
      */
     public function addBcc(...$addresses)
+=======
+     * @return $this
+     */
+    public function addBcc(Address|string ...$addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->addListAddressHeaderBody('Bcc', $addresses);
     }
 
     /**
+<<<<<<< HEAD
      * @param Address|string ...$addresses
      *
      * @return $this
      */
     public function bcc(...$addresses)
+=======
+     * @return $this
+     */
+    public function bcc(Address|string ...$addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->setListAddressHeaderBody('Bcc', $addresses);
     }
@@ -251,7 +349,11 @@ class Email extends Message
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function priority(int $priority)
+=======
+    public function priority(int $priority): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($priority > 5) {
             $priority = 5;
@@ -280,7 +382,11 @@ class Email extends Message
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function text($body, string $charset = 'utf-8')
+=======
+    public function text($body, string $charset = 'utf-8'): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $body && !\is_string($body) && !\is_resource($body)) {
             throw new \TypeError(sprintf('The body must be a string, a resource or null (got "%s").', get_debug_type($body)));
@@ -311,7 +417,11 @@ class Email extends Message
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function html($body, string $charset = 'utf-8')
+=======
+    public function html($body, string $charset = 'utf-8'): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $body && !\is_string($body) && !\is_resource($body)) {
             throw new \TypeError(sprintf('The body must be a string, a resource or null (got "%s").', get_debug_type($body)));
@@ -342,7 +452,11 @@ class Email extends Message
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function attach($body, string $name = null, string $contentType = null)
+=======
+    public function attach($body, string $name = null, string $contentType = null): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!\is_string($body) && !\is_resource($body)) {
             throw new \TypeError(sprintf('The body must be a string or a resource (got "%s").', get_debug_type($body)));
@@ -357,7 +471,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function attachFromPath(string $path, string $name = null, string $contentType = null)
+=======
+    public function attachFromPath(string $path, string $name = null, string $contentType = null): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->cachedBody = null;
         $this->attachments[] = ['path' => $path, 'name' => $name, 'content-type' => $contentType, 'inline' => false];
@@ -370,7 +488,11 @@ class Email extends Message
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function embed($body, string $name = null, string $contentType = null)
+=======
+    public function embed($body, string $name = null, string $contentType = null): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!\is_string($body) && !\is_resource($body)) {
             throw new \TypeError(sprintf('The body must be a string or a resource (got "%s").', get_debug_type($body)));
@@ -385,7 +507,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function embedFromPath(string $path, string $name = null, string $contentType = null)
+=======
+    public function embedFromPath(string $path, string $name = null, string $contentType = null): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->cachedBody = null;
         $this->attachments[] = ['path' => $path, 'name' => $name, 'content-type' => $contentType, 'inline' => true];
@@ -396,7 +522,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function attachPart(DataPart $part)
+=======
+    public function attachPart(DataPart $part): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->cachedBody = null;
         $this->attachments[] = ['part' => $part];
@@ -428,13 +558,30 @@ class Email extends Message
 
     public function ensureValidity()
     {
+<<<<<<< HEAD
         if (null === $this->text && null === $this->html && !$this->attachments) {
             throw new LogicException('A message must have a text or an HTML part or attachments.');
+=======
+        $this->ensureBodyValid();
+
+        if ('1' === $this->getHeaders()->getHeaderBody('X-Unsent')) {
+            throw new LogicException('Cannot send messages marked as "draft".');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         parent::ensureValidity();
     }
 
+<<<<<<< HEAD
+=======
+    private function ensureBodyValid(): void
+    {
+        if (null === $this->text && null === $this->html && !$this->attachments) {
+            throw new LogicException('A message must have a text or an HTML part or attachments.');
+        }
+    }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * Generates an AbstractPart based on the raw body of a message.
      *
@@ -461,7 +608,11 @@ class Email extends Message
             return $this->cachedBody;
         }
 
+<<<<<<< HEAD
         $this->ensureValidity();
+=======
+        $this->ensureBodyValid();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         [$htmlPart, $otherParts, $relatedParts] = $this->prepareParts();
 
@@ -497,8 +648,22 @@ class Email extends Message
         if (null !== $html) {
             $htmlPart = new TextPart($html, $this->htmlCharset, 'html');
             $html = $htmlPart->getBody();
+<<<<<<< HEAD
             preg_match_all('(<img\s+[^>]*src\s*=\s*(?:([\'"])cid:(.+?)\\1|cid:([^>\s]+)))i', $html, $names);
             $names = array_filter(array_unique(array_merge($names[2], $names[3])));
+=======
+
+            $regexes = [
+                '<img\s+[^>]*src\s*=\s*(?:([\'"])cid:(.+?)\\1|cid:([^>\s]+))',
+                '<\w+\s+[^>]*background\s*=\s*(?:([\'"])cid:(.+?)\\1|cid:([^>\s]+))',
+            ];
+            $tmpMatches = [];
+            foreach ($regexes as $regex) {
+                preg_match_all('/'.$regex.'/i', $html, $tmpMatches);
+                $names = array_merge($names, $tmpMatches[2], $tmpMatches[3]);
+            }
+            $names = array_filter(array_unique($names));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         // usage of reflection is a temporary workaround for missing getters that will be added in 6.2
@@ -563,7 +728,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     private function setHeaderBody(string $type, string $name, $body): object
+=======
+    private function setHeaderBody(string $type, string $name, $body): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->getHeaders()->setHeaderBody($type, $name, $body);
 
@@ -583,7 +752,11 @@ class Email extends Message
     /**
      * @return $this
      */
+<<<<<<< HEAD
     private function setListAddressHeaderBody(string $name, array $addresses)
+=======
+    private function setListAddressHeaderBody(string $name, array $addresses): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $addresses = Address::createArray($addresses);
         $headers = $this->getHeaders();

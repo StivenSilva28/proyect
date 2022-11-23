@@ -3,10 +3,19 @@
 namespace Illuminate\Mail\Transport;
 
 use Psr\Log\LoggerInterface;
+<<<<<<< HEAD
 use Swift_Mime_SimpleMessage;
 use Swift_Mime_SimpleMimeEntity;
 
 class LogTransport extends Transport
+=======
+use Symfony\Component\Mailer\Envelope;
+use Symfony\Component\Mailer\SentMessage;
+use Symfony\Component\Mailer\Transport\TransportInterface;
+use Symfony\Component\Mime\RawMessage;
+
+class LogTransport implements TransportInterface
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 {
     /**
      * The Logger instance.
@@ -28,6 +37,7 @@ class LogTransport extends Transport
 
     /**
      * {@inheritdoc}
+<<<<<<< HEAD
      *
      * @return int
      */
@@ -57,6 +67,14 @@ class LogTransport extends Transport
         }
 
         return $string;
+=======
+     */
+    public function send(RawMessage $message, Envelope $envelope = null): ?SentMessage
+    {
+        $this->logger->debug($message->toString());
+
+        return new SentMessage($message, $envelope ?? Envelope::create($message));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -68,4 +86,17 @@ class LogTransport extends Transport
     {
         return $this->logger;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Get the string representation of the transport.
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return 'log';
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

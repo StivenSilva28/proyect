@@ -22,10 +22,14 @@ use Symfony\Component\VarDumper\Cloner\Stub;
  */
 class ResourceCaster
 {
+<<<<<<< HEAD
     /**
      * @param \CurlHandle|resource $h
      */
     public static function castCurl($h, array $a, Stub $stub, bool $isNested): array
+=======
+    public static function castCurl(\CurlHandle $h, array $a, Stub $stub, bool $isNested): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return curl_getinfo($h);
     }
@@ -66,6 +70,7 @@ class ResourceCaster
         return $a;
     }
 
+<<<<<<< HEAD
     public static function castMysqlLink($h, array $a, Stub $stub, bool $isNested)
     {
         $a['host'] = mysql_get_host_info($h);
@@ -75,6 +80,8 @@ class ResourceCaster
         return $a;
     }
 
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     public static function castOpensslX509($h, array $a, Stub $stub, bool $isNested)
     {
         $stub->cut = -1;

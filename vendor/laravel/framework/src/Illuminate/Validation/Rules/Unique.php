@@ -58,6 +58,7 @@ class Unique
     }
 
     /**
+<<<<<<< HEAD
      * Ignore soft deleted models during the unique check.
      *
      * @param  string  $deletedAtColumn
@@ -71,6 +72,8 @@ class Unique
     }
 
     /**
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Convert the rule to a validation string.
      *
      * @return string

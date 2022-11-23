@@ -23,42 +23,62 @@ use Symfony\Component\CssSelector\Parser\Token;
  */
 class SyntaxErrorException extends ParseException
 {
+<<<<<<< HEAD
     /**
      * @return self
      */
     public static function unexpectedToken(string $expectedValue, Token $foundToken)
+=======
+    public static function unexpectedToken(string $expectedValue, Token $foundToken): self
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new self(sprintf('Expected %s, but %s found.', $expectedValue, $foundToken));
     }
 
+<<<<<<< HEAD
     /**
      * @return self
      */
     public static function pseudoElementFound(string $pseudoElement, string $unexpectedLocation)
+=======
+    public static function pseudoElementFound(string $pseudoElement, string $unexpectedLocation): self
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new self(sprintf('Unexpected pseudo-element "::%s" found %s.', $pseudoElement, $unexpectedLocation));
     }
 
+<<<<<<< HEAD
     /**
      * @return self
      */
     public static function unclosedString(int $position)
+=======
+    public static function unclosedString(int $position): self
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new self(sprintf('Unclosed/invalid string at %s.', $position));
     }
 
+<<<<<<< HEAD
     /**
      * @return self
      */
     public static function nestedNot()
+=======
+    public static function nestedNot(): self
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new self('Got nested ::not().');
     }
 
+<<<<<<< HEAD
     /**
      * @return self
      */
     public static function stringAsFunctionArgument()
+=======
+    public static function stringAsFunctionArgument(): self
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new self('String not allowed as function argument.');
     }

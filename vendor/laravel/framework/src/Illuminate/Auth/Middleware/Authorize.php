@@ -75,7 +75,11 @@ class Authorize
         if ($this->isClassName($model)) {
             return trim($model);
         } else {
+<<<<<<< HEAD
             return $request->route($model, null) ?:
+=======
+            return $request->route($model, null) ??
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 ((preg_match("/^['\"](.*)['\"]$/", trim($model), $matches)) ? $matches[1] : null);
         }
     }
@@ -88,6 +92,10 @@ class Authorize
      */
     protected function isClassName($value)
     {
+<<<<<<< HEAD
         return strpos($value, '\\') !== false;
+=======
+        return str_contains($value, '\\');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

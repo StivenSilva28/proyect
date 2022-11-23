@@ -132,9 +132,13 @@ abstract class Connection
      */
     protected function event($event)
     {
+<<<<<<< HEAD
         if (isset($this->events)) {
             $this->events->dispatch($event);
         }
+=======
+        $this->events?->dispatch($event);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -145,9 +149,13 @@ abstract class Connection
      */
     public function listen(Closure $callback)
     {
+<<<<<<< HEAD
         if (isset($this->events)) {
             $this->events->listen(CommandExecuted::class, $callback);
         }
+=======
+        $this->events?->listen(CommandExecuted::class, $callback);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

@@ -44,15 +44,24 @@ class ResponseSequence
     /**
      * Push a response to the sequence.
      *
+<<<<<<< HEAD
      * @param  string|array  $body
+=======
+     * @param  string|array|null  $body
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  int  $status
      * @param  array  $headers
      * @return $this
      */
+<<<<<<< HEAD
     public function push($body = '', int $status = 200, array $headers = [])
     {
         $body = is_array($body) ? json_encode($body) : $body;
 
+=======
+    public function push($body = null, int $status = 200, array $headers = [])
+    {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return $this->pushResponse(
             Factory::response($body, $status, $headers)
         );

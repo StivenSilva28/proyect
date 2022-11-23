@@ -34,6 +34,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected function registerAuthenticator()
     {
+<<<<<<< HEAD
         $this->app->singleton('auth', function ($app) {
             return new AuthManager($app);
         });
@@ -41,6 +42,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->app->singleton('auth.driver', function ($app) {
             return $app['auth']->guard();
         });
+=======
+        $this->app->singleton('auth', fn ($app) => new AuthManager($app));
+
+        $this->app->singleton('auth.driver', fn ($app) => $app['auth']->guard());
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -50,9 +56,13 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected function registerUserResolver()
     {
+<<<<<<< HEAD
         $this->app->bind(AuthenticatableContract::class, function ($app) {
             return call_user_func($app['auth']->userResolver());
         });
+=======
+        $this->app->bind(AuthenticatableContract::class, fn ($app) => call_user_func($app['auth']->userResolver()));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -63,9 +73,13 @@ class AuthServiceProvider extends ServiceProvider
     protected function registerAccessGate()
     {
         $this->app->singleton(GateContract::class, function ($app) {
+<<<<<<< HEAD
             return new Gate($app, function () use ($app) {
                 return call_user_func($app['auth']->userResolver());
             });
+=======
+            return new Gate($app, fn () => call_user_func($app['auth']->userResolver()));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 

@@ -24,9 +24,15 @@ use Symfony\Component\VarDumper\Exception\ThrowingCasterException;
  */
 class ExceptionCaster
 {
+<<<<<<< HEAD
     public static $srcContext = 1;
     public static $traceArgs = true;
     public static $errorTypes = [
+=======
+    public static int $srcContext = 1;
+    public static bool $traceArgs = true;
+    public static array $errorTypes = [
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         \E_DEPRECATED => 'E_DEPRECATED',
         \E_USER_DEPRECATED => 'E_USER_DEPRECATED',
         \E_RECOVERABLE_ERROR => 'E_RECOVERABLE_ERROR',
@@ -44,7 +50,11 @@ class ExceptionCaster
         \E_STRICT => 'E_STRICT',
     ];
 
+<<<<<<< HEAD
     private static $framesCache = [];
+=======
+    private static array $framesCache = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public static function castError(\Error $e, array $a, Stub $stub, bool $isNested, int $filter = 0)
     {
@@ -337,7 +347,11 @@ class ExceptionCaster
                     $stub->attr['file'] = $f;
                     $stub->attr['line'] = $caller->getStartLine();
                 }
+<<<<<<< HEAD
             } catch (\ReflectionException $e) {
+=======
+            } catch (\ReflectionException) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 // ignore fake class/function
             }
 

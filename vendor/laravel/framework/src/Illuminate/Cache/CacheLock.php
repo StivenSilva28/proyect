@@ -46,7 +46,11 @@ class CacheLock extends Lock
 
         return ($this->seconds > 0)
                 ? $this->store->put($this->name, $this->owner, $this->seconds)
+<<<<<<< HEAD
                 : $this->store->forever($this->name, $this->owner, $this->seconds);
+=======
+                : $this->store->forever($this->name, $this->owner);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

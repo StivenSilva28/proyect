@@ -23,6 +23,7 @@ use Symfony\Component\Console\Tester\Constraint\CommandIsSuccessful;
  */
 trait TesterTrait
 {
+<<<<<<< HEAD
     /** @var StreamOutput */
     private $output;
     private $inputs = [];
@@ -31,17 +32,31 @@ trait TesterTrait
     private $input;
     /** @var int */
     private $statusCode;
+=======
+    private StreamOutput $output;
+    private array $inputs = [];
+    private bool $captureStreamsIndependently = false;
+    private InputInterface $input;
+    private int $statusCode;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Gets the display returned by the last execution of the command or application.
      *
      * @throws \RuntimeException If it's called before the execute method
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getDisplay(bool $normalize = false)
     {
         if (null === $this->output) {
+=======
+     */
+    public function getDisplay(bool $normalize = false): string
+    {
+        if (!isset($this->output)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             throw new \RuntimeException('Output not initialized, did you execute the command before requesting the display?');
         }
 
@@ -60,10 +75,15 @@ trait TesterTrait
      * Gets the output written to STDERR by the application.
      *
      * @param bool $normalize Whether to normalize end of lines to \n or not
+<<<<<<< HEAD
      *
      * @return string
      */
     public function getErrorOutput(bool $normalize = false)
+=======
+     */
+    public function getErrorOutput(bool $normalize = false): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->captureStreamsIndependently) {
             throw new \LogicException('The error output is not available when the tester is run without "capture_stderr_separately" option set.');
@@ -82,20 +102,30 @@ trait TesterTrait
 
     /**
      * Gets the input instance used by the last execution of the command or application.
+<<<<<<< HEAD
      *
      * @return InputInterface
      */
     public function getInput()
+=======
+     */
+    public function getInput(): InputInterface
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->input;
     }
 
     /**
      * Gets the output instance used by the last execution of the command or application.
+<<<<<<< HEAD
      *
      * @return OutputInterface
      */
     public function getOutput()
+=======
+     */
+    public function getOutput(): OutputInterface
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->output;
     }
@@ -104,6 +134,7 @@ trait TesterTrait
      * Gets the status code returned by the last execution of the command or application.
      *
      * @throws \RuntimeException If it's called before the execute method
+<<<<<<< HEAD
      *
      * @return int
      */
@@ -114,6 +145,12 @@ trait TesterTrait
         }
 
         return $this->statusCode;
+=======
+     */
+    public function getStatusCode(): int
+    {
+        return $this->statusCode ?? throw new \RuntimeException('Status code not initialized, did you execute the command before requesting the status code?');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     public function assertCommandIsSuccessful(string $message = ''): void
@@ -129,7 +166,11 @@ trait TesterTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setInputs(array $inputs)
+=======
+    public function setInputs(array $inputs): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->inputs = $inputs;
 
@@ -169,12 +210,18 @@ trait TesterTrait
 
             $reflectedOutput = new \ReflectionObject($this->output);
             $strErrProperty = $reflectedOutput->getProperty('stderr');
+<<<<<<< HEAD
             $strErrProperty->setAccessible(true);
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $strErrProperty->setValue($this->output, $errorOutput);
 
             $reflectedParent = $reflectedOutput->getParentClass();
             $streamProperty = $reflectedParent->getProperty('stream');
+<<<<<<< HEAD
             $streamProperty->setAccessible(true);
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $streamProperty->setValue($this->output, fopen('php://memory', 'w', false));
         }
     }

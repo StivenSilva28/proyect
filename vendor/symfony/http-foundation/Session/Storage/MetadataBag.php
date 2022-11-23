@@ -26,6 +26,7 @@ class MetadataBag implements SessionBagInterface
     public const UPDATED = 'u';
     public const LIFETIME = 'l';
 
+<<<<<<< HEAD
     /**
      * @var string
      */
@@ -35,6 +36,10 @@ class MetadataBag implements SessionBagInterface
      * @var string
      */
     private $storageKey;
+=======
+    private string $name = '__metadata';
+    private string $storageKey;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var array
@@ -43,6 +48,7 @@ class MetadataBag implements SessionBagInterface
 
     /**
      * Unix timestamp.
+<<<<<<< HEAD
      *
      * @var int
      */
@@ -52,6 +58,12 @@ class MetadataBag implements SessionBagInterface
      * @var int
      */
     private $updateThreshold;
+=======
+     */
+    private int $lastUsed;
+
+    private int $updateThreshold;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param string $storageKey      The key used to store bag in the session
@@ -84,10 +96,15 @@ class MetadataBag implements SessionBagInterface
 
     /**
      * Gets the lifetime that the session cookie was set with.
+<<<<<<< HEAD
      *
      * @return int
      */
     public function getLifetime()
+=======
+     */
+    public function getLifetime(): int
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->meta[self::LIFETIME];
     }
@@ -108,7 +125,11 @@ class MetadataBag implements SessionBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getStorageKey()
+=======
+    public function getStorageKey(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->storageKey;
     }
@@ -118,7 +139,11 @@ class MetadataBag implements SessionBagInterface
      *
      * @return int Unix timestamp
      */
+<<<<<<< HEAD
     public function getCreated()
+=======
+    public function getCreated(): int
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->meta[self::CREATED];
     }
@@ -128,7 +153,11 @@ class MetadataBag implements SessionBagInterface
      *
      * @return int Unix timestamp
      */
+<<<<<<< HEAD
     public function getLastUsed()
+=======
+    public function getLastUsed(): int
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->lastUsed;
     }
@@ -136,7 +165,11 @@ class MetadataBag implements SessionBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function clear()
+=======
+    public function clear(): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         // nothing to do
         return null;
@@ -145,7 +178,11 @@ class MetadataBag implements SessionBagInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getName()
+=======
+    public function getName(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->name;
     }

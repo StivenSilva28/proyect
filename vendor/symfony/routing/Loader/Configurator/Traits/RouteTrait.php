@@ -26,7 +26,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function defaults(array $defaults): self
+=======
+    final public function defaults(array $defaults): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->addDefaults($defaults);
 
@@ -38,7 +42,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function requirements(array $requirements): self
+=======
+    final public function requirements(array $requirements): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->addRequirements($requirements);
 
@@ -50,7 +58,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function options(array $options): self
+=======
+    final public function options(array $options): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->addOptions($options);
 
@@ -62,7 +74,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function utf8(bool $utf8 = true): self
+=======
+    final public function utf8(bool $utf8 = true): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->addOptions(['utf8' => $utf8]);
 
@@ -74,7 +90,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function condition(string $condition): self
+=======
+    final public function condition(string $condition): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->setCondition($condition);
 
@@ -86,7 +106,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function host(string $pattern): self
+=======
+    final public function host(string $pattern): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->setHost($pattern);
 
@@ -101,7 +125,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function schemes(array $schemes): self
+=======
+    final public function schemes(array $schemes): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->setSchemes($schemes);
 
@@ -116,7 +144,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function methods(array $methods): self
+=======
+    final public function methods(array $methods): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->setMethods($methods);
 
@@ -130,7 +162,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function controller($controller): self
+=======
+    final public function controller(callable|string|array $controller): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->addDefaults(['_controller' => $controller]);
 
@@ -142,7 +178,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function locale(string $locale): self
+=======
+    final public function locale(string $locale): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->addDefaults(['_locale' => $locale]);
 
@@ -154,7 +194,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function format(string $format): self
+=======
+    final public function format(string $format): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->addDefaults(['_format' => $format]);
 
@@ -166,7 +210,11 @@ trait RouteTrait
      *
      * @return $this
      */
+<<<<<<< HEAD
     final public function stateless(bool $stateless = true): self
+=======
+    final public function stateless(bool $stateless = true): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->route->addDefaults(['_stateless' => $stateless]);
 

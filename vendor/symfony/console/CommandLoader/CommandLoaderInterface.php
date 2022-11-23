@@ -22,6 +22,7 @@ interface CommandLoaderInterface
     /**
      * Loads a command.
      *
+<<<<<<< HEAD
      * @return Command
      *
      * @throws CommandNotFoundException
@@ -34,9 +35,23 @@ interface CommandLoaderInterface
      * @return bool
      */
     public function has(string $name);
+=======
+     * @throws CommandNotFoundException
+     */
+    public function get(string $name): Command;
+
+    /**
+     * Checks if a command exists.
+     */
+    public function has(string $name): bool;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @return string[]
      */
+<<<<<<< HEAD
     public function getNames();
+=======
+    public function getNames(): array;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

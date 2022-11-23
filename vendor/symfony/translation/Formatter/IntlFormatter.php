@@ -34,7 +34,11 @@ class IntlFormatter implements IntlFormatterInterface
         }
 
         if (!$formatter = $this->cache[$locale][$message] ?? null) {
+<<<<<<< HEAD
             if (!($this->hasMessageFormatter ?? $this->hasMessageFormatter = class_exists(\MessageFormatter::class))) {
+=======
+            if (!$this->hasMessageFormatter ??= class_exists(\MessageFormatter::class)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 throw new LogicException('Cannot parse message translation: please install the "intl" PHP extension or the "symfony/polyfill-intl-messageformatter" package.');
             }
             try {

@@ -26,7 +26,11 @@ class UnixPipes extends AbstractPipes
     private $ptyMode;
     private $haveReadSupport;
 
+<<<<<<< HEAD
     public function __construct(?bool $ttyMode, bool $ptyMode, $input, bool $haveReadSupport)
+=======
+    public function __construct(?bool $ttyMode, bool $ptyMode, mixed $input, bool $haveReadSupport)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->ttyMode = $ttyMode;
         $this->ptyMode = $ptyMode;
@@ -109,7 +113,11 @@ class UnixPipes extends AbstractPipes
         unset($r[0]);
 
         // let's have a look if something changed in streams
+<<<<<<< HEAD
         set_error_handler([$this, 'handleError']);
+=======
+        set_error_handler($this->handleError(...));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if (($r || $w) && false === stream_select($r, $w, $e, 0, $blocking ? Process::TIMEOUT_PRECISION * 1E6 : 0)) {
             restore_error_handler();
             // if a system call has been interrupted, forget about it, let's try again

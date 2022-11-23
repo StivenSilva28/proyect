@@ -36,12 +36,21 @@ class FunctionExtension extends AbstractExtension
     public function getFunctionTranslators(): array
     {
         return [
+<<<<<<< HEAD
             'nth-child' => [$this, 'translateNthChild'],
             'nth-last-child' => [$this, 'translateNthLastChild'],
             'nth-of-type' => [$this, 'translateNthOfType'],
             'nth-last-of-type' => [$this, 'translateNthLastOfType'],
             'contains' => [$this, 'translateContains'],
             'lang' => [$this, 'translateLang'],
+=======
+            'nth-child' => $this->translateNthChild(...),
+            'nth-last-child' => $this->translateNthLastChild(...),
+            'nth-of-type' => $this->translateNthOfType(...),
+            'nth-last-of-type' => $this->translateNthLastOfType(...),
+            'contains' => $this->translateContains(...),
+            'lang' => $this->translateLang(...),
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ];
     }
 

@@ -2,21 +2,32 @@
 
 namespace Illuminate\Database\Eloquent\Concerns;
 
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 trait GuardsAttributes
 {
     /**
      * The attributes that are mass assignable.
      *
+<<<<<<< HEAD
      * @var string[]
+=======
+     * @var array<string>
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected $fillable = [];
 
     /**
      * The attributes that aren't mass assignable.
      *
+<<<<<<< HEAD
      * @var string[]|bool
+=======
+     * @var array<string>|bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected $guarded = ['*'];
 
@@ -30,14 +41,22 @@ trait GuardsAttributes
     /**
      * The actual columns that exist on the database and can be guarded.
      *
+<<<<<<< HEAD
      * @var array
+=======
+     * @var array<string>
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected static $guardableColumns = [];
 
     /**
      * Get the fillable attributes for the model.
      *
+<<<<<<< HEAD
      * @return array
+=======
+     * @return array<string>
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function getFillable()
     {
@@ -47,7 +66,11 @@ trait GuardsAttributes
     /**
      * Set the fillable attributes for the model.
      *
+<<<<<<< HEAD
      * @param  array  $fillable
+=======
+     * @param  array<string>  $fillable
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      */
     public function fillable(array $fillable)
@@ -60,7 +83,11 @@ trait GuardsAttributes
     /**
      * Merge new fillable attributes with existing fillable attributes on the model.
      *
+<<<<<<< HEAD
      * @param  array  $fillable
+=======
+     * @param  array<string>  $fillable
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      */
     public function mergeFillable(array $fillable)
@@ -73,7 +100,11 @@ trait GuardsAttributes
     /**
      * Get the guarded attributes for the model.
      *
+<<<<<<< HEAD
      * @return array
+=======
+     * @return array<string>
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function getGuarded()
     {
@@ -85,7 +116,11 @@ trait GuardsAttributes
     /**
      * Set the guarded attributes for the model.
      *
+<<<<<<< HEAD
      * @param  array  $guarded
+=======
+     * @param  array<string>  $guarded
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      */
     public function guard(array $guarded)
@@ -98,7 +133,11 @@ trait GuardsAttributes
     /**
      * Merge new guarded attributes with existing guarded attributes on the model.
      *
+<<<<<<< HEAD
      * @param  array  $guarded
+=======
+     * @param  array<string>  $guarded
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      */
     public function mergeGuarded(array $guarded)
@@ -187,8 +226,13 @@ trait GuardsAttributes
         }
 
         return empty($this->getFillable()) &&
+<<<<<<< HEAD
             strpos($key, '.') === false &&
             ! Str::startsWith($key, '_');
+=======
+            ! str_contains($key, '.') &&
+            ! str_starts_with($key, '_');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

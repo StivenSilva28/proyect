@@ -2,7 +2,10 @@
 
 namespace Illuminate\Database\Eloquent\Relations\Concerns;
 
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Builder;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -77,7 +80,13 @@ trait AsPivot
 
         $instance->timestamps = $instance->hasTimestampAttributes($attributes);
 
+<<<<<<< HEAD
         $instance->setRawAttributes($attributes, $exists);
+=======
+        $instance->setRawAttributes(
+            array_merge($instance->getRawOriginal(), $attributes), $exists
+        );
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $instance;
     }
@@ -278,7 +287,11 @@ trait AsPivot
             return $this->newQueryForCollectionRestoration($ids);
         }
 
+<<<<<<< HEAD
         if (! Str::contains($ids, ':')) {
+=======
+        if (! str_contains($ids, ':')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return parent::newQueryForRestoration($ids);
         }
 
@@ -299,7 +312,11 @@ trait AsPivot
     {
         $ids = array_values($ids);
 
+<<<<<<< HEAD
         if (! Str::contains($ids[0], ':')) {
+=======
+        if (! str_contains($ids[0], ':')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return parent::newQueryForRestoration($ids);
         }
 

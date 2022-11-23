@@ -137,7 +137,11 @@ class BoundMethod
      */
     protected static function getCallReflector($callback)
     {
+<<<<<<< HEAD
         if (is_string($callback) && strpos($callback, '::') !== false) {
+=======
+        if (is_string($callback) && str_contains($callback, '::')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $callback = explode('::', $callback);
         } elseif (is_object($callback) && ! $callback instanceof Closure) {
             $callback = [$callback, '__invoke'];
@@ -171,6 +175,7 @@ class BoundMethod
                 $dependencies[] = $parameters[$className];
 
                 unset($parameters[$className]);
+<<<<<<< HEAD
             } else {
                 if ($parameter->isVariadic()) {
                     $variadicDependencies = $container->make($className);
@@ -181,6 +186,16 @@ class BoundMethod
                 } else {
                     $dependencies[] = $container->make($className);
                 }
+=======
+            } elseif ($parameter->isVariadic()) {
+                $variadicDependencies = $container->make($className);
+
+                $dependencies = array_merge($dependencies, is_array($variadicDependencies)
+                            ? $variadicDependencies
+                            : [$variadicDependencies]);
+            } else {
+                $dependencies[] = $container->make($className);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         } elseif ($parameter->isDefaultValueAvailable()) {
             $dependencies[] = $parameter->getDefaultValue();
@@ -199,6 +214,10 @@ class BoundMethod
      */
     protected static function isCallableWithAtSign($callback)
     {
+<<<<<<< HEAD
         return is_string($callback) && strpos($callback, '@') !== false;
+=======
+        return is_string($callback) && str_contains($callback, '@');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

@@ -22,6 +22,7 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class AddMimeTypeGuesserPass implements CompilerPassInterface
 {
+<<<<<<< HEAD
     private $mimeTypesService;
     private $mimeTypeGuesserTag;
 
@@ -35,14 +36,22 @@ class AddMimeTypeGuesserPass implements CompilerPassInterface
         $this->mimeTypeGuesserTag = $mimeTypeGuesserTag;
     }
 
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     /**
      * {@inheritdoc}
      */
     public function process(ContainerBuilder $container)
     {
+<<<<<<< HEAD
         if ($container->has($this->mimeTypesService)) {
             $definition = $container->findDefinition($this->mimeTypesService);
             foreach ($container->findTaggedServiceIds($this->mimeTypeGuesserTag, true) as $id => $attributes) {
+=======
+        if ($container->has('mime_types')) {
+            $definition = $container->findDefinition('mime_types');
+            foreach ($container->findTaggedServiceIds('mime.mime_type_guesser', true) as $id => $attributes) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $definition->addMethodCall('registerGuesser', [new Reference($id)]);
             }
         }

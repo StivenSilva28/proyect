@@ -3,7 +3,13 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Command;
+<<<<<<< HEAD
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+
+#[AsCommand(name: 'storage:link')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class StorageLinkCommand extends Command
 {
     /**
@@ -16,6 +22,20 @@ class StorageLinkCommand extends Command
                 {--force : Recreate existing symbolic links}';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'storage:link';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -33,7 +53,11 @@ class StorageLinkCommand extends Command
 
         foreach ($this->links() as $link => $target) {
             if (file_exists($link) && ! $this->isRemovableSymlink($link, $this->option('force'))) {
+<<<<<<< HEAD
                 $this->error("The [$link] link already exists.");
+=======
+                $this->components->error("The [$link] link already exists.");
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 continue;
             }
 
@@ -47,10 +71,15 @@ class StorageLinkCommand extends Command
                 $this->laravel->make('files')->link($target, $link);
             }
 
+<<<<<<< HEAD
             $this->info("The [$link] link has been connected to [$target].");
         }
 
         $this->info('The links have been created.');
+=======
+            $this->components->info("The [$link] link has been connected to [$target].");
+        }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

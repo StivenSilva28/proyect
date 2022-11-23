@@ -21,6 +21,7 @@ namespace Symfony\Component\Console\Helper;
 class DebugFormatterHelper extends Helper
 {
     private const COLORS = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'default'];
+<<<<<<< HEAD
     private $started = [];
     private $count = -1;
 
@@ -30,6 +31,15 @@ class DebugFormatterHelper extends Helper
      * @return string
      */
     public function start(string $id, string $message, string $prefix = 'RUN')
+=======
+    private array $started = [];
+    private int $count = -1;
+
+    /**
+     * Starts a debug formatting session.
+     */
+    public function start(string $id, string $message, string $prefix = 'RUN'): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->started[$id] = ['border' => ++$this->count % \count(self::COLORS)];
 
@@ -38,10 +48,15 @@ class DebugFormatterHelper extends Helper
 
     /**
      * Adds progress to a formatting session.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function progress(string $id, string $buffer, bool $error = false, string $prefix = 'OUT', string $errorPrefix = 'ERR')
+=======
+     */
+    public function progress(string $id, string $buffer, bool $error = false, string $prefix = 'OUT', string $errorPrefix = 'ERR'): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $message = '';
 
@@ -74,10 +89,15 @@ class DebugFormatterHelper extends Helper
 
     /**
      * Stops a formatting session.
+<<<<<<< HEAD
      *
      * @return string
      */
     public function stop(string $id, string $message, bool $successful, string $prefix = 'RES')
+=======
+     */
+    public function stop(string $id, string $message, bool $successful, string $prefix = 'RES'): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $trailingEOL = isset($this->started[$id]['out']) || isset($this->started[$id]['err']) ? "\n" : '';
 
@@ -100,7 +120,11 @@ class DebugFormatterHelper extends Helper
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getName()
+=======
+    public function getName(): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return 'debug_formatter';
     }

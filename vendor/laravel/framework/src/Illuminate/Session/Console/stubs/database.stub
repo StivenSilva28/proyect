@@ -4,7 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+<<<<<<< HEAD
 class CreateSessionsTable extends Migration
+=======
+return new class extends Migration
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 {
     /**
      * Run the migrations.
@@ -18,7 +22,11 @@ class CreateSessionsTable extends Migration
             $table->foreignId('user_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
+<<<<<<< HEAD
             $table->text('payload');
+=======
+            $table->longText('payload');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $table->integer('last_activity')->index();
         });
     }
@@ -32,4 +40,8 @@ class CreateSessionsTable extends Migration
     {
         Schema::dropIfExists('sessions');
     }
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2

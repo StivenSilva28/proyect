@@ -21,8 +21,13 @@ use Symfony\Component\Mime\Part\TextPart;
  */
 class Message extends RawMessage
 {
+<<<<<<< HEAD
     private $headers;
     private $body;
+=======
+    private Headers $headers;
+    private ?AbstractPart $body;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(Headers $headers = null, AbstractPart $body = null)
     {
@@ -42,7 +47,11 @@ class Message extends RawMessage
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function setBody(AbstractPart $body = null)
+=======
+    public function setBody(AbstractPart $body = null): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->body = $body;
 
@@ -57,7 +66,11 @@ class Message extends RawMessage
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function setHeaders(Headers $headers)
+=======
+    public function setHeaders(Headers $headers): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->headers = $headers;
 

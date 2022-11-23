@@ -31,11 +31,19 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
     protected $line = '';
     protected $lineDumper;
     protected $outputStream;
+<<<<<<< HEAD
     protected $decimalPoint; // This is locale dependent
     protected $indentPad = '  ';
     protected $flags;
 
     private $charset = '';
+=======
+    protected $decimalPoint = '.';
+    protected $indentPad = '  ';
+    protected $flags;
+
+    private string $charset = '';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param callable|resource|string|null $output  A line dumper callable, an opened stream or an output path, defaults to static::$defaultOutput
@@ -46,7 +54,10 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
     {
         $this->flags = $flags;
         $this->setCharset($charset ?: \ini_get('php.output_encoding') ?: \ini_get('default_charset') ?: 'UTF-8');
+<<<<<<< HEAD
         $this->decimalPoint = \PHP_VERSION_ID >= 80000 ? '.' : localeconv()['decimal_point'];
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->setOutput($output ?: static::$defaultOutput);
         if (!$output && \is_string(static::$defaultOutput)) {
             static::$defaultOutput = $this->outputStream;
@@ -72,7 +83,11 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
                 $output = fopen($output, 'w');
             }
             $this->outputStream = $output;
+<<<<<<< HEAD
             $this->lineDumper = [$this, 'echoLine'];
+=======
+            $this->lineDumper = $this->echoLine(...);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $prev;
@@ -83,7 +98,11 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
      *
      * @return string The previous charset
      */
+<<<<<<< HEAD
     public function setCharset(string $charset)
+=======
+    public function setCharset(string $charset): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $prev = $this->charset;
 
@@ -102,7 +121,11 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
      *
      * @return string The previous indent pad
      */
+<<<<<<< HEAD
     public function setIndentPad(string $pad)
+=======
+    public function setIndentPad(string $pad): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $prev = $this->indentPad;
         $this->indentPad = $pad;
@@ -117,10 +140,15 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
      *
      * @return string|null The dump as string when $output is true
      */
+<<<<<<< HEAD
     public function dump(Data $data, $output = null)
     {
         $this->decimalPoint = \PHP_VERSION_ID >= 80000 ? '.' : localeconv()['decimal_point'];
 
+=======
+    public function dump(Data $data, $output = null): ?string
+    {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if ($locale = $this->flags & (self::DUMP_COMMA_SEPARATOR | self::DUMP_TRAILING_COMMA) ? setlocale(\LC_NUMERIC, 0) : null) {
             setlocale(\LC_NUMERIC, 'C');
         }
@@ -177,10 +205,15 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
 
     /**
      * Converts a non-UTF-8 string to UTF-8.
+<<<<<<< HEAD
      *
      * @return string|null
      */
     protected function utf8Encode(?string $s)
+=======
+     */
+    protected function utf8Encode(?string $s): ?string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null === $s || preg_match('//u', $s)) {
             return $s;

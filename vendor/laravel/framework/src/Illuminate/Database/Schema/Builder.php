@@ -34,7 +34,11 @@ class Builder
     /**
      * The default string length for migrations.
      *
+<<<<<<< HEAD
      * @var int
+=======
+     * @var int|null
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public static $defaultStringLength = 255;
 
@@ -78,8 +82,13 @@ class Builder
      */
     public static function defaultMorphKeyType(string $type)
     {
+<<<<<<< HEAD
         if (! in_array($type, ['int', 'uuid'])) {
             throw new InvalidArgumentException("Morph key type must be 'int' or 'uuid'.");
+=======
+        if (! in_array($type, ['int', 'uuid', 'ulid'])) {
+            throw new InvalidArgumentException("Morph key type must be 'int', 'uuid', or 'ulid'.");
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         static::$defaultMorphKeyType = $type;
@@ -96,6 +105,19 @@ class Builder
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Set the default morph key type for migrations to ULIDs.
+     *
+     * @return void
+     */
+    public static function morphUsingUlids()
+    {
+        return static::defaultMorphKeyType('ulid');
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a database in the schema.
      *
      * @param  string  $name
@@ -171,6 +193,39 @@ class Builder
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Execute a table builder callback if the given table has a given column.
+     *
+     * @param  string  $table
+     * @param  string  $column
+     * @param  \Closure  $callback
+     * @return void
+     */
+    public function whenTableHasColumn(string $table, string $column, Closure $callback)
+    {
+        if ($this->hasColumn($table, $column)) {
+            $this->table($table, fn (Blueprint $table) => $callback($table));
+        }
+    }
+
+    /**
+     * Execute a table builder callback if the given table doesn't have a given column.
+     *
+     * @param  string  $table
+     * @param  string  $column
+     * @param  \Closure  $callback
+     * @return void
+     */
+    public function whenTableDoesntHaveColumn(string $table, string $column, Closure $callback)
+    {
+        if (! $this->hasColumn($table, $column)) {
+            $this->table($table, fn (Blueprint $table) => $callback($table));
+        }
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Get the data type for the given column name.
      *
      * @param  string  $table
@@ -385,6 +440,7 @@ class Builder
     }
 
     /**
+<<<<<<< HEAD
      * Register a custom Doctrine mapping type.
      *
      * @param  string  $class
@@ -398,6 +454,8 @@ class Builder
     }
 
     /**
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Get the database connection instance.
      *
      * @return \Illuminate\Database\Connection

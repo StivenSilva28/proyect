@@ -29,7 +29,11 @@ abstract class Warning
      */
     public function code()
     {
+<<<<<<< HEAD
         return static::CODE;
+=======
+        return self::CODE;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -42,6 +46,10 @@ abstract class Warning
 
     public function __toString()
     {
+<<<<<<< HEAD
         return $this->message() . " rfc: " .  $this->rfcNumber . "interal code: " . static::CODE;
+=======
+        return $this->message() . " rfc: " .  $this->rfcNumber . "internal code: " . static::CODE;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

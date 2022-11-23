@@ -4,10 +4,20 @@ namespace Illuminate\Http\Resources;
 
 use Exception;
 use Illuminate\Support\Traits\ForwardsCalls;
+<<<<<<< HEAD
 
 trait DelegatesToResource
 {
     use ForwardsCalls;
+=======
+use Illuminate\Support\Traits\Macroable;
+
+trait DelegatesToResource
+{
+    use ForwardsCalls, Macroable {
+        __call as macroCall;
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Get the value of the resource's route key.
@@ -64,8 +74,12 @@ trait DelegatesToResource
      * @param  mixed  $offset
      * @return bool
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetExists($offset)
+=======
+    public function offsetExists($offset): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return isset($this->resource[$offset]);
     }
@@ -76,8 +90,12 @@ trait DelegatesToResource
      * @param  mixed  $offset
      * @return mixed
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
+=======
+    public function offsetGet($offset): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->resource[$offset];
     }
@@ -89,8 +107,12 @@ trait DelegatesToResource
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
+=======
+    public function offsetSet($offset, $value): void
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->resource[$offset] = $value;
     }
@@ -101,8 +123,12 @@ trait DelegatesToResource
      * @param  mixed  $offset
      * @return void
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
+=======
+    public function offsetUnset($offset): void
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         unset($this->resource[$offset]);
     }
@@ -149,6 +175,13 @@ trait DelegatesToResource
      */
     public function __call($method, $parameters)
     {
+<<<<<<< HEAD
+=======
+        if (static::hasMacro($method)) {
+            return $this->macroCall($method, $parameters);
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return $this->forwardCallTo($this->resource, $method, $parameters);
     }
 }

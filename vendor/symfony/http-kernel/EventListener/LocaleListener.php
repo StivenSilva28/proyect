@@ -29,11 +29,19 @@ use Symfony\Component\Routing\RequestContextAwareInterface;
  */
 class LocaleListener implements EventSubscriberInterface
 {
+<<<<<<< HEAD
     private $router;
     private $defaultLocale;
     private $requestStack;
     private $useAcceptLanguageHeader;
     private $enabledLocales;
+=======
+    private ?RequestContextAwareInterface $router;
+    private string $defaultLocale;
+    private RequestStack $requestStack;
+    private bool $useAcceptLanguageHeader;
+    private array $enabledLocales;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(RequestStack $requestStack, string $defaultLocale = 'en', RequestContextAwareInterface $router = null, bool $useAcceptLanguageHeader = false, array $enabledLocales = [])
     {
@@ -68,17 +76,28 @@ class LocaleListener implements EventSubscriberInterface
     {
         if ($locale = $request->attributes->get('_locale')) {
             $request->setLocale($locale);
+<<<<<<< HEAD
         } elseif ($this->useAcceptLanguageHeader && $this->enabledLocales && ($preferredLanguage = $request->getPreferredLanguage($this->enabledLocales))) {
             $request->setLocale($preferredLanguage);
+=======
+        } elseif ($this->useAcceptLanguageHeader) {
+            if ($preferredLanguage = $request->getPreferredLanguage($this->enabledLocales)) {
+                $request->setLocale($preferredLanguage);
+            }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $request->attributes->set('_vary_by_language', true);
         }
     }
 
     private function setRouterContext(Request $request)
     {
+<<<<<<< HEAD
         if (null !== $this->router) {
             $this->router->getContext()->setParameter('_locale', $request->getLocale());
         }
+=======
+        $this->router?->getContext()->setParameter('_locale', $request->getLocale());
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     public static function getSubscribedEvents(): array

@@ -32,7 +32,11 @@ class ScheduleClearCacheCommand extends Command
 
         foreach ($schedule->events($this->laravel) as $event) {
             if ($event->mutex->exists($event)) {
+<<<<<<< HEAD
                 $this->line('<info>Deleting mutex for:</info> '.$event->command);
+=======
+                $this->components->info(sprintf('Deleting mutex for [%s]', $event->command));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                 $event->mutex->forget($event);
 
@@ -41,7 +45,11 @@ class ScheduleClearCacheCommand extends Command
         }
 
         if (! $mutexCleared) {
+<<<<<<< HEAD
             $this->info('No mutex files were found.');
+=======
+            $this->components->info('No mutex files were found.');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 }

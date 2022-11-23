@@ -103,7 +103,11 @@ class HasOne extends HasOneOrMany implements SupportsPartialRelations
     /**
      * Add join query constraints for one of many relationships.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Database\Eloquent\JoinClause  $join
+=======
+     * @param  \Illuminate\Database\Query\JoinClause  $join
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return void
      */
     public function addOneOfManyJoinSubQueryConstraints(JoinClause $join)

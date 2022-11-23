@@ -28,7 +28,11 @@ use function str_replace;
 final class Validator implements ValidatorInterface
 {
     private const VALID_PATTERN = '\A[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-'
+<<<<<<< HEAD
         . '[1-5]{1}[0-9A-Fa-f]{3}-[ABab89]{1}[0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}\z';
+=======
+        . '[1-8][0-9A-Fa-f]{3}-[ABab89][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}\z';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @psalm-return non-empty-string
@@ -43,7 +47,13 @@ final class Validator implements ValidatorInterface
     public function validate(string $uuid): bool
     {
         $uuid = str_replace(['urn:', 'uuid:', 'URN:', 'UUID:', '{', '}'], '', $uuid);
+<<<<<<< HEAD
 
         return $uuid === Uuid::NIL || preg_match('/' . self::VALID_PATTERN . '/Dms', $uuid);
+=======
+        $uuid = strtolower($uuid);
+
+        return $uuid === Uuid::NIL || $uuid === Uuid::MAX || preg_match('/' . self::VALID_PATTERN . '/Dms', $uuid);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

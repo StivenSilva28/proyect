@@ -5,7 +5,13 @@ namespace Illuminate\Session;
 use Closure;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\Str;
+use Illuminate\Support\ViewErrorBag;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use SessionHandlerInterface;
 use stdClass;
 
@@ -40,6 +46,16 @@ class Store implements Session
     protected $handler;
 
     /**
+<<<<<<< HEAD
+=======
+     * The session store's serialization strategy.
+     *
+     * @var string
+     */
+    protected $serialization = 'php';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Session store started status.
      *
      * @var bool
@@ -52,13 +68,24 @@ class Store implements Session
      * @param  string  $name
      * @param  \SessionHandlerInterface  $handler
      * @param  string|null  $id
+<<<<<<< HEAD
      * @return void
      */
     public function __construct($name, SessionHandlerInterface $handler, $id = null)
+=======
+     * @param  string  $serialization
+     * @return void
+     */
+    public function __construct($name, SessionHandlerInterface $handler, $id = null, $serialization = 'php')
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->setId($id);
         $this->name = $name;
         $this->handler = $handler;
+<<<<<<< HEAD
+=======
+        $this->serialization = $serialization;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -85,6 +112,11 @@ class Store implements Session
     protected function loadSession()
     {
         $this->attributes = array_merge($this->attributes, $this->readFromHandler());
+<<<<<<< HEAD
+=======
+
+        $this->marshalErrorBag();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -95,9 +127,19 @@ class Store implements Session
     protected function readFromHandler()
     {
         if ($data = $this->handler->read($this->getId())) {
+<<<<<<< HEAD
             $data = @unserialize($this->prepareForUnserialize($data));
 
             if ($data !== false && ! is_null($data) && is_array($data)) {
+=======
+            if ($this->serialization === 'json') {
+                $data = json_decode($this->prepareForUnserialize($data), true);
+            } else {
+                $data = @unserialize($this->prepareForUnserialize($data));
+            }
+
+            if ($data !== false && is_array($data)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return $data;
             }
         }
@@ -117,6 +159,31 @@ class Store implements Session
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Marshal the ViewErrorBag when using JSON serialization for sessions.
+     *
+     * @return void
+     */
+    protected function marshalErrorBag()
+    {
+        if ($this->serialization !== 'json' || $this->missing('errors')) {
+            return;
+        }
+
+        $errorBag = new ViewErrorBag;
+
+        foreach ($this->get('errors') as $key => $value) {
+            $messageBag = new MessageBag($value['messages']);
+
+            $errorBag->put($key, $messageBag->setFormat($value['format']));
+        }
+
+        $this->put('errors', $errorBag);
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Save the session data to storage.
      *
      * @return void
@@ -125,14 +192,47 @@ class Store implements Session
     {
         $this->ageFlashData();
 
+<<<<<<< HEAD
         $this->handler->write($this->getId(), $this->prepareForStorage(
             serialize($this->attributes)
+=======
+        $this->prepareErrorBagForSerialization();
+
+        $this->handler->write($this->getId(), $this->prepareForStorage(
+            $this->serialization === 'json' ? json_encode($this->attributes) : serialize($this->attributes)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ));
 
         $this->started = false;
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Prepare the ViewErrorBag instance for JSON serialization.
+     *
+     * @return void
+     */
+    protected function prepareErrorBagForSerialization()
+    {
+        if ($this->serialization !== 'json' || $this->missing('errors')) {
+            return;
+        }
+
+        $errors = [];
+
+        foreach ($this->attributes['errors']->getBags() as $key => $value) {
+            $errors[$key] = [
+                'format' => $value->getFormat(),
+                'messages' => $value->getMessages(),
+            ];
+        }
+
+        $this->attributes['errors'] = $errors;
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Prepare the serialized session data for storage.
      *
      * @param  string  $data
@@ -669,6 +769,20 @@ class Store implements Session
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Set the underlying session handler implementation.
+     *
+     * @param  \SessionHandlerInterface  $handler
+     * @return void
+     */
+    public function setHandler(SessionHandlerInterface $handler)
+    {
+        return $this->handler = $handler;
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Determine if the session handler needs a request.
      *
      * @return bool

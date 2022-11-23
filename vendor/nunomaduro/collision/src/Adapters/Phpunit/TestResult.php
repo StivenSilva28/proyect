@@ -13,6 +13,7 @@ use Throwable;
  */
 final class TestResult
 {
+<<<<<<< HEAD
     public const FAIL       = 'failed';
     public const SKIPPED    = 'skipped';
     public const INCOMPLETE = 'incompleted';
@@ -20,6 +21,21 @@ final class TestResult
     public const WARN       = 'warnings';
     public const RUNS       = 'pending';
     public const PASS       = 'passed';
+=======
+    public const FAIL = 'failed';
+
+    public const SKIPPED = 'skipped';
+
+    public const INCOMPLETE = 'incomplete';
+
+    public const RISKY = 'risky';
+
+    public const WARN = 'warnings';
+
+    public const RUNS = 'pending';
+
+    public const PASS = 'passed';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @readonly
@@ -76,11 +92,19 @@ final class TestResult
     private function __construct(string $testCaseName, string $description, string $type, string $icon, string $color, Throwable $throwable = null)
     {
         $this->testCaseName = $testCaseName;
+<<<<<<< HEAD
         $this->description  = $description;
         $this->type         = $type;
         $this->icon         = $icon;
         $this->color        = $color;
         $this->throwable    = $throwable;
+=======
+        $this->description = $description;
+        $this->type = $type;
+        $this->icon = $icon;
+        $this->color = $color;
+        $this->throwable = $throwable;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $asWarning = $this->type === TestResult::WARN
              || $this->type === TestResult::RISKY
@@ -88,7 +112,11 @@ final class TestResult
              || $this->type === TestResult::INCOMPLETE;
 
         if ($throwable instanceof Throwable && $asWarning) {
+<<<<<<< HEAD
             $this->warning     = trim((string) preg_replace("/\r|\n/", ' ', $throwable->getMessage()));
+=======
+            $this->warning = trim((string) preg_replace("/\r|\n/", ' ', $throwable->getMessage()));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 

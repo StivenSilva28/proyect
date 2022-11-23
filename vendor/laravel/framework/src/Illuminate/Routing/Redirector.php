@@ -40,6 +40,11 @@ class Redirector
      *
      * @param  int  $status
      * @return \Illuminate\Http\RedirectResponse
+<<<<<<< HEAD
+=======
+     *
+     * @deprecated Will be removed in a future Laravel version.
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function home($status = 302)
     {
@@ -84,7 +89,11 @@ class Redirector
     {
         $request = $this->generator->getRequest();
 
+<<<<<<< HEAD
         $intended = $request->method() === 'GET' && $request->route() && ! $request->expectsJson()
+=======
+        $intended = $request->isMethod('GET') && $request->route() && ! $request->expectsJson()
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                         ? $this->generator->full()
                         : $this->generator->previous();
 
@@ -98,7 +107,11 @@ class Redirector
     /**
      * Create a new redirect response to the previously intended location.
      *
+<<<<<<< HEAD
      * @param  string  $default
+=======
+     * @param  mixed  $default
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  int  $status
      * @param  array  $headers
      * @param  bool|null  $secure
@@ -112,6 +125,7 @@ class Redirector
     }
 
     /**
+<<<<<<< HEAD
      * Set the intended url.
      *
      * @param  string  $url
@@ -123,6 +137,8 @@ class Redirector
     }
 
     /**
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new redirect response to the given path.
      *
      * @param  string  $path
@@ -259,4 +275,30 @@ class Redirector
     {
         $this->session = $session;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Get the "intended" URL from the session.
+     *
+     * @return string|null
+     */
+    public function getIntendedUrl()
+    {
+        return $this->session->get('url.intended');
+    }
+
+    /**
+     * Set the "intended" URL in the session.
+     *
+     * @param  string  $url
+     * @return $this
+     */
+    public function setIntendedUrl($url)
+    {
+        $this->session->put('url.intended', $url);
+
+        return $this;
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

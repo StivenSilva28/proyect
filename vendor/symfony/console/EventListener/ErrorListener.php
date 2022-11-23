@@ -24,7 +24,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class ErrorListener implements EventSubscriberInterface
 {
+<<<<<<< HEAD
     private $logger;
+=======
+    private ?LoggerInterface $logger;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(LoggerInterface $logger = null)
     {
@@ -69,7 +73,11 @@ class ErrorListener implements EventSubscriberInterface
         $this->logger->debug('Command "{command}" exited with code "{code}"', ['command' => $inputString, 'code' => $exitCode]);
     }
 
+<<<<<<< HEAD
     public static function getSubscribedEvents()
+=======
+    public static function getSubscribedEvents(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return [
             ConsoleEvents::ERROR => ['onConsoleError', -128],
@@ -79,10 +87,17 @@ class ErrorListener implements EventSubscriberInterface
 
     private static function getInputString(ConsoleEvent $event): ?string
     {
+<<<<<<< HEAD
         $commandName = $event->getCommand() ? $event->getCommand()->getName() : null;
         $input = $event->getInput();
 
         if (method_exists($input, '__toString')) {
+=======
+        $commandName = $event->getCommand()?->getName();
+        $input = $event->getInput();
+
+        if ($input instanceof \Stringable) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             if ($commandName) {
                 return str_replace(["'$commandName'", "\"$commandName\""], $commandName, (string) $input);
             }

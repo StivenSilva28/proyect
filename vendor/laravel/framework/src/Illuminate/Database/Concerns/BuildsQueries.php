@@ -5,6 +5,10 @@ namespace Illuminate\Database\Concerns;
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\MultipleRecordsFoundException;
+<<<<<<< HEAD
+=======
+use Illuminate\Database\Query\Expression;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Database\RecordsNotFoundException;
 use Illuminate\Pagination\Cursor;
 use Illuminate\Pagination\CursorPaginator;
@@ -12,6 +16,10 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Support\Traits\Conditionable;
 use InvalidArgumentException;
 use RuntimeException;
@@ -111,9 +119,15 @@ trait BuildsQueries
      */
     public function chunkById($count, callable $callback, $column = null, $alias = null)
     {
+<<<<<<< HEAD
         $column = $column ?? $this->defaultKeyName();
 
         $alias = $alias ?? $column;
+=======
+        $column ??= $this->defaultKeyName();
+
+        $alias ??= $column;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $lastId = null;
 
@@ -140,7 +154,11 @@ trait BuildsQueries
                 return false;
             }
 
+<<<<<<< HEAD
             $lastId = $results->last()->{$alias};
+=======
+            $lastId = data_get($results->last(), $alias);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             if ($lastId === null) {
                 throw new RuntimeException("The chunkById operation was aborted because the [{$alias}] column is not present in the query result.");
@@ -254,9 +272,15 @@ trait BuildsQueries
             throw new InvalidArgumentException('The chunk size should be at least 1');
         }
 
+<<<<<<< HEAD
         $column = $column ?? $this->defaultKeyName();
 
         $alias = $alias ?? $column;
+=======
+        $column ??= $this->defaultKeyName();
+
+        $alias ??= $column;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return LazyCollection::make(function () use ($chunkSize, $column, $alias, $descending) {
             $lastId = null;
@@ -307,12 +331,23 @@ trait BuildsQueries
     {
         $result = $this->take(2)->get($columns);
 
+<<<<<<< HEAD
         if ($result->isEmpty()) {
             throw new RecordsNotFoundException;
         }
 
         if ($result->count() > 1) {
             throw new MultipleRecordsFoundException;
+=======
+        $count = $result->count();
+
+        if ($count === 0) {
+            throw new RecordsNotFoundException;
+        }
+
+        if ($count > 1) {
+            throw new MultipleRecordsFoundException($count);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return $result->first();
@@ -322,7 +357,11 @@ trait BuildsQueries
      * Paginate the given query using a cursor paginator.
      *
      * @param  int  $perPage
+<<<<<<< HEAD
      * @param  array  $columns
+=======
+     * @param  array|string  $columns
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @param  string  $cursorName
      * @param  \Illuminate\Pagination\Cursor|string|null  $cursor
      * @return \Illuminate\Contracts\Pagination\CursorPaginator
@@ -342,8 +381,15 @@ trait BuildsQueries
                 $unionBuilders = isset($builder->unions) ? collect($builder->unions)->pluck('query') : collect();
 
                 if (! is_null($previousColumn)) {
+<<<<<<< HEAD
                     $builder->where(
                         $this->getOriginalColumnNameForCursorPagination($this, $previousColumn),
+=======
+                    $originalColumn = $this->getOriginalColumnNameForCursorPagination($this, $previousColumn);
+
+                    $builder->where(
+                        Str::contains($originalColumn, ['(', ')']) ? new Expression($originalColumn) : $originalColumn,
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                         '=',
                         $cursor->parameter($previousColumn)
                     );
@@ -362,8 +408,15 @@ trait BuildsQueries
                 $builder->where(function (self $builder) use ($addCursorConditions, $cursor, $orders, $i, $unionBuilders) {
                     ['column' => $column, 'direction' => $direction] = $orders[$i];
 
+<<<<<<< HEAD
                     $builder->where(
                         $this->getOriginalColumnNameForCursorPagination($this, $column),
+=======
+                    $originalColumn = $this->getOriginalColumnNameForCursorPagination($this, $column);
+
+                    $builder->where(
+                        Str::contains($originalColumn, ['(', ')']) ? new Expression($originalColumn) : $originalColumn,
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                         $direction === 'asc' ? '>' : '<',
                         $cursor->parameter($column)
                     );
@@ -424,7 +477,11 @@ trait BuildsQueries
 
                     [$original, $alias] = explode($as, $column);
 
+<<<<<<< HEAD
                     if ($parameter === $alias) {
+=======
+                    if ($parameter === $alias || $builder->getGrammar()->wrap($parameter) === $alias) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                         return $original;
                     }
                 }
@@ -487,10 +544,20 @@ trait BuildsQueries
      * Pass the query to a given callback.
      *
      * @param  callable  $callback
+<<<<<<< HEAD
      * @return $this|mixed
      */
     public function tap($callback)
     {
         return $this->when(true, $callback);
+=======
+     * @return $this
+     */
+    public function tap($callback)
+    {
+        $callback($this);
+
+        return $this;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

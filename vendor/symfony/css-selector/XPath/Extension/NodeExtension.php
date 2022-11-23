@@ -31,7 +31,11 @@ class NodeExtension extends AbstractExtension
     public const ATTRIBUTE_NAME_IN_LOWER_CASE = 2;
     public const ATTRIBUTE_VALUE_IN_LOWER_CASE = 4;
 
+<<<<<<< HEAD
     private $flags;
+=======
+    private int $flags;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(int $flags = 0)
     {
@@ -41,7 +45,11 @@ class NodeExtension extends AbstractExtension
     /**
      * @return $this
      */
+<<<<<<< HEAD
     public function setFlag(int $flag, bool $on): self
+=======
+    public function setFlag(int $flag, bool $on): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($on && !$this->hasFlag($flag)) {
             $this->flags += $flag;
@@ -65,6 +73,7 @@ class NodeExtension extends AbstractExtension
     public function getNodeTranslators(): array
     {
         return [
+<<<<<<< HEAD
             'Selector' => [$this, 'translateSelector'],
             'CombinedSelector' => [$this, 'translateCombinedSelector'],
             'Negation' => [$this, 'translateNegation'],
@@ -74,6 +83,17 @@ class NodeExtension extends AbstractExtension
             'Class' => [$this, 'translateClass'],
             'Hash' => [$this, 'translateHash'],
             'Element' => [$this, 'translateElement'],
+=======
+            'Selector' => $this->translateSelector(...),
+            'CombinedSelector' => $this->translateCombinedSelector(...),
+            'Negation' => $this->translateNegation(...),
+            'Function' => $this->translateFunction(...),
+            'Pseudo' => $this->translatePseudo(...),
+            'Attribute' => $this->translateAttribute(...),
+            'Class' => $this->translateClass(...),
+            'Hash' => $this->translateHash(...),
+            'Element' => $this->translateElement(...),
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ];
     }
 

@@ -24,6 +24,7 @@ class ApplicationDescription
 {
     public const GLOBAL_NAMESPACE = '_global';
 
+<<<<<<< HEAD
     private $application;
     private $namespace;
     private $showHidden;
@@ -32,16 +33,30 @@ class ApplicationDescription
      * @var array
      */
     private $namespaces;
+=======
+    private Application $application;
+    private ?string $namespace;
+    private bool $showHidden;
+    private array $namespaces;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var array<string, Command>
      */
+<<<<<<< HEAD
     private $commands;
+=======
+    private array $commands;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var array<string, Command>
      */
+<<<<<<< HEAD
     private $aliases;
+=======
+    private array $aliases = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(Application $application, string $namespace = null, bool $showHidden = false)
     {
@@ -52,7 +67,11 @@ class ApplicationDescription
 
     public function getNamespaces(): array
     {
+<<<<<<< HEAD
         if (null === $this->namespaces) {
+=======
+        if (!isset($this->namespaces)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->inspectApplication();
         }
 
@@ -64,7 +83,11 @@ class ApplicationDescription
      */
     public function getCommands(): array
     {
+<<<<<<< HEAD
         if (null === $this->commands) {
+=======
+        if (!isset($this->commands)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $this->inspectApplication();
         }
 

@@ -7,8 +7,15 @@ use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Events\MaintenanceModeEnabled;
 use Illuminate\Foundation\Exceptions\RegisterErrorViewPaths;
+<<<<<<< HEAD
 use Throwable;
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+use Throwable;
+
+#[AsCommand(name: 'down')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class DownCommand extends Command
 {
     /**
@@ -24,6 +31,20 @@ class DownCommand extends Command
                                  {--status=503 : The status code that should be used when returning the maintenance mode response}';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'down';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -38,22 +59,32 @@ class DownCommand extends Command
     public function handle()
     {
         try {
+<<<<<<< HEAD
             if (is_file(storage_path('framework/down'))) {
                 $this->comment('Application is already down.');
+=======
+            if ($this->laravel->maintenanceMode()->active()) {
+                $this->components->info('Application is already down.');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                 return 0;
             }
 
+<<<<<<< HEAD
             file_put_contents(
                 storage_path('framework/down'),
                 json_encode($this->getDownFilePayload(), JSON_PRETTY_PRINT)
             );
+=======
+            $this->laravel->maintenanceMode()->activate($this->getDownFilePayload());
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             file_put_contents(
                 storage_path('framework/maintenance.php'),
                 file_get_contents(__DIR__.'/stubs/maintenance-mode.stub')
             );
 
+<<<<<<< HEAD
             $this->laravel->get('events')->dispatch(MaintenanceModeEnabled::class);
 
             $this->comment('Application is now in maintenance mode.');
@@ -61,6 +92,16 @@ class DownCommand extends Command
             $this->error('Failed to enter maintenance mode.');
 
             $this->error($e->getMessage());
+=======
+            $this->laravel->get('events')->dispatch(new MaintenanceModeEnabled());
+
+            $this->components->info('Application is now in maintenance mode.');
+        } catch (Exception $e) {
+            $this->components->error(sprintf(
+                'Failed to enter maintenance mode: %s.',
+                $e->getMessage(),
+            ));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             return 1;
         }

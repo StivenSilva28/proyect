@@ -121,10 +121,21 @@ class ChangeColumn
     {
         $options = ['type' => static::getDoctrineColumnType($fluent['type'])];
 
+<<<<<<< HEAD
         if (in_array($fluent['type'], ['text', 'mediumText', 'longText'])) {
             $options['length'] = static::calculateDoctrineTextLength($fluent['type']);
         }
 
+=======
+        if (in_array($fluent['type'], ['tinyText', 'text', 'mediumText', 'longText'])) {
+            $options['length'] = static::calculateDoctrineTextLength($fluent['type']);
+        }
+
+        if ($fluent['type'] === 'char') {
+            $options['fixed'] = true;
+        }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         if (static::doesntNeedCharacterOptions($fluent['type'])) {
             $options['customSchemaOptions'] = [
                 'collation' => '',
@@ -145,6 +156,7 @@ class ChangeColumn
     {
         $type = strtolower($type);
 
+<<<<<<< HEAD
         switch ($type) {
             case 'biginteger':
                 $type = 'bigint';
@@ -165,6 +177,18 @@ class ChangeColumn
         }
 
         return Type::getType($type);
+=======
+        return Type::getType(match ($type) {
+            'biginteger' => 'bigint',
+            'smallinteger' => 'smallint',
+            'tinytext', 'mediumtext', 'longtext' => 'text',
+            'binary' => 'blob',
+            'uuid' => 'guid',
+            'char' => 'string',
+            'double' => 'float',
+            default => $type,
+        });
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -175,6 +199,7 @@ class ChangeColumn
      */
     protected static function calculateDoctrineTextLength($type)
     {
+<<<<<<< HEAD
         switch ($type) {
             case 'mediumText':
                 return 65535 + 1;
@@ -183,6 +208,14 @@ class ChangeColumn
             default:
                 return 255 + 1;
         }
+=======
+        return match ($type) {
+            'tinyText' => 1,
+            'mediumText' => 65535 + 1,
+            'longText' => 16777215 + 1,
+            default => 255 + 1,
+        };
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -207,6 +240,10 @@ class ChangeColumn
             'mediumInteger',
             'smallInteger',
             'time',
+<<<<<<< HEAD
+=======
+            'timestamp',
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             'tinyInteger',
         ]);
     }
@@ -219,6 +256,7 @@ class ChangeColumn
      */
     protected static function mapFluentOptionToDoctrine($attribute)
     {
+<<<<<<< HEAD
         switch ($attribute) {
             case 'type':
             case 'name':
@@ -232,6 +270,15 @@ class ChangeColumn
             default:
                 return $attribute;
         }
+=======
+        return match ($attribute) {
+            'type', 'name' => null,
+            'nullable' => 'notnull',
+            'total' => 'precision',
+            'places' => 'scale',
+            default => $attribute,
+        };
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

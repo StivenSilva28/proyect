@@ -7,7 +7,10 @@ use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\View\Factory as FactoryContract;
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\View\Engines\EngineResolver;
 use InvalidArgumentException;
@@ -17,6 +20,10 @@ class Factory implements FactoryContract
     use Macroable,
         Concerns\ManagesComponents,
         Concerns\ManagesEvents,
+<<<<<<< HEAD
+=======
+        Concerns\ManagesFragments,
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         Concerns\ManagesLayouts,
         Concerns\ManagesLoops,
         Concerns\ManagesStacks,
@@ -231,7 +238,11 @@ class Factory implements FactoryContract
         // view. Alternatively, the "empty view" could be a raw string that begins
         // with "raw|" for convenience and to let this know that it is a string.
         else {
+<<<<<<< HEAD
             $result = Str::startsWith($empty, 'raw|')
+=======
+            $result = str_starts_with($empty, 'raw|')
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                         ? substr($empty, 4)
                         : $this->make($empty)->render();
         }
@@ -321,7 +332,11 @@ class Factory implements FactoryContract
         $extensions = array_keys($this->extensions);
 
         return Arr::first($extensions, function ($value) use ($path) {
+<<<<<<< HEAD
             return Str::endsWith($path, '.'.$value);
+=======
+            return str_ends_with($path, '.'.$value);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         });
     }
 
@@ -482,6 +497,10 @@ class Factory implements FactoryContract
         $this->flushSections();
         $this->flushStacks();
         $this->flushComponents();
+<<<<<<< HEAD
+=======
+        $this->flushFragments();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

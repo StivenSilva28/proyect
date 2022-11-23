@@ -47,7 +47,11 @@ class Caster
         if ($hasDebugInfo) {
             try {
                 $debugInfo = $obj->__debugInfo();
+<<<<<<< HEAD
             } catch (\Exception $e) {
+=======
+            } catch (\Exception) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 // ignore failing __debugInfo()
                 $hasDebugInfo = false;
             }
@@ -61,7 +65,11 @@ class Caster
 
         if ($a) {
             static $publicProperties = [];
+<<<<<<< HEAD
             $debugClass = $debugClass ?? get_debug_type($obj);
+=======
+            $debugClass ??= get_debug_type($obj);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
             $i = 0;
             $prefixedKeys = [];

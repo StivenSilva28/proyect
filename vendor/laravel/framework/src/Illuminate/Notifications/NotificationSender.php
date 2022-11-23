@@ -191,7 +191,13 @@ class NotificationSender
             foreach ((array) $original->via($notifiable) as $channel) {
                 $notification = clone $original;
 
+<<<<<<< HEAD
                 $notification->id = $notificationId;
+=======
+                if (! $notification->id) {
+                    $notification->id = $notificationId;
+                }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                 if (! is_null($this->locale)) {
                     $notification->locale = $this->locale;
@@ -203,10 +209,29 @@ class NotificationSender
                     $queue = $notification->viaQueues()[$channel] ?? null;
                 }
 
+<<<<<<< HEAD
+=======
+                $delay = $notification->delay;
+
+                if (method_exists($notification, 'withDelay')) {
+                    $delay = $notification->withDelay($notifiable, $channel) ?? null;
+                }
+
+                $middleware = $notification->middleware ?? [];
+
+                if (method_exists($notification, 'middleware')) {
+                    $middleware = array_merge(
+                        $notification->middleware($notifiable, $channel),
+                        $middleware
+                    );
+                }
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $this->bus->dispatch(
                     (new SendQueuedNotifications($notifiable, $notification, [$channel]))
                             ->onConnection($notification->connection)
                             ->onQueue($queue)
+<<<<<<< HEAD
                             ->delay(is_array($notification->delay) ?
                                     ($notification->delay[$channel] ?? null)
                                     : $notification->delay
@@ -217,6 +242,10 @@ class NotificationSender
                                     $notification->middleware ?? []
                                 )
                             )
+=======
+                            ->delay(is_array($delay) ? ($delay[$channel] ?? null) : $delay)
+                            ->through($middleware)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 );
             }
         }

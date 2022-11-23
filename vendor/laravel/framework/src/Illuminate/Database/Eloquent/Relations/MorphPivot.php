@@ -2,8 +2,11 @@
 
 namespace Illuminate\Database\Eloquent\Relations;
 
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class MorphPivot extends Pivot
 {
     /**
@@ -141,7 +144,11 @@ class MorphPivot extends Pivot
             return $this->newQueryForCollectionRestoration($ids);
         }
 
+<<<<<<< HEAD
         if (! Str::contains($ids, ':')) {
+=======
+        if (! str_contains($ids, ':')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return parent::newQueryForRestoration($ids);
         }
 
@@ -163,7 +170,11 @@ class MorphPivot extends Pivot
     {
         $ids = array_values($ids);
 
+<<<<<<< HEAD
         if (! Str::contains($ids[0], ':')) {
+=======
+        if (! str_contains($ids[0], ':')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return parent::newQueryForRestoration($ids);
         }
 

@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Ramsey\Uuid\Rfc4122;
 
+<<<<<<< HEAD
 use DateTimeImmutable;
 use DateTimeInterface;
 use Ramsey\Uuid\Codec\CodecInterface;
@@ -31,14 +32,32 @@ use const STR_PAD_LEFT;
 
 /**
  * Time-based, or version 1, UUIDs include timestamp, clock sequence, and node
+=======
+use Ramsey\Uuid\Codec\CodecInterface;
+use Ramsey\Uuid\Converter\NumberConverterInterface;
+use Ramsey\Uuid\Converter\TimeConverterInterface;
+use Ramsey\Uuid\Exception\InvalidArgumentException;
+use Ramsey\Uuid\Rfc4122\FieldsInterface as Rfc4122FieldsInterface;
+use Ramsey\Uuid\Uuid;
+
+/**
+ * Gregorian time, or version 1, UUIDs include timestamp, clock sequence, and node
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * values that are combined into a 128-bit unsigned integer
  *
  * @psalm-immutable
  */
 final class UuidV1 extends Uuid implements UuidInterface
 {
+<<<<<<< HEAD
     /**
      * Creates a version 1 (time-based) UUID
+=======
+    use TimeTrait;
+
+    /**
+     * Creates a version 1 (Gregorian time) UUID
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param Rfc4122FieldsInterface $fields The fields from which to construct a UUID
      * @param NumberConverterInterface $numberConverter The number converter to use
@@ -63,6 +82,7 @@ final class UuidV1 extends Uuid implements UuidInterface
 
         parent::__construct($fields, $numberConverter, $codec, $timeConverter);
     }
+<<<<<<< HEAD
 
     /**
      * Returns a DateTimeInterface object representing the timestamp associated
@@ -89,4 +109,6 @@ final class UuidV1 extends Uuid implements UuidInterface
             throw new DateTimeException($e->getMessage(), (int) $e->getCode(), $e);
         }
     }
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

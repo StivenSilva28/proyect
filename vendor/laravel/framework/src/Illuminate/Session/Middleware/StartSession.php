@@ -95,7 +95,11 @@ class StartSession
 
             return $this->handleStatefulRequest($request, $session, $next);
         } finally {
+<<<<<<< HEAD
             optional($lock)->release();
+=======
+            $lock?->release();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
     }
 
@@ -199,10 +203,18 @@ class StartSession
      */
     protected function storeCurrentUrl(Request $request, $session)
     {
+<<<<<<< HEAD
         if ($request->method() === 'GET' &&
             $request->route() instanceof Route &&
             ! $request->ajax() &&
             ! $request->prefetch()) {
+=======
+        if ($request->isMethod('GET') &&
+            $request->route() instanceof Route &&
+            ! $request->ajax() &&
+            ! $request->prefetch() &&
+            ! $request->isPrecognitive()) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $session->setPreviousUrl($request->fullUrl());
         }
     }
@@ -233,7 +245,13 @@ class StartSession
      */
     protected function saveSession($request)
     {
+<<<<<<< HEAD
         $this->manager->driver()->save();
+=======
+        if (! $request->isPrecognitive()) {
+            $this->manager->driver()->save();
+        }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

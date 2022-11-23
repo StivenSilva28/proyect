@@ -45,7 +45,11 @@ class Response extends SymfonyResponse
      *
      * @throws \InvalidArgumentException
      */
+<<<<<<< HEAD
     public function setContent($content)
+=======
+    public function setContent(mixed $content): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->original = $content;
 

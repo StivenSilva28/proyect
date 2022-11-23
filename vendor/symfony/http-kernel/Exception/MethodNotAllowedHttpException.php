@@ -17,6 +17,7 @@ namespace Symfony\Component\HttpKernel\Exception;
 class MethodNotAllowedHttpException extends HttpException
 {
     /**
+<<<<<<< HEAD
      * @param string[]        $allow    An array of allowed methods
      * @param string|null     $message  The internal exception message
      * @param \Throwable|null $previous The previous exception
@@ -35,6 +36,12 @@ class MethodNotAllowedHttpException extends HttpException
             $code = 0;
         }
 
+=======
+     * @param string[] $allow An array of allowed methods
+     */
+    public function __construct(array $allow, string $message = '', \Throwable $previous = null, int $code = 0, array $headers = [])
+    {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $headers['Allow'] = strtoupper(implode(', ', $allow));
 
         parent::__construct(405, $message, $previous, $headers, $code);

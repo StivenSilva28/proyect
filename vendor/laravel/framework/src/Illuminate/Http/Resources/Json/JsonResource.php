@@ -133,7 +133,11 @@ class JsonResource implements ArrayAccess, JsonSerializable, Responsable, UrlRou
     {
         $json = json_encode($this->jsonSerialize(), $options);
 
+<<<<<<< HEAD
         if (JSON_ERROR_NONE !== json_last_error()) {
+=======
+        if (json_last_error() !== JSON_ERROR_NONE) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             throw JsonEncodingException::forResource($this, json_last_error_msg());
         }
 
@@ -236,8 +240,12 @@ class JsonResource implements ArrayAccess, JsonSerializable, Responsable, UrlRou
      *
      * @return array
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
+=======
+    public function jsonSerialize(): array
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->resolve(Container::getInstance()->make('request'));
     }

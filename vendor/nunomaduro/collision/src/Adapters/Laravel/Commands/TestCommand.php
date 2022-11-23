@@ -11,6 +11,10 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Env;
 use Illuminate\Support\Str;
 use NunoMaduro\Collision\Adapters\Laravel\Exceptions\RequirementsException;
+<<<<<<< HEAD
+=======
+use NunoMaduro\Collision\Coverage;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use RuntimeException;
 use Symfony\Component\Process\Exception\ProcessSignaledException;
 use Symfony\Component\Process\Process;
@@ -29,8 +33,16 @@ class TestCommand extends Command
      */
     protected $signature = 'test
         {--without-tty : Disable output to TTY}
+<<<<<<< HEAD
         {--p|parallel : Indicates if the tests should run in parallel}
         {--recreate-databases : Indicates if the test databases should be re-created}
+=======
+        {--coverage : Indicates whether code coverage information should be collected}
+        {--min= : Indicates the minimum threshold enforcement for code coverage}
+        {--p|parallel : Indicates if the tests should run in parallel}
+        {--recreate-databases : Indicates if the test databases should be re-created}
+        {--drop-databases : Indicates if the test databases should be dropped}
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     ';
 
     /**
@@ -68,8 +80,26 @@ class TestCommand extends Command
             throw new RequirementsException('Running Collision ^5.0 artisan test command requires at least Laravel ^8.0.');
         }
 
+<<<<<<< HEAD
         if ($this->option('parallel') && !$this->isParallelDependenciesInstalled()) {
             if (!$this->confirm('Running tests in parallel requires "brianium/paratest". Do you wish to install it as a dev dependency?')) {
+=======
+        if ($this->option('coverage') && ! Coverage::isAvailable()) {
+            $this->output->writeln(sprintf(
+                "\n  <fg=white;bg=red;options=bold> ERROR </> Code coverage driver not available.%s</>",
+                Coverage::usingXdebug()
+                    ? " Did you set <href=https://xdebug.org/docs/code_coverage#mode>Xdebug's coverage mode</>?"
+                    : ''
+            ));
+
+            $this->newLine();
+
+            return 1;
+        }
+
+        if ($this->option('parallel') && ! $this->isParallelDependenciesInstalled()) {
+            if (! $this->confirm('Running tests in parallel requires "brianium/paratest". Do you wish to install it as a dev dependency?')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 return 1;
             }
 
@@ -83,17 +113,26 @@ class TestCommand extends Command
         $parallel = $this->option('parallel');
 
         $process = (new Process(array_merge(
+<<<<<<< HEAD
                 // Binary ...
                 $this->binary(),
                 // Arguments ...
                 $parallel ? $this->paratestArguments($options) : $this->phpunitArguments($options)
             ),
+=======
+            // Binary ...
+            $this->binary(),
+            // Arguments ...
+            $parallel ? $this->paratestArguments($options) : $this->phpunitArguments($options)
+        ),
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             null,
             // Envs ...
             $parallel ? $this->paratestEnvironmentVariables() : $this->phpunitEnvironmentVariables(),
         ))->setTimeout(null);
 
         try {
+<<<<<<< HEAD
             $process->setTty(!$this->option('without-tty'));
         } catch (RuntimeException $e) {
             $this->output->writeln('Warning: ' . $e->getMessage());
@@ -101,6 +140,17 @@ class TestCommand extends Command
 
         try {
             return $process->run(function ($type, $line) {
+=======
+            $process->setTty(! $this->option('without-tty'));
+        } catch (RuntimeException $e) {
+            $this->output->writeln('Warning: '.$e->getMessage());
+        }
+
+        $exitCode = 1;
+
+        try {
+            $exitCode = $process->run(function ($type, $line) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 $this->output->write($line);
             });
         } catch (ProcessSignaledException $e) {
@@ -108,6 +158,31 @@ class TestCommand extends Command
                 throw $e;
             }
         }
+<<<<<<< HEAD
+=======
+
+        if ($exitCode === 0 && $this->option('coverage')) {
+            if (! $this->usingPest() && $this->option('parallel')) {
+                $this->newLine();
+            }
+
+            $coverage = Coverage::report($this->output);
+
+            $exitCode = (int) ($coverage < $this->option('min'));
+
+            if ($exitCode === 1) {
+                $this->output->writeln(sprintf(
+                    "\n  <fg=white;bg=red;options=bold> FAIL </> Code coverage below expected:<fg=red;options=bold> %s %%</>. Minimum:<fg=white;options=bold> %s %%</>.",
+                    number_format($coverage, 1),
+                    number_format((float) $this->option('min'), 1)
+                ));
+            }
+        }
+
+        $this->newLine();
+
+        return $exitCode;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -117,7 +192,11 @@ class TestCommand extends Command
      */
     protected function binary()
     {
+<<<<<<< HEAD
         if (class_exists(\Pest\Laravel\PestServiceProvider::class)) {
+=======
+        if ($this->usingPest()) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $command = $this->option('parallel') ? ['vendor/pestphp/pest/bin/pest', '--parallel'] : ['vendor/pestphp/pest/bin/pest'];
         } else {
             $command = $this->option('parallel') ? ['vendor/brianium/paratest/bin/paratest'] : ['vendor/phpunit/phpunit/phpunit'];
@@ -131,10 +210,43 @@ class TestCommand extends Command
     }
 
     /**
+<<<<<<< HEAD
      * Get the array of arguments for running PHPUnit.
      *
      * @param array $options
      *
+=======
+     * Gets the common arguments of PHPUnit and Pest.
+     *
+     * @return array
+     */
+    protected function commonArguments()
+    {
+        $arguments = [];
+
+        if ($this->option('coverage')) {
+            $arguments[] = '--coverage-php';
+            $arguments[] = Coverage::getPath();
+        }
+
+        return $arguments;
+    }
+
+    /**
+     * Determines if Pest is being used.
+     *
+     * @return bool
+     */
+    protected function usingPest()
+    {
+        return class_exists(\Pest\Laravel\PestServiceProvider::class);
+    }
+
+    /**
+     * Get the array of arguments for running PHPUnit.
+     *
+     * @param  array  $options
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return array
      */
     protected function phpunitArguments($options)
@@ -142,6 +254,7 @@ class TestCommand extends Command
         $options = array_merge(['--printer=NunoMaduro\\Collision\\Adapters\\Phpunit\\Printer'], $options);
 
         $options = array_values(array_filter($options, function ($option) {
+<<<<<<< HEAD
             return !Str::startsWith($option, '--env=');
         }));
 
@@ -150,18 +263,37 @@ class TestCommand extends Command
         }
 
         return array_merge(["--configuration=$file"], $options);
+=======
+            return ! Str::startsWith($option, '--env=')
+                && $option != '-q'
+                && $option != '--quiet'
+                && $option != '--coverage'
+                && ! Str::startsWith($option, '--min');
+        }));
+
+        if (! file_exists($file = base_path('phpunit.xml'))) {
+            $file = base_path('phpunit.xml.dist');
+        }
+
+        return array_merge($this->commonArguments(), ["--configuration=$file"], $options);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
      * Get the array of arguments for running Paratest.
      *
+<<<<<<< HEAD
      * @param array $options
      *
+=======
+     * @param  array  $options
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return array
      */
     protected function paratestArguments($options)
     {
         $options = array_values(array_filter($options, function ($option) {
+<<<<<<< HEAD
             return !Str::startsWith($option, '--env=')
                 && !Str::startsWith($option, '-p')
                 && !Str::startsWith($option, '--parallel')
@@ -173,6 +305,24 @@ class TestCommand extends Command
         }
 
         return array_merge([
+=======
+            return ! Str::startsWith($option, '--env=')
+                && $option != '--coverage'
+                && $option != '-q'
+                && $option != '--quiet'
+                && ! Str::startsWith($option, '--min')
+                && ! Str::startsWith($option, '-p')
+                && ! Str::startsWith($option, '--parallel')
+                && ! Str::startsWith($option, '--recreate-databases')
+                && ! Str::startsWith($option, '--drop-databases');
+        }));
+
+        if (! file_exists($file = base_path('phpunit.xml'))) {
+            $file = base_path('phpunit.xml.dist');
+        }
+
+        return array_merge($this->commonArguments(), [
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             "--configuration=$file",
             "--runner=\Illuminate\Testing\ParallelRunner",
         ], $options);
@@ -196,8 +346,14 @@ class TestCommand extends Command
     protected function paratestEnvironmentVariables()
     {
         return [
+<<<<<<< HEAD
             'LARAVEL_PARALLEL_TESTING'                    => 1,
             'LARAVEL_PARALLEL_TESTING_RECREATE_DATABASES' => $this->option('recreate-databases'),
+=======
+            'LARAVEL_PARALLEL_TESTING' => 1,
+            'LARAVEL_PARALLEL_TESTING_RECREATE_DATABASES' => $this->option('recreate-databases'),
+            'LARAVEL_PARALLEL_TESTING_DROP_DATABASES' => $this->option('drop-databases'),
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         ];
     }
 
@@ -208,7 +364,11 @@ class TestCommand extends Command
      */
     protected function clearEnv()
     {
+<<<<<<< HEAD
         if (!$this->option('env')) {
+=======
+        if (! $this->option('env')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $vars = self::getEnvironmentVariables(
                 // @phpstan-ignore-next-line
                 $this->laravel->environmentPath(),
@@ -225,9 +385,14 @@ class TestCommand extends Command
     }
 
     /**
+<<<<<<< HEAD
      * @param string $path
      * @param string $file
      *
+=======
+     * @param  string  $path
+     * @param  string  $file
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return array
      */
     protected static function getEnvironmentVariables($path, $file)
@@ -268,7 +433,11 @@ class TestCommand extends Command
      */
     protected function installParallelDependencies()
     {
+<<<<<<< HEAD
         $command = $this->findComposer() . ' require brianium/paratest --dev';
+=======
+        $command = $this->findComposer().' require brianium/paratest --dev';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $process = Process::fromShellCommandline($command, null, null, null, null);
 
@@ -276,7 +445,11 @@ class TestCommand extends Command
             try {
                 $process->setTty(true);
             } catch (RuntimeException $e) {
+<<<<<<< HEAD
                 $this->output->writeln('Warning: ' . $e->getMessage());
+=======
+                $this->output->writeln('Warning: '.$e->getMessage());
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         }
 
@@ -298,10 +471,17 @@ class TestCommand extends Command
      */
     protected function findComposer()
     {
+<<<<<<< HEAD
         $composerPath = getcwd() . '/composer.phar';
 
         if (file_exists($composerPath)) {
             return '"' . PHP_BINARY . '" ' . $composerPath;
+=======
+        $composerPath = getcwd().'/composer.phar';
+
+        if (file_exists($composerPath)) {
+            return '"'.PHP_BINARY.'" '.$composerPath;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         }
 
         return 'composer';

@@ -24,6 +24,7 @@ use Ramsey\Uuid\Provider\TimeProviderInterface;
  */
 class TimeGeneratorFactory
 {
+<<<<<<< HEAD
     /**
      * @var NodeProviderInterface
      */
@@ -47,6 +48,13 @@ class TimeGeneratorFactory
         $this->nodeProvider = $nodeProvider;
         $this->timeConverter = $timeConverter;
         $this->timeProvider = $timeProvider;
+=======
+    public function __construct(
+        private NodeProviderInterface $nodeProvider,
+        private TimeConverterInterface $timeConverter,
+        private TimeProviderInterface $timeProvider
+    ) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

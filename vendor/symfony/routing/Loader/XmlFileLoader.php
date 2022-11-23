@@ -35,6 +35,7 @@ class XmlFileLoader extends FileLoader
     public const SCHEME_PATH = '/schema/routing/routing-1.0.xsd';
 
     /**
+<<<<<<< HEAD
      * Loads an XML file.
      *
      * @param string      $file An XML file path
@@ -46,6 +47,12 @@ class XmlFileLoader extends FileLoader
      *                                   parsed because it does not validate against the scheme
      */
     public function load($file, string $type = null)
+=======
+     * @throws \InvalidArgumentException when the file cannot be loaded or when the XML cannot be
+     *                                   parsed because it does not validate against the scheme
+     */
+    public function load(mixed $file, string $type = null): RouteCollection
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $path = $this->locator->locate($file);
 
@@ -102,7 +109,11 @@ class XmlFileLoader extends FileLoader
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function supports($resource, string $type = null)
+=======
+    public function supports(mixed $resource, string $type = null): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return \is_string($resource) && 'xml' === pathinfo($resource, \PATHINFO_EXTENSION) && (!$type || 'xml' === $type);
     }
@@ -229,13 +240,20 @@ class XmlFileLoader extends FileLoader
     }
 
     /**
+<<<<<<< HEAD
      * @return \DOMDocument
      *
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @throws \InvalidArgumentException When loading of XML file fails because of syntax errors
      *                                   or when the XML structure is not as expected by the scheme -
      *                                   see validate()
      */
+<<<<<<< HEAD
     protected function loadFile(string $file)
+=======
+    protected function loadFile(string $file): \DOMDocument
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return XmlUtils::loadFile($file, __DIR__.static::SCHEME_PATH);
     }
@@ -330,10 +348,15 @@ class XmlFileLoader extends FileLoader
 
     /**
      * Parses the "default" elements.
+<<<<<<< HEAD
      *
      * @return array|bool|float|int|string|null
      */
     private function parseDefaultsConfig(\DOMElement $element, string $path)
+=======
+     */
+    private function parseDefaultsConfig(\DOMElement $element, string $path): array|bool|float|int|string|null
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->isElementValueNull($element)) {
             return null;
@@ -363,11 +386,17 @@ class XmlFileLoader extends FileLoader
     /**
      * Recursively parses the value of a "default" element.
      *
+<<<<<<< HEAD
      * @return array|bool|float|int|string|null
      *
      * @throws \InvalidArgumentException when the XML is invalid
      */
     private function parseDefaultNode(\DOMElement $node, string $path)
+=======
+     * @throws \InvalidArgumentException when the XML is invalid
+     */
+    private function parseDefaultNode(\DOMElement $node, string $path): array|bool|float|int|string|null
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->isElementValueNull($node)) {
             return null;

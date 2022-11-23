@@ -45,7 +45,11 @@ class RouteGroup
     protected static function formatNamespace($new, $old)
     {
         if (isset($new['namespace'])) {
+<<<<<<< HEAD
             return isset($old['namespace']) && strpos($new['namespace'], '\\') !== 0
+=======
+            return isset($old['namespace']) && ! str_starts_with($new['namespace'], '\\')
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     ? trim($old['namespace'], '\\').'\\'.trim($new['namespace'], '\\')
                     : trim($new['namespace'], '\\');
         }

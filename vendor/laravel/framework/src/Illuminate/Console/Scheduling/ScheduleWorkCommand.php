@@ -4,8 +4,15 @@ namespace Illuminate\Console\Scheduling;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
+<<<<<<< HEAD
 use Symfony\Component\Process\Process;
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Process\Process;
+
+#[AsCommand(name: 'schedule:work')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ScheduleWorkCommand extends Command
 {
     /**
@@ -16,6 +23,20 @@ class ScheduleWorkCommand extends Command
     protected $name = 'schedule:work';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'schedule:work';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -29,7 +50,11 @@ class ScheduleWorkCommand extends Command
      */
     public function handle()
     {
+<<<<<<< HEAD
         $this->info('Schedule worker started successfully.');
+=======
+        $this->components->info('Running schedule tasks every minute.');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         [$lastExecutionStartedAt, $keyOfLastExecutionWithOutput, $executions] = [null, null, []];
 
@@ -50,6 +75,7 @@ class ScheduleWorkCommand extends Command
             }
 
             foreach ($executions as $key => $execution) {
+<<<<<<< HEAD
                 $output = trim($execution->getIncrementalOutput()).
                           trim($execution->getIncrementalErrorOutput());
 
@@ -62,6 +88,12 @@ class ScheduleWorkCommand extends Command
 
                     $this->output->writeln($output);
                 }
+=======
+                $output = $execution->getIncrementalOutput().
+                          $execution->getIncrementalErrorOutput();
+
+                $this->output->write(ltrim($output, "\n"));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                 if (! $execution->isRunning()) {
                     unset($executions[$key]);

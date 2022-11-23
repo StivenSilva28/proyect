@@ -75,7 +75,11 @@ final class State
      */
     public function add(TestResult $test): void
     {
+<<<<<<< HEAD
         $this->testCaseTests[]        = $test;
+=======
+        $this->testCaseTests[] = $test;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->toBePrintedCaseTests[] = $test;
 
         $this->suiteTests[] = $test;

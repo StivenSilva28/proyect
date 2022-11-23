@@ -31,9 +31,15 @@ class Token
     public const TYPE_NUMBER = 'number';
     public const TYPE_STRING = 'string';
 
+<<<<<<< HEAD
     private $type;
     private $value;
     private $position;
+=======
+    private ?string $type;
+    private ?string $value;
+    private ?int $position;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(?string $type, ?string $value, ?int $position)
     {

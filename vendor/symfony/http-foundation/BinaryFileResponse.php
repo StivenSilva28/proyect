@@ -45,7 +45,11 @@ class BinaryFileResponse extends Response
      * @param bool                $autoEtag           Whether the ETag header should be automatically set
      * @param bool                $autoLastModified   Whether the Last-Modified header should be automatically set
      */
+<<<<<<< HEAD
     public function __construct($file, int $status = 200, array $headers = [], bool $public = true, string $contentDisposition = null, bool $autoEtag = false, bool $autoLastModified = true)
+=======
+    public function __construct(\SplFileInfo|string $file, int $status = 200, array $headers = [], bool $public = true, string $contentDisposition = null, bool $autoEtag = false, bool $autoLastModified = true)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         parent::__construct(null, $status, $headers);
 
@@ -57,6 +61,7 @@ class BinaryFileResponse extends Response
     }
 
     /**
+<<<<<<< HEAD
      * @param \SplFileInfo|string $file               The file to stream
      * @param int                 $status             The response status code
      * @param array               $headers            An array of response headers
@@ -81,11 +86,19 @@ class BinaryFileResponse extends Response
      *
      * @param \SplFileInfo|string $file The file to stream
      *
+=======
+     * Sets the file to stream.
+     *
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      *
      * @throws FileException
      */
+<<<<<<< HEAD
     public function setFile($file, string $contentDisposition = null, bool $autoEtag = false, bool $autoLastModified = true)
+=======
+    public function setFile(\SplFileInfo|string $file, string $contentDisposition = null, bool $autoEtag = false, bool $autoLastModified = true): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$file instanceof File) {
             if ($file instanceof \SplFileInfo) {
@@ -118,10 +131,15 @@ class BinaryFileResponse extends Response
 
     /**
      * Gets the file.
+<<<<<<< HEAD
      *
      * @return File
      */
     public function getFile()
+=======
+     */
+    public function getFile(): File
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->file;
     }
@@ -131,7 +149,11 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setChunkSize(int $chunkSize): self
+=======
+    public function setChunkSize(int $chunkSize): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($chunkSize < 1 || $chunkSize > \PHP_INT_MAX) {
             throw new \LogicException('The chunk size of a BinaryFileResponse cannot be less than 1 or greater than PHP_INT_MAX.');
@@ -147,7 +169,11 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setAutoLastModified()
+=======
+    public function setAutoLastModified(): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->setLastModified(\DateTime::createFromFormat('U', $this->file->getMTime()));
 
@@ -159,7 +185,11 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setAutoEtag()
+=======
+    public function setAutoEtag(): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->setEtag(base64_encode(hash_file('sha256', $this->file->getPathname(), true)));
 
@@ -175,7 +205,11 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function setContentDisposition(string $disposition, string $filename = '', string $filenameFallback = '')
+=======
+    public function setContentDisposition(string $disposition, string $filename = '', string $filenameFallback = ''): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ('' === $filename) {
             $filename = $this->file->getFilename();
@@ -204,7 +238,11 @@ class BinaryFileResponse extends Response
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function prepare(Request $request)
+=======
+    public function prepare(Request $request): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if ($this->isInformational() || $this->isEmpty()) {
             parent::prepare($request);
@@ -248,7 +286,11 @@ class BinaryFileResponse extends Response
                 $parts = HeaderUtils::split($request->headers->get('X-Accel-Mapping', ''), ',=');
                 foreach ($parts as $part) {
                     [$pathPrefix, $location] = $part;
+<<<<<<< HEAD
                     if (substr($path, 0, \strlen($pathPrefix)) === $pathPrefix) {
+=======
+                    if (str_starts_with($path, $pathPrefix)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                         $path = $location.substr($path, \strlen($pathPrefix));
                         // Only set X-Accel-Redirect header if a valid URI can be produced
                         // as nginx does not serve arbitrary file paths.
@@ -319,7 +361,11 @@ class BinaryFileResponse extends Response
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function sendContent()
+=======
+    public function sendContent(): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         try {
             if (!$this->isSuccessful()) {
@@ -367,7 +413,11 @@ class BinaryFileResponse extends Response
      *
      * @throws \LogicException when the content is not null
      */
+<<<<<<< HEAD
     public function setContent(?string $content)
+=======
+    public function setContent(?string $content): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (null !== $content) {
             throw new \LogicException('The content cannot be set on a BinaryFileResponse instance.');
@@ -379,7 +429,11 @@ class BinaryFileResponse extends Response
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
     public function getContent()
+=======
+    public function getContent(): string|false
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return false;
     }
@@ -398,7 +452,11 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function deleteFileAfterSend(bool $shouldDelete = true)
+=======
+    public function deleteFileAfterSend(bool $shouldDelete = true): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->deleteFileAfterSend = $shouldDelete;
 

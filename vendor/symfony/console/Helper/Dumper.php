@@ -21,10 +21,17 @@ use Symfony\Component\VarDumper\Dumper\CliDumper;
  */
 final class Dumper
 {
+<<<<<<< HEAD
     private $output;
     private $dumper;
     private $cloner;
     private $handler;
+=======
+    private OutputInterface $output;
+    private ?CliDumper $dumper;
+    private ?ClonerInterface $cloner;
+    private \Closure $handler;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(OutputInterface $output, CliDumper $dumper = null, ClonerInterface $cloner = null)
     {
@@ -34,6 +41,7 @@ final class Dumper
 
         if (class_exists(CliDumper::class)) {
             $this->handler = function ($var): string {
+<<<<<<< HEAD
                 $dumper = $this->dumper ?? $this->dumper = new CliDumper(null, null, CliDumper::DUMP_LIGHT_ARRAY | CliDumper::DUMP_COMMA_SEPARATOR);
                 $dumper->setColors($this->output->isDecorated());
 
@@ -53,11 +61,31 @@ final class Dumper
                     default:
                         return rtrim(print_r($var, true));
                 }
+=======
+                $dumper = $this->dumper ??= new CliDumper(null, null, CliDumper::DUMP_LIGHT_ARRAY | CliDumper::DUMP_COMMA_SEPARATOR);
+                $dumper->setColors($this->output->isDecorated());
+
+                return rtrim($dumper->dump(($this->cloner ??= new VarCloner())->cloneVar($var)->withRefHandles(false), true));
+            };
+        } else {
+            $this->handler = function ($var): string {
+                return match (true) {
+                    null === $var => 'null',
+                    true === $var => 'true',
+                    false === $var => 'false',
+                    \is_string($var) => '"'.$var.'"',
+                    default => rtrim(print_r($var, true)),
+                };
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             };
         }
     }
 
+<<<<<<< HEAD
     public function __invoke($var): string
+=======
+    public function __invoke(mixed $var): string
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return ($this->handler)($var);
     }

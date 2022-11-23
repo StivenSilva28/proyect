@@ -5,7 +5,13 @@ namespace Illuminate\Cache\Console;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
+<<<<<<< HEAD
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+
+#[AsCommand(name: 'cache:table')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class CacheTableCommand extends Command
 {
     /**
@@ -16,6 +22,20 @@ class CacheTableCommand extends Command
     protected $name = 'cache:table';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'cache:table';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -60,7 +80,11 @@ class CacheTableCommand extends Command
 
         $this->files->put($fullPath, $this->files->get(__DIR__.'/stubs/cache.stub'));
 
+<<<<<<< HEAD
         $this->info('Migration created successfully!');
+=======
+        $this->components->info('Migration created successfully.');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $this->composer->dumpAutoloads();
     }

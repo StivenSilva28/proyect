@@ -3,6 +3,10 @@
 namespace Illuminate\Support;
 
 use ReflectionClass;
+<<<<<<< HEAD
+=======
+use ReflectionEnum;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionUnionType;
@@ -22,8 +26,12 @@ class Reflector
             return is_callable($var, $syntaxOnly);
         }
 
+<<<<<<< HEAD
         if ((! isset($var[0]) || ! isset($var[1])) ||
             ! is_string($var[1] ?? null)) {
+=======
+        if (! isset($var[0], $var[1]) || ! is_string($var[1] ?? null)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             return false;
         }
 
@@ -139,4 +147,27 @@ class Reflector
             && (class_exists($paramClassName) || interface_exists($paramClassName))
             && (new ReflectionClass($paramClassName))->isSubclassOf($className);
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Determine if the parameter's type is a Backed Enum with a string backing type.
+     *
+     * @param  \ReflectionParameter  $parameter
+     * @return bool
+     */
+    public static function isParameterBackedEnumWithStringBackingType($parameter)
+    {
+        $backedEnumClass = (string) $parameter->getType();
+
+        if (function_exists('enum_exists') && enum_exists($backedEnumClass)) {
+            $reflectionBackedEnum = new ReflectionEnum($backedEnumClass);
+
+            return $reflectionBackedEnum->isBacked()
+                && $reflectionBackedEnum->getBackingType()->getName() == 'string';
+        }
+
+        return false;
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

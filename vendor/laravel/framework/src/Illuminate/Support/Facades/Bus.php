@@ -9,6 +9,10 @@ use Illuminate\Support\Testing\Fakes\BusFake;
 /**
  * @method static \Illuminate\Bus\Batch|null findBatch(string $batchId)
  * @method static \Illuminate\Bus\PendingBatch batch(array|mixed $jobs)
+<<<<<<< HEAD
+=======
+ * @method static \Illuminate\Bus\Batch dispatchFakeBatch($name = '')
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static \Illuminate\Contracts\Bus\Dispatcher map(array $map)
  * @method static \Illuminate\Contracts\Bus\Dispatcher pipeThrough(array $pipes)
  * @method static \Illuminate\Foundation\Bus\PendingChain chain(array $jobs)
@@ -20,11 +24,19 @@ use Illuminate\Support\Testing\Fakes\BusFake;
  * @method static void assertDispatched(string|\Closure $command, callable|int $callback = null)
  * @method static void assertDispatchedTimes(string $command, int $times = 1)
  * @method static void assertNotDispatched(string|\Closure $command, callable|int $callback = null)
+<<<<<<< HEAD
+=======
+ * @method static void assertNothingDispatched()
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static void assertDispatchedAfterResponse(string|\Closure $command, callable|int $callback = null)
  * @method static void assertDispatchedAfterResponseTimes(string $command, int $times = 1)
  * @method static void assertNotDispatchedAfterResponse(string|\Closure $command, callable $callback = null)
  * @method static void assertBatched(callable $callback)
  * @method static void assertBatchCount(int $count)
+<<<<<<< HEAD
+=======
+ * @method static void assertNothingBatched()
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static void assertChained(array $expectedChain)
  * @method static void assertDispatchedSync(string|\Closure $command, callable $callback = null)
  * @method static void assertDispatchedSyncTimes(string $command, int $times = 1)

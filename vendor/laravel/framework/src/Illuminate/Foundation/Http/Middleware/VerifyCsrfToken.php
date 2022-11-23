@@ -146,7 +146,11 @@ class VerifyCsrfToken
      * Get the CSRF token from the request.
      *
      * @param  \Illuminate\Http\Request  $request
+<<<<<<< HEAD
      * @return string
+=======
+     * @return string|null
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     protected function getTokenFromRequest($request)
     {
@@ -188,17 +192,46 @@ class VerifyCsrfToken
             $response = $response->toResponse($request);
         }
 
+<<<<<<< HEAD
         $response->headers->setCookie(
             new Cookie(
                 'XSRF-TOKEN', $request->session()->token(), $this->availableAt(60 * $config['lifetime']),
                 $config['path'], $config['domain'], $config['secure'], false, false, $config['same_site'] ?? null
             )
         );
+=======
+        $response->headers->setCookie($this->newCookie($request, $config));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         return $response;
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Create a new "XSRF-TOKEN" cookie that contains the CSRF token.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $config
+     * @return \Symfony\Component\HttpFoundation\Cookie
+     */
+    protected function newCookie($request, $config)
+    {
+        return new Cookie(
+            'XSRF-TOKEN',
+            $request->session()->token(),
+            $this->availableAt(60 * $config['lifetime']),
+            $config['path'],
+            $config['domain'],
+            $config['secure'],
+            false,
+            false,
+            $config['same_site'] ?? null
+        );
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Determine if the cookie contents should be serialized.
      *
      * @return bool

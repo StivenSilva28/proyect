@@ -83,7 +83,11 @@ final class FormDataPart extends AbstractMultipartPart
         return $values;
     }
 
+<<<<<<< HEAD
     private function preparePart(string $name, $value): TextPart
+=======
+    private function preparePart(string $name, string|TextPart $value): TextPart
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (\is_string($value)) {
             return $this->configurePart($name, new TextPart($value, 'utf-8', 'plain', '8bit'));
@@ -96,10 +100,14 @@ final class FormDataPart extends AbstractMultipartPart
     {
         static $r;
 
+<<<<<<< HEAD
         if (null === $r) {
             $r = new \ReflectionProperty(TextPart::class, 'encoding');
             $r->setAccessible(true);
         }
+=======
+        $r ??= new \ReflectionProperty(TextPart::class, 'encoding');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $part->setDisposition('form-data');
         $part->setName($name);

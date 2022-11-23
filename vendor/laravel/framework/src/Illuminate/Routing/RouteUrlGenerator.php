@@ -4,7 +4,10 @@ namespace Illuminate\Routing;
 
 use Illuminate\Routing\Exceptions\UrlGenerationException;
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class RouteUrlGenerator
 {
@@ -200,7 +203,11 @@ class RouteUrlGenerator
             // Reset only the numeric keys...
             $parameters = array_merge($parameters);
 
+<<<<<<< HEAD
             return (! isset($parameters[0]) && ! Str::endsWith($match[0], '?}'))
+=======
+            return (! isset($parameters[0]) && ! str_ends_with($match[0], '?}'))
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                         ? $match[0]
                         : Arr::pull($parameters, 0);
         }, $path);

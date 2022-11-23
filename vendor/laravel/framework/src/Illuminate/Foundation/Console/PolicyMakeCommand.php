@@ -5,8 +5,15 @@ namespace Illuminate\Foundation\Console;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
 use LogicException;
+<<<<<<< HEAD
 use Symfony\Component\Console\Input\InputOption;
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Input\InputOption;
+
+#[AsCommand(name: 'make:policy')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class PolicyMakeCommand extends GeneratorCommand
 {
     /**
@@ -17,6 +24,20 @@ class PolicyMakeCommand extends GeneratorCommand
     protected $name = 'make:policy';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'make:policy';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -105,7 +126,11 @@ class PolicyMakeCommand extends GeneratorCommand
     {
         $model = str_replace('/', '\\', $model);
 
+<<<<<<< HEAD
         if (Str::startsWith($model, '\\')) {
+=======
+        if (str_starts_with($model, '\\')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $namespacedModel = trim($model, '\\');
         } else {
             $namespacedModel = $this->qualifyModel($model);
@@ -191,6 +216,10 @@ class PolicyMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
+<<<<<<< HEAD
+=======
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the policy already exists'],
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             ['model', 'm', InputOption::VALUE_OPTIONAL, 'The model that the policy applies to'],
             ['guard', 'g', InputOption::VALUE_OPTIONAL, 'The guard that the policy relies on'],
         ];

@@ -119,7 +119,11 @@ abstract class Job
     }
 
     /**
+<<<<<<< HEAD
      * Release the job back into the queue.
+=======
+     * Release the job back into the queue after (n) seconds.
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  int  $delay
      * @return void
@@ -278,7 +282,11 @@ abstract class Job
     /**
      * The number of seconds to wait before retrying a job that encountered an uncaught exception.
      *
+<<<<<<< HEAD
      * @return int|null
+=======
+     * @return int|int[]|null
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      */
     public function backoff()
     {
@@ -302,7 +310,11 @@ abstract class Job
      */
     public function retryUntil()
     {
+<<<<<<< HEAD
         return $this->payload()['retryUntil'] ?? $this->payload()['timeoutAt'] ?? null;
+=======
+        return $this->payload()['retryUntil'] ?? null;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

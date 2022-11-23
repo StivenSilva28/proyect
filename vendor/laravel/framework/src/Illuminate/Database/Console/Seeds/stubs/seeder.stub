@@ -1,7 +1,13 @@
 <?php
 
+<<<<<<< HEAD
 namespace Database\Seeders;
 
+=======
+namespace {{ namespace }};
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Illuminate\Database\Seeder;
 
 class {{ class }} extends Seeder

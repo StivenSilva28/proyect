@@ -11,6 +11,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use IteratorAggregate;
+<<<<<<< HEAD
+=======
+use Traversable;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
 {
@@ -155,6 +159,20 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Only include the given attribute from the attribute array.
+     *
+     * @param  mixed|array  $keys
+     * @return static
+     */
+    public function onlyProps($keys)
+    {
+        return $this->only($this->extractPropNames($keys));
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Exclude the given attribute from the attribute array.
      *
      * @param  mixed|array  $keys
@@ -162,6 +180,20 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      */
     public function exceptProps($keys)
     {
+<<<<<<< HEAD
+=======
+        return $this->except($this->extractPropNames($keys));
+    }
+
+    /**
+     * Extract prop names from given keys.
+     *
+     * @param  mixed|array  $keys
+     * @return array
+     */
+    protected function extractPropNames($keys)
+    {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $props = [];
 
         foreach ($keys as $key => $defaultValue) {
@@ -171,7 +203,11 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
             $props[] = Str::kebab($key);
         }
 
+<<<<<<< HEAD
         return $this->except($props);
+=======
+        return $props;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -323,8 +359,12 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      * @param  string  $offset
      * @return bool
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetExists($offset)
+=======
+    public function offsetExists($offset): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return isset($this->attributes[$offset]);
     }
@@ -335,8 +375,12 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      * @param  string  $offset
      * @return mixed
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
+=======
+    public function offsetGet($offset): mixed
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this->get($offset);
     }
@@ -348,8 +392,12 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      * @param  mixed  $value
      * @return void
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
+=======
+    public function offsetSet($offset, $value): void
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->attributes[$offset] = $value;
     }
@@ -360,8 +408,12 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      * @param  string  $offset
      * @return void
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
+=======
+    public function offsetUnset($offset): void
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         unset($this->attributes[$offset]);
     }
@@ -371,8 +423,12 @@ class ComponentAttributeBag implements ArrayAccess, Htmlable, IteratorAggregate
      *
      * @return \ArrayIterator
      */
+<<<<<<< HEAD
     #[\ReturnTypeWillChange]
     public function getIterator()
+=======
+    public function getIterator(): Traversable
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new ArrayIterator($this->attributes);
     }

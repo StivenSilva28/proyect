@@ -51,7 +51,11 @@ class StatusCommand extends BaseCommand
     {
         return $this->migrator->usingConnection($this->option('database'), function () {
             if (! $this->migrator->repositoryExists()) {
+<<<<<<< HEAD
                 $this->error('Migration table not found.');
+=======
+                $this->components->error('Migration table not found.');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
                 return 1;
             }
@@ -61,15 +65,33 @@ class StatusCommand extends BaseCommand
             $batches = $this->migrator->getRepository()->getMigrationBatches();
 
             if (count($migrations = $this->getStatusFor($ran, $batches)) > 0) {
+<<<<<<< HEAD
                 $this->table(['Ran?', 'Migration', 'Batch'], $migrations);
             } else {
                 $this->error('No migrations found');
+=======
+                $this->newLine();
+
+                $this->components->twoColumnDetail('<fg=gray>Migration name</>', '<fg=gray>Batch / Status</>');
+
+                $migrations->each(
+                    fn ($migration) => $this->components->twoColumnDetail($migration[0], $migration[1])
+                );
+
+                $this->newLine();
+            } else {
+                $this->components->info('No migrations found');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             }
         });
     }
 
     /**
+<<<<<<< HEAD
      * Get the status for the given ran migrations.
+=======
+     * Get the status for the given run migrations.
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  array  $ran
      * @param  array  $batches
@@ -81,9 +103,21 @@ class StatusCommand extends BaseCommand
                     ->map(function ($migration) use ($ran, $batches) {
                         $migrationName = $this->migrator->getMigrationName($migration);
 
+<<<<<<< HEAD
                         return in_array($migrationName, $ran)
                                 ? ['<info>Yes</info>', $migrationName, $batches[$migrationName]]
                                 : ['<fg=red>No</fg=red>', $migrationName];
+=======
+                        $status = in_array($migrationName, $ran)
+                            ? '<fg=green;options=bold>Ran</>'
+                            : '<fg=yellow;options=bold>Pending</>';
+
+                        if (in_array($migrationName, $ran)) {
+                            $status = '['.$batches[$migrationName].'] '.$status;
+                        }
+
+                        return [$migrationName, $status];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     });
     }
 

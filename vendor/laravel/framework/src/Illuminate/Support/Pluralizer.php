@@ -2,17 +2,41 @@
 
 namespace Illuminate\Support;
 
+<<<<<<< HEAD
 use Doctrine\Inflector\Inflector;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Doctrine\Inflector\InflectorFactory;
 
 class Pluralizer
 {
     /**
+<<<<<<< HEAD
      * Uncountable word forms.
+=======
+     * The cached inflector instance.
+     *
+     * @var static
+     */
+    protected static $inflector;
+
+    /**
+     * The language that should be used by the inflector.
+     *
+     * @var string
+     */
+    protected static $language = 'english';
+
+    /**
+     * Uncountable non-nouns word forms.
+     *
+     * Contains words supported by Doctrine/Inflector/Rules/English/Uninflected.php
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @var string[]
      */
     public static $uncountable = [
+<<<<<<< HEAD
         'audio',
         'bison',
         'cattle',
@@ -56,6 +80,12 @@ class Pluralizer
         'swine',
         'traffic',
         'wheat',
+=======
+        'cattle',
+        'kin',
+        'recommended',
+        'related',
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     ];
 
     /**
@@ -131,6 +161,7 @@ class Pluralizer
      */
     public static function inflector()
     {
+<<<<<<< HEAD
         static $inflector;
 
         if (is_null($inflector)) {
@@ -138,5 +169,25 @@ class Pluralizer
         }
 
         return $inflector;
+=======
+        if (is_null(static::$inflector)) {
+            static::$inflector = InflectorFactory::createForLanguage(static::$language)->build();
+        }
+
+        return static::$inflector;
+    }
+
+    /**
+     * Specify the language that should be used by the inflector.
+     *
+     * @param  string  $language
+     * @return void
+     */
+    public static function useLanguage(string $language)
+    {
+        static::$language = $language;
+
+        static::$inflector = null;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

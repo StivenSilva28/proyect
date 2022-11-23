@@ -8,10 +8,21 @@ use Illuminate\Contracts\Queue\Job;
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Queue\Events\JobProcessing;
+<<<<<<< HEAD
 use Illuminate\Queue\Worker;
 use Illuminate\Queue\WorkerOptions;
 use Illuminate\Support\Carbon;
 
+=======
+use Illuminate\Queue\Events\JobReleasedAfterException;
+use Illuminate\Queue\Worker;
+use Illuminate\Queue\WorkerOptions;
+use Illuminate\Support\Carbon;
+use Symfony\Component\Console\Attribute\AsCommand;
+use function Termwind\terminal;
+
+#[AsCommand(name: 'queue:work')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class WorkCommand extends Command
 {
     /**
@@ -38,6 +49,20 @@ class WorkCommand extends Command
                             {--tries=1 : Number of times to attempt a job before logging it failed}';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'queue:work';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -59,6 +84,23 @@ class WorkCommand extends Command
     protected $cache;
 
     /**
+<<<<<<< HEAD
+=======
+     * Holds the start time of the last processed job, if any.
+     *
+     * @var float|null
+     */
+    protected $latestStartedAt;
+
+    /**
+     * Holds the status of the last processed job, if any.
+     *
+     * @var string|null
+     */
+    protected $latestStatus;
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new queue work command.
      *
      * @param  \Illuminate\Queue\Worker  $worker
@@ -97,6 +139,13 @@ class WorkCommand extends Command
         // connection being run for the queue operation currently being executed.
         $queue = $this->getQueue($connection);
 
+<<<<<<< HEAD
+=======
+        $this->components->info(
+            sprintf('Processing jobs from the [%s] %s.', $queue, str('queue')->plural(explode(',', $queue)))
+        );
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         return $this->runWorker(
             $connection, $queue
         );
@@ -155,6 +204,13 @@ class WorkCommand extends Command
             $this->writeOutput($event->job, 'success');
         });
 
+<<<<<<< HEAD
+=======
+        $this->laravel['events']->listen(JobReleasedAfterException::class, function ($event) {
+            $this->writeOutput($event->job, 'released_after_exception');
+        });
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->laravel['events']->listen(JobFailed::class, function ($event) {
             $this->writeOutput($event->job, 'failed');
 
@@ -171,6 +227,7 @@ class WorkCommand extends Command
      */
     protected function writeOutput(Job $job, $status)
     {
+<<<<<<< HEAD
         switch ($status) {
             case 'starting':
                 return $this->writeStatus($job, 'Processing', 'comment');
@@ -197,6 +254,34 @@ class WorkCommand extends Command
             $job->getJobId(),
             str_pad("{$status}:", 11), $job->resolveName()
         ));
+=======
+        if ($status == 'starting') {
+            $this->latestStartedAt = microtime(true);
+            $this->latestStatus = $status;
+
+            $formattedStartedAt = Carbon::now()->format('Y-m-d H:i:s');
+
+            return $this->output->write("  <fg=gray>{$formattedStartedAt}</> {$job->resolveName()}");
+        }
+
+        if ($this->latestStatus && $this->latestStatus != 'starting') {
+            $formattedStartedAt = Carbon::createFromTimestamp($this->latestStartedAt)->format('Y-m-d H:i:s');
+
+            $this->output->write("  <fg=gray>{$formattedStartedAt}</> {$job->resolveName()}");
+        }
+
+        $runTime = number_format((microtime(true) - $this->latestStartedAt) * 1000, 2).'ms';
+        $dots = max(terminal()->width() - mb_strlen($job->resolveName()) - mb_strlen($runTime) - 31, 0);
+
+        $this->output->write(' '.str_repeat('<fg=gray>.</>', $dots));
+        $this->output->write(" <fg=gray>$runTime</>");
+
+        $this->output->writeln(match ($this->latestStatus = $status) {
+            'success' => ' <fg=green;options=bold>DONE</>',
+            'released_after_exception' => ' <fg=yellow;options=bold>FAIL</>',
+            default => ' <fg=red;options=bold>FAIL</>',
+        });
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

@@ -29,12 +29,17 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
  */
 final class ExceptionEvent extends RequestEvent
 {
+<<<<<<< HEAD
     private $throwable;
 
     /**
      * @var bool
      */
     private $allowCustomResponseCode = false;
+=======
+    private \Throwable $throwable;
+    private bool $allowCustomResponseCode = false;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(HttpKernelInterface $kernel, Request $request, int $requestType, \Throwable $e)
     {

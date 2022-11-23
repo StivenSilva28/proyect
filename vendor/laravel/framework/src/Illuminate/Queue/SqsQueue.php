@@ -116,7 +116,11 @@ class SqsQueue extends Queue implements QueueContract, ClearableQueue
     }
 
     /**
+<<<<<<< HEAD
      * Push a new job onto the queue after a delay.
+=======
+     * Push a new job onto the queue after (n) seconds.
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  string  $job
@@ -142,6 +146,28 @@ class SqsQueue extends Queue implements QueueContract, ClearableQueue
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Push an array of jobs onto the queue.
+     *
+     * @param  array  $jobs
+     * @param  mixed  $data
+     * @param  string|null  $queue
+     * @return void
+     */
+    public function bulk($jobs, $data = '', $queue = null)
+    {
+        foreach ((array) $jobs as $job) {
+            if (isset($job->delay)) {
+                $this->later($job->delay, $job, $data, $queue);
+            } else {
+                $this->push($job, $data, $queue);
+            }
+        }
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Pop the next job off of the queue.
      *
      * @param  string|null  $queue
@@ -201,7 +227,11 @@ class SqsQueue extends Queue implements QueueContract, ClearableQueue
      */
     protected function suffixQueue($queue, $suffix = '')
     {
+<<<<<<< HEAD
         if (Str::endsWith($queue, '.fifo')) {
+=======
+        if (str_ends_with($queue, '.fifo')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
             $queue = Str::beforeLast($queue, '.fifo');
 
             return rtrim($this->prefix, '/').'/'.Str::finish($queue, $suffix).'.fifo';

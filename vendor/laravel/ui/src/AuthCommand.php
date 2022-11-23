@@ -64,7 +64,11 @@ class AuthCommand extends Command
             $this->exportBackend();
         }
 
+<<<<<<< HEAD
         $this->info('Authentication scaffolding generated successfully.');
+=======
+        $this->components->info('Authentication scaffolding generated successfully.');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -92,7 +96,11 @@ class AuthCommand extends Command
     {
         foreach ($this->views as $key => $value) {
             if (file_exists($view = $this->getViewPath($value)) && ! $this->option('force')) {
+<<<<<<< HEAD
                 if (! $this->confirm("The [{$value}] view already exists. Do you want to replace it?")) {
+=======
+                if (! $this->components->confirm("The [$value] view already exists. Do you want to replace it?")) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     continue;
                 }
             }
@@ -116,7 +124,11 @@ class AuthCommand extends Command
         $controller = app_path('Http/Controllers/HomeController.php');
 
         if (file_exists($controller) && ! $this->option('force')) {
+<<<<<<< HEAD
             if ($this->confirm("The [HomeController.php] file already exists. Do you want to replace it?")) {
+=======
+            if ($this->components->confirm("The [HomeController.php] file already exists. Do you want to replace it?")) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                 file_put_contents($controller, $this->compileControllerStub());
             }
         } else {

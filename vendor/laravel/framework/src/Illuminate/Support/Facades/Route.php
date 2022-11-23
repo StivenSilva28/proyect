@@ -31,12 +31,20 @@ namespace Illuminate\Support\Facades;
  * @method static \Illuminate\Routing\RouteRegistrar scopeBindings()
  * @method static \Illuminate\Routing\RouteRegistrar where(array $where)
  * @method static \Illuminate\Routing\RouteRegistrar withoutMiddleware(array|string $middleware)
+<<<<<<< HEAD
+=======
+ * @method static \Illuminate\Routing\RouteRegistrar withoutScopedBindings()
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static \Illuminate\Routing\Router|\Illuminate\Routing\RouteRegistrar group(\Closure|string|array $attributes, \Closure|string $routes)
  * @method static \Illuminate\Routing\ResourceRegistrar resourceVerbs(array $verbs = [])
  * @method static string|null currentRouteAction()
  * @method static string|null currentRouteName()
  * @method static void apiResources(array $resources, array $options = [])
  * @method static void bind(string $key, string|callable $binder)
+<<<<<<< HEAD
+=======
+ * @method static void macro(string $name, object|callable $macro)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
  * @method static void model(string $key, string $class, \Closure|null $callback = null)
  * @method static void pattern(string $key, string $pattern)
  * @method static void resources(array $resources, array $options = [])

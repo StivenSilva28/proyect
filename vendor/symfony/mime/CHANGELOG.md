@@ -1,6 +1,20 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
+=======
+6.1
+---
+
+ * Add `DataPart::getFilename()` and `DataPart::getContentType()`
+
+6.0
+---
+
+ * Remove `Address::fromString()`, use `Address::create()` instead
+ * Remove `Serializable` interface from `RawMessage`
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 5.2.0
 -----
 

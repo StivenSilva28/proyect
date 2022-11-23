@@ -75,7 +75,11 @@ set_error_handler(function ($type, $msg, $file, $line, $context = []) use (&$dep
 
 $exclude = getenv('SYMFONY_PATCH_TYPE_EXCLUDE') ?: null;
 foreach ($loader->getClassMap() as $class => $file) {
+<<<<<<< HEAD
     if (false !== strpos($file = realpath($file), \DIRECTORY_SEPARATOR.'vendor'.\DIRECTORY_SEPARATOR)) {
+=======
+    if (str_contains($file = realpath($file), \DIRECTORY_SEPARATOR.'vendor'.\DIRECTORY_SEPARATOR)) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         continue;
     }
 
@@ -93,6 +97,10 @@ foreach ($deprecations as $class => $classDeprecations) {
     echo implode(PHP_EOL, $classDeprecations).PHP_EOL.PHP_EOL;
 }
 
+<<<<<<< HEAD
 if ($deprecations && false !== strpos(getenv('SYMFONY_PATCH_TYPE_DECLARATIONS') ?? '', 'force')) {
+=======
+if ($deprecations && str_contains(getenv('SYMFONY_PATCH_TYPE_DECLARATIONS') ?? '', 'force')) {
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     echo 'These deprecations might be fixed by the patch script, run this again to check for type deprecations.'.PHP_EOL;
 }

@@ -29,11 +29,16 @@ class TokenStream
     /**
      * @var Token[]
      */
+<<<<<<< HEAD
     private $tokens = [];
+=======
+    private array $tokens = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @var Token[]
      */
+<<<<<<< HEAD
     private $used = [];
 
     /**
@@ -50,13 +55,24 @@ class TokenStream
      * @var bool
      */
     private $peeking = false;
+=======
+    private array $used = [];
+
+    private int $cursor = 0;
+    private ?Token $peeked;
+    private bool $peeking = false;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * Pushes a token.
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function push(Token $token): self
+=======
+    public function push(Token $token): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         $this->tokens[] = $token;
 
@@ -68,7 +84,11 @@ class TokenStream
      *
      * @return $this
      */
+<<<<<<< HEAD
     public function freeze(): self
+=======
+    public function freeze(): static
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return $this;
     }

@@ -22,8 +22,13 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class ConsoleErrorEvent extends ConsoleEvent
 {
+<<<<<<< HEAD
     private $error;
     private $exitCode;
+=======
+    private \Throwable $error;
+    private int $exitCode;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct(InputInterface $input, OutputInterface $output, \Throwable $error, Command $command = null)
     {
@@ -47,7 +52,10 @@ final class ConsoleErrorEvent extends ConsoleEvent
         $this->exitCode = $exitCode;
 
         $r = new \ReflectionProperty($this->error, 'code');
+<<<<<<< HEAD
         $r->setAccessible(true);
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $r->setValue($this->error, $this->exitCode);
     }
 

@@ -4,7 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+<<<<<<< HEAD
 class {{ class }} extends Migration
+=======
+return new class extends Migration
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 {
     /**
      * Run the migrations.
@@ -28,4 +32,8 @@ class {{ class }} extends Migration
     {
         Schema::dropIfExists('{{ table }}');
     }
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2

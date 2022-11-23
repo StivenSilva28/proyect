@@ -7,6 +7,7 @@ use Closure;
 use Illuminate\Contracts\Filesystem\Factory as FactoryContract;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
+<<<<<<< HEAD
 use League\Flysystem\Adapter\Ftp as FtpAdapter;
 use League\Flysystem\Adapter\Local as LocalAdapter;
 use League\Flysystem\AdapterInterface;
@@ -16,6 +17,21 @@ use League\Flysystem\Cached\Storage\Memory as MemoryStore;
 use League\Flysystem\Filesystem as Flysystem;
 use League\Flysystem\FilesystemInterface;
 use League\Flysystem\Sftp\SftpAdapter;
+=======
+use League\Flysystem\AwsS3V3\AwsS3V3Adapter as S3Adapter;
+use League\Flysystem\AwsS3V3\PortableVisibilityConverter as AwsS3PortableVisibilityConverter;
+use League\Flysystem\Filesystem as Flysystem;
+use League\Flysystem\FilesystemAdapter as FlysystemAdapter;
+use League\Flysystem\Ftp\FtpAdapter;
+use League\Flysystem\Ftp\FtpConnectionOptions;
+use League\Flysystem\Local\LocalFilesystemAdapter as LocalAdapter;
+use League\Flysystem\PathPrefixing\PathPrefixedAdapter;
+use League\Flysystem\PhpseclibV3\SftpAdapter;
+use League\Flysystem\PhpseclibV3\SftpConnectionProvider;
+use League\Flysystem\ReadOnly\ReadOnlyFilesystemAdapter;
+use League\Flysystem\UnixVisibility\PortableVisibilityConverter;
+use League\Flysystem\Visibility;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
 /**
  * @mixin \Illuminate\Contracts\Filesystem\Filesystem
@@ -126,7 +142,11 @@ class FilesystemManager implements FactoryContract
      */
     protected function resolve($name, $config = null)
     {
+<<<<<<< HEAD
         $config = $config ?? $this->getConfig($name);
+=======
+        $config ??= $this->getConfig($name);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if (empty($config['driver'])) {
             throw new InvalidArgumentException("Disk [{$name}] does not have a configured driver.");
@@ -155,6 +175,7 @@ class FilesystemManager implements FactoryContract
      */
     protected function callCustomCreator(array $config)
     {
+<<<<<<< HEAD
         $driver = $this->customCreators[$config['driver']]($this->app, $config);
 
         if ($driver instanceof FilesystemInterface) {
@@ -162,6 +183,9 @@ class FilesystemManager implements FactoryContract
         }
 
         return $driver;
+=======
+        return $this->customCreators[$config['driver']]($this->app, $config);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -172,15 +196,30 @@ class FilesystemManager implements FactoryContract
      */
     public function createLocalDriver(array $config)
     {
+<<<<<<< HEAD
         $permissions = $config['permissions'] ?? [];
+=======
+        $visibility = PortableVisibilityConverter::fromArray(
+            $config['permissions'] ?? [],
+            $config['directory_visibility'] ?? $config['visibility'] ?? Visibility::PRIVATE
+        );
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         $links = ($config['links'] ?? null) === 'skip'
             ? LocalAdapter::SKIP_LINKS
             : LocalAdapter::DISALLOW_LINKS;
 
+<<<<<<< HEAD
         return $this->adapt($this->createFlysystem(new LocalAdapter(
             $config['root'], $config['lock'] ?? LOCK_EX, $links, $permissions
         ), $config));
+=======
+        $adapter = new LocalAdapter(
+            $config['root'], $visibility, $config['lock'] ?? LOCK_EX, $links
+        );
+
+        return new FilesystemAdapter($this->createFlysystem($adapter, $config), $adapter, $config);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -191,9 +230,19 @@ class FilesystemManager implements FactoryContract
      */
     public function createFtpDriver(array $config)
     {
+<<<<<<< HEAD
         return $this->adapt($this->createFlysystem(
             new FtpAdapter($config), $config
         ));
+=======
+        if (! isset($config['root'])) {
+            $config['root'] = '';
+        }
+
+        $adapter = new FtpAdapter(FtpConnectionOptions::fromArray($config));
+
+        return new FilesystemAdapter($this->createFlysystem($adapter, $config), $adapter, $config);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -204,9 +253,23 @@ class FilesystemManager implements FactoryContract
      */
     public function createSftpDriver(array $config)
     {
+<<<<<<< HEAD
         return $this->adapt($this->createFlysystem(
             new SftpAdapter($config), $config
         ));
+=======
+        $provider = SftpConnectionProvider::fromArray($config);
+
+        $root = $config['root'] ?? '/';
+
+        $visibility = PortableVisibilityConverter::fromArray(
+            $config['permissions'] ?? []
+        );
+
+        $adapter = new SftpAdapter($provider, $root, $visibility);
+
+        return new FilesystemAdapter($this->createFlysystem($adapter, $config), $adapter, $config);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -219,6 +282,7 @@ class FilesystemManager implements FactoryContract
     {
         $s3Config = $this->formatS3Config($config);
 
+<<<<<<< HEAD
         $root = $s3Config['root'] ?? null;
 
         $options = $config['options'] ?? [];
@@ -228,6 +292,23 @@ class FilesystemManager implements FactoryContract
         return $this->adapt($this->createFlysystem(
             new S3Adapter(new S3Client($s3Config), $s3Config['bucket'], $root, $options, $streamReads), $config
         ));
+=======
+        $root = (string) ($s3Config['root'] ?? '');
+
+        $visibility = new AwsS3PortableVisibilityConverter(
+            $config['visibility'] ?? Visibility::PUBLIC
+        );
+
+        $streamReads = $s3Config['stream_reads'] ?? false;
+
+        $client = new S3Client($s3Config);
+
+        $adapter = new S3Adapter($client, $s3Config['bucket'], $root, $visibility, null, $config['options'] ?? [], $streamReads);
+
+        return new AwsS3V3Adapter(
+            $this->createFlysystem($adapter, $config), $adapter, $s3Config, $client
+        );
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -248,6 +329,7 @@ class FilesystemManager implements FactoryContract
     }
 
     /**
+<<<<<<< HEAD
      * Create a Flysystem instance with the given adapter.
      *
      * @param  \League\Flysystem\AdapterInterface  $adapter
@@ -297,6 +379,51 @@ class FilesystemManager implements FactoryContract
     protected function adapt(FilesystemInterface $filesystem)
     {
         return new FilesystemAdapter($filesystem);
+=======
+     * Create a scoped driver.
+     *
+     * @param  array  $config
+     * @return \Illuminate\Contracts\Filesystem\Filesystem
+     */
+    public function createScopedDriver(array $config)
+    {
+        if (empty($config['disk'])) {
+            throw new InvalidArgumentException('Scoped disk is missing "disk" configuration option.');
+        } elseif (empty($config['prefix'])) {
+            throw new InvalidArgumentException('Scoped disk is missing "prefix" configuration option.');
+        }
+
+        return $this->build(tap(
+            $this->getConfig($config['disk']),
+            fn (&$parent) => $parent['prefix'] = $config['prefix']
+        ));
+    }
+
+    /**
+     * Create a Flysystem instance with the given adapter.
+     *
+     * @param  \League\Flysystem\FilesystemAdapter  $adapter
+     * @param  array  $config
+     * @return \League\Flysystem\FilesystemOperator
+     */
+    protected function createFlysystem(FlysystemAdapter $adapter, array $config)
+    {
+        if ($config['read-only'] ?? false === true) {
+            $adapter = new ReadOnlyFilesystemAdapter($adapter);
+        }
+
+        if (! empty($config['prefix'])) {
+            $adapter = new PathPrefixedAdapter($adapter, $config['prefix']);
+        }
+
+        return new Flysystem($adapter, Arr::only($config, [
+            'directory_visibility',
+            'disable_asserts',
+            'temporary_url',
+            'url',
+            'visibility',
+        ]));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -367,7 +494,11 @@ class FilesystemManager implements FactoryContract
      */
     public function purge($name = null)
     {
+<<<<<<< HEAD
         $name = $name ?? $this->getDefaultDriver();
+=======
+        $name ??= $this->getDefaultDriver();
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         unset($this->disks[$name]);
     }

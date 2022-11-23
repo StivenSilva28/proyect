@@ -9,7 +9,13 @@ use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Database\Events\SchemaDumped;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Config;
+<<<<<<< HEAD
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+
+#[AsCommand(name: 'schema:dump')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class DumpCommand extends Command
 {
     /**
@@ -23,6 +29,20 @@ class DumpCommand extends Command
                 {--prune : Delete all existing migration files}';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'schema:dump';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -46,15 +66,26 @@ class DumpCommand extends Command
 
         $dispatcher->dispatch(new SchemaDumped($connection, $path));
 
+<<<<<<< HEAD
         $this->info('Database schema dumped successfully.');
+=======
+        $info = 'Database schema dumped';
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
         if ($this->option('prune')) {
             (new Filesystem)->deleteDirectory(
                 database_path('migrations'), $preserve = false
             );
 
+<<<<<<< HEAD
             $this->info('Migrations pruned successfully.');
         }
+=======
+            $info .= ' and pruned';
+        }
+
+        $this->components->info($info.' successfully.');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

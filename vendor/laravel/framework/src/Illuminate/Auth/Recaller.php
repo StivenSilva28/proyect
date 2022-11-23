@@ -2,8 +2,11 @@
 
 namespace Illuminate\Auth;
 
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class Recaller
 {
     /**
@@ -51,7 +54,11 @@ class Recaller
      */
     public function hash()
     {
+<<<<<<< HEAD
         return explode('|', $this->recaller, 3)[2];
+=======
+        return explode('|', $this->recaller, 4)[2];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -71,7 +78,11 @@ class Recaller
      */
     protected function properString()
     {
+<<<<<<< HEAD
         return is_string($this->recaller) && Str::contains($this->recaller, '|');
+=======
+        return is_string($this->recaller) && str_contains($this->recaller, '|');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -83,6 +94,20 @@ class Recaller
     {
         $segments = explode('|', $this->recaller);
 
+<<<<<<< HEAD
         return count($segments) === 3 && trim($segments[0]) !== '' && trim($segments[1]) !== '';
+=======
+        return count($segments) >= 3 && trim($segments[0]) !== '' && trim($segments[1]) !== '';
+    }
+
+    /**
+     * Get the recaller's segments.
+     *
+     * @return array
+     */
+    public function segments()
+    {
+        return explode('|', $this->recaller);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

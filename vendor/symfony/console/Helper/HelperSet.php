@@ -11,7 +11,10 @@
 
 namespace Symfony\Component\Console\Helper;
 
+<<<<<<< HEAD
 use Symfony\Component\Console\Command\Command;
+=======
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 
 /**
@@ -24,8 +27,12 @@ use Symfony\Component\Console\Exception\InvalidArgumentException;
 class HelperSet implements \IteratorAggregate
 {
     /** @var array<string, Helper> */
+<<<<<<< HEAD
     private $helpers = [];
     private $command;
+=======
+    private array $helpers = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     /**
      * @param Helper[] $helpers An array of helper
@@ -49,10 +56,15 @@ class HelperSet implements \IteratorAggregate
 
     /**
      * Returns true if the helper if defined.
+<<<<<<< HEAD
      *
      * @return bool
      */
     public function has(string $name)
+=======
+     */
+    public function has(string $name): bool
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return isset($this->helpers[$name]);
     }
@@ -60,11 +72,17 @@ class HelperSet implements \IteratorAggregate
     /**
      * Gets a helper value.
      *
+<<<<<<< HEAD
      * @return HelperInterface
      *
      * @throws InvalidArgumentException if the helper is not defined
      */
     public function get(string $name)
+=======
+     * @throws InvalidArgumentException if the helper is not defined
+     */
+    public function get(string $name): HelperInterface
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         if (!$this->has($name)) {
             throw new InvalidArgumentException(sprintf('The helper "%s" is not defined.', $name));
@@ -73,6 +91,7 @@ class HelperSet implements \IteratorAggregate
         return $this->helpers[$name];
     }
 
+<<<<<<< HEAD
     /**
      * @deprecated since Symfony 5.4
      */
@@ -102,6 +121,9 @@ class HelperSet implements \IteratorAggregate
      */
     #[\ReturnTypeWillChange]
     public function getIterator()
+=======
+    public function getIterator(): \Traversable
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     {
         return new \ArrayIterator($this->helpers);
     }

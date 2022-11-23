@@ -13,7 +13,11 @@ namespace Symfony\Component\Console\SignalRegistry;
 
 final class SignalRegistry
 {
+<<<<<<< HEAD
     private $signalHandlers = [];
+=======
+    private array $signalHandlers = [];
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 
     public function __construct()
     {
@@ -34,11 +38,16 @@ final class SignalRegistry
 
         $this->signalHandlers[$signal][] = $signalHandler;
 
+<<<<<<< HEAD
         pcntl_signal($signal, [$this, 'handle']);
+=======
+        pcntl_signal($signal, $this->handle(...));
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     public static function isSupported(): bool
     {
+<<<<<<< HEAD
         if (!\function_exists('pcntl_signal')) {
             return false;
         }
@@ -48,6 +57,9 @@ final class SignalRegistry
         }
 
         return true;
+=======
+        return \function_exists('pcntl_signal');
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**

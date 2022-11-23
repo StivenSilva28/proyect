@@ -20,8 +20,13 @@ interface RequestMatcherInterface
 {
     /**
      * Decides whether the rule(s) implemented by the strategy matches the supplied request.
+<<<<<<< HEAD
      *
      * @return bool
      */
     public function matches(Request $request);
+=======
+     */
+    public function matches(Request $request): bool;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

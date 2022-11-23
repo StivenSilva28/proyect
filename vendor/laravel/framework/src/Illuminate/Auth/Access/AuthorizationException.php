@@ -15,6 +15,16 @@ class AuthorizationException extends Exception
     protected $response;
 
     /**
+<<<<<<< HEAD
+=======
+     * The HTTP response status code.
+     *
+     * @var int|null
+     */
+    protected $status;
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a new authorization exception instance.
      *
      * @param  string|null  $message
@@ -53,12 +63,62 @@ class AuthorizationException extends Exception
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Set the HTTP response status code.
+     *
+     * @param  int|null  $status
+     * @return $this
+     */
+    public function withStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Set the HTTP response status code to 404.
+     *
+     * @return $this
+     */
+    public function asNotFound()
+    {
+        return $this->withStatus(404);
+    }
+
+    /**
+     * Determine if the HTTP status code has been set.
+     *
+     * @return bool
+     */
+    public function hasStatus()
+    {
+        return $this->status !== null;
+    }
+
+    /**
+     * Get the HTTP status code.
+     *
+     * @return int|null
+     */
+    public function status()
+    {
+        return $this->status;
+    }
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * Create a deny response object from this exception.
      *
      * @return \Illuminate\Auth\Access\Response
      */
     public function toResponse()
     {
+<<<<<<< HEAD
         return Response::deny($this->message, $this->code);
+=======
+        return Response::deny($this->message, $this->code)->withStatus($this->status);
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 }

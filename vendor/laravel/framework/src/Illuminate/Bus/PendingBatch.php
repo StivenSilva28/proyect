@@ -6,9 +6,15 @@ use Closure;
 use Illuminate\Bus\Events\BatchDispatched;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
+<<<<<<< HEAD
 use Illuminate\Queue\SerializableClosureFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+=======
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+use Laravel\SerializableClosure\SerializableClosure;
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 use Throwable;
 
 class PendingBatch
@@ -57,11 +63,20 @@ class PendingBatch
     /**
      * Add jobs to the batch.
      *
+<<<<<<< HEAD
      * @param  iterable  $jobs
+=======
+     * @param  iterable|object|array  $jobs
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * @return $this
      */
     public function add($jobs)
     {
+<<<<<<< HEAD
+=======
+        $jobs = is_iterable($jobs) ? $jobs : Arr::wrap($jobs);
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         foreach ($jobs as $job) {
             $this->jobs->push($job);
         }
@@ -78,7 +93,11 @@ class PendingBatch
     public function then($callback)
     {
         $this->options['then'][] = $callback instanceof Closure
+<<<<<<< HEAD
                         ? SerializableClosureFactory::make($callback)
+=======
+                        ? new SerializableClosure($callback)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                         : $callback;
 
         return $this;
@@ -103,7 +122,11 @@ class PendingBatch
     public function catch($callback)
     {
         $this->options['catch'][] = $callback instanceof Closure
+<<<<<<< HEAD
                     ? SerializableClosureFactory::make($callback)
+=======
+                    ? new SerializableClosure($callback)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     : $callback;
 
         return $this;
@@ -128,7 +151,11 @@ class PendingBatch
     public function finally($callback)
     {
         $this->options['finally'][] = $callback instanceof Closure
+<<<<<<< HEAD
                     ? SerializableClosureFactory::make($callback)
+=======
+                    ? new SerializableClosure($callback)
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                     : $callback;
 
         return $this;
@@ -269,4 +296,52 @@ class PendingBatch
 
         return $batch;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Dispatch the batch after the response is sent to the browser.
+     *
+     * @return \Illuminate\Bus\Batch
+     */
+    public function dispatchAfterResponse()
+    {
+        $repository = $this->container->make(BatchRepository::class);
+
+        $batch = $repository->store($this);
+
+        if ($batch) {
+            $this->container->terminating(function () use ($batch) {
+                $this->dispatchExistingBatch($batch);
+            });
+        }
+
+        return $batch;
+    }
+
+    /**
+     * Dispatch an existing batch.
+     *
+     * @param  \Illuminate\Bus\Batch  $batch
+     * @return void
+     *
+     * @throws \Throwable
+     */
+    protected function dispatchExistingBatch($batch)
+    {
+        try {
+            $batch = $batch->add($this->jobs);
+        } catch (Throwable $e) {
+            if (isset($batch)) {
+                $batch->delete();
+            }
+
+            throw $e;
+        }
+
+        $this->container->make(EventDispatcher::class)->dispatch(
+            new BatchDispatched($batch)
+        );
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }

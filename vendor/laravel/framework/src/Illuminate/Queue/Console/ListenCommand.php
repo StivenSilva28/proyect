@@ -5,7 +5,13 @@ namespace Illuminate\Queue\Console;
 use Illuminate\Console\Command;
 use Illuminate\Queue\Listener;
 use Illuminate\Queue\ListenerOptions;
+<<<<<<< HEAD
 
+=======
+use Symfony\Component\Console\Attribute\AsCommand;
+
+#[AsCommand(name: 'queue:listen')]
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 class ListenCommand extends Command
 {
     /**
@@ -26,6 +32,20 @@ class ListenCommand extends Command
                             {--tries=1 : Number of times to attempt a job before logging it failed}';
 
     /**
+<<<<<<< HEAD
+=======
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     *
+     * @deprecated
+     */
+    protected static $defaultName = 'queue:listen';
+
+    /**
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
      * The console command description.
      *
      * @var string
@@ -66,6 +86,11 @@ class ListenCommand extends Command
             $connection = $this->input->getArgument('connection')
         );
 
+<<<<<<< HEAD
+=======
+        $this->components->info(sprintf('Processing jobs from the [%s] %s.', $queue, str('queue')->plural(explode(',', $queue))));
+
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
         $this->listener->listen(
             $connection, $queue, $this->gatherOptions()
         );

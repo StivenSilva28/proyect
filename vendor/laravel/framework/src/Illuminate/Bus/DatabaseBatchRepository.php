@@ -59,9 +59,13 @@ class DatabaseBatchRepository implements PrunableBatchRepository
         return $this->connection->table($this->table)
                             ->orderByDesc('id')
                             ->take($limit)
+<<<<<<< HEAD
                             ->when($before, function ($q) use ($before) {
                                 return $q->where('id', '<', $before);
                             })
+=======
+                            ->when($before, fn ($q) => $q->where('id', '<', $before))
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                             ->get()
                             ->map(function ($batch) {
                                 return $this->toBatch($batch);
@@ -78,6 +82,10 @@ class DatabaseBatchRepository implements PrunableBatchRepository
     public function find(string $batchId)
     {
         $batch = $this->connection->table($this->table)
+<<<<<<< HEAD
+=======
+                            ->useWritePdo()
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
                             ->where('id', $batchId)
                             ->first();
 
@@ -286,9 +294,13 @@ class DatabaseBatchRepository implements PrunableBatchRepository
      */
     public function transaction(Closure $callback)
     {
+<<<<<<< HEAD
         return $this->connection->transaction(function () use ($callback) {
             return $callback();
         });
+=======
+        return $this->connection->transaction(fn () => $callback());
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
     }
 
     /**
@@ -344,4 +356,28 @@ class DatabaseBatchRepository implements PrunableBatchRepository
             $batch->finished_at ? CarbonImmutable::createFromTimestamp($batch->finished_at) : $batch->finished_at
         );
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Get the underlying database connection.
+     *
+     * @return \Illuminate\Database\Connection
+     */
+    public function getConnection()
+    {
+        return $this->connection;
+    }
+
+    /**
+     * Set the underlying database connection.
+     *
+     * @param  \Illuminate\Database\Connection  $connection
+     * @return void
+     */
+    public function setConnection(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+>>>>>>> 6d8029f69a7308fd09612681e8872548053ebad2
 }
