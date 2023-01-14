@@ -33,11 +33,11 @@ class PacienteController extends Controller
     public function create()
     {
         $paciente = new Paciente();
-        $tipos_id_pacientes = TiposIdPaciente::pluck('abreviado','tipo_id_paciente');
+        $tiposidpacientes = TiposIdPaciente::pluck('abreviado','tipo_id_paciente');
         // $categorias=Categoria::pluck('nombre','id');
 
 
-        return view('paciente.create', compact('paciente','tipos_id_pacientes'));
+        return view('paciente.create', compact('paciente','tiposidpacientes'));
     }
 
     /**
