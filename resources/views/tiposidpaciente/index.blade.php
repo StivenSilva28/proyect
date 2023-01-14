@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Tipos Id Paciente
+    Tiposidpaciente
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Tipos Id Paciente') }}
+                                {{ __('Tiposidpaciente') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('tipos-id-pacientes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('tiposidpacientes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -45,19 +45,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($tiposIdPacientes as $tiposIdPaciente)
+                                    @foreach ($tiposidpacientes as $tiposidpaciente)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $tiposIdPaciente->tipo_id_paciente }}</td>
-											<td>{{ $tiposIdPaciente->abreviado }}</td>
-											<td>{{ $tiposIdPaciente->descripcion }}</td>
-											<td>{{ $tiposIdPaciente->codigo_alterno }}</td>
+											<td>{{ $tiposidpaciente->tipo_id_paciente }}</td>
+											<td>{{ $tiposidpaciente->abreviado }}</td>
+											<td>{{ $tiposidpaciente->descripcion }}</td>
+											<td>{{ $tiposidpaciente->codigo_alterno }}</td>
 
                                             <td>
-                                                <form action="{{ route('tipos-id-pacientes.destroy',$tiposIdPaciente->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('tipos-id-pacientes.show',$tiposIdPaciente->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('tipos-id-pacientes.edit',$tiposIdPaciente->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('tiposidpacientes.destroy',$tiposidpaciente->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('tiposidpacientes.show',$tiposidpaciente->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('tiposidpacientes.edit',$tiposidpaciente->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $tiposIdPacientes->links() !!}
+                {!! $tiposidpacientes->links() !!}
             </div>
         </div>
     </div>

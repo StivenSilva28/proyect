@@ -9,12 +9,7 @@
             {{ Form::text('paciente_id', $paciente->paciente_id, ['class' => 'form-control' . ($errors->has('paciente_id') ? ' is-invalid' : ''), 'placeholder' => 'Paciente Id']) }}
             {!! $errors->first('paciente_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="col-3">
-            {{-- {{ Form::label('tipo_id_paciente') }} --}}
-            {{ Form::label('') }}
-            {{ Form::select('tipo_id_paciente',$tipos_id_pacientes, $paciente->tipo_id_paciente, ['class' => 'form-control' . ($errors->has('tipo_id_paciente') ? ' is-invalid' : ''), 'placeholder' => 'Tipo Id Paciente']) }}
-            {!! $errors->first('tipo_id_paciente', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
+        
         <div class="col-3">
             {{-- {{ Form::label('primer_apellido') }} --}}
             {{ Form::label('') }}

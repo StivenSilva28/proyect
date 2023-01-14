@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class TiposIdPaciente
+ * Class Tiposidpaciente
  *
  * @property $tipo_id_paciente
  * @property $abreviado
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class TiposIdPaciente extends Model
+class Tiposidpaciente extends Model
 {
     
     static $rules = [

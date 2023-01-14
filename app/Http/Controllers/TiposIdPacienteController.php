@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TiposIdPaciente;
+use App\Models\Tiposidpaciente;
 use Illuminate\Http\Request;
 
 /**
- * Class TiposIdPacienteController
+ * Class TiposidpacienteController
  * @package App\Http\Controllers
  */
-class TiposIdPacienteController extends Controller
+class TiposidpacienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,10 @@ class TiposIdPacienteController extends Controller
      */
     public function index()
     {
-        $tiposIdPacientes = TiposIdPaciente::paginate();
+        $tiposidpacientes = Tiposidpaciente::paginate();
 
-        return view('tipos-id-paciente.index', compact('tiposIdPacientes'))
-            ->with('i', (request()->input('page', 1) - 1) * $tiposIdPacientes->perPage());
+        return view('tiposidpaciente.index', compact('tiposidpacientes'))
+            ->with('i', (request()->input('page', 1) - 1) * $tiposidpacientes->perPage());
     }
 
     /**
@@ -31,8 +31,8 @@ class TiposIdPacienteController extends Controller
      */
     public function create()
     {
-        $tiposIdPaciente = new TiposIdPaciente();
-        return view('tipos-id-paciente.create', compact('tiposIdPaciente'));
+        $tiposidpaciente = new Tiposidpaciente();
+        return view('tiposidpaciente.create', compact('tiposidpaciente'));
     }
 
     /**
@@ -43,12 +43,12 @@ class TiposIdPacienteController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(TiposIdPaciente::$rules);
+        request()->validate(Tiposidpaciente::$rules);
 
-        $tiposIdPaciente = TiposIdPaciente::create($request->all());
+        $tiposidpaciente = Tiposidpaciente::create($request->all());
 
-        return redirect()->route('tipos-id-pacientes.index')
-            ->with('success', 'TiposIdPaciente created successfully.');
+        return redirect()->route('tiposidpacientes.index')
+            ->with('success', 'Tiposidpaciente created successfully.');
     }
 
     /**
@@ -59,9 +59,9 @@ class TiposIdPacienteController extends Controller
      */
     public function show($id)
     {
-        $tiposIdPaciente = TiposIdPaciente::find($id);
+        $tiposidpaciente = Tiposidpaciente::find($id);
 
-        return view('tipos-id-paciente.show', compact('tiposIdPaciente'));
+        return view('tiposidpaciente.show', compact('tiposidpaciente'));
     }
 
     /**
@@ -72,26 +72,26 @@ class TiposIdPacienteController extends Controller
      */
     public function edit($id)
     {
-        $tiposIdPaciente = TiposIdPaciente::find($id);
+        $tiposidpaciente = Tiposidpaciente::find($id);
 
-        return view('tipos-id-paciente.edit', compact('tiposIdPaciente'));
+        return view('tiposidpaciente.edit', compact('tiposidpaciente'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  TiposIdPaciente $tiposIdPaciente
+     * @param  Tiposidpaciente $tiposidpaciente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TiposIdPaciente $tiposIdPaciente)
+    public function update(Request $request, Tiposidpaciente $tiposidpaciente)
     {
-        request()->validate(TiposIdPaciente::$rules);
+        request()->validate(Tiposidpaciente::$rules);
 
-        $tiposIdPaciente->update($request->all());
+        $tiposidpaciente->update($request->all());
 
-        return redirect()->route('tipos-id-pacientes.index')
-            ->with('success', 'TiposIdPaciente updated successfully');
+        return redirect()->route('tiposidpacientes.index')
+            ->with('success', 'Tiposidpaciente updated successfully');
     }
 
     /**
@@ -101,9 +101,9 @@ class TiposIdPacienteController extends Controller
      */
     public function destroy($id)
     {
-        $tiposIdPaciente = TiposIdPaciente::find($id)->delete();
+        $tiposidpaciente = Tiposidpaciente::find($id)->delete();
 
-        return redirect()->route('tipos-id-pacientes.index')
-            ->with('success', 'TiposIdPaciente deleted successfully');
+        return redirect()->route('tiposidpacientes.index')
+            ->with('success', 'Tiposidpaciente deleted successfully');
     }
 }

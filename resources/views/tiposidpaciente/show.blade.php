@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $tiposIdPaciente->name ?? 'Show Tipos Id Paciente' }}
+    {{ $tiposidpaciente->name ?? 'Show Tiposidpaciente' }}
 @endsection
 
 @section('content')
@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Tipos Id Paciente</span>
+                            <span class="card-title">Show Tiposidpaciente</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('tipos-id-pacientes.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('tiposidpacientes.index') }}"> Back</a>
                         </div>
                     </div>
 
@@ -22,19 +22,19 @@
                         
                         <div class="form-group">
                             <strong>Tipo Id Paciente:</strong>
-                            {{ $tiposIdPaciente->tipo_id_paciente }}
+                            {{ $tiposidpaciente->tipo_id_paciente }}
                         </div>
                         <div class="form-group">
                             <strong>Abreviado:</strong>
-                            {{ $tiposIdPaciente->abreviado }}
+                            {{ $tiposidpaciente->abreviado }}
                         </div>
                         <div class="form-group">
                             <strong>Descripcion:</strong>
-                            {{ $tiposIdPaciente->descripcion }}
+                            {{ $tiposidpaciente->descripcion }}
                         </div>
                         <div class="form-group">
                             <strong>Codigo Alterno:</strong>
-                            {{ $tiposIdPaciente->codigo_alterno }}
+                            {{ $tiposidpaciente->codigo_alterno }}
                         </div>
 
                     </div>
