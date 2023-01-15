@@ -176,9 +176,9 @@ class Paciente extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function zonaResidencium()
+    public function Zonaresidencia()
     {
-        return $this->hasOne('App\Models\ZonaResidencium', 'zona_residencia_id', 'zona_residencia_id');
+        return $this->hasOne('App\Models\Zonaresidencia', 'zona_residencia_id', 'zona_residencia_id');
     }
     
 

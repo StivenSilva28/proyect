@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Paciente;
+use App\Models\Zonaresidencia;
+use App\Models\Tiposexo;
 use App\Models\TiposIdPaciente;
 use Illuminate\Http\Request;
 
@@ -34,10 +36,12 @@ class PacienteController extends Controller
     {
         $paciente = new Paciente();
         $tiposidpacientes = TiposIdPaciente::pluck('abreviado','tipo_id_paciente');
+        $Zonaresidencia = Zonaresidencia::pluck('descripcion','zona_residencia_id');
+        $Tiposexo = Tiposexo::pluck('descripcion','sexo_id');
         // $categorias=Categoria::pluck('nombre','id');
 
 
-        return view('paciente.create', compact('paciente','tiposidpacientes'));
+        return view('paciente.create', compact('paciente','tiposidpacientes','Zonaresidencia','Tiposexo'));
     }
 
     /**

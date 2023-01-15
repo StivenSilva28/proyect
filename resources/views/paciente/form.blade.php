@@ -42,7 +42,7 @@
         <div class="col-3">
             {{-- {{ Form::label('fecha_nacimiento') }} --}}
             {{ Form::label('') }}
-            {{ Form::text('fecha_nacimiento', $paciente->fecha_nacimiento, ['class' => 'form-control' . ($errors->has('fecha_nacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Nacimiento']) }}
+            {{ Form::date('fecha_nacimiento', $paciente->fecha_nacimiento, ['class' => 'form-control' . ($errors->has('fecha_nacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Nacimiento']) }}
             {!! $errors->first('fecha_nacimiento', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-3">
@@ -66,25 +66,25 @@
         <div class="col-3">
             {{-- {{ Form::label('zona_residencia_id') }} --}}
             {{ Form::label('') }}
-            {{ Form::text('zona_residencia_id', $paciente->zona_residencia_id, ['class' => 'form-control' . ($errors->has('zona_residencia_id') ? ' is-invalid' : ''), 'placeholder' => 'Zona Residencia Id']) }}
+            {{ Form::select('zona_residencia_id', $Zonaresidencia,$paciente->descripcion, ['class' => 'form-control' . ($errors->has('zona_residencia_id') ? ' is-invalid' : ''), 'placeholder' => 'Zona Residencia']) }}
             {!! $errors->first('zona_residencia_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-3">
             {{-- {{ Form::label('ocupacion_id') }} --}}
             {{ Form::label('') }}
-            {{ Form::text('ocupacion_id', $paciente->ocupacion_id, ['class' => 'form-control' . ($errors->has('ocupacion_id') ? ' is-invalid' : ''), 'placeholder' => 'Ocupacion Id']) }}
+            {{ Form::text('ocupacion_id', $paciente->ocupacion_id, ['class' => 'form-control' . ($errors->has('ocupacion_id') ? ' is-invalid' : ''), 'placeholder' => 'Ocupacion']) }}
             {!! $errors->first('ocupacion_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-3">
             {{-- {{ Form::label('fecha_registro') }} --}}
             {{ Form::label('') }}
-            {{ Form::text('fecha_registro', $paciente->fecha_registro, ['class' => 'form-control' . ($errors->has('fecha_registro') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Registro']) }}
+            {{ Form::date('fecha_registro', $paciente->fecha_registro, ['class' => 'form-control' . ($errors->has('fecha_registro') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Registro']) }}
             {!! $errors->first('fecha_registro', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-3">
             {{-- {{ Form::label('sexo_id') }} --}}
             {{ Form::label('') }}
-            {{ Form::text('sexo_id', $paciente->sexo_id, ['class' => 'form-control' . ($errors->has('sexo_id') ? ' is-invalid' : ''), 'placeholder' => 'Sexo Id']) }}
+            {{ Form::select('sexo_id',$Tiposexo, $paciente->sexo_id, ['class' => 'form-control' . ($errors->has('sexo_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccionar Sexo']) }}
             {!! $errors->first('sexo_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-3">
